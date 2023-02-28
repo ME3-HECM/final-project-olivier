@@ -5,6 +5,11 @@
 
 #define _XTAL_FREQ 64000000
 
+//variable for a forward motion
+extern volatile char ForwardFlag;
+int _15dleftdelay = 100;
+int _15drightdelay = 100;
+
 typedef struct DC_motor { //definition of DC_motor structure
     char power;         //motor power, out of 100
     char direction;     //motor direction, forward(1), reverse(0)
@@ -23,10 +28,19 @@ void stop(struct DC_motor *mL, struct DC_motor *mR);
 void turnLeft(struct DC_motor *mL, struct DC_motor *mR);
 void turnRight(struct DC_motor *mL, struct DC_motor *mR);
 void fullSpeedAhead(struct DC_motor *mL, struct DC_motor *mR);
-void left90(struct DC_motor *mL, struct DC_motor *mR);
-void right90(struct DC_motor *mL, struct DC_motor *mR);
+void fullSpeedReverse(struct DC_motor *mL, struct DC_motor *mR);
+void Left15(struct DC_motor *mL, struct DC_motor *mR);
+void Right15(struct DC_motor *mL, struct DC_motor *mR);
 void rotate180left(struct DC_motor *mL, struct DC_motor *mR);
-void TraceSquareL(void);
-void TraceSquareR(void);
+
+
+void Red_R90(void);
+void Green_L90(void);
+void Blue_T180(void);
+void Yellow_REV1_L90(void);
+void Pink_rev1_L90(void);
+void Orange_R135(void);
+void LightBlue_L135(void);
+void White(void);
 
 #endif

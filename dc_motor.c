@@ -1,6 +1,9 @@
 #include <xc.h>
 #include "dc_motor.h"
-
+extern volatile char ForwardFlag = 1;
+int _15dleftdelay = 100; //delay corresponging to a 15 degree turn left
+int _15drightdelay = 100;//delay corresponding to a 15 degree turn right
+int _1squaredelay = 1000; //delay corresponding to 1 square reversal
 // function initialise T2 and CCP for DC motor control
 void initDCmotorsPWM(unsigned int PWMperiod){
     //initialise your TRIS and LAT registers for PWM  
@@ -60,7 +63,7 @@ void initDCmotorsPWM(unsigned int PWMperiod){
     CCP4CONbits.EN=1; //turn on
 }
 
-// function to set CCP PWM output from the values in the motor structure
+// function to set CCP PWM output from the values in the motor structure-----FROM LAB 6
 void setMotorPWM(struct DC_motor *m)
 {
     unsigned char posDuty, negDuty; //duty cycle values for different sides of the motor
@@ -150,61 +153,157 @@ void fullSpeedAhead(struct DC_motor *mL, struct DC_motor *mR)
         __delay_us(400);//delay to increase power slowly
     } 
 }
+void fullSpeedReverse(struct DC_motor *mL, struct DC_motor *mR)
+{
+ (mL->direction) = 0; //set motor direction forward for left
+ (mR->direction) = 0; //set motor direction forward for right 
+ //here we will have a for loop to increase the power to the motor gradually
+    for (unsigned int i = 0; i <50; i++)//increase power value up to 50/100% of power (this value is tunable for how fast you want it to go)
+    {
+        (mL->power)++; //increase the power to both motors by 1%
+        (mR->power)++;
+        setMotorPWM(mL);//set new motor power values
+        setMotorPWM(mR);
+        __delay_us(400);//delay to increase power slowly
+    } 
+}
 
 //function to turn left 90 degrees
-void left90(struct DC_motor *mL, struct DC_motor *mR)
+void Left15(struct DC_motor *mL, struct DC_motor *mR)
 {
     //this has been tuned to invoke a turn enough times for a 90 degree change
     turnLeft(mL,mR);//invoke the turn left
-    __delay_ms(100);
+    __delay_ms(_15dleftdelay);
     stop(mL,mR);//stop the rotation of the buggy 
 }
 
 //function to turn right 90 degrees
-void right90(struct DC_motor *mL, struct DC_motor *mR)
+void Right15(struct DC_motor *mL, struct DC_motor *mR)
 {   
  //this has been tuned to invoke a turn enough times for a 90 degree change
     turnRight(mL,mR);//invoke the turn right
-   __delay_ms(100);
+   __delay_ms(_15drightdelay);
     stop(mL,mR);//stop the rotation of the buggy 
 }
 
-void rotate180left(struct DC_motor *mL, struct DC_motor *mR)
+void rotate180left(struct DC_motor *mL, struct DC_motor *mR)//from lab 6 
 {
     turnLeft(mL,mR);//invoke the turn right
     __delay_ms(180);//tune this so it corresponds to a 180 degree change
     stop(mL,mR);//stop the rotation of the buggy 
 }
 
-void TraceSquareL(void)
+void Red_R90(struct DC_motor *mL, struct DC_motor *mR)
 {
-        fullSpeedAhead(&motorL, &motorR);
-        //calibrated delay to move approx one meter
-        __delay_ms(2000);
-        //move left 90deg
-        left90(&motorL, &motorR);
-        fullSpeedAhead(&motorL, &motorR);
-        __delay_ms(2000);
-        left90(&motorL, &motorR);
-        fullSpeedAhead(&motorL, &motorR);
-        __delay_ms(2000);
-        left90(&motorL, &motorR);
-        fullSpeedAhead(&motorL, &motorR);
-        __delay_ms(2000);
+    if (ForwardFlag){
+        int i;
+        for (i = 0; i = 5; i++){// execute the 15 degree turn 6 times
+            Right15(mL,mR);
+        }
+    }
+    else if(ForwardFlag == 0){
+        //execute left 90 turn 
+    }
 }
-void TraceSquareR(void)
+
+void Green_L90(struct DC_motor *mL, struct DC_motor *mR)
 {
-        fullSpeedAhead(&motorL, &motorR);
-        //calibrated delay to move approx one meter
-        __delay_ms(2000);
-        //move left 90deg
-        right90(&motorL, &motorR);
-        fullSpeedAhead(&motorL, &motorR);
-        __delay_ms(2000);
-        right90(&motorL, &motorR);
-        fullSpeedAhead(&motorL, &motorR);
-        __delay_ms(2000);
-        right90(&motorL, &motorR);
-        fullSpeedAhead(&motorL, &motorR);
-        __delay_ms(2000);
+    if (ForwardFlag){
+        //execute left 90 turn
+        int i;
+        for (i = 0; i = 5; i++){// execute the 15 degree turn 6 times
+            Left15(mL,mR);
+        }
+    }
+    else if(ForwardFlag&0){
+        //execute right 90 turn 
+    }
+}
+
+void Blue_T180(struct DC_motor *mL, struct DC_motor *mR)
+{
+    //execute right 180 turn (depending on which side turns left/right more accurately)
+    int i;
+    for (i = 0; i = 11; i++){// execute the 15 degree turn 12 times to give a 180 degree change
+        Left15(mL,mR);
+    }
+    
+}
+void Yellow_REV1_L90(struct DC_motor *mL, struct DC_motor *mR)
+{
+    if (ForwardFlag){
+        //execute reverse 1 square & right 90 turn 
+        fullSpeedReverse(mL,mR);
+        __delay_ms(1squaredelay);//delay corresponding to 1 square reversed
+        stop(mL,mR);//stop the buggy 
+        Red_R90(mL,mR); //execute a 90 degree right turn
+    }
+    else if(ForwardFlag&0){
+        //execute left turn 90 & forward 1 square 
+        Green_L90(mL,mR); //execute a 90 degree right turn
+        stop(mL,mR);//stop the buggy 
+        fullSpeedAhead(mL,mR);
+        __delay_ms(1squaredelay);//delay corresponding to 1 square reversed
+        stop(mL,mR);
+    }
+}
+void Pink_rev1_L90(struct DC_motor *mL, struct DC_motor *mR)
+{
+    if (ForwardFlag){
+        //execute reverse 1 square & left 90 turn 
+        fullSpeedReverse(mL,mR);
+        __delay_ms(1squaredelay);//delay corresponding to 1 square reversed
+        stop(mL,mR);//stop the buggy 
+        Green_L90(mL,mR); //execute a 90 degree right turn
+    }
+    else if(ForwardFlag&0){
+        //execute right turn 90 & forward 1 square 
+        Red_R90(mL,mR); //execute a 90 degree right turn
+        stop(mL,mR);//stop the buggy 
+        fullSpeedAhead(mL,mR);
+        __delay_ms(1squaredelay);//delay corresponding to 1 square reversed
+        stop(mL,mR);
+        
+    }
+}
+void Orange_R135(struct DC_motor *mL, struct DC_motor *mR)
+{
+    if (ForwardFlag){
+        //execute Right 135 turn
+        int i;
+        for (i = 0; i = 8; i++){// execute the 15 degree turn 9 times to give a 135 degree change
+        Right15(mL,mR);
+        }
+        
+    }
+    else if(ForwardFlag&0){
+        //execute Left 135 turn  
+        int i;
+        for (i = 0; i = 8; i++){// execute the 15 degree turn 9 times to give a 135 degree change
+        Left15(mL,mR);
+        }
+    }
+}
+void LightBlue_L135(struct DC_motor *mL, struct DC_motor *mR)
+{
+     if (ForwardFlag){
+        //execute Left 135 turn
+        int i;
+        for (i = 0; i = 8; i++){// execute the 15 degree turn 9 times to give a 135 degree change
+        Left15(mL,mR);
+        }
+        
+    }
+    else if(ForwardFlag&0){
+        //execute Right 135 turn  
+        int i;
+        for (i = 0; i = 8; i++){// execute the 15 degree turn 9 times to give a 135 degree change
+        Right15(mL,mR);
+        }
+    }
+}
+void White(void)
+{
+    //calibration sequence for white 
+    //here reverse the array containing the history of turn (i) and distance of the buggy travel (ii) 
 }
