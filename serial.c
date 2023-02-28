@@ -1,7 +1,6 @@
 #include <xc.h>
 #include "serial.h"
 #include <stdio.h>
-#include "LCD.h"
 
 void initUSART4(void) {
     TRISCbits.TRISC4=1; //Set c4 as input
@@ -35,6 +34,12 @@ void sendCharSerial4(char charToSend) {
     TX4REG = charToSend; //transfer char to transmitter
 }
 
+void Color2String(char *buf,char R ,char G,char B,char C){
+    
+	// and format as a string using sprintf (see GitHub readme)
+    sprintf(buf,"Red: %d Green: %d Blue: %d Clear: %d \r",R,G,B,C);
+    sendStringSerial4(buf);
+}
 
 //function to send a string over the serial interface
 void sendStringSerial4(char *string){
@@ -47,63 +52,3 @@ void sendStringSerial4(char *string){
 	}
 }
 
-//functions below are for Ex3 and 4 (optional)
-
-// circular buffer functions for RX
-// retrieve a byte from the buffer
-char getCharFromRxBuf(void){
-    if (RxBufReadCnt>=RX_BUF_SIZE) {RxBufReadCnt=0;} 
-    return EUSART4RXbuf[RxBufReadCnt++];
-}
-
-// add a byte to the buffer
-void putCharToRxBuf(char byte){
-    if (RxBufWriteCnt>=RX_BUF_SIZE) {RxBufWriteCnt=0;}
-    EUSART4RXbuf[RxBufWriteCnt++]=byte;
-}
-
-// function to check if there is data in the RX buffer
-// 1: there is data in the buffer
-// 0: nothing in the buffer
-char isDataInRxBuf (void){
-    return (RxBufWriteCnt!=RxBufReadCnt);
-}
-
-// circular buffer functions for TX
-// retrieve a byte from the buffer
-char getCharFromTxBuf(void){
-    if (TxBufReadCnt>=TX_BUF_SIZE) {TxBufReadCnt=0;} 
-    return EUSART4TXbuf[TxBufReadCnt++];
-}
-
-// add a byte to the buffer
-void putCharToTxBuf(char byte){
-    if (TxBufWriteCnt>=TX_BUF_SIZE) {TxBufWriteCnt=0;}
-    EUSART4TXbuf[TxBufWriteCnt++]=byte;
-}
-
-// function to check if there is data in the TX buffer
-// 1: there is data in the buffer
-// 0: nothing in the buffer
-char isDataInTxBuf (void){
-    return (TxBufWriteCnt!=TxBufReadCnt);
-}
-
-//add a string to the buffer
-void TxBufferedString(char *string){
-	//Hint: look at how you did this for the LCD lab 
-      while(*string != 0){  // While the data pointed to isn't a 0x00 do below (strings in C must end with a NULL byte) 
-        //Send out the current byte pointed to and increment the pointer
-		putCharToTxBuf(*string++); 
-	}
-}
-
-//initialise interrupt driven transmission of the Tx buf
-//your ISR needs to be setup to turn this interrupt off once the buffer is empty
-void sendTxBuf(void){
-    if (isDataInTxBuf()) {PIE4bits.TX4IE=1;//enable the TX interrupt to send dat
-    DataFlag=1;}//data flag just signifies for other scripts that there is data in buff or not
-    else { 
-        DataFlag=0;
-    }
-}
