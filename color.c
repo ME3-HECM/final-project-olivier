@@ -18,7 +18,7 @@ void color_click_init(void)
     //set integration time
 	color_writetoaddr(0x01, 0xD5);
 }
-
+//general color write to add
 void color_writetoaddr(char address, char value){
     I2C_2_Master_Start();         //Start condition
     I2C_2_Master_Write(0x52 | 0x00);     //7 bit device address + Write mode

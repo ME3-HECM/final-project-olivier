@@ -26,17 +26,6 @@ char getCharSerial4(void);
 void sendCharSerial4(char charToSend);
 void sendStringSerial4(char *string);
 
-// circular Rx buffer functions (Ex3+)
-char getCharFromRxBuf(void);
-void putCharToRxBuf(char byte);
-char isDataInRxBuf (void);
-
-// circular Tx buffer functions (Ex3+)
-char getCharFromTxBuf(void);
-void putCharToTxBuf(char byte);
-char isDataInTxBuf (void);
-void TxBufferedString(char *string); //Send buffered string with interrupts
-void sendTxBuf(void);
-
+void Color2String(char *buf,char R ,char G,char B,char C);
 
 #endif
