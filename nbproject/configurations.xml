@@ -7,6 +7,7 @@
       <itemPath>color.h</itemPath>
       <itemPath>i2c.h</itemPath>
       <itemPath>serial.h</itemPath>
+      <itemPath>dc_motor.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -18,6 +19,7 @@
       <itemPath>color.c</itemPath>
       <itemPath>i2c.c</itemPath>
       <itemPath>main.c</itemPath>
+      <itemPath>dc_motor.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
