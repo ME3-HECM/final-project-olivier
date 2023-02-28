@@ -17,6 +17,7 @@ void color_click_init(void)
 
     //set integration time
 	color_writetoaddr(0x01, 0xD5);
+    color_writetoaddr(0x00, 0x13); // Turn on the LED light source
 }
 //general color write to add
 void color_writetoaddr(char address, char value){
@@ -81,4 +82,19 @@ unsigned int color_read_Clear(void)
     tmp=tmp | (I2C_2_Master_Read(0)<<8); //read the Blue MSB (don't acknowledge as this is the last read)
     I2C_2_Master_Stop();          //Stop condition
     return tmp;
+}
+
+void colour_read_all(struct RGBC *c,struct RGBC_rel *cf) {
+    //stores all absolute color values  in teh struct
+    c->R = color_read_Red();
+    c->G = color_read_Green();
+    c->B = color_read_Blue();
+    c->C = color_read_Clear();
+    //calculates total luminosity
+    int total=(c->R)+(c->G)+(c->B)+(c->C);
+    //stores all relative values in relevant struct
+    (cf->Rf)=((c->R)*10000)/total;
+    (cf->Bf)=((c->B)*10000)/total;
+    (cf->Gf)=((c->G)*10000)/total;
+    (cf->Cf)=((c->C)*10000)/total;
 }

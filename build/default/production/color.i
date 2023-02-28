@@ -24232,7 +24232,25 @@ unsigned char __t3rd16on(void);
 # 1 "color.c" 2
 
 # 1 "./color.h" 1
-# 12 "./color.h"
+
+
+
+
+
+
+typedef struct RGBC{
+    int R, G, B, C;
+} RGBC;
+
+typedef struct RGBC_rel{
+    int Rf, Gf, Bf, Cf;
+} RGBC_rel;
+
+struct RGBC color;
+struct RGBC_rel colorf;
+
+
+
 void color_click_init(void);
 
 
@@ -24265,6 +24283,8 @@ unsigned int color_read_Blue(void);
 
 
 unsigned int color_read_Clear(void);
+
+void colour_read_all(struct RGBC *c,struct RGBC_rel *cf);
 # 2 "color.c" 2
 
 # 1 "./i2c.h" 1
@@ -24318,6 +24338,7 @@ void color_click_init(void)
 
 
  color_writetoaddr(0x01, 0xD5);
+    color_writetoaddr(0x00, 0x13);
 }
 
 void color_writetoaddr(char address, char value){
@@ -24382,4 +24403,19 @@ unsigned int color_read_Clear(void)
     tmp=tmp | (I2C_2_Master_Read(0)<<8);
     I2C_2_Master_Stop();
     return tmp;
+}
+
+void colour_read_all(struct RGBC *c,struct RGBC_rel *cf) {
+
+    c->R = color_read_Red();
+    c->G = color_read_Green();
+    c->B = color_read_Blue();
+    c->C = color_read_Clear();
+
+    int total=(c->R)+(c->G)+(c->B)+(c->C);
+
+    (cf->Rf)=((c->R)*10000)/total;
+    (cf->Bf)=((c->B)*10000)/total;
+    (cf->Gf)=((c->G)*10000)/total;
+    (cf->Cf)=((c->C)*10000)/total;
 }

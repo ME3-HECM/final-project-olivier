@@ -24232,7 +24232,73 @@ unsigned char __t3rd16on(void);
 # 1 "serial.c" 2
 
 # 1 "./serial.h" 1
-# 13 "./serial.h"
+
+
+
+
+# 1 "./color.h" 1
+
+
+
+
+
+
+typedef struct RGBC{
+    int R, G, B, C;
+} RGBC;
+
+typedef struct RGBC_rel{
+    int Rf, Gf, Bf, Cf;
+} RGBC_rel;
+
+struct RGBC color;
+struct RGBC_rel colorf;
+
+
+
+void color_click_init(void);
+
+
+
+
+
+
+void color_writetoaddr(char address, char value);
+
+
+
+
+
+unsigned int color_read_Red(void);
+
+
+
+
+
+unsigned int color_read_Green(void);
+
+
+
+
+
+unsigned int color_read_Blue(void);
+
+
+
+
+
+unsigned int color_read_Clear(void);
+
+void colour_read_all(struct RGBC *c,struct RGBC_rel *cf);
+# 5 "./serial.h" 2
+
+
+
+
+
+
+
+
 volatile char EUSART4RXbuf[20];
 volatile char RxBufWriteCnt=0;
 volatile char RxBufReadCnt=0;
@@ -24249,7 +24315,7 @@ char getCharSerial4(void);
 void sendCharSerial4(char charToSend);
 void sendStringSerial4(char *string);
 
-void Color2String(char *buf,char R ,char G,char B,char C);
+void Color2String(char *buf,struct RGBC_rel *colorf);
 # 2 "serial.c" 2
 
 # 1 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\include\\c99\\stdio.h" 1 3
@@ -24399,6 +24465,7 @@ char *tempnam(const char *, const char *);
 # 3 "serial.c" 2
 
 
+
 void initUSART4(void) {
     TRISCbits.TRISC4=1;
     TRISCbits.TRISC1=1;
@@ -24431,10 +24498,10 @@ void sendCharSerial4(char charToSend) {
     TX4REG = charToSend;
 }
 
-void Color2String(char *buf,char R ,char G,char B,char C){
+void Color2String(char *buf,struct RGBC_rel *colorf){
 
-
-    sprintf(buf,"Red: %d Green: %d Blue: %d Clear: %d \r",R,G,B,C);
+    sprintf(buf,"Red %d Green,%d Blue,%d Clear %d \r",colorf->Rf,
+    colorf->Gf,colorf->Bf,colorf->Cf);
     sendStringSerial4(buf);
 }
 

@@ -1,6 +1,7 @@
 #include <xc.h>
 #include "serial.h"
 #include <stdio.h>
+#include "color.h"
 
 void initUSART4(void) {
     TRISCbits.TRISC4=1; //Set c4 as input
@@ -34,10 +35,10 @@ void sendCharSerial4(char charToSend) {
     TX4REG = charToSend; //transfer char to transmitter
 }
 
-void Color2String(char *buf,char R ,char G,char B,char C){
-    
+void Color2String(char *buf,struct RGBC_rel *colorf){
 	// and format as a string using sprintf (see GitHub readme)
-    sprintf(buf,"Red: %d Green: %d Blue: %d Clear: %d \r",R,G,B,C);
+    sprintf(buf,"Red %d Green,%d Blue,%d Clear %d \r",colorf->Rf,
+    colorf->Gf,colorf->Bf,colorf->Cf);
     sendStringSerial4(buf);
 }
 

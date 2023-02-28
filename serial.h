@@ -2,7 +2,7 @@
 #define _SERIAL_H
 
 #include <xc.h>
-
+#include "color.h"
 #define _XTAL_FREQ 64000000 //note intrinsic _delay function is 62.5ns at 64,000,000Hz  
 
 #define RX_BUF_SIZE 20
@@ -26,6 +26,6 @@ char getCharSerial4(void);
 void sendCharSerial4(char charToSend);
 void sendStringSerial4(char *string);
 
-void Color2String(char *buf,char R ,char G,char B,char C);
+void Color2String(char *buf,struct RGBC_rel *colorf);
 
 #endif

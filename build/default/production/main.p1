@@ -1,29 +1,28 @@
 Version 4.0 HI-TECH Software Intermediate Code
+"7 ./color.h
+[; ;./color.h: 7: typedef struct RGBC{
+[s S2015 `i 1 `i 1 `i 1 `i 1 ]
+[n S2015 RGBC R G B C ]
+"11
+[; ;./color.h: 11: typedef struct RGBC_rel{
+[s S2016 `i 1 `i 1 `i 1 `i 1 ]
+[n S2016 RGBC_rel Rf Gf Bf Cf ]
 [p mainexit ]
 "24 ./serial.h
 [; ;./serial.h: 24: void initUSART4(void);
 [v _initUSART4 `(v ~T0 @X0 0 ef ]
-"12 ./color.h
-[; ;./color.h: 12: void color_click_init(void);
+"20 ./color.h
+[; ;./color.h: 20: void color_click_init(void);
 [v _color_click_init `(v ~T0 @X0 0 ef ]
 "13 ./i2c.h
 [; ;./i2c.h: 13: void I2C_2_Master_Init(void);
 [v _I2C_2_Master_Init `(v ~T0 @X0 0 ef ]
+"53 ./color.h
+[; ;./color.h: 53: void colour_read_all(struct RGBC *c,struct RGBC_rel *cf);
+[v _colour_read_all `(v ~T0 @X0 0 ef2`*S2015`*S2016 ]
 "29 ./serial.h
-[; ;./serial.h: 29: void Color2String(char *buf,char R ,char G,char B,char C);
-[v _Color2String `(v ~T0 @X0 0 ef5`*uc`uc`uc`uc`uc ]
-"25 ./color.h
-[; ;./color.h: 25: unsigned int color_read_Red(void);
-[v _color_read_Red `(ui ~T0 @X0 0 ef ]
-"31
-[; ;./color.h: 31: unsigned int color_read_Green(void);
-[v _color_read_Green `(ui ~T0 @X0 0 ef ]
-"37
-[; ;./color.h: 37: unsigned int color_read_Blue(void);
-[v _color_read_Blue `(ui ~T0 @X0 0 ef ]
-"43
-[; ;./color.h: 43: unsigned int color_read_Clear(void);
-[v _color_read_Clear `(ui ~T0 @X0 0 ef ]
+[; ;./serial.h: 29: void Color2String(char *buf,struct RGBC_rel *colorf);
+[v _Color2String `(v ~T0 @X0 0 ef2`*uc`*S2016 ]
 [v F192 `(v ~T0 @X0 1 tf1`ul ]
 "12 C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\pic\include\builtins.h
 [v __delay `JF192 ~T0 @X0 0 e ]
@@ -2008,6 +2007,12 @@ Version 4.0 HI-TECH Software Intermediate Code
 "40927
 [; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\pic\include\proc\pic18f67k40.h: 40927: __asm("TOSU equ 0FFFh");
 [; <" TOSU equ 0FFFh ;# ">
+"15 ./color.h
+[; ;./color.h: 15: struct RGBC color;
+[v _color `S2015 ~T0 @X0 1 e ]
+"16
+[; ;./color.h: 16: struct RGBC_rel colorf;
+[v _colorf `S2016 ~T0 @X0 1 e ]
 "13 ./serial.h
 [; ;./serial.h: 13: volatile char EUSART4RXbuf[20];
 [v _EUSART4RXbuf `Vuc ~T0 @X0 -> 20 `i e ]
@@ -2065,21 +2070,24 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e ( _I2C_2_Master_Init ..  ]
 "18
 [; ;main.c: 18:     while (1){
-[e :U 2019 ]
+[e :U 2021 ]
 {
-"20
-[; ;main.c: 20:         Color2String(data,color_read_Red(),color_read_Green(),
-[e ( _Color2String (4 , , , , &U _data -> ( _color_read_Red ..  `uc -> ( _color_read_Green ..  `uc -> ( _color_read_Blue ..  `uc -> ( _color_read_Clear ..  `uc ]
+"19
+[; ;main.c: 19:         colour_read_all(&color,&colorf);
+[e ( _colour_read_all (2 , &U _color &U _colorf ]
+"21
+[; ;main.c: 21:         Color2String(data,&colorf);
+[e ( _Color2String (2 , &U _data &U _colorf ]
 "22
 [; ;main.c: 22:         _delay((unsigned long)((1000)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
 "23
 [; ;main.c: 23: }
 }
-[e :U 2018 ]
-[e $U 2019  ]
 [e :U 2020 ]
+[e $U 2021  ]
+[e :U 2022 ]
 "24
 [; ;main.c: 24: }
-[e :UE 2017 ]
+[e :UE 2019 ]
 }

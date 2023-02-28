@@ -24237,7 +24237,73 @@ unsigned char __t3rd16on(void);
 # 5 "main.c" 2
 
 # 1 "./serial.h" 1
-# 13 "./serial.h"
+
+
+
+
+# 1 "./color.h" 1
+
+
+
+
+
+
+typedef struct RGBC{
+    int R, G, B, C;
+} RGBC;
+
+typedef struct RGBC_rel{
+    int Rf, Gf, Bf, Cf;
+} RGBC_rel;
+
+struct RGBC color;
+struct RGBC_rel colorf;
+
+
+
+void color_click_init(void);
+
+
+
+
+
+
+void color_writetoaddr(char address, char value);
+
+
+
+
+
+unsigned int color_read_Red(void);
+
+
+
+
+
+unsigned int color_read_Green(void);
+
+
+
+
+
+unsigned int color_read_Blue(void);
+
+
+
+
+
+unsigned int color_read_Clear(void);
+
+void colour_read_all(struct RGBC *c,struct RGBC_rel *cf);
+# 5 "./serial.h" 2
+
+
+
+
+
+
+
+
 volatile char EUSART4RXbuf[20];
 volatile char RxBufWriteCnt=0;
 volatile char RxBufReadCnt=0;
@@ -24254,7 +24320,7 @@ char getCharSerial4(void);
 void sendCharSerial4(char charToSend);
 void sendStringSerial4(char *string);
 
-void Color2String(char *buf,char R ,char G,char B,char C);
+void Color2String(char *buf,struct RGBC_rel *colorf);
 # 6 "main.c" 2
 
 # 1 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\include\\c99\\stdio.h" 1 3
@@ -24403,41 +24469,6 @@ char *ctermid(char *);
 char *tempnam(const char *, const char *);
 # 7 "main.c" 2
 
-# 1 "./color.h" 1
-# 12 "./color.h"
-void color_click_init(void);
-
-
-
-
-
-
-void color_writetoaddr(char address, char value);
-
-
-
-
-
-unsigned int color_read_Red(void);
-
-
-
-
-
-unsigned int color_read_Green(void);
-
-
-
-
-
-unsigned int color_read_Blue(void);
-
-
-
-
-
-unsigned int color_read_Clear(void);
-# 8 "main.c" 2
 
 # 1 "./i2c.h" 1
 # 13 "./i2c.h"
@@ -24483,9 +24514,9 @@ void main(void) {
     color_click_init();
     I2C_2_Master_Init();
     while (1){
+        colour_read_all(&color,&colorf);
 
-        Color2String(data,color_read_Red(),color_read_Green(),
-                color_read_Blue(),color_read_Clear());
+        Color2String(data,&colorf);
         _delay((unsigned long)((1000)*(64000000/4000.0)));
 }
 }
