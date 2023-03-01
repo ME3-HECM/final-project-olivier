@@ -24237,12 +24237,7 @@ unsigned char __t3rd16on(void);
 
 
 # 1 "./color.h" 1
-
-
-
-
-
-
+# 11 "./color.h"
 typedef struct RGBC{
     int R, G, B, C;
 } RGBC;
@@ -24257,6 +24252,12 @@ struct RGBC_rel colorf;
 
 
 void color_click_init(void);
+
+void color_write_reg(char reg, char value);
+
+void color_turn_on_led(void);
+
+void color_turn_off_led(void);
 
 
 

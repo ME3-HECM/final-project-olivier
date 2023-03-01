@@ -1,7 +1,7 @@
 #include <xc.h>
 #include "serial.h"
 #include <stdio.h>
-#include "color.h"
+#include "colorclick.h"
 
 void initUSART4(void) {
     TRISCbits.TRISC4=1; //Set c4 as input

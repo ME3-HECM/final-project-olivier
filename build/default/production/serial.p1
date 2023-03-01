@@ -1,10 +1,10 @@
 Version 4.0 HI-TECH Software Intermediate Code
-"7 ./color.h
-[; ;./color.h: 7: typedef struct RGBC{
+"11 ./color.h
+[; ;./color.h: 11: typedef struct RGBC{
 [s S2015 `i 1 `i 1 `i 1 `i 1 ]
 [n S2015 RGBC R G B C ]
-"11
-[; ;./color.h: 11: typedef struct RGBC_rel{
+"15
+[; ;./color.h: 15: typedef struct RGBC_rel{
 [s S2016 `i 1 `i 1 `i 1 `i 1 ]
 [n S2016 RGBC_rel Rf Gf Bf Cf ]
 "29584 C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\pic\include\proc\pic18f67k40.h
@@ -2064,11 +2064,11 @@ Version 4.0 HI-TECH Software Intermediate Code
 "40927
 [; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\pic\include\proc\pic18f67k40.h: 40927: __asm("TOSU equ 0FFFh");
 [; <" TOSU equ 0FFFh ;# ">
-"15 ./color.h
-[; ;./color.h: 15: struct RGBC color;
+"19 ./color.h
+[; ;./color.h: 19: struct RGBC color;
 [v _color `S2015 ~T0 @X0 1 e ]
-"16
-[; ;./color.h: 16: struct RGBC_rel colorf;
+"20
+[; ;./color.h: 20: struct RGBC_rel colorf;
 [v _colorf `S2016 ~T0 @X0 1 e ]
 "13 ./serial.h
 [; ;./serial.h: 13: volatile char EUSART4RXbuf[20];

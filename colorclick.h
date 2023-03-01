@@ -1,12 +1,12 @@
-#ifndef _color_H
-#define _color_H
+#ifndef _colorclick_H
+#define _colorclick_H
 
 #include <xc.h>
 
 #define _XTAL_FREQ 64000000 //note intrinsic _delay function is 62.5ns at 64,000,000Hz  
-typedef struct RGBC{             // Define a structure
-    int R, G, B, C; // Containing the RGBC values read by the colour click
-} RGBC;                  // Struct called RGBC
+#define TCS3471_ADDR    0x52
+#define TCS3471_ENABLE  0x00
+#define TCS3471_ATIME   0x01
 
 typedef struct RGBC_rel{             // Define a structure
     int Rf, Gf, Bf, Cf; // Containing the RGBC relative proportions calculated by function
@@ -18,6 +18,12 @@ struct RGBC_rel colorf;
  *  Function to initialise the colour click module using I2C
  ***********************************************/
 void color_click_init(void);
+
+void color_write_reg(char reg, char value);
+
+void color_turn_on_led(void);
+
+void color_turn_off_led(void);
 
 /********************************************//**
  *  Function to write to the colour click module
@@ -50,5 +56,6 @@ unsigned int color_read_Blue(void);
  ***********************************************/
 unsigned int color_read_Clear(void);
 
-void colour_read_all(struct RGBC *c,struct RGBC_rel *cf);
+
+
 #endif

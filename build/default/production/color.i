@@ -24232,12 +24232,7 @@ unsigned char __t3rd16on(void);
 # 1 "color.c" 2
 
 # 1 "./color.h" 1
-
-
-
-
-
-
+# 11 "./color.h"
 typedef struct RGBC{
     int R, G, B, C;
 } RGBC;
@@ -24252,6 +24247,12 @@ struct RGBC_rel colorf;
 
 
 void color_click_init(void);
+
+void color_write_reg(char reg, char value);
+
+void color_turn_on_led(void);
+
+void color_turn_off_led(void);
 
 
 
@@ -24338,8 +24339,33 @@ void color_click_init(void)
 
 
  color_writetoaddr(0x01, 0xD5);
-    color_writetoaddr(0x00, 0x13);
+
+
+    color_write_reg(0x01, 0x00);
+    color_turn_on_led();
 }
+
+void color_write_reg(char reg, char value)
+{
+    I2C_2_Master_Start();
+    I2C_2_Master_Write(0x52 | 0x00);
+    I2C_2_Master_Write(reg | 0x80);
+    I2C_2_Master_Write(value);
+    I2C_2_Master_Stop();
+}
+
+void color_turn_on_led(void)
+{
+    char val = 0x03;
+    color_write_reg(0x00, val);
+}
+
+void color_turn_off_led(void)
+{
+    char val = 0x01;
+    color_write_reg(0x00, val);
+}
+
 
 void color_writetoaddr(char address, char value){
     I2C_2_Master_Start();
@@ -24414,8 +24440,12 @@ void colour_read_all(struct RGBC *c,struct RGBC_rel *cf) {
 
     int total=(c->R)+(c->G)+(c->B)+(c->C);
 
-    (cf->Rf)=((c->R)*10000)/total;
-    (cf->Bf)=((c->B)*10000)/total;
-    (cf->Gf)=((c->G)*10000)/total;
-    (cf->Cf)=((c->C)*10000)/total;
+    float rel= ((c->R) * 10000);
+    (cf->Rf)=rel/total;
+    rel= ((c->B) * 10000);
+    (cf->Bf)=rel/total;
+     rel= ((c->G) * 10000);
+    (cf->Gf)=rel/total;
+     rel= ((c->C) * 10000);
+    (cf->Cf)=rel/total;
 }
