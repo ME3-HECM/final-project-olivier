@@ -1,28 +1,27 @@
 Version 4.0 HI-TECH Software Intermediate Code
-"11 ./color.h
-[; ;./color.h: 11: typedef struct RGBC{
-[s S2015 `i 1 `i 1 `i 1 `i 1 ]
-[n S2015 RGBC R G B C ]
-"15
-[; ;./color.h: 15: typedef struct RGBC_rel{
-[s S2016 `i 1 `i 1 `i 1 `i 1 ]
-[n S2016 RGBC_rel Rf Gf Bf Cf ]
+"9 ./colorfunctions.h
+[; ;./colorfunctions.h: 9: typedef struct RGBC_rel{
+[s S2015 `i 1 `i 1 `i 1 `i 1 `f 1 ]
+[n S2015 RGBC_rel Rf Gf Bf Cf h ]
 [p mainexit ]
-"24 ./serial.h
-[; ;./serial.h: 24: void initUSART4(void);
+"10 ./serial.h
+[; ;./serial.h: 10: void initUSART4(void);
 [v _initUSART4 `(v ~T0 @X0 0 ef ]
-"24 ./color.h
-[; ;./color.h: 24: void color_click_init(void);
+"15 ./colorclick.h
+[; ;./colorclick.h: 15: void color_click_init(void);
 [v _color_click_init `(v ~T0 @X0 0 ef ]
 "13 ./i2c.h
 [; ;./i2c.h: 13: void I2C_2_Master_Init(void);
 [v _I2C_2_Master_Init `(v ~T0 @X0 0 ef ]
-"63 ./color.h
-[; ;./color.h: 63: void colour_read_all(struct RGBC *c,struct RGBC_rel *cf);
-[v _colour_read_all `(v ~T0 @X0 0 ef2`*S2015`*S2016 ]
-"29 ./serial.h
-[; ;./serial.h: 29: void Color2String(char *buf,struct RGBC_rel *colorf);
-[v _Color2String `(v ~T0 @X0 0 ef2`*uc`*S2016 ]
+"16 ./colorfunctions.h
+[; ;./colorfunctions.h: 16: void colour_read_all(struct RGBC_rel *cf);
+[v _colour_read_all `(v ~T0 @X0 0 ef1`*S2015 ]
+"17
+[; ;./colorfunctions.h: 17: void RGB2Hue(struct RGBC_rel *cf);
+[v _RGB2Hue `(v ~T0 @X0 0 ef1`*S2015 ]
+"15 ./serial.h
+[; ;./serial.h: 15: void Color2String(char *buf,struct RGBC_rel *cf);
+[v _Color2String `(v ~T0 @X0 0 ef2`*uc`*S2015 ]
 [v F192 `(v ~T0 @X0 1 tf1`ul ]
 "12 C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\pic\include\builtins.h
 [v __delay `JF192 ~T0 @X0 0 e ]
@@ -32,6 +31,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "2
 [p x RSTOSC  =  EXTOSC_4PLL ]
 "3
+[p x WDTCPS  =  WDTCPS_31 ]
+"4
 [p x WDTE  =  OFF         ]
 "54 C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\pic\include\proc\pic18f67k40.h
 [; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\pic\include\proc\pic18f67k40.h: 54: __asm("PPSLOCK equ 0DEFh");
@@ -2007,87 +2008,51 @@ Version 4.0 HI-TECH Software Intermediate Code
 "40927
 [; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\pic\include\proc\pic18f67k40.h: 40927: __asm("TOSU equ 0FFFh");
 [; <" TOSU equ 0FFFh ;# ">
-"19 ./color.h
-[; ;./color.h: 19: struct RGBC color;
-[v _color `S2015 ~T0 @X0 1 e ]
-"20
-[; ;./color.h: 20: struct RGBC_rel colorf;
-[v _colorf `S2016 ~T0 @X0 1 e ]
-"13 ./serial.h
-[; ;./serial.h: 13: volatile char EUSART4RXbuf[20];
-[v _EUSART4RXbuf `Vuc ~T0 @X0 -> 20 `i e ]
-"14
-[; ;./serial.h: 14: volatile char RxBufWriteCnt=0;
-[v _RxBufWriteCnt `Vuc ~T0 @X0 1 e ]
-[i _RxBufWriteCnt
--> -> 0 `i `uc
-]
-"15
-[; ;./serial.h: 15: volatile char RxBufReadCnt=0;
-[v _RxBufReadCnt `Vuc ~T0 @X0 1 e ]
-[i _RxBufReadCnt
--> -> 0 `i `uc
-]
-"17
-[; ;./serial.h: 17: volatile char EUSART4TXbuf[60];
-[v _EUSART4TXbuf `Vuc ~T0 @X0 -> 60 `i e ]
-"18
-[; ;./serial.h: 18: volatile char TxBufWriteCnt=0;
-[v _TxBufWriteCnt `Vuc ~T0 @X0 1 e ]
-[i _TxBufWriteCnt
--> -> 0 `i `uc
-]
-"19
-[; ;./serial.h: 19: volatile char TxBufReadCnt=0;
-[v _TxBufReadCnt `Vuc ~T0 @X0 1 e ]
-[i _TxBufReadCnt
--> -> 0 `i `uc
-]
-"22
-[; ;./serial.h: 22: volatile char DataFlag=1;
-[v _DataFlag `Vuc ~T0 @X0 1 e ]
-[i _DataFlag
--> -> 1 `i `uc
-]
+"14 ./colorfunctions.h
+[; ;./colorfunctions.h: 14: struct RGBC_rel colorf;
+[v _colorf `S2015 ~T0 @X0 1 e ]
 [v $root$_main `(v ~T0 @X0 0 e ]
-"13 main.c
-[; ;main.c: 13: void main(void) {
+"15 main.c
+[; ;main.c: 15: void main(void) {
 [v _main `(v ~T0 @X0 1 ef ]
 {
 [e :U _main ]
 [f ]
-"14
-[; ;main.c: 14:     char data[30];
-[v _data `uc ~T0 @X0 -> 30 `i a ]
-"15
-[; ;main.c: 15:     initUSART4();
-[e ( _initUSART4 ..  ]
 "16
-[; ;main.c: 16:     color_click_init();
-[e ( _color_click_init ..  ]
+[; ;main.c: 16:     char data[60];
+[v _data `uc ~T0 @X0 -> 60 `i a ]
 "17
-[; ;main.c: 17:     I2C_2_Master_Init();
-[e ( _I2C_2_Master_Init ..  ]
+[; ;main.c: 17:     initUSART4();
+[e ( _initUSART4 ..  ]
 "18
-[; ;main.c: 18:     while (1){
-[e :U 2021 ]
-{
+[; ;main.c: 18:     color_click_init();
+[e ( _color_click_init ..  ]
 "19
-[; ;main.c: 19:         colour_read_all(&color,&colorf);
-[e ( _colour_read_all (2 , &U _color &U _colorf ]
-"21
-[; ;main.c: 21:         Color2String(data,&colorf);
-[e ( _Color2String (2 , &U _data &U _colorf ]
-"22
-[; ;main.c: 22:         _delay((unsigned long)((1000)*(64000000/4000.0)));
-[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"23
-[; ;main.c: 23: }
-}
+[; ;main.c: 19:     I2C_2_Master_Init();
+[e ( _I2C_2_Master_Init ..  ]
+"20
+[; ;main.c: 20:     while (1){
 [e :U 2020 ]
-[e $U 2021  ]
-[e :U 2022 ]
+{
+"21
+[; ;main.c: 21:         colour_read_all(&colorf);
+[e ( _colour_read_all (1 &U _colorf ]
+"22
+[; ;main.c: 22:         RGB2Hue(&colorf);
+[e ( _RGB2Hue (1 &U _colorf ]
 "24
-[; ;main.c: 24: }
-[e :UE 2019 ]
+[; ;main.c: 24:         Color2String(data,&colorf);
+[e ( _Color2String (2 , &U _data &U _colorf ]
+"25
+[; ;main.c: 25:         _delay((unsigned long)((1000)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+"26
+[; ;main.c: 26: }
+}
+[e :U 2019 ]
+[e $U 2020  ]
+[e :U 2021 ]
+"27
+[; ;main.c: 27: }
+[e :UE 2018 ]
 }

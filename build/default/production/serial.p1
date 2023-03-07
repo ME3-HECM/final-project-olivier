@@ -1,12 +1,8 @@
 Version 4.0 HI-TECH Software Intermediate Code
-"11 ./color.h
-[; ;./color.h: 11: typedef struct RGBC{
-[s S2015 `i 1 `i 1 `i 1 `i 1 ]
-[n S2015 RGBC R G B C ]
-"15
-[; ;./color.h: 15: typedef struct RGBC_rel{
-[s S2016 `i 1 `i 1 `i 1 `i 1 ]
-[n S2016 RGBC_rel Rf Gf Bf Cf ]
+"9 ./colorfunctions.h
+[; ;./colorfunctions.h: 9: typedef struct RGBC_rel{
+[s S2015 `i 1 `i 1 `i 1 `i 1 `f 1 ]
+[n S2015 RGBC_rel Rf Gf Bf Cf h ]
 "29584 C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\pic\include\proc\pic18f67k40.h
 [; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\pic\include\proc\pic18f67k40.h: 29584:     struct {
 [s S1376 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
@@ -83,8 +79,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "109 C:\Program Files\Microchip\xc8\v2.40\pic\include\c99\stdio.h
 [; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\c99\stdio.h: 109: int sprintf(char *restrict, const char *restrict, ...);
 [v _sprintf `(i ~T0 @X0 0 e1v`*uc`*Cuc ]
-"27 ./serial.h
-[; ;./serial.h: 27: void sendStringSerial4(char *string);
+"13 ./serial.h
+[; ;./serial.h: 13: void sendStringSerial4(char *string);
 [v _sendStringSerial4 `(v ~T0 @X0 0 ef1`*uc ]
 [v F192 `(v ~T0 @X0 1 tf1`ul ]
 "12 C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\pic\include\builtins.h
@@ -2064,48 +2060,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 "40927
 [; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\pic\include\proc\pic18f67k40.h: 40927: __asm("TOSU equ 0FFFh");
 [; <" TOSU equ 0FFFh ;# ">
-"19 ./color.h
-[; ;./color.h: 19: struct RGBC color;
-[v _color `S2015 ~T0 @X0 1 e ]
-"20
-[; ;./color.h: 20: struct RGBC_rel colorf;
-[v _colorf `S2016 ~T0 @X0 1 e ]
-"13 ./serial.h
-[; ;./serial.h: 13: volatile char EUSART4RXbuf[20];
-[v _EUSART4RXbuf `Vuc ~T0 @X0 -> 20 `i e ]
-"14
-[; ;./serial.h: 14: volatile char RxBufWriteCnt=0;
-[v _RxBufWriteCnt `Vuc ~T0 @X0 1 e ]
-[i _RxBufWriteCnt
--> -> 0 `i `uc
-]
-"15
-[; ;./serial.h: 15: volatile char RxBufReadCnt=0;
-[v _RxBufReadCnt `Vuc ~T0 @X0 1 e ]
-[i _RxBufReadCnt
--> -> 0 `i `uc
-]
-"17
-[; ;./serial.h: 17: volatile char EUSART4TXbuf[60];
-[v _EUSART4TXbuf `Vuc ~T0 @X0 -> 60 `i e ]
-"18
-[; ;./serial.h: 18: volatile char TxBufWriteCnt=0;
-[v _TxBufWriteCnt `Vuc ~T0 @X0 1 e ]
-[i _TxBufWriteCnt
--> -> 0 `i `uc
-]
-"19
-[; ;./serial.h: 19: volatile char TxBufReadCnt=0;
-[v _TxBufReadCnt `Vuc ~T0 @X0 1 e ]
-[i _TxBufReadCnt
--> -> 0 `i `uc
-]
-"22
-[; ;./serial.h: 22: volatile char DataFlag=1;
-[v _DataFlag `Vuc ~T0 @X0 1 e ]
-[i _DataFlag
--> -> 1 `i `uc
-]
+"14 ./colorfunctions.h
+[; ;./colorfunctions.h: 14: struct RGBC_rel colorf;
+[v _colorf `S2015 ~T0 @X0 1 e ]
 "6 serial.c
 [; ;serial.c: 6: void initUSART4(void) {
 [v _initUSART4 `(v ~T0 @X0 1 ef ]
@@ -2147,7 +2104,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = . . _RC4STAbits 0 7 -> -> 1 `i `uc ]
 "22
 [; ;serial.c: 22: }
-[e :UE 2019 ]
+[e :UE 2018 ]
 }
 "26
 [; ;serial.c: 26: char getCharSerial4(void) {
@@ -2157,18 +2114,18 @@ Version 4.0 HI-TECH Software Intermediate Code
 [f ]
 "27
 [; ;serial.c: 27:     while (!PIR4bits.RC4IF);
-[e $U 2021  ]
-[e :U 2022 ]
+[e $U 2020  ]
 [e :U 2021 ]
-[e $ ! != -> . . _PIR4bits 0 3 `i -> 0 `i 2022  ]
-[e :U 2023 ]
+[e :U 2020 ]
+[e $ ! != -> . . _PIR4bits 0 3 `i -> 0 `i 2021  ]
+[e :U 2022 ]
 "28
 [; ;serial.c: 28:     return RC4REG;
 [e ) -> _RC4REG `uc ]
-[e $UE 2020  ]
+[e $UE 2019  ]
 "29
 [; ;serial.c: 29: }
-[e :UE 2020 ]
+[e :UE 2019 ]
 }
 "33
 [; ;serial.c: 33: void sendCharSerial4(char charToSend) {
@@ -2179,65 +2136,73 @@ Version 4.0 HI-TECH Software Intermediate Code
 [f ]
 "34
 [; ;serial.c: 34:     while (!PIR4bits.TX4IF);
-[e $U 2025  ]
-[e :U 2026 ]
+[e $U 2024  ]
 [e :U 2025 ]
-[e $ ! != -> . . _PIR4bits 0 2 `i -> 0 `i 2026  ]
-[e :U 2027 ]
+[e :U 2024 ]
+[e $ ! != -> . . _PIR4bits 0 2 `i -> 0 `i 2025  ]
+[e :U 2026 ]
 "35
 [; ;serial.c: 35:     TX4REG = charToSend;
 [e = _TX4REG -> _charToSend `uc ]
 "36
 [; ;serial.c: 36: }
-[e :UE 2024 ]
+[e :UE 2023 ]
 }
 "38
-[; ;serial.c: 38: void Color2String(char *buf,struct RGBC_rel *colorf){
-[v _Color2String `(v ~T0 @X0 1 ef2`*uc`*S2016 ]
+[; ;serial.c: 38: void Color2String(char *buf,struct RGBC_rel *cf){
+[v _Color2String `(v ~T0 @X0 1 ef2`*uc`*S2015 ]
 {
 [e :U _Color2String ]
 [v _buf `*uc ~T0 @X0 1 r1 ]
-[v _colorf `*S2016 ~T0 @X0 1 r2 ]
+[v _cf `*S2015 ~T0 @X0 1 r2 ]
 [f ]
 "40
-[; ;serial.c: 40:     sprintf(buf,"Red %d Green,%d Blue,%d Clear %d \r",colorf->Rf,
-[e ( _sprintf (1 , , , , (. , _buf :s 1C . *U _colorf 0 . *U _colorf 1 . *U _colorf 2 . *U _colorf 3 ]
-"42
-[; ;serial.c: 42:     sendStringSerial4(buf);
-[e ( _sendStringSerial4 (1 _buf ]
+[; ;serial.c: 40:     int int_part= (cf->h);
+[v _int_part `i ~T0 @X0 1 a ]
+[e = _int_part -> . *U _cf 4 `i ]
+"41
+[; ;serial.c: 41:     int frac_part= ((cf->h)*100) - (int_part*100);
+[v _frac_part `i ~T0 @X0 1 a ]
+[e = _frac_part -> - * . *U _cf 4 -> -> 100 `i `f -> * _int_part -> 100 `i `f `i ]
 "43
-[; ;serial.c: 43: }
-[e :UE 2028 ]
-}
+[; ;serial.c: 43:     sprintf(buf,"Red %d Green,%d Blue,%d Hue %d.%03d %f \r",cf->Rf,
+[e ( _sprintf (1 , , , , , , (. , _buf :s 1C . *U _cf 0 . *U _cf 1 . *U _cf 2 _int_part _frac_part -> . *U _cf 4 `d ]
+"45
+[; ;serial.c: 45:     sendStringSerial4(buf);
+[e ( _sendStringSerial4 (1 _buf ]
 "46
-[; ;serial.c: 46: void sendStringSerial4(char *string){
+[; ;serial.c: 46: }
+[e :UE 2027 ]
+}
+"49
+[; ;serial.c: 49: void sendStringSerial4(char *string){
 [v _sendStringSerial4 `(v ~T0 @X0 1 ef1`*uc ]
 {
 [e :U _sendStringSerial4 ]
 [v _string `*uc ~T0 @X0 1 r1 ]
 [f ]
-"49
-[; ;serial.c: 49:     while(*string != 0){
-[e $U 2030  ]
-[e :U 2031 ]
-{
-"51
-[; ;serial.c: 51:   sendCharSerial4(*string++);
-[e ( _sendCharSerial4 (1 *U ++ _string * -> -> 1 `i `x -> -> # *U _string `i `x ]
 "52
-[; ;serial.c: 52:         _delay((unsigned long)((20)*(64000000/4000000.0)));
-[e ( __delay (1 -> * -> -> 20 `i `d / -> -> 64000000 `l `d .4000000.0 `ul ]
-"53
-[; ;serial.c: 53:  }
-}
+[; ;serial.c: 52:     while(*string != 0){
+[e $U 2029  ]
 [e :U 2030 ]
-"49
-[; ;serial.c: 49:     while(*string != 0){
-[e $ != -> *U _string `i -> 0 `i 2031  ]
-[e :U 2032 ]
+{
 "54
-[; ;serial.c: 54: }
-[e :UE 2029 ]
+[; ;serial.c: 54:   sendCharSerial4(*string++);
+[e ( _sendCharSerial4 (1 *U ++ _string * -> -> 1 `i `x -> -> # *U _string `i `x ]
+"55
+[; ;serial.c: 55:         _delay((unsigned long)((20)*(64000000/4000000.0)));
+[e ( __delay (1 -> * -> -> 20 `i `d / -> -> 64000000 `l `d .4000000.0 `ul ]
+"56
+[; ;serial.c: 56:  }
 }
-[p f _sprintf 8388736 ]
-[a 1C 82 101 100 32 37 100 32 71 114 101 101 110 44 37 100 32 66 108 117 101 44 37 100 32 67 108 101 97 114 32 37 100 32 13 0 ]
+[e :U 2029 ]
+"52
+[; ;serial.c: 52:     while(*string != 0){
+[e $ != -> *U _string `i -> 0 `i 2030  ]
+[e :U 2031 ]
+"57
+[; ;serial.c: 57: }
+[e :UE 2028 ]
+}
+[p f _sprintf 8429700 ]
+[a 1C 82 101 100 32 37 100 32 71 114 101 101 110 44 37 100 32 66 108 117 101 44 37 100 32 72 117 101 32 37 100 46 37 48 51 100 32 37 102 32 13 0 ]

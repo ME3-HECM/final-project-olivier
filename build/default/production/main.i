@@ -9,6 +9,7 @@
 # 1 "main.c" 2
 #pragma config FEXTOSC = HS
 #pragma config RSTOSC = EXTOSC_4PLL
+#pragma config WDTCPS = WDTCPS_31
 #pragma config WDTE = OFF
 
 
@@ -24234,28 +24235,35 @@ __attribute__((__unsupported__("The READTIMER" "0" "() macro is not available wi
 unsigned char __t1rd16on(void);
 unsigned char __t3rd16on(void);
 # 34 "C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\\pic\\include\\xc.h" 2 3
-# 5 "main.c" 2
+# 6 "main.c" 2
 
 # 1 "./serial.h" 1
 
 
 
 
-# 1 "./color.h" 1
-# 11 "./color.h"
-typedef struct RGBC{
-    int R, G, B, C;
-} RGBC;
+# 1 "./colorfunctions.h" 1
+
+
+
+
+
+
+
 
 typedef struct RGBC_rel{
-    int Rf, Gf, Bf, Cf;
+   signed int Rf, Gf, Bf, Cf;
+   float h;
 } RGBC_rel;
 
-struct RGBC color;
 struct RGBC_rel colorf;
 
+void colour_read_all(struct RGBC_rel *cf);
+void RGB2Hue(struct RGBC_rel *cf);
+# 5 "./serial.h" 2
 
-
+# 1 "./colorclick.h" 1
+# 15 "./colorclick.h"
 void color_click_init(void);
 
 void color_write_reg(char reg, char value);
@@ -24294,35 +24302,18 @@ unsigned int color_read_Blue(void);
 
 
 unsigned int color_read_Clear(void);
-
-void colour_read_all(struct RGBC *c,struct RGBC_rel *cf);
-# 5 "./serial.h" 2
+# 6 "./serial.h" 2
 
 
 
-
-
-
-
-
-volatile char EUSART4RXbuf[20];
-volatile char RxBufWriteCnt=0;
-volatile char RxBufReadCnt=0;
-
-volatile char EUSART4TXbuf[60];
-volatile char TxBufWriteCnt=0;
-volatile char TxBufReadCnt=0;
-
-
-volatile char DataFlag=1;
 
 void initUSART4(void);
 char getCharSerial4(void);
 void sendCharSerial4(char charToSend);
 void sendStringSerial4(char *string);
 
-void Color2String(char *buf,struct RGBC_rel *colorf);
-# 6 "main.c" 2
+void Color2String(char *buf,struct RGBC_rel *cf);
+# 7 "main.c" 2
 
 # 1 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\include\\c99\\stdio.h" 1 3
 # 24 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\include\\c99\\stdio.h" 3
@@ -24468,7 +24459,7 @@ char *ctermid(char *);
 
 
 char *tempnam(const char *, const char *);
-# 7 "main.c" 2
+# 8 "main.c" 2
 
 
 # 1 "./i2c.h" 1
@@ -24504,18 +24495,20 @@ void I2C_2_Master_Write(unsigned char data_byte);
 
 
 unsigned char I2C_2_Master_Read(unsigned char ack);
-# 9 "main.c" 2
+# 10 "main.c" 2
+
 
 
 
 
 void main(void) {
-    char data[30];
+    char data[60];
     initUSART4();
     color_click_init();
     I2C_2_Master_Init();
     while (1){
-        colour_read_all(&color,&colorf);
+        colour_read_all(&colorf);
+        RGB2Hue(&colorf);
 
         Color2String(data,&colorf);
         _delay((unsigned long)((1000)*(64000000/4000.0)));

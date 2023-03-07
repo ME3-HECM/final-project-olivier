@@ -8,12 +8,7 @@
 #define TCS3471_ENABLE  0x00
 #define TCS3471_ATIME   0x01
 
-typedef struct RGBC_rel{             // Define a structure
-    int Rf, Gf, Bf, Cf; // Containing the RGBC relative proportions calculated by function
-} RGBC_rel;                  // Struct to hold relative values of colors
 
-struct RGBC color; 
-struct RGBC_rel colorf;
 /********************************************//**
  *  Function to initialise the colour click module using I2C
  ***********************************************/

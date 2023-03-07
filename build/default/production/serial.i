@@ -24236,21 +24236,28 @@ unsigned char __t3rd16on(void);
 
 
 
-# 1 "./color.h" 1
-# 11 "./color.h"
-typedef struct RGBC{
-    int R, G, B, C;
-} RGBC;
+# 1 "./colorfunctions.h" 1
+
+
+
+
+
+
+
 
 typedef struct RGBC_rel{
-    int Rf, Gf, Bf, Cf;
+   signed int Rf, Gf, Bf, Cf;
+   float h;
 } RGBC_rel;
 
-struct RGBC color;
 struct RGBC_rel colorf;
 
+void colour_read_all(struct RGBC_rel *cf);
+void RGB2Hue(struct RGBC_rel *cf);
+# 5 "./serial.h" 2
 
-
+# 1 "./colorclick.h" 1
+# 15 "./colorclick.h"
 void color_click_init(void);
 
 void color_write_reg(char reg, char value);
@@ -24289,34 +24296,17 @@ unsigned int color_read_Blue(void);
 
 
 unsigned int color_read_Clear(void);
-
-void colour_read_all(struct RGBC *c,struct RGBC_rel *cf);
-# 5 "./serial.h" 2
+# 6 "./serial.h" 2
 
 
 
-
-
-
-
-
-volatile char EUSART4RXbuf[20];
-volatile char RxBufWriteCnt=0;
-volatile char RxBufReadCnt=0;
-
-volatile char EUSART4TXbuf[60];
-volatile char TxBufWriteCnt=0;
-volatile char TxBufReadCnt=0;
-
-
-volatile char DataFlag=1;
 
 void initUSART4(void);
 char getCharSerial4(void);
 void sendCharSerial4(char charToSend);
 void sendStringSerial4(char *string);
 
-void Color2String(char *buf,struct RGBC_rel *colorf);
+void Color2String(char *buf,struct RGBC_rel *cf);
 # 2 "serial.c" 2
 
 # 1 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\include\\c99\\stdio.h" 1 3
@@ -24499,10 +24489,13 @@ void sendCharSerial4(char charToSend) {
     TX4REG = charToSend;
 }
 
-void Color2String(char *buf,struct RGBC_rel *colorf){
+void Color2String(char *buf,struct RGBC_rel *cf){
 
-    sprintf(buf,"Red %d Green,%d Blue,%d Clear %d \r",colorf->Rf,
-    colorf->Gf,colorf->Bf,colorf->Cf);
+    int int_part= (cf->h);
+    int frac_part= ((cf->h)*100) - (int_part*100);
+
+    sprintf(buf,"Red %d Green,%d Blue,%d Hue %d.%03d %f \r",cf->Rf,
+    cf->Gf,cf->Bf,int_part,frac_part,cf->h);
     sendStringSerial4(buf);
 }
 
