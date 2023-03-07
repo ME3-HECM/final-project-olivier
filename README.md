@@ -55,6 +55,6 @@ A further feature of the buggy is **BAT-VSENSE** pin which allows you to monitor
 
 The voltage at BAT-VSENSE will always be one third of that at the battery. Measuring this value can be useful for determining if your battery needs charging. You could also use it to calibrate your robot to perform well at different charge levels. 
 
-### Solution Evolution
-## Colour Calibration
+## Solution Evolution
+### Colour Calibration
 Initially we planned to use raw RGB values from the converter but realised these fluctate a lot with light so instead moved to RGB values relative to total light however it was rather difficult to detect colours with relative values so we decided on Hue Values with the addition of the relative values to distinguish between colours with overlapping values.
