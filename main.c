@@ -17,6 +17,14 @@ void main(void) {
     initUSART4();
     color_click_init();
     I2C_2_Master_Init();
+       // Initialise Front LEDs on ColourClick 
+    LATGbits.LATG1=1;   //set initial output state
+    TRISGbits.TRISG1=0; //set TRIS value for pin (output)
+    LATAbits.LATA4=1;   //set initial output state
+    TRISAbits.TRISA4=0; //set TRIS value for pin (output)
+    LATFbits.LATF7=1;   //set initial output state
+    TRISFbits.TRISF7=0; //set TRIS value for pin (output)
+    
     while (1){ 
         colour_read_all(&colorf);
         RGB2Hue(&colorf);

@@ -7,7 +7,7 @@
 #define _XTAL_FREQ 64000000 //note intrinsic _delay function is 62.5ns at 64,000,000Hz  
 
 typedef struct RGBC_rel{             // Define a structure
-   signed int Rf, Gf, Bf, Cf; // Containing the RGBC relative proportions calculated by function
+   float Rf, Gf, Bf, Cf; // Containing the RGBC relative proportions calculated by function
    float h;
 } RGBC_rel;                  // Struct to hold relative values of colors
 

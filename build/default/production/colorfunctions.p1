@@ -1,7 +1,7 @@
 Version 4.0 HI-TECH Software Intermediate Code
 "9 ./colorfunctions.h
 [; ;./colorfunctions.h: 9: typedef struct RGBC_rel{
-[s S2015 `i 1 `i 1 `i 1 `i 1 `f 1 ]
+[s S2015 `f 1 `f 1 `f 1 `f 1 `f 1 ]
 [n S2015 RGBC_rel Rf Gf Bf Cf h ]
 "34 ./colorclick.h
 [; ;./colorclick.h: 34: unsigned int color_read_Red(void);
@@ -2016,14 +2016,14 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _C `f ~T0 @X0 1 a ]
 [e = _C -> ( _color_read_Clear ..  `f ]
 "14
-[; ;colorfunctions.c: 14:     (cf->Rf)=1000*(R/(R+G+B));
-[e = . *U _cf 0 -> * -> -> 1000 `i `f / _R + + _R _G _B `i ]
+[; ;colorfunctions.c: 14:     (cf->Rf)=R;
+[e = . *U _cf 0 _R ]
 "15
-[; ;colorfunctions.c: 15:     (cf->Bf)=1000*(B/(R+G+B));
-[e = . *U _cf 2 -> * -> -> 1000 `i `f / _B + + _R _G _B `i ]
+[; ;colorfunctions.c: 15:     (cf->Bf)=B;
+[e = . *U _cf 2 _B ]
 "16
-[; ;colorfunctions.c: 16:     (cf->Gf)=1000*(G/(R+G+B));
-[e = . *U _cf 1 -> * -> -> 1000 `i `f / _G + + _R _G _B `i ]
+[; ;colorfunctions.c: 16:     (cf->Gf)=G;
+[e = . *U _cf 1 _G ]
 "17
 [; ;colorfunctions.c: 17: }
 [e :UE 2016 ]
@@ -2062,7 +2062,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 {
 "27
 [; ;colorfunctions.c: 27:             min=cf->Rf;
-[e = _min . *U _cf 0 ]
+[e = _min -> . *U _cf 0 `i ]
 "28
 [; ;colorfunctions.c: 28:         } else if((cf->Gf < cf->Rf)&(cf->Gf < cf->Bf)){
 }
@@ -2072,7 +2072,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 {
 "29
 [; ;colorfunctions.c: 29:             min=cf->Gf;
-[e = _min . *U _cf 1 ]
+[e = _min -> . *U _cf 1 `i ]
 "30
 [; ;colorfunctions.c: 30:         } else{
 }
@@ -2081,7 +2081,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 {
 "31
 [; ;colorfunctions.c: 31:             min=cf->Bf;
-[e = _min . *U _cf 2 ]
+[e = _min -> . *U _cf 2 `i ]
 "32
 [; ;colorfunctions.c: 32:         }
 }
@@ -2093,10 +2093,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 {
 "35
 [; ;colorfunctions.c: 35:             max=(cf->Rf);
-[e = _max . *U _cf 0 ]
+[e = _max -> . *U _cf 0 `i ]
 "38
-[; ;colorfunctions.c: 38:             (cf->h)=100*(((cf->Gf)-(cf->Bf))/(max-min));
-[e = . *U _cf 4 -> * -> 100 `i / - . *U _cf 1 . *U _cf 2 - _max _min `f ]
+[; ;colorfunctions.c: 38:             (cf->h)=60*(((cf->Gf)-(cf->Bf))/(max-min));
+[e = . *U _cf 4 * -> -> 60 `i `f / - . *U _cf 1 . *U _cf 2 -> - _max _min `f ]
 "39
 [; ;colorfunctions.c: 39:         } else if((cf->Gf > cf->Rf)&(cf->Gf > cf->Bf)){
 }
@@ -2106,10 +2106,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 {
 "40
 [; ;colorfunctions.c: 40:             max=cf->Gf;
-[e = _max . *U _cf 1 ]
+[e = _max -> . *U _cf 1 `i ]
 "41
-[; ;colorfunctions.c: 41:             cf->h=100*(((cf->Bf)-(cf->Rf))/(max-min));
-[e = . *U _cf 4 -> * -> 100 `i / - . *U _cf 2 . *U _cf 0 - _max _min `f ]
+[; ;colorfunctions.c: 41:             (cf->h)=60*(2+(((cf->Bf)-(cf->Rf))/(max-min)));
+[e = . *U _cf 4 * -> -> 60 `i `f + -> -> 2 `i `f / - . *U _cf 2 . *U _cf 0 -> - _max _min `f ]
 "42
 [; ;colorfunctions.c: 42:         }else{
 }
@@ -2118,20 +2118,31 @@ Version 4.0 HI-TECH Software Intermediate Code
 {
 "43
 [; ;colorfunctions.c: 43:             max=cf->Bf;
-[e = _max . *U _cf 2 ]
+[e = _max -> . *U _cf 2 `i ]
 "44
-[; ;colorfunctions.c: 44:             cf->h=100*(4+(((cf->Rf)-(cf->Gf))/(max-min)));
-[e = . *U _cf 4 -> * -> 100 `i + -> 4 `i / - . *U _cf 0 . *U _cf 1 - _max _min `f ]
+[; ;colorfunctions.c: 44:             (cf->h)=60*(4+(((cf->Rf)-(cf->Gf))/(max-min)));
+[e = . *U _cf 4 * -> -> 60 `i `f + -> -> 4 `i `f / - . *U _cf 0 . *U _cf 1 -> - _max _min `f ]
 "45
 [; ;colorfunctions.c: 45:         }
 }
 [e :U 2027 ]
 [e :U 2025 ]
 "46
-[; ;colorfunctions.c: 46:     }
+[; ;colorfunctions.c: 46:         if (cf->h < 0){
+[e $ ! < . *U _cf 4 -> -> 0 `i `f 2028  ]
+{
+"47
+[; ;colorfunctions.c: 47:             cf->h= cf->h +360;
+[e = . *U _cf 4 + . *U _cf 4 -> -> 360 `i `f ]
+"48
+[; ;colorfunctions.c: 48:         }
+}
+[e :U 2028 ]
+"49
+[; ;colorfunctions.c: 49:     }
 }
 [e :U 2019 ]
-"47
-[; ;colorfunctions.c: 47: }
+"50
+[; ;colorfunctions.c: 50: }
 [e :UE 2017 ]
 }

@@ -24246,7 +24246,7 @@ unsigned char __t3rd16on(void);
 
 
 typedef struct RGBC_rel{
-   signed int Rf, Gf, Bf, Cf;
+   float Rf, Gf, Bf, Cf;
    float h;
 } RGBC_rel;
 
@@ -24491,11 +24491,9 @@ void sendCharSerial4(char charToSend) {
 
 void Color2String(char *buf,struct RGBC_rel *cf){
 
-    int int_part= (cf->h);
-    int frac_part= ((cf->h)*100) - (int_part*100);
 
-    sprintf(buf,"Red %d Green,%d Blue,%d Hue %d.%03d %f \r",cf->Rf,
-    cf->Gf,cf->Bf,int_part,frac_part,cf->h);
+    sprintf(buf,"Red %f Green,%f Blue,%f Hue %f \r",cf->Rf,
+    cf->Gf,cf->Bf,cf->h);
     sendStringSerial4(buf);
 }
 

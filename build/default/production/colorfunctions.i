@@ -24283,7 +24283,7 @@ unsigned int color_read_Clear(void);
 
 
 typedef struct RGBC_rel{
-   signed int Rf, Gf, Bf, Cf;
+   float Rf, Gf, Bf, Cf;
    float h;
 } RGBC_rel;
 
@@ -24303,9 +24303,9 @@ void colour_read_all(struct RGBC_rel *cf) {
 
 
 
-    (cf->Rf)=1000*(R/(R+G+B));
-    (cf->Bf)=1000*(B/(R+G+B));
-    (cf->Gf)=1000*(G/(R+G+B));
+    (cf->Rf)=R;
+    (cf->Bf)=B;
+    (cf->Gf)=G;
 }
 
 void RGB2Hue(struct RGBC_rel *cf){
@@ -24327,13 +24327,16 @@ void RGB2Hue(struct RGBC_rel *cf){
             max=(cf->Rf);
 
 
-            (cf->h)=100*(((cf->Gf)-(cf->Bf))/(max-min));
+            (cf->h)=60*(((cf->Gf)-(cf->Bf))/(max-min));
         } else if((cf->Gf > cf->Rf)&(cf->Gf > cf->Bf)){
             max=cf->Gf;
-            cf->h=100*(((cf->Bf)-(cf->Rf))/(max-min));
+            (cf->h)=60*(2+(((cf->Bf)-(cf->Rf))/(max-min)));
         }else{
             max=cf->Bf;
-            cf->h=100*(4+(((cf->Rf)-(cf->Gf))/(max-min)));
+            (cf->h)=60*(4+(((cf->Rf)-(cf->Gf))/(max-min)));
+        }
+        if (cf->h < 0){
+            cf->h= cf->h +360;
         }
     }
 }

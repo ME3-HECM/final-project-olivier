@@ -24252,7 +24252,7 @@ unsigned char __t3rd16on(void);
 
 
 typedef struct RGBC_rel{
-   signed int Rf, Gf, Bf, Cf;
+   float Rf, Gf, Bf, Cf;
    float h;
 } RGBC_rel;
 
@@ -24506,6 +24506,14 @@ void main(void) {
     initUSART4();
     color_click_init();
     I2C_2_Master_Init();
+
+    LATGbits.LATG1=1;
+    TRISGbits.TRISG1=0;
+    LATAbits.LATA4=1;
+    TRISAbits.TRISA4=0;
+    LATFbits.LATF7=1;
+    TRISFbits.TRISF7=0;
+
     while (1){
         colour_read_all(&colorf);
         RGB2Hue(&colorf);

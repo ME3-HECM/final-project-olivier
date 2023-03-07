@@ -5,20 +5,8 @@
 [d frameptr 4065 ]
 "4 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\__fpclassifyf.c
 [v ___fpclassifyf __fpclassifyf `(i  1 e 2 0 ]
-"1 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\abs.c
-[v _abs abs `(i  1 e 2 0 ]
-"9 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\aodiv.c
-[v ___aodiv __aodiv `(o  1 e 8 0 ]
-"9 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\aomod.c
-[v ___aomod __aomod `(o  1 e 8 0 ]
-"4 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\atoi.c
-[v _atoi atoi `(i  1 e 2 0 ]
-"7 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\awdiv.c
-[v ___awdiv __awdiv `(i  1 e 2 0 ]
 "133 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
 [v _pad pad `(v  1 s 1 pad ]
-"443
-[v _dtoa dtoa `(v  1 s 1 dtoa ]
 "506
 [v _efgtoa efgtoa `(v  1 s 1 efgtoa ]
 "1007
@@ -45,10 +33,6 @@
 [v ___ftmul __ftmul `(f  1 e 4 0 ]
 "19 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\ftsub.c
 [v ___ftsub __ftsub `(f  1 e 4 0 ]
-"5 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\isdigit.c
-[v _isdigit isdigit `(i  1 e 2 0 ]
-"5 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\isspace.c
-[v _isspace isspace `(i  1 e 2 0 ]
 "1 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\labs.c
 [v _labs labs `(l  1 e 4 0 ]
 "4 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\memcpy.c
@@ -71,8 +55,6 @@
 [v ___flmul __flmul `(d  1 e 4 0 ]
 "3 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\strcpy.c
 [v _strcpy strcpy `(*.39uc  1 e 2 0 ]
-"15 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\Umul16.c
-[v ___wmul __wmul `(ui  1 e 2 0 ]
 "15 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\Umul32.c
 [v ___lmul __lmul `(ul  1 e 4 0 ]
 "91 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\Umul64.c
@@ -117,18 +99,18 @@
 [v _sendCharSerial4 sendCharSerial4 `(v  1 e 1 0 ]
 "38
 [v _Color2String Color2String `(v  1 e 1 0 ]
-"49
+"47
 [v _sendStringSerial4 sendStringSerial4 `(v  1 e 1 0 ]
-[s S74 RGBC_rel 12 `i 1 Rf 2 0 `i 1 Gf 2 2 `i 1 Bf 2 4 `i 1 Cf 2 6 `f 1 h 4 8 ]
+[s S74 RGBC_rel 20 `f 1 Rf 4 0 `f 1 Gf 4 4 `f 1 Bf 4 8 `f 1 Cf 4 12 `f 1 h 4 16 ]
 "14 C:\Users\Windows\Documents\GitHub\final-project-olivier/colorfunctions.h
-[v _colorf colorf `S74  1 e 12 0 ]
+[v _colorf colorf `S74  1 e 20 0 ]
 "3182 C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\pic\include\proc\pic18f67k40.h
 [v _RX4PPS RX4PPS `VEuc  1 e 1 @3605 ]
 "3796
 [v _SSP2CLKPPS SSP2CLKPPS `VEuc  1 e 1 @3612 ]
 "3862
 [v _SSP2DATPPS SSP2DATPPS `VEuc  1 e 1 @3613 ]
-[s S452 . 1 `uc 1 TX3IF 1 0 :1:0 
+[s S677 . 1 `uc 1 TX3IF 1 0 :1:0 
 `uc 1 RC3IF 1 0 :1:1 
 `uc 1 TX4IF 1 0 :1:2 
 `uc 1 RC4IF 1 0 :1:3 
@@ -136,8 +118,8 @@
 `uc 1 RC5IF 1 0 :1:5 
 ]
 "5332
-[u S459 . 1 `S452 1 . 1 0 ]
-[v _PIR4bits PIR4bits `VES459  1 e 1 @3639 ]
+[u S684 . 1 `S677 1 . 1 0 ]
+[v _PIR4bits PIR4bits `VES684  1 e 1 @3639 ]
 "7858
 [v _RC0PPS RC0PPS `VEuc  1 e 1 @3682 ]
 "8508
@@ -233,7 +215,7 @@
 [v _SP4BRGL SP4BRGL `VEuc  1 e 1 @3813 ]
 "15903
 [v _SP4BRGH SP4BRGH `VEuc  1 e 1 @3814 ]
-[s S431 . 1 `uc 1 RX9D 1 0 :1:0 
+[s S656 . 1 `uc 1 RX9D 1 0 :1:0 
 `uc 1 OERR 1 0 :1:1 
 `uc 1 FERR 1 0 :1:2 
 `uc 1 ADDEN 1 0 :1:3 
@@ -243,9 +225,9 @@
 `uc 1 SPEN 1 0 :1:7 
 ]
 "15963
-[u S440 . 1 `S431 1 . 1 0 ]
-[v _RC4STAbits RC4STAbits `VES440  1 e 1 @3815 ]
-[s S408 . 1 `uc 1 TX9D 1 0 :1:0 
+[u S665 . 1 `S656 1 . 1 0 ]
+[v _RC4STAbits RC4STAbits `VES665  1 e 1 @3815 ]
+[s S633 . 1 `uc 1 TX9D 1 0 :1:0 
 `uc 1 TRMT 1 0 :1:1 
 `uc 1 BRGH 1 0 :1:2 
 `uc 1 SENDB 1 0 :1:3 
@@ -255,9 +237,9 @@
 `uc 1 CSRC 1 0 :1:7 
 ]
 "16085
-[u S417 . 1 `S408 1 . 1 0 ]
-[v _TX4STAbits TX4STAbits `VES417  1 e 1 @3816 ]
-[s S387 . 1 `uc 1 ABDEN 1 0 :1:0 
+[u S642 . 1 `S633 1 . 1 0 ]
+[v _TX4STAbits TX4STAbits `VES642  1 e 1 @3816 ]
+[s S612 . 1 `uc 1 ABDEN 1 0 :1:0 
 `uc 1 WUE 1 0 :1:1 
 `uc 1 . 1 0 :1:2 
 `uc 1 BRG16 1 0 :1:3 
@@ -267,9 +249,81 @@
 `uc 1 ABDOVF 1 0 :1:7 
 ]
 "16211
-[u S396 . 1 `S387 1 . 1 0 ]
-[v _BAUD4CONbits BAUD4CONbits `VES396  1 e 1 @3817 ]
-[s S364 . 1 `uc 1 TRISC0 1 0 :1:0 
+[u S621 . 1 `S612 1 . 1 0 ]
+[v _BAUD4CONbits BAUD4CONbits `VES621  1 e 1 @3817 ]
+[s S393 . 1 `uc 1 LATA0 1 0 :1:0 
+`uc 1 LATA1 1 0 :1:1 
+`uc 1 LATA2 1 0 :1:2 
+`uc 1 LATA3 1 0 :1:3 
+`uc 1 LATA4 1 0 :1:4 
+`uc 1 LATA5 1 0 :1:5 
+`uc 1 LATA6 1 0 :1:6 
+`uc 1 LATA7 1 0 :1:7 
+]
+"28495
+[s S402 . 1 `uc 1 LA0 1 0 :1:0 
+`uc 1 LA1 1 0 :1:1 
+`uc 1 LA2 1 0 :1:2 
+`uc 1 LA3 1 0 :1:3 
+`uc 1 LA4 1 0 :1:4 
+`uc 1 LA5 1 0 :1:5 
+`uc 1 LA6 1 0 :1:6 
+`uc 1 LA7 1 0 :1:7 
+]
+[u S411 . 1 `S393 1 . 1 0 `S402 1 . 1 0 ]
+[v _LATAbits LATAbits `VES411  1 e 1 @3961 ]
+[s S454 . 1 `uc 1 LATF0 1 0 :1:0 
+`uc 1 LATF1 1 0 :1:1 
+`uc 1 LATF2 1 0 :1:2 
+`uc 1 LATF3 1 0 :1:3 
+`uc 1 LATF4 1 0 :1:4 
+`uc 1 LATF5 1 0 :1:5 
+`uc 1 LATF6 1 0 :1:6 
+`uc 1 LATF7 1 0 :1:7 
+]
+"29055
+[s S463 . 1 `uc 1 LF0 1 0 :1:0 
+`uc 1 LF1 1 0 :1:1 
+`uc 1 LF2 1 0 :1:2 
+`uc 1 LF3 1 0 :1:3 
+`uc 1 LF4 1 0 :1:4 
+`uc 1 LF5 1 0 :1:5 
+`uc 1 LF6 1 0 :1:6 
+`uc 1 LF7 1 0 :1:7 
+]
+[u S472 . 1 `S454 1 . 1 0 `S463 1 . 1 0 ]
+[v _LATFbits LATFbits `VES472  1 e 1 @3966 ]
+[s S338 . 1 `uc 1 LATG0 1 0 :1:0 
+`uc 1 LATG1 1 0 :1:1 
+`uc 1 LATG2 1 0 :1:2 
+`uc 1 LATG3 1 0 :1:3 
+`uc 1 LATG4 1 0 :1:4 
+`uc 1 . 1 0 :1:5 
+`uc 1 LATG6 1 0 :1:6 
+`uc 1 LATG7 1 0 :1:7 
+]
+"29164
+[s S347 . 1 `uc 1 LG0 1 0 :1:0 
+`uc 1 LG1 1 0 :1:1 
+`uc 1 LG2 1 0 :1:2 
+`uc 1 LG3 1 0 :1:3 
+`uc 1 LG4 1 0 :1:4 
+]
+[u S353 . 1 `S338 1 . 1 0 `S347 1 . 1 0 ]
+[v _LATGbits LATGbits `VES353  1 e 1 @3967 ]
+[s S433 . 1 `uc 1 TRISA0 1 0 :1:0 
+`uc 1 TRISA1 1 0 :1:1 
+`uc 1 TRISA2 1 0 :1:2 
+`uc 1 TRISA3 1 0 :1:3 
+`uc 1 TRISA4 1 0 :1:4 
+`uc 1 TRISA5 1 0 :1:5 
+`uc 1 TRISA6 1 0 :1:6 
+`uc 1 TRISA7 1 0 :1:7 
+]
+"29351
+[u S442 . 1 `S433 1 . 1 0 ]
+[v _TRISAbits TRISAbits `VES442  1 e 1 @3969 ]
+[s S589 . 1 `uc 1 TRISC0 1 0 :1:0 
 `uc 1 TRISC1 1 0 :1:1 
 `uc 1 TRISC2 1 0 :1:2 
 `uc 1 TRISC3 1 0 :1:3 
@@ -279,8 +333,8 @@
 `uc 1 TRISC7 1 0 :1:7 
 ]
 "29595
-[u S373 . 1 `S364 1 . 1 0 ]
-[v _TRISCbits TRISCbits `VES373  1 e 1 @3971 ]
+[u S598 . 1 `S589 1 . 1 0 ]
+[v _TRISCbits TRISCbits `VES598  1 e 1 @3971 ]
 [s S160 . 1 `uc 1 TRISD0 1 0 :1:0 
 `uc 1 TRISD1 1 0 :1:1 
 `uc 1 TRISD2 1 0 :1:2 
@@ -293,6 +347,30 @@
 "29717
 [u S169 . 1 `S160 1 . 1 0 ]
 [v _TRISDbits TRISDbits `VES169  1 e 1 @3972 ]
+[s S494 . 1 `uc 1 TRISF0 1 0 :1:0 
+`uc 1 TRISF1 1 0 :1:1 
+`uc 1 TRISF2 1 0 :1:2 
+`uc 1 TRISF3 1 0 :1:3 
+`uc 1 TRISF4 1 0 :1:4 
+`uc 1 TRISF5 1 0 :1:5 
+`uc 1 TRISF6 1 0 :1:6 
+`uc 1 TRISF7 1 0 :1:7 
+]
+"29956
+[u S503 . 1 `S494 1 . 1 0 ]
+[v _TRISFbits TRISFbits `VES503  1 e 1 @3974 ]
+[s S372 . 1 `uc 1 TRISG0 1 0 :1:0 
+`uc 1 TRISG1 1 0 :1:1 
+`uc 1 TRISG2 1 0 :1:2 
+`uc 1 TRISG3 1 0 :1:3 
+`uc 1 TRISG4 1 0 :1:4 
+`uc 1 . 1 0 :1:5 
+`uc 1 TRISG6 1 0 :1:6 
+`uc 1 TRISG7 1 0 :1:7 
+]
+"30018
+[u S381 . 1 `S372 1 . 1 0 ]
+[v _TRISGbits TRISGbits `VES381  1 e 1 @3975 ]
 "99 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
 [v _prec prec `i  1 s 2 prec ]
 [v _width width `i  1 s 2 width ]
@@ -305,7 +383,7 @@
 {
 "16
 [v main@data data `[60]uc  1 a 60 0 ]
-"27
+"35
 } 0
 "6 C:\Users\Windows\Documents\GitHub\final-project-olivier\serial.c
 [v _initUSART4 initUSART4 `(v  1 e 1 0 ]
@@ -316,14 +394,14 @@
 [v _colour_read_all colour_read_all `(v  1 e 1 0 ]
 {
 "9
-[v colour_read_all@B B `f  1 a 4 12 ]
+[v colour_read_all@B B `f  1 a 4 35 ]
 "8
-[v colour_read_all@G G `f  1 a 4 8 ]
+[v colour_read_all@G G `f  1 a 4 31 ]
 "7
-[v colour_read_all@R R `f  1 a 4 4 ]
-[s S74 RGBC_rel 12 `i 1 Rf 2 0 `i 1 Gf 2 2 `i 1 Bf 2 4 `i 1 Cf 2 6 `f 1 h 4 8 ]
+[v colour_read_all@R R `f  1 a 4 27 ]
+[s S74 RGBC_rel 20 `f 1 Rf 4 0 `f 1 Gf 4 4 `f 1 Bf 4 8 `f 1 Cf 4 12 `f 1 h 4 16 ]
 "5
-[v colour_read_all@cf cf `*.39S74  1 p 2 84 ]
+[v colour_read_all@cf cf `*.39S74  1 p 2 25 ]
 "17
 } 0
 "32 C:\Users\Windows\Documents\GitHub\final-project-olivier\colorclick.c
@@ -418,117 +496,111 @@
 [v _RGB2Hue RGB2Hue `(v  1 e 1 0 ]
 {
 "24
-[v RGB2Hue@min min `i  1 a 2 37 ]
+[v RGB2Hue@min min `i  1 a 2 29 ]
 "23
-[v RGB2Hue@max max `i  1 a 2 35 ]
-[s S74 RGBC_rel 12 `i 1 Rf 2 0 `i 1 Gf 2 2 `i 1 Bf 2 4 `i 1 Cf 2 6 `f 1 h 4 8 ]
+[v RGB2Hue@max max `i  1 a 2 27 ]
+[s S74 RGBC_rel 20 `f 1 Rf 4 0 `f 1 Gf 4 4 `f 1 Bf 4 8 `f 1 Cf 4 12 `f 1 h 4 16 ]
 "19
-[v RGB2Hue@cf cf `*.39S74  1 p 2 28 ]
-"47
+[v RGB2Hue@cf cf `*.39S74  1 p 2 17 ]
+"50
 } 0
-"7 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\awdiv.c
-[v ___awdiv __awdiv `(i  1 e 2 0 ]
+"10 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\xxtofl.c
+[v ___xxtofl __xxtofl `(d  1 e 4 0 ]
 {
+[v ___xxtofl@sign sign `uc  1 a 1 wreg ]
+"13
+[v ___xxtofl@arg arg `ul  1 a 4 21 ]
+"12
+[v ___xxtofl@exp exp `uc  1 a 1 20 ]
 "10
-[v ___awdiv@quotient quotient `i  1 a 2 6 ]
-"11
-[v ___awdiv@sign sign `uc  1 a 1 5 ]
-[v ___awdiv@counter counter `uc  1 a 1 4 ]
-"7
-[v ___awdiv@dividend dividend `i  1 p 2 0 ]
-[v ___awdiv@divisor divisor `i  1 p 2 2 ]
-"41
+[v ___xxtofl@sign sign `uc  1 a 1 wreg ]
+[v ___xxtofl@val val `l  1 p 4 11 ]
+"15
+[v ___xxtofl@sign sign `uc  1 a 1 19 ]
+"44
 } 0
 "38 C:\Users\Windows\Documents\GitHub\final-project-olivier\serial.c
 [v _Color2String Color2String `(v  1 e 1 0 ]
 {
-"40
-[v Color2String@int_part int_part `i  1 a 2 109 ]
-"41
-[v Color2String@frac_part frac_part `i  1 a 2 107 ]
-"38
-[v Color2String@buf buf `*.39uc  1 p 2 103 ]
-[s S74 RGBC_rel 12 `i 1 Rf 2 0 `i 1 Gf 2 2 `i 1 Bf 2 4 `i 1 Cf 2 6 `f 1 h 4 8 ]
-[v Color2String@cf cf `*.39S74  1 p 2 105 ]
-"46
+[v Color2String@buf buf `*.39uc  1 p 2 130 ]
+[s S74 RGBC_rel 20 `f 1 Rf 4 0 `f 1 Gf 4 4 `f 1 Bf 4 8 `f 1 Cf 4 12 `f 1 h 4 16 ]
+[v Color2String@cf cf `*.39S74  1 p 2 132 ]
+"44
 } 0
 "9 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\nf_sprintf.c
 [v _sprintf sprintf `(i  1 e 2 0 ]
 {
-[u S978 . 3 `*.2uc 1 buffer 3 0 `*.2Cuc 1 source 3 0 ]
+[u S1201 . 3 `*.2uc 1 buffer 3 0 `*.2Cuc 1 source 3 0 ]
 "13
-[s S981 _IO_FILE 11 `S978 1 . 3 0 `i 1 count 2 3 `[2]uc 1 ungetbuf 2 5 `i 1 ungetcnt 2 7 `i 1 limit 2 9 ]
-[v sprintf@f f `S981  1 a 11 92 ]
+[s S1204 _IO_FILE 11 `S1201 1 . 3 0 `i 1 count 2 3 `[2]uc 1 ungetbuf 2 5 `i 1 ungetcnt 2 7 `i 1 limit 2 9 ]
+[v sprintf@f f `S1204  1 a 11 119 ]
 "12
-[v sprintf@ap ap `[1]*.39v  1 a 2 90 ]
+[v sprintf@ap ap `[1]*.39v  1 a 2 117 ]
 "9
-[v sprintf@s s `*.39uc  1 p 2 72 ]
-[v sprintf@fmt fmt `*.32Cuc  1 p 2 74 ]
+[v sprintf@s s `*.39uc  1 p 2 97 ]
+[v sprintf@fmt fmt `*.32Cuc  1 p 2 99 ]
 "23
 } 0
 "1520 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
 [v _vfprintf vfprintf `(i  1 e 2 0 ]
 {
 "1523
-[v vfprintf@cfmt cfmt `*.32uc  1 a 2 93 ]
-[s S1013 _IO_FILE 0 ]
+[v vfprintf@cfmt cfmt `*.32uc  1 a 2 95 ]
+[s S1236 _IO_FILE 0 ]
 "1520
-[v vfprintf@fp fp `*.39S1013  1 p 2 66 ]
-[v vfprintf@fmt fmt `*.32Cuc  1 p 2 68 ]
-[v vfprintf@ap ap `*.39*.39v  1 p 2 70 ]
+[v vfprintf@fp fp `*.39S1236  1 p 2 89 ]
+[v vfprintf@fmt fmt `*.32Cuc  1 p 2 91 ]
+[v vfprintf@ap ap `*.39*.39v  1 p 2 93 ]
 "1543
 } 0
 "1007
 [v _vfpfcnvrt vfpfcnvrt `(v  1 s 1 vfpfcnvrt ]
 {
-[u S1062 . 8 `o 1 ll 8 0 `uo 1 llu 8 0 `*.2v 1 vp 3 0 `d 1 f 4 0 ]
+[u S1280 . 8 `o 1 ll 8 0 `uo 1 llu 8 0 `*.2v 1 vp 3 0 `d 1 f 4 0 ]
 "1016
-[v vfpfcnvrt@convarg convarg `S1062  1 a 8 55 ]
+[v vfpfcnvrt@convarg convarg `S1280  1 a 8 78 ]
 "1009
-[v vfpfcnvrt@cp cp `*.32uc  1 a 2 64 ]
-"1010
-[v vfpfcnvrt@done done `i  1 a 2 53 ]
-"1009
-[v vfpfcnvrt@c c `uc  1 a 1 63 ]
-[s S1013 _IO_FILE 0 ]
+[v vfpfcnvrt@cp cp `*.32uc  1 a 2 87 ]
+[v vfpfcnvrt@c c `uc  1 a 1 86 ]
+[s S1236 _IO_FILE 0 ]
 "1007
-[v vfpfcnvrt@fp fp `*.39S1013  1 p 2 44 ]
-[v vfpfcnvrt@fmt fmt `*.39*.32uc  1 p 2 46 ]
-[v vfpfcnvrt@ap ap `*.39*.39v  1 p 2 48 ]
+[v vfpfcnvrt@fp fp `*.39S1236  1 p 2 70 ]
+[v vfpfcnvrt@fmt fmt `*.39*.32uc  1 p 2 72 ]
+[v vfpfcnvrt@ap ap `*.39*.39v  1 p 2 74 ]
 "1517
 } 0
 "506
 [v _efgtoa efgtoa `(v  1 s 1 efgtoa ]
 {
-[u S1031 flui 4 `d 1 f 4 0 `l 1 u 4 0 ]
+[u S1249 flui 4 `d 1 f 4 0 `l 1 u 4 0 ]
 "511
-[v efgtoa@u u `S1031  1 a 4 40 ]
-[v efgtoa@g g `S1031  1 a 4 34 ]
+[v efgtoa@u u `S1249  1 a 4 66 ]
+[v efgtoa@g g `S1249  1 a 4 62 ]
 "510
-[v efgtoa@l l `d  1 a 4 27 ]
-[v efgtoa@h h `d  1 a 4 23 ]
+[v efgtoa@l l `d  1 a 4 55 ]
+[v efgtoa@h h `d  1 a 4 51 ]
 "511
-[v efgtoa@ou ou `S1031  1 a 4 19 ]
+[v efgtoa@ou ou `S1249  1 a 4 45 ]
 "509
-[v efgtoa@n n `i  1 a 2 38 ]
-[v efgtoa@i i `i  1 a 2 31 ]
-[v efgtoa@w w `i  1 a 2 17 ]
-[v efgtoa@e e `i  1 a 2 15 ]
-[v efgtoa@m m `i  1 a 2 13 ]
-[v efgtoa@d d `i  1 a 2 11 ]
-[v efgtoa@t t `i  1 a 2 4 ]
-[v efgtoa@p p `i  1 a 2 2 ]
-[v efgtoa@ne ne `i  1 a 2 0 ]
+[v efgtoa@n n `i  1 a 2 60 ]
+[v efgtoa@i i `i  1 a 2 49 ]
+[v efgtoa@w w `i  1 a 2 43 ]
+[v efgtoa@e e `i  1 a 2 41 ]
+[v efgtoa@m m `i  1 a 2 39 ]
+[v efgtoa@d d `i  1 a 2 37 ]
+[v efgtoa@t t `i  1 a 2 30 ]
+[v efgtoa@p p `i  1 a 2 28 ]
+[v efgtoa@ne ne `i  1 a 2 26 ]
 "508
-[v efgtoa@sign sign `uc  1 a 1 33 ]
-[v efgtoa@nmode nmode `uc  1 a 1 10 ]
-[v efgtoa@mode mode `uc  1 a 1 9 ]
-[v efgtoa@pp pp `uc  1 a 1 8 ]
-[s S1013 _IO_FILE 0 ]
+[v efgtoa@sign sign `uc  1 a 1 59 ]
+[v efgtoa@nmode nmode `uc  1 a 1 36 ]
+[v efgtoa@mode mode `uc  1 a 1 35 ]
+[v efgtoa@pp pp `uc  1 a 1 34 ]
+[s S1236 _IO_FILE 0 ]
 "506
-[v efgtoa@fp fp `*.39S1013  1 p 2 84 ]
-[v efgtoa@f f `d  1 p 4 86 ]
-[v efgtoa@c c `uc  1 p 1 90 ]
+[v efgtoa@fp fp `*.39S1236  1 p 2 17 ]
+[v efgtoa@f f `d  1 p 4 19 ]
+[v efgtoa@c c `uc  1 p 1 23 ]
 "787
 } 0
 "3 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\strcpy.c
@@ -541,6 +613,47 @@
 "3
 [v strcpy@dest dest `*.39uc  1 p 2 0 ]
 [v strcpy@src src `*.32Cuc  1 p 2 2 ]
+"9
+} 0
+"133 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+[v _pad pad `(v  1 s 1 pad ]
+{
+"135
+[v pad@w w `i  1 a 2 25 ]
+[v pad@i i `i  1 a 2 23 ]
+[s S1236 _IO_FILE 0 ]
+"133
+[v pad@fp fp `*.39S1236  1 p 2 16 ]
+[v pad@buf buf `*.39uc  1 p 2 18 ]
+[v pad@p p `i  1 p 2 20 ]
+"164
+} 0
+"8 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\nf_fputs.c
+[v _fputs fputs `(i  1 e 2 0 ]
+{
+"11
+[v fputs@i i `i  1 a 2 14 ]
+"10
+[v fputs@c c `uc  1 a 1 13 ]
+"8
+[v fputs@s s `*.39Cuc  1 p 2 9 ]
+[u S1201 . 3 `*.2uc 1 buffer 3 0 `*.2Cuc 1 source 3 0 ]
+[s S1204 _IO_FILE 11 `S1201 1 . 3 0 `i 1 count 2 3 `[2]uc 1 ungetbuf 2 5 `i 1 ungetcnt 2 7 `i 1 limit 2 9 ]
+[v fputs@fp fp `*.39S1204  1 p 2 11 ]
+"19
+} 0
+"8 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\nf_fputc.c
+[v _fputc fputc `(i  1 e 2 0 ]
+{
+[v fputc@c c `i  1 p 2 0 ]
+[u S1201 . 3 `*.2uc 1 buffer 3 0 `*.2Cuc 1 source 3 0 ]
+[s S1204 _IO_FILE 11 `S1201 1 . 3 0 `i 1 count 2 3 `[2]uc 1 ungetbuf 2 5 `i 1 ungetcnt 2 7 `i 1 limit 2 9 ]
+[v fputc@fp fp `*.39S1204  1 p 2 2 ]
+"24
+} 0
+"7 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\putch.c
+[v _putch putch `(v  1 e 1 0 ]
+{
 "9
 } 0
 "4 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\memcpy.c
@@ -567,64 +680,64 @@
 "3 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\floorf.c
 [v _floorf floorf `(f  1 e 4 0 ]
 {
-[u S1159 . 4 `f 1 f 4 0 `ul 1 i 4 0 ]
+[u S1357 . 4 `f 1 f 4 0 `ul 1 i 4 0 ]
 "5
-[v floorf@u u `S1159  1 a 4 57 ]
+[v floorf@u u `S1357  1 a 4 90 ]
 "7
-[v floorf@m m `ul  1 a 4 51 ]
+[v floorf@m m `ul  1 a 4 84 ]
 "6
-[v floorf@e e `i  1 a 2 55 ]
+[v floorf@e e `i  1 a 2 88 ]
 "3
-[v floorf@x x `f  1 p 4 41 ]
+[v floorf@x x `f  1 p 4 74 ]
 "4
-[v floorf@F526 F526 `S1159  1 s 4 F526 ]
+[v floorf@F526 F526 `S1357  1 s 4 F526 ]
 "27
 } 0
 "4 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\__fpclassifyf.c
 [v ___fpclassifyf __fpclassifyf `(i  1 e 2 0 ]
 {
-[u S1159 . 4 `f 1 f 4 0 `ul 1 i 4 0 ]
+[u S1357 . 4 `f 1 f 4 0 `ul 1 i 4 0 ]
 "6
-[v ___fpclassifyf@u u `S1159  1 a 4 10 ]
+[v ___fpclassifyf@u u `S1357  1 a 4 10 ]
 "7
 [v ___fpclassifyf@e e `i  1 a 2 8 ]
 "4
 [v ___fpclassifyf@x x `f  1 p 4 0 ]
 "5
-[v ___fpclassifyf@F465 F465 `S1159  1 s 4 F465 ]
+[v ___fpclassifyf@F465 F465 `S1357  1 s 4 F465 ]
 "11
 } 0
 "43 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\fltol.c
 [v ___fltol __fltol `(l  1 e 4 0 ]
 {
 "45
-[v ___fltol@exp1 exp1 `uc  1 a 1 83 ]
-[v ___fltol@sign1 sign1 `uc  1 a 1 82 ]
+[v ___fltol@exp1 exp1 `uc  1 a 1 9 ]
+[v ___fltol@sign1 sign1 `uc  1 a 1 8 ]
 "43
-[v ___fltol@f1 f1 `d  1 p 4 74 ]
+[v ___fltol@f1 f1 `d  1 p 4 0 ]
 "70
 } 0
 "245 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
 [v ___flsub __flsub `(d  1 e 4 0 ]
 {
-[v ___flsub@b b `d  1 p 4 66 ]
-[v ___flsub@a a `d  1 p 4 70 ]
+[v ___flsub@b b `d  1 p 4 41 ]
+[v ___flsub@a a `d  1 p 4 45 ]
 "250
 } 0
 "10
 [v ___fladd __fladd `(d  1 e 4 0 ]
 {
 "17
-[v ___fladd@grs grs `uc  1 a 1 15 ]
+[v ___fladd@grs grs `uc  1 a 1 40 ]
 "15
-[v ___fladd@bexp bexp `uc  1 a 1 14 ]
+[v ___fladd@bexp bexp `uc  1 a 1 39 ]
 "16
-[v ___fladd@aexp aexp `uc  1 a 1 13 ]
+[v ___fladd@aexp aexp `uc  1 a 1 38 ]
 "13
-[v ___fladd@signs signs `uc  1 a 1 12 ]
+[v ___fladd@signs signs `uc  1 a 1 37 ]
 "10
-[v ___fladd@b b `d  1 p 4 0 ]
-[v ___fladd@a a `d  1 p 4 4 ]
+[v ___fladd@b b `d  1 p 4 25 ]
+[v ___fladd@a a `d  1 p 4 29 ]
 "237
 } 0
 "15 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\flneg.c
@@ -636,33 +749,33 @@
 "8 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcmul.c
 [v ___flmul __flmul `(d  1 e 4 0 ]
 {
-[s S843 . 4 `uc 1 a 1 0 `uc 1 b 1 1 `uc 1 c 1 2 `uc 1 d 1 3 ]
+[s S1066 . 4 `uc 1 a 1 0 `uc 1 b 1 1 `uc 1 c 1 2 `uc 1 d 1 3 ]
 "13
-[s S848 . 4 `s 1 wordA 2 0 `s 1 wordB 2 2 ]
-[u S851 . 4 `l 1 i 4 0 `d 1 f 4 0 `S843 1 fAsBytes 4 0 `S848 1 fAsWords 4 0 ]
-[v ___flmul@prod prod `S851  1 a 4 60 ]
+[s S1071 . 4 `s 1 wordA 2 0 `s 1 wordB 2 2 ]
+[u S1074 . 4 `l 1 i 4 0 `d 1 f 4 0 `S1066 1 fAsBytes 4 0 `S1071 1 fAsWords 4 0 ]
+[v ___flmul@prod prod `S1074  1 a 4 7 ]
 "12
-[v ___flmul@grs grs `ul  1 a 4 54 ]
-[s S919 . 2 `uc 1 a 1 0 `uc 1 b 1 1 ]
+[v ___flmul@grs grs `ul  1 a 4 1 ]
+[s S1142 . 2 `uc 1 a 1 0 `uc 1 b 1 1 ]
 "14
-[u S922 . 2 `s 1 i 2 0 `us 1 n 2 0 `S919 1 nAsBytes 2 0 ]
-[v ___flmul@temp temp `S922  1 a 2 64 ]
+[u S1145 . 2 `s 1 i 2 0 `us 1 n 2 0 `S1142 1 nAsBytes 2 0 ]
+[v ___flmul@temp temp `S1145  1 a 2 11 ]
 "10
-[v ___flmul@bexp bexp `uc  1 a 1 59 ]
+[v ___flmul@bexp bexp `uc  1 a 1 6 ]
 "11
-[v ___flmul@aexp aexp `uc  1 a 1 58 ]
+[v ___flmul@aexp aexp `uc  1 a 1 5 ]
 "9
-[v ___flmul@sign sign `uc  1 a 1 53 ]
+[v ___flmul@sign sign `uc  1 a 1 0 ]
 "8
-[v ___flmul@b b `d  1 p 4 41 ]
-[v ___flmul@a a `d  1 p 4 45 ]
+[v ___flmul@b b `d  1 p 4 74 ]
+[v ___flmul@a a `d  1 p 4 78 ]
 "205
 } 0
 "4 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\flge.c
 [v ___flge __flge `(b  1 e 0 0 ]
 {
-[v ___flge@ff1 ff1 `d  1 p 4 66 ]
-[v ___flge@ff2 ff2 `d  1 p 4 70 ]
+[v ___flge@ff1 ff1 `d  1 p 4 86 ]
+[v ___flge@ff2 ff2 `d  1 p 4 90 ]
 "19
 } 0
 "4 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\fleq.c
@@ -676,147 +789,27 @@
 [v ___fldiv __fldiv `(d  1 e 4 0 ]
 {
 "21
-[v ___fldiv@grs grs `ul  1 a 4 35 ]
+[v ___fldiv@grs grs `ul  1 a 4 68 ]
 "22
-[v ___fldiv@rem rem `ul  1 a 4 28 ]
+[v ___fldiv@rem rem `ul  1 a 4 61 ]
 "20
-[v ___fldiv@new_exp new_exp `s  1 a 2 33 ]
+[v ___fldiv@new_exp new_exp `s  1 a 2 66 ]
 "19
-[v ___fldiv@aexp aexp `uc  1 a 1 40 ]
+[v ___fldiv@aexp aexp `uc  1 a 1 73 ]
 "18
-[v ___fldiv@bexp bexp `uc  1 a 1 39 ]
+[v ___fldiv@bexp bexp `uc  1 a 1 72 ]
 "16
-[v ___fldiv@sign sign `uc  1 a 1 32 ]
+[v ___fldiv@sign sign `uc  1 a 1 65 ]
 "11
-[v ___fldiv@b b `d  1 p 4 16 ]
-[v ___fldiv@a a `d  1 p 4 20 ]
+[v ___fldiv@b b `d  1 p 4 49 ]
+[v ___fldiv@a a `d  1 p 4 53 ]
 "185
 } 0
-"443 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
-[v _dtoa dtoa `(v  1 s 1 dtoa ]
-{
-"447
-[v dtoa@n n `o  1 a 8 51 ]
-"446
-[v dtoa@i i `i  1 a 2 59 ]
-[v dtoa@w w `i  1 a 2 49 ]
-[v dtoa@p p `i  1 a 2 47 ]
-"445
-[v dtoa@s s `uc  1 a 1 61 ]
-[s S1013 _IO_FILE 0 ]
-"443
-[v dtoa@fp fp `*.39S1013  1 p 2 27 ]
-[v dtoa@d d `o  1 p 8 29 ]
-"502
-} 0
-"133
-[v _pad pad `(v  1 s 1 pad ]
-{
-"135
-[v pad@w w `i  1 a 2 25 ]
-[v pad@i i `i  1 a 2 23 ]
-[s S1013 _IO_FILE 0 ]
-"133
-[v pad@fp fp `*.39S1013  1 p 2 16 ]
-[v pad@buf buf `*.39uc  1 p 2 18 ]
-[v pad@p p `i  1 p 2 20 ]
-"164
-} 0
-"8 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\nf_fputs.c
-[v _fputs fputs `(i  1 e 2 0 ]
-{
-"11
-[v fputs@i i `i  1 a 2 14 ]
-"10
-[v fputs@c c `uc  1 a 1 13 ]
-"8
-[v fputs@s s `*.39Cuc  1 p 2 9 ]
-[u S978 . 3 `*.2uc 1 buffer 3 0 `*.2Cuc 1 source 3 0 ]
-[s S981 _IO_FILE 11 `S978 1 . 3 0 `i 1 count 2 3 `[2]uc 1 ungetbuf 2 5 `i 1 ungetcnt 2 7 `i 1 limit 2 9 ]
-[v fputs@fp fp `*.39S981  1 p 2 11 ]
-"19
-} 0
-"8 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\nf_fputc.c
-[v _fputc fputc `(i  1 e 2 0 ]
-{
-[v fputc@c c `i  1 p 2 0 ]
-[u S978 . 3 `*.2uc 1 buffer 3 0 `*.2Cuc 1 source 3 0 ]
-[s S981 _IO_FILE 11 `S978 1 . 3 0 `i 1 count 2 3 `[2]uc 1 ungetbuf 2 5 `i 1 ungetcnt 2 7 `i 1 limit 2 9 ]
-[v fputc@fp fp `*.39S981  1 p 2 2 ]
-"24
-} 0
-"7 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\putch.c
-[v _putch putch `(v  1 e 1 0 ]
-{
-"9
-} 0
-"1 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\abs.c
-[v _abs abs `(i  1 e 2 0 ]
-{
-[v abs@a a `i  1 p 2 18 ]
-"4
-} 0
-"9 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\aomod.c
-[v ___aomod __aomod `(o  1 e 8 0 ]
-{
-"12
-[v ___aomod@sign sign `uc  1 a 1 17 ]
-[v ___aomod@counter counter `uc  1 a 1 16 ]
-"9
-[v ___aomod@dividend dividend `o  1 p 8 0 ]
-[v ___aomod@divisor divisor `o  1 p 8 8 ]
-"36
-} 0
-"9 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\aodiv.c
-[v ___aodiv __aodiv `(o  1 e 8 0 ]
-{
-"12
-[v ___aodiv@quotient quotient `o  1 a 8 18 ]
-"13
-[v ___aodiv@sign sign `uc  1 a 1 17 ]
-[v ___aodiv@counter counter `uc  1 a 1 16 ]
-"9
-[v ___aodiv@dividend dividend `o  1 p 8 0 ]
-[v ___aodiv@divisor divisor `o  1 p 8 8 ]
-"43
-} 0
-"4 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\atoi.c
-[v _atoi atoi `(i  1 e 2 0 ]
-{
-"6
-[v atoi@n n `i  1 a 2 21 ]
-[v atoi@neg neg `i  1 a 2 19 ]
-"4
-[v atoi@s s `*.32Cuc  1 p 2 14 ]
-"16
-} 0
-"5 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\isspace.c
-[v _isspace isspace `(i  1 e 2 0 ]
-{
-[v isspace@c c `i  1 p 2 0 ]
-"8
-} 0
-"5 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\isdigit.c
-[v _isdigit isdigit `(i  1 e 2 0 ]
-{
-[v isdigit@c c `i  1 p 2 0 ]
-"8
-} 0
-"15 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\Umul16.c
-[v ___wmul __wmul `(ui  1 e 2 0 ]
-{
-"17
-[v ___wmul@product product `ui  1 a 2 12 ]
-"15
-[v ___wmul@multiplier multiplier `ui  1 p 2 8 ]
-[v ___wmul@multiplicand multiplicand `ui  1 p 2 10 ]
-"53
-} 0
-"49 C:\Users\Windows\Documents\GitHub\final-project-olivier\serial.c
+"47 C:\Users\Windows\Documents\GitHub\final-project-olivier\serial.c
 [v _sendStringSerial4 sendStringSerial4 `(v  1 e 1 0 ]
 {
 [v sendStringSerial4@string string `*.39uc  1 p 2 1 ]
-"57
+"55
 } 0
 "33
 [v _sendCharSerial4 sendCharSerial4 `(v  1 e 1 0 ]
@@ -825,19 +818,4 @@
 [v sendCharSerial4@charToSend charToSend `uc  1 a 1 wreg ]
 [v sendCharSerial4@charToSend charToSend `uc  1 a 1 0 ]
 "36
-} 0
-"10 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\xxtofl.c
-[v ___xxtofl __xxtofl `(d  1 e 4 0 ]
-{
-[v ___xxtofl@sign sign `uc  1 a 1 wreg ]
-"13
-[v ___xxtofl@arg arg `ul  1 a 4 24 ]
-"12
-[v ___xxtofl@exp exp `uc  1 a 1 23 ]
-"10
-[v ___xxtofl@sign sign `uc  1 a 1 wreg ]
-[v ___xxtofl@val val `l  1 p 4 14 ]
-"15
-[v ___xxtofl@sign sign `uc  1 a 1 22 ]
-"44
 } 0

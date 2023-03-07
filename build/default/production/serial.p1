@@ -1,7 +1,7 @@
 Version 4.0 HI-TECH Software Intermediate Code
 "9 ./colorfunctions.h
 [; ;./colorfunctions.h: 9: typedef struct RGBC_rel{
-[s S2015 `i 1 `i 1 `i 1 `i 1 `f 1 ]
+[s S2015 `f 1 `f 1 `f 1 `f 1 `f 1 ]
 [n S2015 RGBC_rel Rf Gf Bf Cf h ]
 "29584 C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\pic\include\proc\pic18f67k40.h
 [; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\pic\include\proc\pic18f67k40.h: 29584:     struct {
@@ -2156,53 +2156,45 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _buf `*uc ~T0 @X0 1 r1 ]
 [v _cf `*S2015 ~T0 @X0 1 r2 ]
 [f ]
-"40
-[; ;serial.c: 40:     int int_part= (cf->h);
-[v _int_part `i ~T0 @X0 1 a ]
-[e = _int_part -> . *U _cf 4 `i ]
 "41
-[; ;serial.c: 41:     int frac_part= ((cf->h)*100) - (int_part*100);
-[v _frac_part `i ~T0 @X0 1 a ]
-[e = _frac_part -> - * . *U _cf 4 -> -> 100 `i `f -> * _int_part -> 100 `i `f `i ]
+[; ;serial.c: 41:     sprintf(buf,"Red %f Green,%f Blue,%f Hue %f \r",cf->Rf,
+[e ( _sprintf (1 , , , , (. , _buf :s 1C -> . *U _cf 0 `d -> . *U _cf 1 `d -> . *U _cf 2 `d -> . *U _cf 4 `d ]
 "43
-[; ;serial.c: 43:     sprintf(buf,"Red %d Green,%d Blue,%d Hue %d.%03d %f \r",cf->Rf,
-[e ( _sprintf (1 , , , , , , (. , _buf :s 1C . *U _cf 0 . *U _cf 1 . *U _cf 2 _int_part _frac_part -> . *U _cf 4 `d ]
-"45
-[; ;serial.c: 45:     sendStringSerial4(buf);
+[; ;serial.c: 43:     sendStringSerial4(buf);
 [e ( _sendStringSerial4 (1 _buf ]
-"46
-[; ;serial.c: 46: }
+"44
+[; ;serial.c: 44: }
 [e :UE 2027 ]
 }
-"49
-[; ;serial.c: 49: void sendStringSerial4(char *string){
+"47
+[; ;serial.c: 47: void sendStringSerial4(char *string){
 [v _sendStringSerial4 `(v ~T0 @X0 1 ef1`*uc ]
 {
 [e :U _sendStringSerial4 ]
 [v _string `*uc ~T0 @X0 1 r1 ]
 [f ]
-"52
-[; ;serial.c: 52:     while(*string != 0){
+"50
+[; ;serial.c: 50:     while(*string != 0){
 [e $U 2029  ]
 [e :U 2030 ]
 {
-"54
-[; ;serial.c: 54:   sendCharSerial4(*string++);
+"52
+[; ;serial.c: 52:   sendCharSerial4(*string++);
 [e ( _sendCharSerial4 (1 *U ++ _string * -> -> 1 `i `x -> -> # *U _string `i `x ]
-"55
-[; ;serial.c: 55:         _delay((unsigned long)((20)*(64000000/4000000.0)));
+"53
+[; ;serial.c: 53:         _delay((unsigned long)((20)*(64000000/4000000.0)));
 [e ( __delay (1 -> * -> -> 20 `i `d / -> -> 64000000 `l `d .4000000.0 `ul ]
-"56
-[; ;serial.c: 56:  }
+"54
+[; ;serial.c: 54:  }
 }
 [e :U 2029 ]
-"52
-[; ;serial.c: 52:     while(*string != 0){
+"50
+[; ;serial.c: 50:     while(*string != 0){
 [e $ != -> *U _string `i -> 0 `i 2030  ]
 [e :U 2031 ]
-"57
-[; ;serial.c: 57: }
+"55
+[; ;serial.c: 55: }
 [e :UE 2028 ]
 }
-[p f _sprintf 8429700 ]
-[a 1C 82 101 100 32 37 100 32 71 114 101 101 110 44 37 100 32 66 108 117 101 44 37 100 32 72 117 101 32 37 100 46 37 48 51 100 32 37 102 32 13 0 ]
+[p f _sprintf 8396800 ]
+[a 1C 82 101 100 32 37 102 32 71 114 101 101 110 44 37 102 32 66 108 117 101 44 37 102 32 72 117 101 32 37 102 32 13 0 ]
