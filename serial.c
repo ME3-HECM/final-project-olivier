@@ -2,6 +2,7 @@
 #include "serial.h"
 #include <stdio.h>
 #include "colorclick.h"
+#include "colorfunctions.h"
 
 void initUSART4(void) {
     TRISCbits.TRISC4=1; //Set c4 as input
@@ -38,11 +39,11 @@ void sendCharSerial4(char charToSend) {
 void Color2String(char *buf,struct RGBC_rel *cf){
     	//code to calculate the inegeter and fractions part of hue
 	// and format as a string using sprintf (see GitHub readme)
-    sprintf(buf,"Red %f Green,%f Blue,%f Hue %f \r",cf->Rf,
+    char* colourname = Hue2Colour(cf);
+    sprintf(buf,"Colour is %s Red %f Green,%f Blue,%f Hue %f \r",colourname,cf->Rf,
     cf->Gf,cf->Bf,cf->h);
     sendStringSerial4(buf);
 }
-
 //function to send a string over the serial interface
 void sendStringSerial4(char *string){
     // This counts the amount of spaces used 

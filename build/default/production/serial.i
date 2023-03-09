@@ -24250,10 +24250,15 @@ typedef struct RGBC_rel{
    float h;
 } RGBC_rel;
 
+
+char *Colourslist[]= {"Red","Eggshell","Pink","Yellow","Orange","Light Blue","Dark Blue","Green"};
 struct RGBC_rel colorf;
 
 void colour_read_all(struct RGBC_rel *cf);
 void RGB2Hue(struct RGBC_rel *cf);
+
+
+char* Hue2Colour(struct RGBC_rel *cf);
 # 5 "./serial.h" 2
 
 # 1 "./colorclick.h" 1
@@ -24457,6 +24462,7 @@ char *tempnam(const char *, const char *);
 
 
 
+
 void initUSART4(void) {
     TRISCbits.TRISC4=1;
     TRISCbits.TRISC1=1;
@@ -24492,11 +24498,11 @@ void sendCharSerial4(char charToSend) {
 void Color2String(char *buf,struct RGBC_rel *cf){
 
 
-    sprintf(buf,"Red %f Green,%f Blue,%f Hue %f \r",cf->Rf,
+    char* colourname = Hue2Colour(cf);
+    sprintf(buf,"Colour is %s Red %f Green,%f Blue,%f Hue %f \r",colourname,cf->Rf,
     cf->Gf,cf->Bf,cf->h);
     sendStringSerial4(buf);
 }
-
 
 void sendStringSerial4(char *string){
 

@@ -24256,10 +24256,15 @@ typedef struct RGBC_rel{
    float h;
 } RGBC_rel;
 
+
+char *Colourslist[]= {"Red","Eggshell","Pink","Yellow","Orange","Light Blue","Dark Blue","Green"};
 struct RGBC_rel colorf;
 
 void colour_read_all(struct RGBC_rel *cf);
 void RGB2Hue(struct RGBC_rel *cf);
+
+
+char* Hue2Colour(struct RGBC_rel *cf);
 # 5 "./serial.h" 2
 
 # 1 "./colorclick.h" 1
@@ -24502,7 +24507,7 @@ unsigned char I2C_2_Master_Read(unsigned char ack);
 
 
 void main(void) {
-    char data[60];
+    char data[80];
     initUSART4();
     color_click_init();
     I2C_2_Master_Init();

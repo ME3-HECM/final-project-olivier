@@ -1,4 +1,5 @@
 #include <xc.h>
+#include <stdio.h>
 #include "colorclick.h"
 #include "colorfunctions.h"
 
@@ -47,4 +48,40 @@ void RGB2Hue(struct RGBC_rel *cf){
             cf->h= cf->h +360;
         }
     }
+}
+
+char* Hue2Colour(struct RGBC_rel *cf)
+{
+    char* colourname = "";
+  
+    if (((cf->h)>352)&&((cf->h)<360))
+    {
+        colourname = "Red";
+    }
+    else if (((cf->h)>26)&&((cf->h)<29))
+    {
+        colourname = "Eggshell";
+    }
+    else if (((cf->h)>15)&&((cf->h)<19))
+    {
+        colourname = "Pink";
+    }
+    else if (((cf->h)>21)&&((cf->h)<25))
+    {
+        colourname = "Yellow";
+    }
+    else if (((cf->h)>7)&&((cf->h)<9))
+    {
+        colourname = "Orange";
+    }
+    else if (((cf->h)>85)&&((cf->h)<94))
+    {
+        colourname = "Light Blue";
+    }
+    else if (((cf->h)>145)&&((cf->h)<164))
+    {
+        colourname = "Dark Blue";
+    }
+    
+    return colourname;
 }

@@ -91,11 +91,11 @@ Version 4.0 HI-TECH Software Intermediate Code
 "29956
 [; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\pic\include\proc\pic18f67k40.h: 29956: extern volatile TRISFbits_t TRISFbits __attribute__((address(0xF86)));
 [v _TRISFbits `VS1387 ~T0 @X0 0 e@3974 ]
-"16 ./colorfunctions.h
-[; ;./colorfunctions.h: 16: void colour_read_all(struct RGBC_rel *cf);
+"18 ./colorfunctions.h
+[; ;./colorfunctions.h: 18: void colour_read_all(struct RGBC_rel *cf);
 [v _colour_read_all `(v ~T0 @X0 0 ef1`*S2015 ]
-"17
-[; ;./colorfunctions.h: 17: void RGB2Hue(struct RGBC_rel *cf);
+"19
+[; ;./colorfunctions.h: 19: void RGB2Hue(struct RGBC_rel *cf);
 [v _RGB2Hue `(v ~T0 @X0 0 ef1`*S2015 ]
 "15 ./serial.h
 [; ;./serial.h: 15: void Color2String(char *buf,struct RGBC_rel *cf);
@@ -2086,8 +2086,23 @@ Version 4.0 HI-TECH Software Intermediate Code
 "40927
 [; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\pic\include\proc\pic18f67k40.h: 40927: __asm("TOSU equ 0FFFh");
 [; <" TOSU equ 0FFFh ;# ">
-"14 ./colorfunctions.h
-[; ;./colorfunctions.h: 14: struct RGBC_rel colorf;
+"15 ./colorfunctions.h
+[; ;./colorfunctions.h: 15: char *Colourslist[]= {"Red","Eggshell","Pink","Yellow","Orange","Light Blue","Dark Blue","Green"};
+[v _Colourslist `*uc ~T0 @X0 -> 8 `i e ]
+[i _Colourslist
+:U ..
+:s 1C
+:s 2C
+:s 3C
+:s 4C
+:s 5C
+:s 6C
+:s 7C
+:s 8C
+..
+]
+"16
+[; ;./colorfunctions.h: 16: struct RGBC_rel colorf;
 [v _colorf `S2015 ~T0 @X0 1 e ]
 [v $root$_main `(v ~T0 @X0 0 e ]
 "15 main.c
@@ -2097,8 +2112,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U _main ]
 [f ]
 "16
-[; ;main.c: 16:     char data[60];
-[v _data `uc ~T0 @X0 -> 60 `i a ]
+[; ;main.c: 16:     char data[80];
+[v _data `uc ~T0 @X0 -> 80 `i a ]
 "17
 [; ;main.c: 17:     initUSART4();
 [e ( _initUSART4 ..  ]
@@ -2152,3 +2167,11 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main.c: 35: }
 [e :UE 2018 ]
 }
+[a 4C 89 101 108 108 111 119 0 ]
+[a 8C 71 114 101 101 110 0 ]
+[a 2C 69 103 103 115 104 101 108 108 0 ]
+[a 3C 80 105 110 107 0 ]
+[a 6C 76 105 103 104 116 32 66 108 117 101 0 ]
+[a 7C 68 97 114 107 32 66 108 117 101 0 ]
+[a 5C 79 114 97 110 103 101 0 ]
+[a 1C 82 101 100 0 ]

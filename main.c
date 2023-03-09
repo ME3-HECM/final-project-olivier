@@ -13,7 +13,7 @@
 #define _XTAL_FREQ 64000000 //note intrinsic _delay function is 62.5ns at 64,000,000Hz  
 
 void main(void) {
-    char data[60];
+    char data[80];
     initUSART4();
     color_click_init();
     I2C_2_Master_Init();
