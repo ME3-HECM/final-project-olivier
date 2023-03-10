@@ -2178,47 +2178,47 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;serial.c: 42:     char* colourname = Hue2Colour(cf);
 [v _colourname `*uc ~T0 @X0 1 a ]
 [e = _colourname ( _Hue2Colour (1 _cf ]
-"43
-[; ;serial.c: 43:     sprintf(buf,"Colour is %s Red %f Green,%f Blue,%f Hue %f \r",colourname,cf->Rf,
-[e ( _sprintf (1 , , , , , (. , _buf :s 9C _colourname -> . *U _cf 0 `d -> . *U _cf 1 `d -> . *U _cf 2 `d -> . *U _cf 4 `d ]
 "45
-[; ;serial.c: 45:     sendStringSerial4(buf);
-[e ( _sendStringSerial4 (1 _buf ]
+[; ;serial.c: 45:     sprintf(buf,"Colour is %s  \r",colourname);
+[e ( _sprintf (1 , (. , _buf :s 9C _colourname ]
 "46
-[; ;serial.c: 46: }
+[; ;serial.c: 46:     sendStringSerial4(buf);
+[e ( _sendStringSerial4 (1 _buf ]
+"47
+[; ;serial.c: 47: }
 [e :UE 2027 ]
 }
-"48
-[; ;serial.c: 48: void sendStringSerial4(char *string){
+"49
+[; ;serial.c: 49: void sendStringSerial4(char *string){
 [v _sendStringSerial4 `(v ~T0 @X0 1 ef1`*uc ]
 {
 [e :U _sendStringSerial4 ]
 [v _string `*uc ~T0 @X0 1 r1 ]
 [f ]
-"51
-[; ;serial.c: 51:     while(*string != 0){
+"52
+[; ;serial.c: 52:     while(*string != 0){
 [e $U 2029  ]
 [e :U 2030 ]
 {
-"53
-[; ;serial.c: 53:   sendCharSerial4(*string++);
-[e ( _sendCharSerial4 (1 *U ++ _string * -> -> 1 `i `x -> -> # *U _string `i `x ]
 "54
-[; ;serial.c: 54:         _delay((unsigned long)((20)*(64000000/4000000.0)));
-[e ( __delay (1 -> * -> -> 20 `i `d / -> -> 64000000 `l `d .4000000.0 `ul ]
+[; ;serial.c: 54:   sendCharSerial4(*string++);
+[e ( _sendCharSerial4 (1 *U ++ _string * -> -> 1 `i `x -> -> # *U _string `i `x ]
 "55
-[; ;serial.c: 55:  }
+[; ;serial.c: 55:         _delay((unsigned long)((20)*(64000000/4000000.0)));
+[e ( __delay (1 -> * -> -> 20 `i `d / -> -> 64000000 `l `d .4000000.0 `ul ]
+"56
+[; ;serial.c: 56:  }
 }
 [e :U 2029 ]
-"51
-[; ;serial.c: 51:     while(*string != 0){
+"52
+[; ;serial.c: 52:     while(*string != 0){
 [e $ != -> *U _string `i -> 0 `i 2030  ]
 [e :U 2031 ]
-"56
-[; ;serial.c: 56: }
+"57
+[; ;serial.c: 57: }
 [e :UE 2028 ]
 }
-[p f _sprintf 8658944 ]
+[p f _sprintf 8650752 ]
 [a 4C 89 101 108 108 111 119 0 ]
 [a 8C 71 114 101 101 110 0 ]
 [a 2C 69 103 103 115 104 101 108 108 0 ]
@@ -2227,4 +2227,4 @@ Version 4.0 HI-TECH Software Intermediate Code
 [a 7C 68 97 114 107 32 66 108 117 101 0 ]
 [a 5C 79 114 97 110 103 101 0 ]
 [a 1C 82 101 100 0 ]
-[a 9C 67 111 108 111 117 114 32 105 115 32 37 115 32 82 101 100 32 37 102 32 71 114 101 101 110 44 37 102 32 66 108 117 101 44 37 102 32 72 117 101 32 37 102 32 13 0 ]
+[a 9C 67 111 108 111 117 114 32 105 115 32 37 115 32 32 13 0 ]

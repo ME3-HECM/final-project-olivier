@@ -24500,6 +24500,10 @@ char* Hue2Colour(struct RGBC_rel *cf)
     {
         colourname = "Red";
     }
+     if (((cf->h)>75)&&((cf->h)<79))
+    {
+        colourname = "Green";
+    }
     else if (((cf->h)>26)&&((cf->h)<29))
     {
         colourname = "Eggshell";
