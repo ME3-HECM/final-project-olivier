@@ -56,35 +56,46 @@ char* Hue2Colour(struct RGBC_rel *cf)
   
     if (((cf->h)>352)&&((cf->h)<360))
     {
+        //colourname for serial printing
         colourname = "Red";
+        //colourindex which can be picked up by other functions
+        //to process relevant action
+        cf->colourindex=0;
     }
      if (((cf->h)>75)&&((cf->h)<79))
     {
         colourname = "Green";
+        cf->colourindex=7; //gg
     }
     else if (((cf->h)>26)&&((cf->h)<29))
     {
         colourname = "Eggshell";
+        cf->colourindex=1;
     }
     else if (((cf->h)>15)&&((cf->h)<19))
     {
         colourname = "Pink";
+        cf->colourindex=2;
     }
     else if (((cf->h)>21)&&((cf->h)<25))
     {
         colourname = "Yellow";
+        cf->colourindex=3;
     }
     else if (((cf->h)>7)&&((cf->h)<9))
     {
         colourname = "Orange";
+        cf->colourindex=4;
     }
     else if (((cf->h)>85)&&((cf->h)<94))
     {
         colourname = "Light Blue";
+        cf->colourindex=5;
     }
     else if (((cf->h)>145)&&((cf->h)<164))
     {
         colourname = "Dark Blue";
+        cf->colourindex=6;
     }
     
     return colourname;

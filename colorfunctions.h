@@ -9,13 +9,14 @@
 typedef struct RGBC_rel{             // Define a structure
    float Rf, Gf, Bf, Cf; // Containing the RGBC relative proportions calculated by function
    float h;
+   int colourindex;
 } RGBC_rel;                  // Struct to hold relative values of colors
 
-//create an array of colours functions can then use indices to refer to a colour in this list
-char *Colourslist[]= {"Red","Eggshell","Pink","Yellow","Orange","Light Blue","Dark Blue","Green"};
+//an array of colours for referwnce, can then use indices from olourindex to refer to a colour in this list
+//Colourslist[]= {"Red","Eggshell","Pink","Yellow","Orange","Light Blue","Dark Blue","Green"};
 struct RGBC_rel colorf;
 
-void colour_read_all(struct RGBC_rel *cf);
+void colour_read_all(struct RGBC_rel *cf);//yuu
 void RGB2Hue(struct RGBC_rel *cf);
 //This function takes a hue value and works out the most likely colour card being looked at
 //Values used to determine this are based on calibration
