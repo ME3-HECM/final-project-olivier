@@ -1,5 +1,5 @@
 #include <xc.h>
-#include "color.h"
+#include "colorclick.h"
 #include "i2c.h"
 
 
@@ -16,7 +16,15 @@ void color_click_init(void)
 	color_writetoaddr(0x00, 0x03);
 
     //set integration time
-	color_writetoaddr(0x01, 0xD5);
+	color_writetoaddr(0x01, 0xD6);
+    
+           // Initialise Front LEDs on ColourClick 
+    LATGbits.LATG1=0;   //set initial output state
+    TRISGbits.TRISG1=0; //set TRIS value for pin (output)
+    LATAbits.LATA4=0;   //set initial output state
+    TRISAbits.TRISA4=0; //set TRIS value for pin (output)
+    LATFbits.LATF7=0;   //set initial output state
+    TRISFbits.TRISF7=0; //set TRIS value for pin (output)
 }
 //general color write to add
 void color_writetoaddr(char address, char value){
@@ -81,4 +89,17 @@ unsigned int color_read_Clear(void)
     tmp=tmp | (I2C_2_Master_Read(0)<<8); //read the Blue MSB (don't acknowledge as this is the last read)
     I2C_2_Master_Stop();          //Stop condition
     return tmp;
+}
+void ClickLEDOn(char power)
+{
+    if (power){
+    LATGbits.LATG1=1;   //set initial output state
+    LATAbits.LATA4=1;   //set initial output state
+    LATFbits.LATF7=1;   //set initial output state
+    }
+    else if (!power){
+    LATGbits.LATG1=0;   //set initial output state
+    LATAbits.LATA4=0;   //set initial output state
+    LATFbits.LATF7=0;   //set initial output state
+    }
 }

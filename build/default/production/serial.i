@@ -24210,24 +24210,91 @@ unsigned char __t3rd16on(void);
 # 1 "serial.c" 2
 
 # 1 "./serial.h" 1
-# 13 "./serial.h"
-volatile char EUSART4RXbuf[20];
-volatile char RxBufWriteCnt=0;
-volatile char RxBufReadCnt=0;
-
-volatile char EUSART4TXbuf[60];
-volatile char TxBufWriteCnt=0;
-volatile char TxBufReadCnt=0;
 
 
-volatile char DataFlag=1;
+
+
+# 1 "./colorfunctions.h" 1
+
+
+
+
+
+
+
+
+typedef struct RGBC_rel{
+   float Rf, Gf, Bf, Cf;
+   float h;
+   int colourindex;
+} RGBC_rel;
+
+
+
+struct RGBC_rel colorf;
+
+void colour_read_all(struct RGBC_rel *cf);
+void RGB2Hue(struct RGBC_rel *cf);
+
+
+char* Hue2Colour(struct RGBC_rel *cf);
+# 5 "./serial.h" 2
+
+# 1 "./colorclick.h" 1
+# 15 "./colorclick.h"
+void color_click_init(void);
+
+void color_write_reg(char reg, char value);
+
+void color_turn_on_led(void);
+
+void color_turn_off_led(void);
+
+
+
+
+
+
+void color_writetoaddr(char address, char value);
+
+
+
+
+
+unsigned int color_read_Red(void);
+
+
+
+
+
+unsigned int color_read_Green(void);
+
+
+
+
+
+unsigned int color_read_Blue(void);
+
+
+
+
+
+unsigned int color_read_Clear(void);
+
+
+
+void ClickLEDOn(char power);
+# 6 "./serial.h" 2
+
+
+
 
 void initUSART4(void);
 char getCharSerial4(void);
 void sendCharSerial4(char charToSend);
 void sendStringSerial4(char *string);
 
-void Color2String(char *buf,char R ,char G,char B,char C);
+void Color2String(char *buf,struct RGBC_rel *cf);
 # 2 "serial.c" 2
 
 # 1 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\include\\c99\\stdio.h" 1 3
@@ -24377,6 +24444,8 @@ char *tempnam(const char *, const char *);
 # 3 "serial.c" 2
 
 
+
+
 void initUSART4(void) {
     TRISCbits.TRISC4=1;
     TRISCbits.TRISC1=1;
@@ -24409,13 +24478,15 @@ void sendCharSerial4(char charToSend) {
     TX4REG = charToSend;
 }
 
-void Color2String(char *buf,char R ,char G,char B,char C){
+void Color2String(char *buf,struct RGBC_rel *cf){
 
 
-    sprintf(buf,"Red: %d Green: %d Blue: %d Clear: %d \r",R,G,B,C);
+    char* colourname = Hue2Colour(cf);
+    sprintf(buf," Red %f Green,%f Blue,%f clear %f Hue %f \r",cf->Rf,
+    cf->Gf,cf->Bf,cf->Cf,cf->h);
+
     sendStringSerial4(buf);
 }
-
 
 void sendStringSerial4(char *string){
 

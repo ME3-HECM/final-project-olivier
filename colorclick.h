@@ -1,15 +1,24 @@
-#ifndef _color_H
-#define _color_H
+#ifndef _colorclick_H
+#define _colorclick_H
 
 #include <xc.h>
 
 #define _XTAL_FREQ 64000000 //note intrinsic _delay function is 62.5ns at 64,000,000Hz  
+#define TCS3471_ADDR    0x52
+#define TCS3471_ENABLE  0x00
+#define TCS3471_ATIME   0x01
 
 
 /********************************************//**
  *  Function to initialise the colour click module using I2C
  ***********************************************/
 void color_click_init(void);
+
+void color_write_reg(char reg, char value);
+
+void color_turn_on_led(void);
+
+void color_turn_off_led(void);
 
 /********************************************//**
  *  Function to write to the colour click module
@@ -41,5 +50,8 @@ unsigned int color_read_Blue(void);
  *	Returns a 16 bit ADC value representing colour intensity
  ***********************************************/
 unsigned int color_read_Clear(void);
-
+/********************************************//**
+ *  Function turn on the TRI LED on the colour clicker
+ ***********************************************/
+void ClickLEDOn(char power);
 #endif
