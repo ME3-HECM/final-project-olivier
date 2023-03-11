@@ -35,8 +35,8 @@ void main(void) {
     motorR.PWMperiod=PWMcycle; 			//store PWMperiod for motor (value of T2PR in this case)
     
     while (1){ 
-        Red_R90(&motorL,&motorR);
+        Yellow_REV1_R90(&motorL,&motorR);
+        
         __delay_ms(1000);
-        stop(&motorL,&motorR);//stop the rotation of the buggy
 }
 }

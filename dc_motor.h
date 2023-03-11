@@ -7,9 +7,9 @@
 
 //variable for a forward motion
 extern volatile char ForwardFlag = 1;
-int _45dleftdelay = 1000; //delay corresponging to a 15 degree turn left
-int _45drightdelay = 1000; //delay corresponding to a 15 degree turn right
-int _1square = 1000; //delay corresponding to 1 square travel
+int _45dleftdelay = 300; //delay corresponging to a 15 degree turn left
+int _45drightdelay = 300; //delay corresponding to a 15 degree turn right
+int _1square = 2000; //delay corresponding to 1 square travel
 int _halfsquare = 1000; //delay corresponding to a half square travel (for reversal to correct position after colour is sensed)
 
 typedef struct DC_motor { //definition of DC_motor structure

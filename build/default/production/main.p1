@@ -1,6 +1,6 @@
 Version 4.0 HI-TECH Software Intermediate Code
-"14 ./dc_motor.h
-[; ;./dc_motor.h: 14: typedef struct DC_motor {
+"15 ./dc_motor.h
+[; ;./dc_motor.h: 15: typedef struct DC_motor {
 [s S2012 `uc 1 `uc 1 `uc 1 `ui 1 `*uc 1 `*uc 1 ]
 [n S2012 DC_motor power direction brakemode PWMperiod posDutyHighByte negDutyHighByte ]
 [p mainexit ]
@@ -13,8 +13,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "13 ./i2c.h
 [; ;./i2c.h: 13: void I2C_2_Master_Init(void);
 [v _I2C_2_Master_Init `(v ~T0 @X0 0 ef ]
-"26 ./dc_motor.h
-[; ;./dc_motor.h: 26: void initDCmotorsPWM(unsigned int PWMperiod);
+"27 ./dc_motor.h
+[; ;./dc_motor.h: 27: void initDCmotorsPWM(unsigned int PWMperiod);
 [v _initDCmotorsPWM `(v ~T0 @X0 0 ef1`ui ]
 "34386 C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\pic\include\proc\pic18lf67k40.h
 [; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\pic\include\proc\pic18lf67k40.h: 34386: extern volatile unsigned char CCPR1H __attribute__((address(0xFAA)));
@@ -28,16 +28,13 @@ Version 4.0 HI-TECH Software Intermediate Code
 "21064
 [; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\pic\include\proc\pic18lf67k40.h: 21064: extern volatile unsigned char CCPR4H __attribute__((address(0xF21)));
 [v _CCPR4H `Vuc ~T0 @X0 0 e@3873 ]
-"38 ./dc_motor.h
-[; ;./dc_motor.h: 38: void Red_R90(struct DC_motor *mL, struct DC_motor *mR);
-[v _Red_R90 `(v ~T0 @X0 0 ef2`*S2012`*S2012 ]
+"42 ./dc_motor.h
+[; ;./dc_motor.h: 42: void Yellow_REV1_R90(struct DC_motor *mL, struct DC_motor *mR);
+[v _Yellow_REV1_R90 `(v ~T0 @X0 0 ef2`*S2012`*S2012 ]
 [v F192 `(v ~T0 @X0 1 tf1`ul ]
 "12 C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\pic\include\builtins.h
 [v __delay `JF192 ~T0 @X0 0 e ]
 [p i __delay ]
-"28 ./dc_motor.h
-[; ;./dc_motor.h: 28: void stop(struct DC_motor *mL, struct DC_motor *mR);
-[v _stop `(v ~T0 @X0 0 ef2`*S2012`*S2012 ]
 "1 main.c
 [p x FEXTOSC  =  HS      ]
 "2
@@ -2052,31 +2049,37 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 1 `i `uc
 ]
 "9 ./dc_motor.h
-[; ;./dc_motor.h: 9: extern volatile char ForwardFlag = 1;
+[; ;./dc_motor.h: 9: extern volatile char ForwardFlag = 0;
 [v _ForwardFlag `Vuc ~T0 @X0 1 e ]
 [i _ForwardFlag
--> -> 1 `i `uc
+-> -> 0 `i `uc
 ]
 "10
-[; ;./dc_motor.h: 10: int _15dleftdelay = 1000;
-[v __15dleftdelay `i ~T0 @X0 1 e ]
-[i __15dleftdelay
--> 1000 `i
+[; ;./dc_motor.h: 10: int _45dleftdelay = 300;
+[v __45dleftdelay `i ~T0 @X0 1 e ]
+[i __45dleftdelay
+-> 300 `i
 ]
 "11
-[; ;./dc_motor.h: 11: int _15drightdelay = 1000;
-[v __15drightdelay `i ~T0 @X0 1 e ]
-[i __15drightdelay
--> 1000 `i
+[; ;./dc_motor.h: 11: int _45drightdelay = 300;
+[v __45drightdelay `i ~T0 @X0 1 e ]
+[i __45drightdelay
+-> 300 `i
 ]
 "12
-[; ;./dc_motor.h: 12: int _1squaredelay = 1000;
-[v __1squaredelay `i ~T0 @X0 1 e ]
-[i __1squaredelay
+[; ;./dc_motor.h: 12: int _1square = 2000;
+[v __1square `i ~T0 @X0 1 e ]
+[i __1square
+-> 2000 `i
+]
+"13
+[; ;./dc_motor.h: 13: int _halfsquare = 1000;
+[v __halfsquare `i ~T0 @X0 1 e ]
+[i __halfsquare
 -> 1000 `i
 ]
-"22
-[; ;./dc_motor.h: 22: struct DC_motor motorL, motorR;
+"23
+[; ;./dc_motor.h: 23: struct DC_motor motorL, motorR;
 [v _motorL `S2012 ~T0 @X0 1 e ]
 [v _motorR `S2012 ~T0 @X0 1 e ]
 [v $root$_main `(v ~T0 @X0 0 e ]
@@ -2146,14 +2149,11 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 2017 ]
 {
 "38
-[; ;main.c: 38:         Red_R90(&motorL,&motorR);
-[e ( _Red_R90 (2 , &U _motorL &U _motorR ]
-"39
-[; ;main.c: 39:         _delay((unsigned long)((1000)*(64000000/4000.0)));
-[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+[; ;main.c: 38:         Yellow_REV1_R90(&motorL,&motorR);
+[e ( _Yellow_REV1_R90 (2 , &U _motorL &U _motorR ]
 "40
-[; ;main.c: 40:         stop(&motorL,&motorR);
-[e ( _stop (2 , &U _motorL &U _motorR ]
+[; ;main.c: 40:         _delay((unsigned long)((1000)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
 "41
 [; ;main.c: 41: }
 }

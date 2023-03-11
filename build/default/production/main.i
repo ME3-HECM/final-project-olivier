@@ -24315,10 +24315,11 @@ unsigned char I2C_2_Master_Read(unsigned char ack);
 
 
 
-extern volatile char ForwardFlag = 1;
-int _15dleftdelay = 1000;
-int _15drightdelay = 1000;
-int _1squaredelay = 1000;
+extern volatile char ForwardFlag = 0;
+int _45dleftdelay = 300;
+int _45drightdelay = 300;
+int _1square = 2000;
+int _halfsquare = 1000;
 
 typedef struct DC_motor {
     char power;
@@ -24339,15 +24340,15 @@ void turnLeft(struct DC_motor *mL, struct DC_motor *mR);
 void turnRight(struct DC_motor *mL, struct DC_motor *mR);
 void fullSpeedAhead(struct DC_motor *mL, struct DC_motor *mR);
 void fullSpeedReverse(struct DC_motor *mL, struct DC_motor *mR);
-void Left15(struct DC_motor *mL, struct DC_motor *mR);
-void Right15(struct DC_motor *mL, struct DC_motor *mR);
+void Left45(struct DC_motor *mL, struct DC_motor *mR);
+void Right45(struct DC_motor *mL, struct DC_motor *mR);
 void rotate180left(struct DC_motor *mL, struct DC_motor *mR);
 
 
 void Red_R90(struct DC_motor *mL, struct DC_motor *mR);
 void Green_L90(struct DC_motor *mL, struct DC_motor *mR);
 void Blue_T180(struct DC_motor *mL, struct DC_motor *mR);
-void Yellow_REV1_L90(struct DC_motor *mL, struct DC_motor *mR);
+void Yellow_REV1_R90(struct DC_motor *mL, struct DC_motor *mR);
 void Pink_rev1_L90(struct DC_motor *mL, struct DC_motor *mR);
 void Orange_R135(struct DC_motor *mL, struct DC_motor *mR);
 void LightBlue_L135(struct DC_motor *mL, struct DC_motor *mR);
@@ -24527,8 +24528,8 @@ void main(void) {
     motorR.PWMperiod=PWMcycle;
 
     while (1){
-        Red_R90(&motorL,&motorR);
+        Yellow_REV1_R90(&motorL,&motorR);
+
         _delay((unsigned long)((1000)*(64000000/4000.0)));
-        stop(&motorL,&motorR);
 }
 }
