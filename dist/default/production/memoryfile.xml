@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project>
-  <executable name="dist/default/production\final-project-olivier.production.hex">
+  <executable name="dist/default/production\final-project-olivier.X.production.hex">
     <memory name="program">
       <units>bytes</units>
       <length>131072</length>
-      <used>3299</used>
-      <free>127773</free>
+      <used>1606</used>
+      <free>129466</free>
     </memory>
     <memory name="data">
       <units>bytes</units>
       <length>3562</length>
-      <used>273</used>
-      <free>3289</free>
+      <used>149</used>
+      <free>3413</free>
     </memory>
   </executable>
 </project>

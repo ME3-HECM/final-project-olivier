@@ -1,4 +1,4 @@
-# 1 "i2c.c"
+# 1 "dc_motor.c"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 288 "<built-in>" 3
@@ -6,7 +6,7 @@
 # 1 "<built-in>" 2
 # 1 "C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
-# 1 "i2c.c" 2
+# 1 "dc_motor.c" 2
 # 1 "C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\\pic\\include\\xc.h" 1 3
 # 18 "C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\\pic\\include\\xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -24207,100 +24207,362 @@ __attribute__((__unsupported__("The READTIMER" "0" "() macro is not available wi
 unsigned char __t1rd16on(void);
 unsigned char __t3rd16on(void);
 # 34 "C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\\pic\\include\\xc.h" 2 3
-# 1 "i2c.c" 2
+# 1 "dc_motor.c" 2
 
-# 1 "./i2c.h" 1
-# 13 "./i2c.h"
-void I2C_2_Master_Init(void);
+# 1 "./dc_motor.h" 1
 
 
 
 
-void I2C_2_Master_Idle(void);
 
 
 
 
-void I2C_2_Master_Start(void);
+extern volatile char ForwardFlag = 1;
+int _15dleftdelay = 1000;
+int _15drightdelay = 1000;
+int _1squaredelay = 1000;
+
+typedef struct DC_motor {
+    char power;
+    char direction;
+    char brakemode;
+    unsigned int PWMperiod;
+    unsigned char *posDutyHighByte;
+    unsigned char *negDutyHighByte;
+} DC_motor;
+struct DC_motor motorL, motorR;
+
+
+
+void initDCmotorsPWM(unsigned int PWMperiod);
+void setMotorPWM(struct DC_motor *m);
+void stop(struct DC_motor *mL, struct DC_motor *mR);
+void turnLeft(struct DC_motor *mL, struct DC_motor *mR);
+void turnRight(struct DC_motor *mL, struct DC_motor *mR);
+void fullSpeedAhead(struct DC_motor *mL, struct DC_motor *mR);
+void fullSpeedReverse(struct DC_motor *mL, struct DC_motor *mR);
+void Left15(struct DC_motor *mL, struct DC_motor *mR);
+void Right15(struct DC_motor *mL, struct DC_motor *mR);
+void rotate180left(struct DC_motor *mL, struct DC_motor *mR);
+
+
+void Red_R90(struct DC_motor *mL, struct DC_motor *mR);
+void Green_L90(struct DC_motor *mL, struct DC_motor *mR);
+void Blue_T180(struct DC_motor *mL, struct DC_motor *mR);
+void Yellow_REV1_L90(struct DC_motor *mL, struct DC_motor *mR);
+void Pink_rev1_L90(struct DC_motor *mL, struct DC_motor *mR);
+void Orange_R135(struct DC_motor *mL, struct DC_motor *mR);
+void LightBlue_L135(struct DC_motor *mL, struct DC_motor *mR);
+void White(struct DC_motor *mL, struct DC_motor *mR);
+# 2 "dc_motor.c" 2
 
 
 
 
-void I2C_2_Master_RepStart(void);
+
+void initDCmotorsPWM(unsigned int PWMperiod){
+
+    TRISEbits.TRISE2=0;
+    TRISCbits.TRISC7=0;
+    TRISEbits.TRISE4=0;
+    TRISGbits.TRISG6=0;
+
+    LATEbits.LATE2=0;
+    LATCbits.LATC7=0;
+    LATEbits.LATE4=0;
+    LATGbits.LATG6=0;
+
+
+    RE2PPS=0x05;
+    RE4PPS=0x06;
+    RC7PPS=0x07;
+    RG6PPS=0x08;
+
+
+    T2CONbits.CKPS=0b100;
+    T2HLTbits.MODE=0b00000;
+    T2CLKCONbits.CS=0b0001;
+
+
+    T2PR=PWMperiod;
+    T2CONbits.ON=1;
 
 
 
-
-void I2C_2_Master_Stop(void);
-
-
-
-
-void I2C_2_Master_Write(unsigned char data_byte);
+    CCPR1H=0;
+    CCPR2H=0;
+    CCPR3H=0;
+    CCPR4H=0;
 
 
+    CCPTMRS0bits.C1TSEL=0;
+    CCPTMRS0bits.C2TSEL=0;
+    CCPTMRS0bits.C3TSEL=0;
+    CCPTMRS0bits.C4TSEL=0;
 
 
-unsigned char I2C_2_Master_Read(unsigned char ack);
-# 2 "i2c.c" 2
+    CCP1CONbits.FMT=1;
+    CCP1CONbits.CCP1MODE=0b1100;
+    CCP1CONbits.EN=1;
 
+    CCP2CONbits.FMT=1;
+    CCP2CONbits.CCP2MODE=0b1100;
+    CCP2CONbits.EN=1;
 
-void I2C_2_Master_Init(void)
-{
+    CCP3CONbits.FMT=1;
+    CCP3CONbits.CCP3MODE=0b1100;
+    CCP3CONbits.EN=1;
 
-  SSP2CON1bits.SSPM= 0b1000;
-  SSP2CON1bits.SSPEN = 1;
-  SSP2ADD = (64000000/(4*100000))-1;
-
-
-  TRISDbits.TRISD5 = 1;
-  TRISDbits.TRISD6 = 1;
-  ANSELDbits.ANSELD5=0;
-  ANSELDbits.ANSELD6=0;
-  SSP2DATPPS=0x1D;
-  SSP2CLKPPS=0x1E;
-  RD5PPS=0x1C;
-  RD6PPS=0x1B;
+    CCP4CONbits.FMT=1;
+    CCP4CONbits.CCP4MODE=0b1100;
+    CCP4CONbits.EN=1;
 }
 
-void I2C_2_Master_Idle(void)
+
+void setMotorPWM(struct DC_motor *m)
 {
-  while ((SSP2STAT & 0x04) || (SSP2CON2 & 0x1F));
+    unsigned char posDuty, negDuty;
+
+    if(m->brakemode) {
+        posDuty=(m->PWMperiod) - ((unsigned int)(m->power)*(m->PWMperiod))/100;
+        negDuty=(m->PWMperiod);
+    }
+    else {
+        posDuty=0;
+  negDuty=((unsigned int)(m->power)*(m->PWMperiod))/100;
+    }
+
+    if (m->direction) {
+        *(m->posDutyHighByte)=posDuty;
+        *(m->negDutyHighByte)=negDuty;
+    } else {
+        *(m->posDutyHighByte)=negDuty;
+        *(m->negDutyHighByte)=posDuty;
+    }
 }
 
-void I2C_2_Master_Start(void)
+
+void stop(struct DC_motor *mL, struct DC_motor *mR)
 {
-  I2C_2_Master_Idle();
-  SSP2CON2bits.SEN = 1;
+    while((mL->power)>0 && (mR->power)>0)
+    {
+
+        if (mL->power>0){
+            mL->power--;
+        }
+        if ((mR->power)>0){
+            mR->power--;
+        }
+        setMotorPWM(mL);
+        setMotorPWM(mR);
+        _delay((unsigned long)((400)*(64000000/4000000.0)));
+    }
 }
 
-void I2C_2_Master_RepStart(void)
+
+void turnLeft(struct DC_motor *mL, struct DC_motor *mR)
 {
-  I2C_2_Master_Idle();
-  SSP2CON2bits.RSEN = 1;
+    (mL->direction) = 0;
+    (mR->direction) = 1;
+    setMotorPWM(mL);
+    setMotorPWM(mR);
+    for (unsigned int i = 0; i <50; i++)
+    {
+        mL->power++;
+        mR->power++;
+        setMotorPWM(mL);
+        setMotorPWM(mR);
+        _delay((unsigned long)((100)*(64000000/4000000.0)));
+    }
 }
 
-void I2C_2_Master_Stop()
+
+void turnRight(struct DC_motor *mL, struct DC_motor *mR)
 {
-  I2C_2_Master_Idle();
-  SSP2CON2bits.PEN = 1;
+    (mL->direction) = 1;
+    (mR->direction) = 0;
+    setMotorPWM(mL);
+    setMotorPWM(mR);
+    for (unsigned int i = 0; i <50; i++)
+    {
+        mL->power++;
+        mR->power++;
+        setMotorPWM(mL);
+        setMotorPWM(mR);
+        _delay((unsigned long)((100)*(64000000/4000000.0)));
+    }
 }
 
-void I2C_2_Master_Write(unsigned char data_byte)
+
+void fullSpeedAhead(struct DC_motor *mL, struct DC_motor *mR)
 {
-  I2C_2_Master_Idle();
-  SSP2BUF = data_byte;
+ (mL->direction) = 1;
+ (mR->direction) = 1;
+
+    for (unsigned int i = 0; i <50; i++)
+    {
+        (mL->power)++;
+        (mR->power)++;
+        setMotorPWM(mL);
+        setMotorPWM(mR);
+        _delay((unsigned long)((400)*(64000000/4000000.0)));
+    }
+}
+void fullSpeedReverse(struct DC_motor *mL, struct DC_motor *mR)
+{
+ (mL->direction) = 0;
+ (mR->direction) = 0;
+
+    for (unsigned int i = 0; i <50; i++)
+    {
+        (mL->power)++;
+        (mR->power)++;
+        setMotorPWM(mL);
+        setMotorPWM(mR);
+        _delay((unsigned long)((400)*(64000000/4000000.0)));
+    }
 }
 
-unsigned char I2C_2_Master_Read(unsigned char ack)
+
+void Left15(struct DC_motor *mL, struct DC_motor *mR)
 {
-  unsigned char tmp;
-  I2C_2_Master_Idle();
-  SSP2CON2bits.RCEN = 1;
-  I2C_2_Master_Idle();
-  tmp = SSP2BUF;
-  I2C_2_Master_Idle();
-  SSP2CON2bits.ACKDT = !ack;
-  SSP2CON2bits.ACKEN = 1;
-  return tmp;
+
+    turnLeft(mL,mR);
+    _delay((unsigned long)((_15dleftdelay)*(64000000/4000.0)));
+    stop(mL,mR);
+}
+
+
+void Right15(struct DC_motor *mL, struct DC_motor *mR)
+{
+
+    turnRight(mL,mR);
+   _delay((unsigned long)((_15drightdelay)*(64000000/4000.0)));
+    stop(mL,mR);
+}
+
+void rotate180left(struct DC_motor *mL, struct DC_motor *mR)
+{
+    turnLeft(mL,mR);
+    _delay((unsigned long)((180)*(64000000/4000.0)));
+    stop(mL,mR);
+}
+
+void Red_R90(struct DC_motor *mL, struct DC_motor *mR)
+{
+    int _90degreedelayr = (_15drightdelay*6);
+    if (ForwardFlag){
+
+            turnRight(mL,mR);
+            _delay((unsigned long)((_90degreedelayr)*(64000000/4000.0)));
+            stop(mL,mR);
+
+    }
+    else if(ForwardFlag == 0){
+
+    }
+}
+
+void Green_L90(struct DC_motor *mL, struct DC_motor *mR)
+{
+    int _90degreedelayl = _15dleftdelay*6;
+    if (ForwardFlag){
+
+
+
+            turnLeft(mL,mR);
+            _delay((unsigned long)((_90degreedelayl)*(64000000/4000.0)));
+            stop(mL,mR);
+
+    }
+    else if(ForwardFlag&0){
+
+    }
+}
+
+void Blue_T180(struct DC_motor *mL, struct DC_motor *mR)
+{
+
+
+    for (unsigned int i = 0; i = 11; i++){
+        Left15(mL,mR);
+    }
+
+}
+void Yellow_REV1_L90(struct DC_motor *mL, struct DC_motor *mR)
+{
+    if (ForwardFlag){
+
+        fullSpeedReverse(mL,mR);
+        _delay((unsigned long)((_1squaredelay)*(64000000/4000.0)));
+        stop(mL,mR);
+        Red_R90(mL,mR);
+    }
+    else if(ForwardFlag&0){
+
+        Green_L90(mL,mR);
+        stop(mL,mR);
+        fullSpeedAhead(mL,mR);
+        _delay((unsigned long)((_1squaredelay)*(64000000/4000.0)));
+        stop(mL,mR);
+    }
+}
+void Pink_rev1_L90(struct DC_motor *mL, struct DC_motor *mR)
+{
+    if (ForwardFlag){
+
+        fullSpeedReverse(mL,mR);
+        _delay((unsigned long)((_1squaredelay)*(64000000/4000.0)));
+        stop(mL,mR);
+        Green_L90(mL,mR);
+    }
+    else if(ForwardFlag&0){
+
+        Red_R90(mL,mR);
+        stop(mL,mR);
+        fullSpeedAhead(mL,mR);
+        _delay((unsigned long)((_1squaredelay)*(64000000/4000.0)));
+        stop(mL,mR);
+
+    }
+}
+void Orange_R135(struct DC_motor *mL, struct DC_motor *mR)
+{
+    if (ForwardFlag){
+
+        for (unsigned int i = 0; i = 8; i++){
+        Right15(mL,mR);
+        }
+
+    }
+    else if(ForwardFlag&0){
+
+        for (unsigned int i = 0; i = 8; i++){
+        Left15(mL,mR);
+        }
+    }
+}
+void LightBlue_L135(struct DC_motor *mL, struct DC_motor *mR)
+{
+     if (ForwardFlag){
+
+        int i;
+        for (i = 0; i = 8; i++){
+        Left15(mL,mR);
+        }
+
+    }
+    else if(ForwardFlag&0){
+
+        int i;
+        for (i = 0; i = 8; i++){
+        Right15(mL,mR);
+        }
+    }
+}
+void White(struct DC_motor *mL, struct DC_motor *mR)
+{
+
+
 }

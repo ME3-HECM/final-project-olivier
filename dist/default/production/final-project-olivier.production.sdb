@@ -3,20 +3,6 @@
 [d edition pro ]
 [d chip 18F67K40 ]
 [d frameptr 4065 ]
-"1 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\abs.c
-[v _abs abs `(i  1 e 2 0 ]
-"9 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\aodiv.c
-[v ___aodiv __aodiv `(o  1 e 8 0 ]
-"9 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\aomod.c
-[v ___aomod __aomod `(o  1 e 8 0 ]
-"133 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
-[v _pad pad `(v  1 s 1 pad ]
-"443
-[v _dtoa dtoa `(v  1 s 1 dtoa ]
-"1007
-[v _vfpfcnvrt vfpfcnvrt `(v  1 s 1 vfpfcnvrt ]
-"1520
-[v _vfprintf vfprintf `(i  1 e 2 0 ]
 "4 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\fleq.c
 [v ___fleq __fleq `(b  1 e 0 0 ]
 "62 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\float.c
@@ -29,14 +15,8 @@
 [v ___ftmul __ftmul `(f  1 e 4 0 ]
 "19 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\ftsub.c
 [v ___ftsub __ftsub `(f  1 e 4 0 ]
-"8 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\nf_fputc.c
-[v _fputc fputc `(i  1 e 2 0 ]
-"8 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\nf_fputs.c
-[v _fputs fputs `(i  1 e 2 0 ]
 "9 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\nf_sprintf.c
 [v _sprintf sprintf `(i  1 e 2 0 ]
-"7 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\putch.c
-[v _putch putch `(v  1 e 1 0 ]
 "10 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
 [v ___fladd __fladd `(d  1 e 4 0 ]
 "245
@@ -49,19 +29,11 @@
 [v ___lmul __lmul `(ul  1 e 4 0 ]
 "91 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\Umul64.c
 [v ___omul __omul `(uo  1 e 8 0 ]
-"6 C:\Users\Windows\Documents\GitHub\final-project-olivier\color.c
+"6 C:\Users\olive\OneDrive\Documents\GitHub\final-project-olivier.X\color.c
 [v _color_click_init color_click_init `(v  1 e 1 0 ]
 "22
 [v _color_writetoaddr color_writetoaddr `(v  1 e 1 0 ]
-"30
-[v _color_read_Red color_read_Red `(ui  1 e 2 0 ]
-"43
-[v _color_read_Green color_read_Green `(ui  1 e 2 0 ]
-"57
-[v _color_read_Blue color_read_Blue `(ui  1 e 2 0 ]
-"72
-[v _color_read_Clear color_read_Clear `(ui  1 e 2 0 ]
-"4 C:\Users\Windows\Documents\GitHub\final-project-olivier\i2c.c
+"4 C:\Users\olive\OneDrive\Documents\GitHub\final-project-olivier.X\i2c.c
 [v _I2C_2_Master_Init I2C_2_Master_Init `(v  1 e 1 0 ]
 "22
 [v _I2C_2_Master_Idle I2C_2_Master_Idle `(v  1 e 1 0 ]
@@ -75,17 +47,19 @@
 [v _I2C_2_Master_Write I2C_2_Master_Write `(v  1 e 1 0 ]
 "51
 [v _I2C_2_Master_Read I2C_2_Master_Read `(uc  1 e 1 0 ]
-"13 C:\Users\Windows\Documents\GitHub\final-project-olivier\main.c
+"14 C:\Users\olive\OneDrive\Documents\GitHub\final-project-olivier.X\main.c
 [v _main main `(v  1 e 1 0 ]
-"5 C:\Users\Windows\Documents\GitHub\final-project-olivier\serial.c
+"5 C:\Users\olive\OneDrive\Documents\GitHub\final-project-olivier.X\serial.c
 [v _initUSART4 initUSART4 `(v  1 e 1 0 ]
 "32
 [v _sendCharSerial4 sendCharSerial4 `(v  1 e 1 0 ]
-"37
-[v _Color2String Color2String `(v  1 e 1 0 ]
 "45
 [v _sendStringSerial4 sendStringSerial4 `(v  1 e 1 0 ]
-"13 C:\Users\Windows\Documents\GitHub\final-project-olivier/serial.h
+[s S286 DC_motor 9 `uc 1 power 1 0 `uc 1 direction 1 1 `uc 1 brakemode 1 2 `ui 1 PWMperiod 2 3 `*.39uc 1 posDutyHighByte 2 5 `*.39uc 1 negDutyHighByte 2 7 ]
+"21 C:\Users\olive\OneDrive\Documents\GitHub\final-project-olivier.X/dc_motor.h
+[v _motorL motorL `S286  1 e 9 0 ]
+[v _motorR motorR `S286  1 e 9 0 ]
+"13 C:\Users\olive\OneDrive\Documents\GitHub\final-project-olivier.X/serial.h
 [v _EUSART4RXbuf EUSART4RXbuf `VE[20]uc  1 e 20 0 ]
 "14
 [v _RxBufWriteCnt RxBufWriteCnt `VEuc  1 e 1 0 ]
@@ -105,7 +79,7 @@
 [v _SSP2CLKPPS SSP2CLKPPS `VEuc  1 e 1 @3612 ]
 "3862
 [v _SSP2DATPPS SSP2DATPPS `VEuc  1 e 1 @3613 ]
-[s S413 . 1 `uc 1 TX3IF 1 0 :1:0 
+[s S435 . 1 `uc 1 TX3IF 1 0 :1:0 
 `uc 1 RC3IF 1 0 :1:1 
 `uc 1 TX4IF 1 0 :1:2 
 `uc 1 RC4IF 1 0 :1:3 
@@ -113,8 +87,8 @@
 `uc 1 RC5IF 1 0 :1:5 
 ]
 "5332
-[u S420 . 1 `S413 1 . 1 0 ]
-[v _PIR4bits PIR4bits `VES420  1 e 1 @3639 ]
+[u S442 . 1 `S435 1 . 1 0 ]
+[v _PIR4bits PIR4bits `VES442  1 e 1 @3639 ]
 "7858
 [v _RC0PPS RC0PPS `VEuc  1 e 1 @3682 ]
 "8508
@@ -210,7 +184,7 @@
 [v _SP4BRGL SP4BRGL `VEuc  1 e 1 @3813 ]
 "15903
 [v _SP4BRGH SP4BRGH `VEuc  1 e 1 @3814 ]
-[s S392 . 1 `uc 1 RX9D 1 0 :1:0 
+[s S414 . 1 `uc 1 RX9D 1 0 :1:0 
 `uc 1 OERR 1 0 :1:1 
 `uc 1 FERR 1 0 :1:2 
 `uc 1 ADDEN 1 0 :1:3 
@@ -220,9 +194,9 @@
 `uc 1 SPEN 1 0 :1:7 
 ]
 "15963
-[u S401 . 1 `S392 1 . 1 0 ]
-[v _RC4STAbits RC4STAbits `VES401  1 e 1 @3815 ]
-[s S369 . 1 `uc 1 TX9D 1 0 :1:0 
+[u S423 . 1 `S414 1 . 1 0 ]
+[v _RC4STAbits RC4STAbits `VES423  1 e 1 @3815 ]
+[s S391 . 1 `uc 1 TX9D 1 0 :1:0 
 `uc 1 TRMT 1 0 :1:1 
 `uc 1 BRGH 1 0 :1:2 
 `uc 1 SENDB 1 0 :1:3 
@@ -232,9 +206,9 @@
 `uc 1 CSRC 1 0 :1:7 
 ]
 "16085
-[u S378 . 1 `S369 1 . 1 0 ]
-[v _TX4STAbits TX4STAbits `VES378  1 e 1 @3816 ]
-[s S348 . 1 `uc 1 ABDEN 1 0 :1:0 
+[u S400 . 1 `S391 1 . 1 0 ]
+[v _TX4STAbits TX4STAbits `VES400  1 e 1 @3816 ]
+[s S370 . 1 `uc 1 ABDEN 1 0 :1:0 
 `uc 1 WUE 1 0 :1:1 
 `uc 1 . 1 0 :1:2 
 `uc 1 BRG16 1 0 :1:3 
@@ -244,9 +218,13 @@
 `uc 1 ABDOVF 1 0 :1:7 
 ]
 "16211
-[u S357 . 1 `S348 1 . 1 0 ]
-[v _BAUD4CONbits BAUD4CONbits `VES357  1 e 1 @3817 ]
-[s S325 . 1 `uc 1 TRISC0 1 0 :1:0 
+[u S379 . 1 `S370 1 . 1 0 ]
+[v _BAUD4CONbits BAUD4CONbits `VES379  1 e 1 @3817 ]
+"21098
+[v _CCPR4H CCPR4H `VEuc  1 e 1 @3873 ]
+"21401
+[v _CCPR3H CCPR3H `VEuc  1 e 1 @3877 ]
+[s S347 . 1 `uc 1 TRISC0 1 0 :1:0 
 `uc 1 TRISC1 1 0 :1:1 
 `uc 1 TRISC2 1 0 :1:2 
 `uc 1 TRISC3 1 0 :1:3 
@@ -256,8 +234,8 @@
 `uc 1 TRISC7 1 0 :1:7 
 ]
 "29595
-[u S334 . 1 `S325 1 . 1 0 ]
-[v _TRISCbits TRISCbits `VES334  1 e 1 @3971 ]
+[u S356 . 1 `S347 1 . 1 0 ]
+[v _TRISCbits TRISCbits `VES356  1 e 1 @3971 ]
 [s S120 . 1 `uc 1 TRISD0 1 0 :1:0 
 `uc 1 TRISD1 1 0 :1:1 
 `uc 1 TRISD2 1 0 :1:2 
@@ -270,71 +248,21 @@
 "29717
 [u S129 . 1 `S120 1 . 1 0 ]
 [v _TRISDbits TRISDbits `VES129  1 e 1 @3972 ]
-"99 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
-[v _prec prec `i  1 s 2 prec ]
-[v _width width `i  1 s 2 width ]
-"100
-[v _flags flags `uc  1 s 1 flags ]
-"125
-[v _dbuf dbuf `[32]uc  1 s 32 dbuf ]
-"13 C:\Users\Windows\Documents\GitHub\final-project-olivier\main.c
+"34199
+[v _CCPR2H CCPR2H `VEuc  1 e 1 @4006 ]
+"34420
+[v _CCPR1H CCPR1H `VEuc  1 e 1 @4010 ]
+"14 C:\Users\olive\OneDrive\Documents\GitHub\final-project-olivier.X\main.c
 [v _main main `(v  1 e 1 0 ]
 {
-"14
-[v main@data data `[30]uc  1 a 30 27 ]
-"24
+"41
 } 0
-"5 C:\Users\Windows\Documents\GitHub\final-project-olivier\serial.c
+"5 C:\Users\olive\OneDrive\Documents\GitHub\final-project-olivier.X\serial.c
 [v _initUSART4 initUSART4 `(v  1 e 1 0 ]
 {
 "21
 } 0
-"30 C:\Users\Windows\Documents\GitHub\final-project-olivier\color.c
-[v _color_read_Red color_read_Red `(ui  1 e 2 0 ]
-{
-"32
-[v color_read_Red@tmp tmp `ui  1 a 2 9 ]
-"42
-} 0
-"43
-[v _color_read_Green color_read_Green `(ui  1 e 2 0 ]
-{
-"45
-[v color_read_Green@tmp tmp `ui  1 a 2 9 ]
-"55
-} 0
-"72
-[v _color_read_Clear color_read_Clear `(ui  1 e 2 0 ]
-{
-"74
-[v color_read_Clear@tmp tmp `ui  1 a 2 9 ]
-"84
-} 0
-"57
-[v _color_read_Blue color_read_Blue `(ui  1 e 2 0 ]
-{
-"59
-[v color_read_Blue@tmp tmp `ui  1 a 2 9 ]
-"69
-} 0
-"33 C:\Users\Windows\Documents\GitHub\final-project-olivier\i2c.c
-[v _I2C_2_Master_RepStart I2C_2_Master_RepStart `(v  1 e 1 0 ]
-{
-"37
-} 0
-"51
-[v _I2C_2_Master_Read I2C_2_Master_Read `(uc  1 e 1 0 ]
-{
-[v I2C_2_Master_Read@ack ack `uc  1 a 1 wreg ]
-"53
-[v I2C_2_Master_Read@tmp tmp `uc  1 a 1 3 ]
-"51
-[v I2C_2_Master_Read@ack ack `uc  1 a 1 wreg ]
-"54
-[v I2C_2_Master_Read@ack ack `uc  1 a 1 2 ]
-"62
-} 0
-"6 C:\Users\Windows\Documents\GitHub\final-project-olivier\color.c
+"6 C:\Users\olive\OneDrive\Documents\GitHub\final-project-olivier.X\color.c
 [v _color_click_init color_click_init `(v  1 e 1 0 ]
 {
 "20
@@ -348,7 +276,7 @@
 [v color_writetoaddr@address address `uc  1 a 1 3 ]
 "28
 } 0
-"45 C:\Users\Windows\Documents\GitHub\final-project-olivier\i2c.c
+"45 C:\Users\olive\OneDrive\Documents\GitHub\final-project-olivier.X\i2c.c
 [v _I2C_2_Master_Write I2C_2_Master_Write `(v  1 e 1 0 ]
 {
 [v I2C_2_Master_Write@data_byte data_byte `uc  1 a 1 wreg ]
@@ -376,157 +304,4 @@
 [v _I2C_2_Master_Init I2C_2_Master_Init `(v  1 e 1 0 ]
 {
 "20
-} 0
-"37 C:\Users\Windows\Documents\GitHub\final-project-olivier\serial.c
-[v _Color2String Color2String `(v  1 e 1 0 ]
-{
-[v Color2String@buf buf `*.39uc  1 p 2 88 ]
-[v Color2String@R R `uc  1 p 1 90 ]
-[v Color2String@G G `uc  1 p 1 91 ]
-[v Color2String@B B `uc  1 p 1 92 ]
-[v Color2String@C C `uc  1 p 1 93 ]
-"42
-} 0
-"9 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\nf_sprintf.c
-[v _sprintf sprintf `(i  1 e 2 0 ]
-{
-[u S941 . 3 `*.2uc 1 buffer 3 0 `*.2Cuc 1 source 3 0 ]
-"13
-[s S944 _IO_FILE 11 `S941 1 . 3 0 `i 1 count 2 3 `[2]uc 1 ungetbuf 2 5 `i 1 ungetcnt 2 7 `i 1 limit 2 9 ]
-[v sprintf@f f `S944  1 a 11 14 ]
-"12
-[v sprintf@ap ap `[1]*.39v  1 a 2 12 ]
-"9
-[v sprintf@s s `*.39uc  1 p 2 0 ]
-[v sprintf@fmt fmt `*.32Cuc  1 p 2 2 ]
-"23
-} 0
-"1520 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
-[v _vfprintf vfprintf `(i  1 e 2 0 ]
-{
-"1523
-[v vfprintf@cfmt cfmt `*.32uc  1 a 2 86 ]
-[s S976 _IO_FILE 0 ]
-"1520
-[v vfprintf@fp fp `*.39S976  1 p 2 80 ]
-[v vfprintf@fmt fmt `*.32Cuc  1 p 2 82 ]
-[v vfprintf@ap ap `*.39*.39v  1 p 2 84 ]
-"1543
-} 0
-"1007
-[v _vfpfcnvrt vfpfcnvrt `(v  1 s 1 vfpfcnvrt ]
-{
-[u S994 . 8 `o 1 ll 8 0 `uo 1 llu 8 0 `*.2v 1 vp 3 0 `d 1 f 4 0 ]
-"1016
-[v vfpfcnvrt@convarg convarg `S994  1 a 8 70 ]
-"1009
-[v vfpfcnvrt@cp cp `*.32uc  1 a 2 78 ]
-[s S976 _IO_FILE 0 ]
-"1007
-[v vfpfcnvrt@fp fp `*.39S976  1 p 2 62 ]
-[v vfpfcnvrt@fmt fmt `*.39*.32uc  1 p 2 64 ]
-[v vfpfcnvrt@ap ap `*.39*.39v  1 p 2 66 ]
-"1517
-} 0
-"443
-[v _dtoa dtoa `(v  1 s 1 dtoa ]
-{
-"447
-[v dtoa@n n `o  1 a 8 51 ]
-"446
-[v dtoa@i i `i  1 a 2 59 ]
-[v dtoa@w w `i  1 a 2 49 ]
-[v dtoa@p p `i  1 a 2 47 ]
-"445
-[v dtoa@s s `uc  1 a 1 61 ]
-[s S976 _IO_FILE 0 ]
-"443
-[v dtoa@fp fp `*.39S976  1 p 2 27 ]
-[v dtoa@d d `o  1 p 8 29 ]
-"502
-} 0
-"133
-[v _pad pad `(v  1 s 1 pad ]
-{
-"135
-[v pad@w w `i  1 a 2 25 ]
-[v pad@i i `i  1 a 2 23 ]
-[s S976 _IO_FILE 0 ]
-"133
-[v pad@fp fp `*.39S976  1 p 2 16 ]
-[v pad@buf buf `*.39uc  1 p 2 18 ]
-[v pad@p p `i  1 p 2 20 ]
-"164
-} 0
-"8 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\nf_fputs.c
-[v _fputs fputs `(i  1 e 2 0 ]
-{
-"11
-[v fputs@i i `i  1 a 2 14 ]
-"10
-[v fputs@c c `uc  1 a 1 13 ]
-"8
-[v fputs@s s `*.39Cuc  1 p 2 9 ]
-[u S941 . 3 `*.2uc 1 buffer 3 0 `*.2Cuc 1 source 3 0 ]
-[s S944 _IO_FILE 11 `S941 1 . 3 0 `i 1 count 2 3 `[2]uc 1 ungetbuf 2 5 `i 1 ungetcnt 2 7 `i 1 limit 2 9 ]
-[v fputs@fp fp `*.39S944  1 p 2 11 ]
-"19
-} 0
-"8 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\nf_fputc.c
-[v _fputc fputc `(i  1 e 2 0 ]
-{
-[v fputc@c c `i  1 p 2 0 ]
-[u S941 . 3 `*.2uc 1 buffer 3 0 `*.2Cuc 1 source 3 0 ]
-[s S944 _IO_FILE 11 `S941 1 . 3 0 `i 1 count 2 3 `[2]uc 1 ungetbuf 2 5 `i 1 ungetcnt 2 7 `i 1 limit 2 9 ]
-[v fputc@fp fp `*.39S944  1 p 2 2 ]
-"24
-} 0
-"7 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\putch.c
-[v _putch putch `(v  1 e 1 0 ]
-{
-"9
-} 0
-"1 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\abs.c
-[v _abs abs `(i  1 e 2 0 ]
-{
-[v abs@a a `i  1 p 2 18 ]
-"4
-} 0
-"9 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\aomod.c
-[v ___aomod __aomod `(o  1 e 8 0 ]
-{
-"12
-[v ___aomod@sign sign `uc  1 a 1 17 ]
-[v ___aomod@counter counter `uc  1 a 1 16 ]
-"9
-[v ___aomod@dividend dividend `o  1 p 8 0 ]
-[v ___aomod@divisor divisor `o  1 p 8 8 ]
-"36
-} 0
-"9 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\aodiv.c
-[v ___aodiv __aodiv `(o  1 e 8 0 ]
-{
-"12
-[v ___aodiv@quotient quotient `o  1 a 8 18 ]
-"13
-[v ___aodiv@sign sign `uc  1 a 1 17 ]
-[v ___aodiv@counter counter `uc  1 a 1 16 ]
-"9
-[v ___aodiv@dividend dividend `o  1 p 8 0 ]
-[v ___aodiv@divisor divisor `o  1 p 8 8 ]
-"43
-} 0
-"45 C:\Users\Windows\Documents\GitHub\final-project-olivier\serial.c
-[v _sendStringSerial4 sendStringSerial4 `(v  1 e 1 0 ]
-{
-[v sendStringSerial4@string string `*.39uc  1 p 2 1 ]
-"53
-} 0
-"32
-[v _sendCharSerial4 sendCharSerial4 `(v  1 e 1 0 ]
-{
-[v sendCharSerial4@charToSend charToSend `uc  1 a 1 wreg ]
-[v sendCharSerial4@charToSend charToSend `uc  1 a 1 wreg ]
-[v sendCharSerial4@charToSend charToSend `uc  1 a 1 0 ]
-"35
 } 0

@@ -6,9 +6,11 @@
 #define _XTAL_FREQ 64000000
 
 //variable for a forward motion
-extern volatile char ForwardFlag;
-int _15dleftdelay = 100;
-int _15drightdelay = 100;
+extern volatile char ForwardFlag = 1;
+int _45dleftdelay = 1000; //delay corresponging to a 15 degree turn left
+int _45drightdelay = 1000; //delay corresponding to a 15 degree turn right
+int _1square = 1000; //delay corresponding to 1 square travel
+int _halfsquare = 1000; //delay corresponding to a half square travel (for reversal to correct position after colour is sensed)
 
 typedef struct DC_motor { //definition of DC_motor structure
     char power;         //motor power, out of 100
@@ -29,18 +31,18 @@ void turnLeft(struct DC_motor *mL, struct DC_motor *mR);
 void turnRight(struct DC_motor *mL, struct DC_motor *mR);
 void fullSpeedAhead(struct DC_motor *mL, struct DC_motor *mR);
 void fullSpeedReverse(struct DC_motor *mL, struct DC_motor *mR);
-void Left15(struct DC_motor *mL, struct DC_motor *mR);
-void Right15(struct DC_motor *mL, struct DC_motor *mR);
+void Left45(struct DC_motor *mL, struct DC_motor *mR);
+void Right45(struct DC_motor *mL, struct DC_motor *mR);
 void rotate180left(struct DC_motor *mL, struct DC_motor *mR);
 
 
-void Red_R90(void);
-void Green_L90(void);
-void Blue_T180(void);
-void Yellow_REV1_L90(void);
-void Pink_rev1_L90(void);
-void Orange_R135(void);
-void LightBlue_L135(void);
-void White(void);
+void Red_R90(struct DC_motor *mL, struct DC_motor *mR);
+void Green_L90(struct DC_motor *mL, struct DC_motor *mR);
+void Blue_T180(struct DC_motor *mL, struct DC_motor *mR);
+void Yellow_REV1_R90(struct DC_motor *mL, struct DC_motor *mR);
+void Pink_rev1_L90(struct DC_motor *mL, struct DC_motor *mR);
+void Orange_R135(struct DC_motor *mL, struct DC_motor *mR);
+void LightBlue_L135(struct DC_motor *mL, struct DC_motor *mR);
+void White(struct DC_motor *mL, struct DC_motor *mR);
 
 #endif
