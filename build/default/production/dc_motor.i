@@ -1,4 +1,4 @@
-# 1 "colorfunctions.c"
+# 1 "dc_motor.c"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 288 "<built-in>" 3
@@ -6,7 +6,7 @@
 # 1 "<built-in>" 2
 # 1 "C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
-# 1 "colorfunctions.c" 2
+# 1 "dc_motor.c" 2
 # 1 "C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\\pic\\include\\xc.h" 1 3
 # 18 "C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\\pic\\include\\xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -24229,225 +24229,7 @@ __attribute__((__unsupported__("The READTIMER" "0" "() macro is not available wi
 unsigned char __t1rd16on(void);
 unsigned char __t3rd16on(void);
 # 34 "C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\\pic\\include\\xc.h" 2 3
-# 1 "colorfunctions.c" 2
-
-# 1 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\include\\c99\\stdio.h" 1 3
-# 24 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\include\\c99\\stdio.h" 3
-# 1 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\include\\c99\\bits/alltypes.h" 1 3
-
-
-
-
-
-typedef void * va_list[1];
-
-
-
-
-typedef void * __isoc_va_list[1];
-# 137 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\include\\c99\\bits/alltypes.h" 3
-typedef long ssize_t;
-# 246 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\include\\c99\\bits/alltypes.h" 3
-typedef long long off_t;
-# 399 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\include\\c99\\bits/alltypes.h" 3
-typedef struct _IO_FILE FILE;
-# 24 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\include\\c99\\stdio.h" 2 3
-# 52 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\include\\c99\\stdio.h" 3
-typedef union _G_fpos64_t {
- char __opaque[16];
- double __align;
-} fpos_t;
-
-extern FILE *const stdin;
-extern FILE *const stdout;
-extern FILE *const stderr;
-
-
-
-
-
-FILE *fopen(const char *restrict, const char *restrict);
-FILE *freopen(const char *restrict, const char *restrict, FILE *restrict);
-int fclose(FILE *);
-
-int remove(const char *);
-int rename(const char *, const char *);
-
-int feof(FILE *);
-int ferror(FILE *);
-int fflush(FILE *);
-void clearerr(FILE *);
-
-int fseek(FILE *, long, int);
-long ftell(FILE *);
-void rewind(FILE *);
-
-int fgetpos(FILE *restrict, fpos_t *restrict);
-int fsetpos(FILE *, const fpos_t *);
-
-size_t fread(void *restrict, size_t, size_t, FILE *restrict);
-size_t fwrite(const void *restrict, size_t, size_t, FILE *restrict);
-
-int fgetc(FILE *);
-int getc(FILE *);
-int getchar(void);
-int ungetc(int, FILE *);
-
-int fputc(int, FILE *);
-int putc(int, FILE *);
-int putchar(int);
-
-char *fgets(char *restrict, int, FILE *restrict);
-
-char *gets(char *);
-
-
-int fputs(const char *restrict, FILE *restrict);
-int puts(const char *);
-
-__attribute__((__format__(__printf__, 1, 2)))
-int printf(const char *restrict, ...);
-__attribute__((__format__(__printf__, 2, 3)))
-int fprintf(FILE *restrict, const char *restrict, ...);
-__attribute__((__format__(__printf__, 2, 3)))
-int sprintf(char *restrict, const char *restrict, ...);
-__attribute__((__format__(__printf__, 3, 4)))
-int snprintf(char *restrict, size_t, const char *restrict, ...);
-
-__attribute__((__format__(__printf__, 1, 0)))
-int vprintf(const char *restrict, __isoc_va_list);
-int vfprintf(FILE *restrict, const char *restrict, __isoc_va_list);
-__attribute__((__format__(__printf__, 2, 0)))
-int vsprintf(char *restrict, const char *restrict, __isoc_va_list);
-__attribute__((__format__(__printf__, 3, 0)))
-int vsnprintf(char *restrict, size_t, const char *restrict, __isoc_va_list);
-
-__attribute__((__format__(__scanf__, 1, 2)))
-int scanf(const char *restrict, ...);
-__attribute__((__format__(__scanf__, 2, 3)))
-int fscanf(FILE *restrict, const char *restrict, ...);
-__attribute__((__format__(__scanf__, 2, 3)))
-int sscanf(const char *restrict, const char *restrict, ...);
-
-__attribute__((__format__(__scanf__, 1, 0)))
-int vscanf(const char *restrict, __isoc_va_list);
-int vfscanf(FILE *restrict, const char *restrict, __isoc_va_list);
-__attribute__((__format__(__scanf__, 2, 0)))
-int vsscanf(const char *restrict, const char *restrict, __isoc_va_list);
-
-void perror(const char *);
-
-int setvbuf(FILE *restrict, char *restrict, int, size_t);
-void setbuf(FILE *restrict, char *restrict);
-
-char *tmpnam(char *);
-FILE *tmpfile(void);
-
-
-
-
-FILE *fmemopen(void *restrict, size_t, const char *restrict);
-FILE *open_memstream(char **, size_t *);
-FILE *fdopen(int, const char *);
-FILE *popen(const char *, const char *);
-int pclose(FILE *);
-int fileno(FILE *);
-int fseeko(FILE *, off_t, int);
-off_t ftello(FILE *);
-int dprintf(int, const char *restrict, ...);
-int vdprintf(int, const char *restrict, __isoc_va_list);
-void flockfile(FILE *);
-int ftrylockfile(FILE *);
-void funlockfile(FILE *);
-int getc_unlocked(FILE *);
-int getchar_unlocked(void);
-int putc_unlocked(int, FILE *);
-int putchar_unlocked(int);
-ssize_t getdelim(char **restrict, size_t *restrict, int, FILE *restrict);
-ssize_t getline(char **restrict, size_t *restrict, FILE *restrict);
-int renameat(int, const char *, int, const char *);
-char *ctermid(char *);
-
-
-
-
-
-
-
-char *tempnam(const char *, const char *);
-# 2 "colorfunctions.c" 2
-
-# 1 "./colorclick.h" 1
-# 15 "./colorclick.h"
-void color_click_init(void);
-
-void color_write_reg(char reg, char value);
-
-void color_turn_on_led(void);
-
-void color_turn_off_led(void);
-
-
-
-
-
-
-void color_writetoaddr(char address, char value);
-
-
-
-
-
-unsigned int color_read_Red(void);
-
-
-
-
-
-unsigned int color_read_Green(void);
-
-
-
-
-
-unsigned int color_read_Blue(void);
-
-
-
-
-
-unsigned int color_read_Clear(void);
-
-
-
-void ClickLEDOn(char power);
-# 3 "colorfunctions.c" 2
-
-# 1 "./colorfunctions.h" 1
-
-
-
-
-
-
-
-
-typedef struct RGBC_rel{
-   float Rf, Gf, Bf, Cf;
-   float h;
-   int colourindex;
-} RGBC_rel;
-
-
-
-struct RGBC_rel colorf;
-
-void colour_read_all(struct RGBC_rel *cf);
-void RGB2Hue(struct RGBC_rel *cf);
-
-
-char* Hue2Colour(struct RGBC_rel *cf);
-# 4 "colorfunctions.c" 2
+# 1 "dc_motor.c" 2
 
 # 1 "./dc_motor.h" 1
 
@@ -24494,104 +24276,312 @@ void Pink_rev1_L90(struct DC_motor *mL, struct DC_motor *mR);
 void Orange_R135(struct DC_motor *mL, struct DC_motor *mR);
 void LightBlue_L135(struct DC_motor *mL, struct DC_motor *mR);
 void White(struct DC_motor *mL, struct DC_motor *mR);
-# 5 "colorfunctions.c" 2
+# 2 "dc_motor.c" 2
+
+extern volatile char ForwardFlag = 1;
+int _15dleftdelay = 100;
+int _15drightdelay = 100;
+int _1squaredelay = 1000;
+
+void initDCmotorsPWM(unsigned int PWMperiod){
+
+    TRISEbits.TRISE2=0;
+    TRISCbits.TRISC7=0;
+    TRISEbits.TRISE4=0;
+    TRISGbits.TRISG6=0;
+
+    LATEbits.LATE2=0;
+    LATCbits.LATC7=0;
+    LATEbits.LATE4=0;
+    LATGbits.LATG6=0;
 
 
-void colour_read_all(struct RGBC_rel *cf) {
-
-    float R = color_read_Red();
-    float G= color_read_Green();
-    float B= color_read_Blue();
-    float C= color_read_Clear();
+    RE2PPS=0x05;
+    RE4PPS=0x06;
+    RC7PPS=0x07;
+    RG6PPS=0x08;
 
 
+    T2CONbits.CKPS=0b100;
+    T2HLTbits.MODE=0b00000;
+    T2CLKCONbits.CS=0b0001;
 
-    (cf->Rf)=R;
-    (cf->Bf)=B;
-    (cf->Gf)=G;
-    (cf->Cf)=C;
+
+    T2PR=PWMperiod;
+    T2CONbits.ON=1;
+
+
+
+    CCPR1H=0;
+    CCPR2H=0;
+    CCPR3H=0;
+    CCPR4H=0;
+
+
+    CCPTMRS0bits.C1TSEL=0;
+    CCPTMRS0bits.C2TSEL=0;
+    CCPTMRS0bits.C3TSEL=0;
+    CCPTMRS0bits.C4TSEL=0;
+
+
+    CCP1CONbits.FMT=1;
+    CCP1CONbits.CCP1MODE=0b1100;
+    CCP1CONbits.EN=1;
+
+    CCP2CONbits.FMT=1;
+    CCP2CONbits.CCP2MODE=0b1100;
+    CCP2CONbits.EN=1;
+
+    CCP3CONbits.FMT=1;
+    CCP3CONbits.CCP3MODE=0b1100;
+    CCP3CONbits.EN=1;
+
+    CCP4CONbits.FMT=1;
+    CCP4CONbits.CCP4MODE=0b1100;
+    CCP4CONbits.EN=1;
 }
 
-void RGB2Hue(struct RGBC_rel *cf){
-    if ((cf->Rf == cf->Gf)&&(cf->Rf == cf->Bf)){
-        cf->h=0;
-    } else{
-        signed int max=0;
-        signed int min=0;
 
-        if ((cf->Rf < cf->Gf)&(cf->Rf < cf->Bf)){
-            min=cf->Rf;
-        } else if((cf->Gf < cf->Rf)&(cf->Gf < cf->Bf)){
-            min=cf->Gf;
-        } else{
-            min=cf->Bf;
-        }
-
-        if ((cf->Rf > cf->Gf)&(cf->Rf > cf->Bf)){
-            max=(cf->Rf);
-
-
-            (cf->h)=60*(((cf->Gf)-(cf->Bf))/(max-min));
-        } else if((cf->Gf > cf->Rf)&(cf->Gf > cf->Bf)){
-            max=cf->Gf;
-            (cf->h)=60*(2+(((cf->Bf)-(cf->Rf))/(max-min)));
-        }else{
-            max=cf->Bf;
-            (cf->h)=60*(4+(((cf->Rf)-(cf->Gf))/(max-min)));
-        }
-        if (cf->h < 0){
-            cf->h= cf->h +360;
-        }
-    }
-}
-
-char* Hue2Colour(struct RGBC_rel *cf)
+void setMotorPWM(struct DC_motor *m)
 {
-    char* colourname = "";
+    unsigned char posDuty, negDuty;
 
-    if (((cf->h)>352)&&((cf->h)<360))
-    {
-
-        colourname = "Red";
-
-
-        cf->colourindex=0;
+    if(m->brakemode) {
+        posDuty=(m->PWMperiod) - ((unsigned int)(m->power)*(m->PWMperiod))/100;
+        negDuty=(m->PWMperiod);
     }
-     if (((cf->h)>75)&&((cf->h)<79))
-    {
-        colourname = "Green";
-        cf->colourindex=7;
-    }
-    else if (((cf->h)>26)&&((cf->h)<29))
-    {
-        colourname = "Eggshell";
-        cf->colourindex=1;
-    }
-    else if (((cf->h)>15)&&((cf->h)<19))
-    {
-        colourname = "Pink";
-        cf->colourindex=2;
-    }
-    else if (((cf->h)>21)&&((cf->h)<25))
-    {
-        colourname = "Yellow";
-        cf->colourindex=3;
-    }
-    else if (((cf->h)>7)&&((cf->h)<9))
-    {
-        colourname = "Orange";
-        cf->colourindex=4;
-    }
-    else if (((cf->h)>85)&&((cf->h)<94))
-    {
-        colourname = "Light Blue";
-        cf->colourindex=5;
-    }
-    else if (((cf->h)>145)&&((cf->h)<164))
-    {
-        colourname = "Dark Blue";
-        cf->colourindex=6;
+    else {
+        posDuty=0;
+  negDuty=((unsigned int)(m->power)*(m->PWMperiod))/100;
     }
 
-    return colourname;
+    if (m->direction) {
+        *(m->posDutyHighByte)=posDuty;
+        *(m->negDutyHighByte)=negDuty;
+    } else {
+        *(m->posDutyHighByte)=negDuty;
+        *(m->negDutyHighByte)=posDuty;
+    }
+}
+
+
+void stop(struct DC_motor *mL, struct DC_motor *mR)
+{
+    while((mL->power)>0 && (mR->power)>0)
+    {
+
+        if (mL->power>0){
+            mL->power--;
+        }
+        if ((mR->power)>0){
+            mR->power--;
+        }
+        setMotorPWM(mL);
+        setMotorPWM(mR);
+        _delay((unsigned long)((400)*(64000000/4000000.0)));
+    }
+}
+
+
+void turnLeft(struct DC_motor *mL, struct DC_motor *mR)
+{
+    (mL->direction) = 0;
+    (mR->direction) = 1;
+    setMotorPWM(mL);
+    setMotorPWM(mR);
+    for (unsigned int i = 0; i <50; i++)
+    {
+        mL->power++;
+        mR->power++;
+        setMotorPWM(mL);
+        setMotorPWM(mR);
+        _delay((unsigned long)((100)*(64000000/4000000.0)));
+    }
+}
+
+
+void turnRight(struct DC_motor *mL, struct DC_motor *mR)
+{
+    (mL->direction) = 1;
+    (mR->direction) = 0;
+    setMotorPWM(mL);
+    setMotorPWM(mR);
+    for (unsigned int i = 0; i <50; i++)
+    {
+        mL->power++;
+        mR->power++;
+        setMotorPWM(mL);
+        setMotorPWM(mR);
+        _delay((unsigned long)((100)*(64000000/4000000.0)));
+    }
+}
+
+
+void fullSpeedAhead(struct DC_motor *mL, struct DC_motor *mR)
+{
+ (mL->direction) = 1;
+ (mR->direction) = 1;
+
+    for (unsigned int i = 0; i <50; i++)
+    {
+        (mL->power)++;
+        (mR->power)++;
+        setMotorPWM(mL);
+        setMotorPWM(mR);
+        _delay((unsigned long)((400)*(64000000/4000000.0)));
+    }
+}
+void fullSpeedReverse(struct DC_motor *mL, struct DC_motor *mR)
+{
+ (mL->direction) = 0;
+ (mR->direction) = 0;
+
+    for (unsigned int i = 0; i <50; i++)
+    {
+        (mL->power)++;
+        (mR->power)++;
+        setMotorPWM(mL);
+        setMotorPWM(mR);
+        _delay((unsigned long)((400)*(64000000/4000000.0)));
+    }
+}
+
+
+void Left15(struct DC_motor *mL, struct DC_motor *mR)
+{
+
+    turnLeft(mL,mR);
+    _delay((unsigned long)((_15dleftdelay)*(64000000/4000.0)));
+    stop(mL,mR);
+}
+
+
+void Right15(struct DC_motor *mL, struct DC_motor *mR)
+{
+
+    turnRight(mL,mR);
+   _delay((unsigned long)((_15drightdelay)*(64000000/4000.0)));
+    stop(mL,mR);
+}
+
+void rotate180left(struct DC_motor *mL, struct DC_motor *mR)
+{
+    turnLeft(mL,mR);
+    _delay((unsigned long)((180)*(64000000/4000.0)));
+    stop(mL,mR);
+}
+
+void Red_R90(struct DC_motor *mL, struct DC_motor *mR)
+{
+    if (ForwardFlag){
+        int i;
+        for (i = 0; i = 5; i++){
+            Right15(mL,mR);
+        }
+    }
+    else if(ForwardFlag == 0){
+
+    }
+}
+
+void Green_L90(struct DC_motor *mL, struct DC_motor *mR)
+{
+    if (ForwardFlag){
+
+        int i;
+        for (i = 0; i = 5; i++){
+            Left15(mL,mR);
+        }
+    }
+    else if(ForwardFlag&0){
+
+    }
+}
+
+void Blue_T180(struct DC_motor *mL, struct DC_motor *mR)
+{
+
+    int i;
+    for (i = 0; i = 11; i++){
+        Left15(mL,mR);
+    }
+
+}
+void Yellow_REV1_L90(struct DC_motor *mL, struct DC_motor *mR)
+{
+    if (ForwardFlag){
+
+        fullSpeedReverse(mL,mR);
+        _delay((unsigned long)((1squaredelay)*(64000000/4000.0)));
+        stop(mL,mR);
+        Red_R90(mL,mR);
+    }
+    else if(ForwardFlag&0){
+
+        Green_L90(mL,mR);
+        stop(mL,mR);
+        fullSpeedAhead(mL,mR);
+        _delay((unsigned long)((1squaredelay)*(64000000/4000.0)));
+        stop(mL,mR);
+    }
+}
+void Pink_rev1_L90(struct DC_motor *mL, struct DC_motor *mR)
+{
+    if (ForwardFlag){
+
+        fullSpeedReverse(mL,mR);
+        _delay((unsigned long)((1squaredelay)*(64000000/4000.0)));
+        stop(mL,mR);
+        Green_L90(mL,mR);
+    }
+    else if(ForwardFlag&0){
+
+        Red_R90(mL,mR);
+        stop(mL,mR);
+        fullSpeedAhead(mL,mR);
+        _delay((unsigned long)((1squaredelay)*(64000000/4000.0)));
+        stop(mL,mR);
+
+    }
+}
+void Orange_R135(struct DC_motor *mL, struct DC_motor *mR)
+{
+    if (ForwardFlag){
+
+        int i;
+        for (i = 0; i = 8; i++){
+        Right15(mL,mR);
+        }
+
+    }
+    else if(ForwardFlag&0){
+
+        int i;
+        for (i = 0; i = 8; i++){
+        Left15(mL,mR);
+        }
+    }
+}
+void LightBlue_L135(struct DC_motor *mL, struct DC_motor *mR)
+{
+     if (ForwardFlag){
+
+        int i;
+        for (i = 0; i = 8; i++){
+        Left15(mL,mR);
+        }
+
+    }
+    else if(ForwardFlag&0){
+
+        int i;
+        for (i = 0; i = 8; i++){
+        Right15(mL,mR);
+        }
+    }
+}
+void White(struct DC_motor *mL, struct DC_motor *mR)
+{
+
+
 }

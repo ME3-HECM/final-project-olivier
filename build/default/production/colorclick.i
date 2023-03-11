@@ -24271,6 +24271,10 @@ unsigned int color_read_Blue(void);
 
 
 unsigned int color_read_Clear(void);
+
+
+
+void ClickLEDOn(char power);
 # 2 "colorclick.c" 2
 
 # 1 "./i2c.h" 1
@@ -24325,7 +24329,13 @@ void color_click_init(void)
 
  color_writetoaddr(0x01, 0xD6);
 
-    color_writetoaddr(0x00, 0x13);
+
+    LATGbits.LATG1=0;
+    TRISGbits.TRISG1=0;
+    LATAbits.LATA4=0;
+    TRISAbits.TRISA4=0;
+    LATFbits.LATF7=0;
+    TRISFbits.TRISF7=0;
 }
 
 void color_writetoaddr(char address, char value){
@@ -24390,4 +24400,17 @@ unsigned int color_read_Clear(void)
     tmp=tmp | (I2C_2_Master_Read(0)<<8);
     I2C_2_Master_Stop();
     return tmp;
+}
+void ClickLEDOn(char power)
+{
+    if (power){
+    LATGbits.LATG1=1;
+    LATAbits.LATA4=1;
+    LATFbits.LATF7=1;
+    }
+    else if (!power){
+    LATGbits.LATG1=0;
+    LATAbits.LATA4=0;
+    LATFbits.LATF7=0;
+    }
 }

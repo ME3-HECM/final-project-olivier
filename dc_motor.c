@@ -302,7 +302,7 @@ void LightBlue_L135(struct DC_motor *mL, struct DC_motor *mR)
         }
     }
 }
-void White(void)
+void White(struct DC_motor *mL, struct DC_motor *mR)
 {
     //calibration sequence for white 
     //here reverse the array containing the history of turn (i) and distance of the buggy travel (ii) 

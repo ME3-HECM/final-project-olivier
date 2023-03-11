@@ -50,7 +50,8 @@ unsigned int color_read_Blue(void);
  *	Returns a 16 bit ADC value representing colour intensity
  ***********************************************/
 unsigned int color_read_Clear(void);
-
-
-
+/********************************************//**
+ *  Function turn on the TRI LED on the colour clicker
+ ***********************************************/
+void ClickLEDOn(char power);
 #endif

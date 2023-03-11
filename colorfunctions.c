@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include "colorclick.h"
 #include "colorfunctions.h"
+#include "dc_motor.h"
 
 void colour_read_all(struct RGBC_rel *cf) {
     //stores all absolute color values  in teh struct
@@ -11,10 +12,11 @@ void colour_read_all(struct RGBC_rel *cf) {
     float C= color_read_Clear();
     //calculates total luminosity
     //int total=(R)+(G)+(B);
-    //stores all relative values in relevant struct
-    (cf->Rf)=R;//rel/255;
-    (cf->Bf)=B;//rel/255;
-    (cf->Gf)=G;//rel/255;
+    //stores all absolute values in relevant struct
+    (cf->Rf)=R;
+    (cf->Bf)=B;
+    (cf->Gf)=G;
+    (cf->Cf)=C;
 }
 //h is hue
 void RGB2Hue(struct RGBC_rel *cf){
@@ -58,7 +60,7 @@ char* Hue2Colour(struct RGBC_rel *cf)
     {
         //colourname for serial printing
         colourname = "Red";
-        //colourindex which can be picked up by other functions
+        //colourindex can be picked up by other functions
         //to process relevant action
         cf->colourindex=0;
     }
@@ -100,3 +102,40 @@ char* Hue2Colour(struct RGBC_rel *cf)
     
     return colourname;
 }
+//
+//void Colour2Action(struct RGBC_rel *cf)
+//{
+//    if (cf->colourindex & 0)
+//    {
+//        Red_R90(&motorL,&motorR);
+//    }
+//    if (cf->colourindex & 1)
+//    {
+//        White(&motorL,&motorR);
+//    }
+//    if (cf->colourindex & 2)
+//    {
+//        Yellow_REV1_L90(&motorL,&motorR);
+//    }
+//    if (cf->colourindex & 3)
+//    {
+//        Red_R90(&motorL,&motorR);
+//    }
+//    if (cf->colourindex & 4)
+//    {
+//        Orange_R135(&motorL,&motorR);
+//    }
+//    if (cf->colourindex & 5)
+//    {
+//        LightBlue_L135(&motorL,&motorR);
+//    }
+//    if (cf->colourindex & 6)
+//    {
+//        Blue_T180(&motorL,&motorR);
+//    }
+//    if (cf->colourindex & 7)
+//    {
+//        Green_L90(&motorL,&motorR);
+//    }
+//
+//}

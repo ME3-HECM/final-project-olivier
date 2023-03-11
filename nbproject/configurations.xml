@@ -22,8 +22,6 @@
       <itemPath>i2c.c</itemPath>
       <itemPath>main.c</itemPath>
       <itemPath>serial.c</itemPath>
-      <itemPath>color.c</itemPath>
-      <itemPath>dc_motor.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"

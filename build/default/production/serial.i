@@ -24248,10 +24248,11 @@ unsigned char __t3rd16on(void);
 typedef struct RGBC_rel{
    float Rf, Gf, Bf, Cf;
    float h;
+   int colourindex;
 } RGBC_rel;
 
 
-char *Colourslist[]= {"Red","Eggshell","Pink","Yellow","Orange","Light Blue","Dark Blue","Green"};
+
 struct RGBC_rel colorf;
 
 void colour_read_all(struct RGBC_rel *cf);
@@ -24301,6 +24302,10 @@ unsigned int color_read_Blue(void);
 
 
 unsigned int color_read_Clear(void);
+
+
+
+void ClickLEDOn(char power);
 # 6 "./serial.h" 2
 
 
@@ -24499,9 +24504,9 @@ void Color2String(char *buf,struct RGBC_rel *cf){
 
 
     char* colourname = Hue2Colour(cf);
+    sprintf(buf," Red %f Green,%f Blue,%f clear %f Hue %f \r",cf->Rf,
+    cf->Gf,cf->Bf,cf->Cf,cf->h);
 
-
-    sprintf(buf,"Colour is %s  \r",colourname);
     sendStringSerial4(buf);
 }
 

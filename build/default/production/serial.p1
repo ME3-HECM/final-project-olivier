@@ -1,8 +1,8 @@
 Version 4.0 HI-TECH Software Intermediate Code
 "9 ./colorfunctions.h
 [; ;./colorfunctions.h: 9: typedef struct RGBC_rel{
-[s S2015 `f 1 `f 1 `f 1 `f 1 `f 1 ]
-[n S2015 RGBC_rel Rf Gf Bf Cf h ]
+[s S2015 `f 1 `f 1 `f 1 `f 1 `f 1 `i 1 ]
+[n S2015 RGBC_rel Rf Gf Bf Cf h colourindex ]
 "29584 C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\pic\include\proc\pic18f67k40.h
 [; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\pic\include\proc\pic18f67k40.h: 29584:     struct {
 [s S1376 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
@@ -76,8 +76,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "15820
 [; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\pic\include\proc\pic18f67k40.h: 15820: extern volatile unsigned char TX4REG __attribute__((address(0xEE4)));
 [v _TX4REG `Vuc ~T0 @X0 0 e@3812 ]
-"22 ./colorfunctions.h
-[; ;./colorfunctions.h: 22: char* Hue2Colour(struct RGBC_rel *cf);
+"23 ./colorfunctions.h
+[; ;./colorfunctions.h: 23: char* Hue2Colour(struct RGBC_rel *cf);
 [v _Hue2Colour `(*uc ~T0 @X0 0 ef1`*S2015 ]
 "109 C:\Program Files\Microchip\xc8\v2.40\pic\include\c99\stdio.h
 [; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\c99\stdio.h: 109: int sprintf(char *restrict, const char *restrict, ...);
@@ -2063,23 +2063,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "40927
 [; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\pic\include\proc\pic18f67k40.h: 40927: __asm("TOSU equ 0FFFh");
 [; <" TOSU equ 0FFFh ;# ">
-"15 ./colorfunctions.h
-[; ;./colorfunctions.h: 15: char *Colourslist[]= {"Red","Eggshell","Pink","Yellow","Orange","Light Blue","Dark Blue","Green"};
-[v _Colourslist `*uc ~T0 @X0 -> 8 `i e ]
-[i _Colourslist
-:U ..
-:s 1C
-:s 2C
-:s 3C
-:s 4C
-:s 5C
-:s 6C
-:s 7C
-:s 8C
-..
-]
-"16
-[; ;./colorfunctions.h: 16: struct RGBC_rel colorf;
+"17 ./colorfunctions.h
+[; ;./colorfunctions.h: 17: struct RGBC_rel colorf;
 [v _colorf `S2015 ~T0 @X0 1 e ]
 "7 serial.c
 [; ;serial.c: 7: void initUSART4(void) {
@@ -2178,9 +2163,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;serial.c: 42:     char* colourname = Hue2Colour(cf);
 [v _colourname `*uc ~T0 @X0 1 a ]
 [e = _colourname ( _Hue2Colour (1 _cf ]
-"45
-[; ;serial.c: 45:     sprintf(buf,"Colour is %s  \r",colourname);
-[e ( _sprintf (1 , (. , _buf :s 9C _colourname ]
+"43
+[; ;serial.c: 43:     sprintf(buf," Red %f Green,%f Blue,%f clear %f Hue %f \r",cf->Rf,
+[e ( _sprintf (1 , , , , , (. , _buf :s 1C -> . *U _cf 0 `d -> . *U _cf 1 `d -> . *U _cf 2 `d -> . *U _cf 3 `d -> . *U _cf 4 `d ]
 "46
 [; ;serial.c: 46:     sendStringSerial4(buf);
 [e ( _sendStringSerial4 (1 _buf ]
@@ -2218,13 +2203,5 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;serial.c: 57: }
 [e :UE 2028 ]
 }
-[p f _sprintf 8650752 ]
-[a 4C 89 101 108 108 111 119 0 ]
-[a 8C 71 114 101 101 110 0 ]
-[a 2C 69 103 103 115 104 101 108 108 0 ]
-[a 3C 80 105 110 107 0 ]
-[a 6C 76 105 103 104 116 32 66 108 117 101 0 ]
-[a 7C 68 97 114 107 32 66 108 117 101 0 ]
-[a 5C 79 114 97 110 103 101 0 ]
-[a 1C 82 101 100 0 ]
-[a 9C 67 111 108 111 117 114 32 105 115 32 37 115 32 32 13 0 ]
+[p f _sprintf 8396800 ]
+[a 1C 32 82 101 100 32 37 102 32 71 114 101 101 110 44 37 102 32 66 108 117 101 44 37 102 32 99 108 101 97 114 32 37 102 32 72 117 101 32 37 102 32 13 0 ]

@@ -34,13 +34,13 @@ void Right15(struct DC_motor *mL, struct DC_motor *mR);
 void rotate180left(struct DC_motor *mL, struct DC_motor *mR);
 
 
-void Red_R90(void);
-void Green_L90(void);
-void Blue_T180(void);
-void Yellow_REV1_L90(void);
-void Pink_rev1_L90(void);
-void Orange_R135(void);
-void LightBlue_L135(void);
-void White(void);
+void Red_R90(struct DC_motor *mL, struct DC_motor *mR);
+void Green_L90(struct DC_motor *mL, struct DC_motor *mR);
+void Blue_T180(struct DC_motor *mL, struct DC_motor *mR);
+void Yellow_REV1_L90(struct DC_motor *mL, struct DC_motor *mR);
+void Pink_rev1_L90(struct DC_motor *mL, struct DC_motor *mR);
+void Orange_R135(struct DC_motor *mL, struct DC_motor *mR);
+void LightBlue_L135(struct DC_motor *mL, struct DC_motor *mR);
+void White(struct DC_motor *mL, struct DC_motor *mR);
 
 #endif

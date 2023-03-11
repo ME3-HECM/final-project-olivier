@@ -24254,10 +24254,11 @@ unsigned char __t3rd16on(void);
 typedef struct RGBC_rel{
    float Rf, Gf, Bf, Cf;
    float h;
+   int colourindex;
 } RGBC_rel;
 
 
-char *Colourslist[]= {"Red","Eggshell","Pink","Yellow","Orange","Light Blue","Dark Blue","Green"};
+
 struct RGBC_rel colorf;
 
 void colour_read_all(struct RGBC_rel *cf);
@@ -24307,6 +24308,10 @@ unsigned int color_read_Blue(void);
 
 
 unsigned int color_read_Clear(void);
+
+
+
+void ClickLEDOn(char power);
 # 6 "./serial.h" 2
 
 
@@ -24512,18 +24517,30 @@ void main(void) {
     color_click_init();
     I2C_2_Master_Init();
 
-    LATGbits.LATG1=1;
-    TRISGbits.TRISG1=0;
-    LATAbits.LATA4=1;
-    TRISAbits.TRISA4=0;
-    LATFbits.LATF7=1;
-    TRISFbits.TRISF7=0;
-
+    char wall=0;
     while (1){
+
+        while (!wall){
+            colour_read_all(&colorf);
+            Color2String(data,&colorf);
+
+
+
+             if (colorf.Cf<1500)
+             {
+
+                 wall=1;
+                 ClickLEDOn(1);
+                 _delay((unsigned long)((1000)*(64000000/4000.0)));
+             }
+        }
         colour_read_all(&colorf);
         RGB2Hue(&colorf);
 
+
         Color2String(data,&colorf);
         _delay((unsigned long)((1000)*(64000000/4000.0)));
+        wall=0;
+        ClickLEDOn(0);
 }
 }

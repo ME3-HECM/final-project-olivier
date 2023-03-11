@@ -18,7 +18,13 @@ void color_click_init(void)
     //set integration time
 	color_writetoaddr(0x01, 0xD6);
     
-    color_writetoaddr(0x00, 0x13); // Turn on the LED light source
+           // Initialise Front LEDs on ColourClick 
+    LATGbits.LATG1=0;   //set initial output state
+    TRISGbits.TRISG1=0; //set TRIS value for pin (output)
+    LATAbits.LATA4=0;   //set initial output state
+    TRISAbits.TRISA4=0; //set TRIS value for pin (output)
+    LATFbits.LATF7=0;   //set initial output state
+    TRISFbits.TRISF7=0; //set TRIS value for pin (output)
 }
 //general color write to add
 void color_writetoaddr(char address, char value){
@@ -84,4 +90,16 @@ unsigned int color_read_Clear(void)
     I2C_2_Master_Stop();          //Stop condition
     return tmp;
 }
-
+void ClickLEDOn(char power)
+{
+    if (power){
+    LATGbits.LATG1=1;   //set initial output state
+    LATAbits.LATA4=1;   //set initial output state
+    LATFbits.LATF7=1;   //set initial output state
+    }
+    else if (!power){
+    LATGbits.LATG1=0;   //set initial output state
+    LATAbits.LATA4=0;   //set initial output state
+    LATFbits.LATF7=0;   //set initial output state
+    }
+}

@@ -17,19 +17,31 @@ void main(void) {
     initUSART4();
     color_click_init();
     I2C_2_Master_Init();
-       // Initialise Front LEDs on ColourClick 
-    LATGbits.LATG1=1;   //set initial output state
-    TRISGbits.TRISG1=0; //set TRIS value for pin (output)
-    LATAbits.LATA4=1;   //set initial output state
-    TRISAbits.TRISA4=0; //set TRIS value for pin (output)
-    LATFbits.LATF7=1;   //set initial output state
-    TRISFbits.TRISF7=0; //set TRIS value for pin (output)
-    
+
+    char wall=0;
     while (1){ 
+        //wait to run into a wall
+        while (!wall){
+            colour_read_all(&colorf);
+            Color2String(data,&colorf);
+             
+             //when in contact with a wall or card a lot less light is received
+             //by sensors so all sensor values fall
+             if (colorf.Cf<1500)
+             {
+                 //flag that a wall has been detected
+                 wall=1;
+                 ClickLEDOn(1);
+                 __delay_ms(1000);
+             }
+        }
         colour_read_all(&colorf);
         RGB2Hue(&colorf);
+        //Colour2Action(&colorf);
         //output color values being read to serial
         Color2String(data,&colorf);
         __delay_ms(1000);
+        wall=0;
+        ClickLEDOn(0);
 }
 }

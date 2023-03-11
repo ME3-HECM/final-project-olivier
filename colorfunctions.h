@@ -21,5 +21,8 @@ void RGB2Hue(struct RGBC_rel *cf);
 //This function takes a hue value and works out the most likely colour card being looked at
 //Values used to determine this are based on calibration
 char* Hue2Colour(struct RGBC_rel *cf);
+//This functionn takes the colourbeing looked at as a number reference 
+//and calls the relevant function
+//void Colour2Action(struct RGBC_rel *cf);
 #endif	/* XC_HEADER_TEMPLATE_H */
 
