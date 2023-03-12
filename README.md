@@ -113,3 +113,6 @@ char* Hue2Colour(struct RGBC_rel *cf)
 ```
 
 To maintain consistency we used a black cover over the colourclick when calibrating the hue ranges for each colour card, this was so our calibration was independent of ambient light kevels. This way we did not have to change the hue ranges when the buggy was deployed during the challenge.
+
+### Returning Home
+As per the challenge brief, under two circumstances the buggy would be reuqired to retrace it's steps back to it's starting point. This is when it sees the white card or if it has spent too much time looking for said card without success. After a move is executed, a number corresponding to this move is saved in an array. When it is time to go home, this array is then read from the end to the start executing the opposite of each of the moves to retrace it's steps.
