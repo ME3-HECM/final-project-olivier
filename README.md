@@ -58,7 +58,8 @@ The voltage at BAT-VSENSE will always be one third of that at the battery. Measu
 ## Solution Evolution
 ### Colour Calibration
 Initially we planned to use raw RGB values from the converter but realised these fluctate a lot with light so instead moved to RGB values relative to total light however it was rather difficult to detect colours with relative values so we decided on Hue Values.Serial communication was used to read out the RGBC values from the sensors, the calculated hues then finally when calibrated, the perceived colour based on the hue of the surface being faced.
-'''
+
+```
 char* Hue2Colour(struct RGBC_rel *cf)
 {
     char* colourname = "";
@@ -109,5 +110,6 @@ char* Hue2Colour(struct RGBC_rel *cf)
     
     return colourname;
 }
-'''
+```
+
 To maintain consistency we used a black cover over the colourclick when calibrating the hue ranges for each colour card, this was so our calibration was independent of ambient light kevels. This way we did not have to change the hue ranges when the buggy was deployed during the challenge.
