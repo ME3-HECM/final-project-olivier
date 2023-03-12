@@ -24222,7 +24222,6 @@ unsigned char __t3rd16on(void);
 
 
 
-
 typedef struct RGBC_rel{
    float Rf, Gf, Bf, Cf;
    float h;
@@ -24238,6 +24237,9 @@ void RGB2Hue(struct RGBC_rel *cf);
 
 
 char* Hue2Colour(struct RGBC_rel *cf);
+
+
+void Colour2Action(struct RGBC_rel *cf);
 # 5 "./serial.h" 2
 
 # 1 "./colorclick.h" 1
