@@ -1,45 +1,48 @@
 Version 4.0 HI-TECH Software Intermediate Code
-"8 ./colorfunctions.h
-[; ;./colorfunctions.h: 8: typedef struct RGBC_rel{
-[s S2014 `f 1 `f 1 `f 1 `f 1 `f 1 `i 1 ]
-[n S2014 RGBC_rel Rf Gf Bf Cf h colourindex ]
-"17 ./dc_motor.h
-[; ;./dc_motor.h: 17: typedef struct DC_motor {
-[s S2015 `uc 1 `uc 1 `uc 1 `ui 1 `*uc 1 `*uc 1 ]
-[n S2015 DC_motor power direction brakemode PWMperiod posDutyHighByte negDutyHighByte ]
-"34 ./colorclick.h
-[; ;./colorclick.h: 34: unsigned int color_read_Red(void);
-[v _color_read_Red `(ui ~T0 @X0 0 ef ]
-"40
-[; ;./colorclick.h: 40: unsigned int color_read_Green(void);
-[v _color_read_Green `(ui ~T0 @X0 0 ef ]
-"46
-[; ;./colorclick.h: 46: unsigned int color_read_Blue(void);
-[v _color_read_Blue `(ui ~T0 @X0 0 ef ]
-"52
-[; ;./colorclick.h: 52: unsigned int color_read_Clear(void);
-[v _color_read_Clear `(ui ~T0 @X0 0 ef ]
-"44 ./dc_motor.h
-[; ;./dc_motor.h: 44: void Red_R90(struct DC_motor *mL, struct DC_motor *mR);
-[v _Red_R90 `(v ~T0 @X0 0 ef2`*S2015`*S2015 ]
-"45
-[; ;./dc_motor.h: 45: void Green_L90(struct DC_motor *mL, struct DC_motor *mR);
-[v _Green_L90 `(v ~T0 @X0 0 ef2`*S2015`*S2015 ]
-"46
-[; ;./dc_motor.h: 46: void Blue_T180(struct DC_motor *mL, struct DC_motor *mR);
-[v _Blue_T180 `(v ~T0 @X0 0 ef2`*S2015`*S2015 ]
-"47
-[; ;./dc_motor.h: 47: void Yellow_rev1_R90(struct DC_motor *mL, struct DC_motor *mR);
-[v _Yellow_rev1_R90 `(v ~T0 @X0 0 ef2`*S2015`*S2015 ]
-"48
-[; ;./dc_motor.h: 48: void Pink_rev1_L90(struct DC_motor *mL, struct DC_motor *mR);
-[v _Pink_rev1_L90 `(v ~T0 @X0 0 ef2`*S2015`*S2015 ]
-"49
-[; ;./dc_motor.h: 49: void Orange_R135(struct DC_motor *mL, struct DC_motor *mR);
-[v _Orange_R135 `(v ~T0 @X0 0 ef2`*S2015`*S2015 ]
-"50
-[; ;./dc_motor.h: 50: void LightBlue_L135(struct DC_motor *mL, struct DC_motor *mR);
-[v _LightBlue_L135 `(v ~T0 @X0 0 ef2`*S2015`*S2015 ]
+"39617 C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\pic\include\proc\pic18lf67k40.h
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\pic\include\proc\pic18lf67k40.h: 39617:     struct {
+[s S1922 :4 `uc 1 :1 `uc 1 :3 `uc 1 ]
+[n S1922 . T0CKPS T0ASYNC T0CS ]
+"39622
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\pic\include\proc\pic18lf67k40.h: 39622:     struct {
+[s S1923 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S1923 . T0CKPS0 T0CKPS1 T0CKPS2 T0CKPS3 . T0CS0 T0CS1 T0CS2 ]
+"39632
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\pic\include\proc\pic18lf67k40.h: 39632:     struct {
+[s S1924 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S1924 . T0PS0 T0PS1 T0PS2 T0PS3 ]
+"39638
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\pic\include\proc\pic18lf67k40.h: 39638:     struct {
+[s S1925 :4 `uc 1 ]
+[n S1925 . T0PS ]
+"39616
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\pic\include\proc\pic18lf67k40.h: 39616: typedef union {
+[u S1921 `S1922 1 `S1923 1 `S1924 1 `S1925 1 ]
+[n S1921 . . . . . ]
+"39642
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\pic\include\proc\pic18lf67k40.h: 39642: extern volatile T0CON1bits_t T0CON1bits __attribute__((address(0xFD6)));
+[v _T0CON1bits `VS1921 ~T0 @X0 0 e@4054 ]
+"39552
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\pic\include\proc\pic18lf67k40.h: 39552:     struct {
+[s S1919 :4 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S1919 . T0OUTPS T016BIT T0OUT . T0EN ]
+"39559
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\pic\include\proc\pic18lf67k40.h: 39559:     struct {
+[s S1920 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S1920 . T0OUTPS0 T0OUTPS1 T0OUTPS2 T0OUTPS3 ]
+"39551
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\pic\include\proc\pic18lf67k40.h: 39551: typedef union {
+[u S1918 `S1919 1 `S1920 1 ]
+[n S1918 . . . ]
+"39566
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\pic\include\proc\pic18lf67k40.h: 39566: extern volatile T0CON0bits_t T0CON0bits __attribute__((address(0xFD5)));
+[v _T0CON0bits `VS1918 ~T0 @X0 0 e@4053 ]
+"39292
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\pic\include\proc\pic18lf67k40.h: 39292: extern volatile unsigned char TMR0H __attribute__((address(0xFD4)));
+[v _TMR0H `Vuc ~T0 @X0 0 e@4052 ]
+"39154
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\pic\include\proc\pic18lf67k40.h: 39154: extern volatile unsigned char TMR0L __attribute__((address(0xFD3)));
+[v _TMR0L `Vuc ~T0 @X0 0 e@4051 ]
 "54 C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\pic\include\proc\pic18lf67k40.h
 [; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\pic\include\proc\pic18lf67k40.h: 54: __asm("PPSLOCK equ 0DEFh");
 [; <" PPSLOCK equ 0DEFh ;# ">
@@ -2011,495 +2014,79 @@ Version 4.0 HI-TECH Software Intermediate Code
 "40893
 [; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\pic\include\proc\pic18lf67k40.h: 40893: __asm("TOSU equ 0FFFh");
 [; <" TOSU equ 0FFFh ;# ">
-"16 ./colorfunctions.h
-[; ;./colorfunctions.h: 16: struct RGBC_rel colorf;
-[v _colorf `S2014 ~T0 @X0 1 e ]
-"11 ./memory.h
-[; ;./memory.h: 11: unsigned int movementMemory[20];
-[v _movementMemory `ui ~T0 @X0 -> 20 `i e ]
-"12
-[; ;./memory.h: 12: unsigned int timerMemory[20];
-[v _timerMemory `ui ~T0 @X0 -> 20 `i e ]
-"11 ./dc_motor.h
-[; ;./dc_motor.h: 11: volatile char ForwardFlag = 1;
-[v _ForwardFlag `Vuc ~T0 @X0 1 e ]
-[i _ForwardFlag
--> -> 1 `i `uc
-]
-"12
-[; ;./dc_motor.h: 12: int _45dleftdelay = 300;
-[v __45dleftdelay `i ~T0 @X0 1 e ]
-[i __45dleftdelay
--> 300 `i
-]
-"13
-[; ;./dc_motor.h: 13: int _45drightdelay = 300;
-[v __45drightdelay `i ~T0 @X0 1 e ]
-[i __45drightdelay
--> 300 `i
-]
-"14
-[; ;./dc_motor.h: 14: int _1square = 2000;
-[v __1square `i ~T0 @X0 1 e ]
-[i __1square
--> 2000 `i
-]
-"15
-[; ;./dc_motor.h: 15: int _halfsquare = 1000;
-[v __halfsquare `i ~T0 @X0 1 e ]
-[i __halfsquare
--> 1000 `i
-]
-"26
-[; ;./dc_motor.h: 26: struct DC_motor motorL, motorR;
-[v _motorL `S2015 ~T0 @X0 1 e ]
-[v _motorR `S2015 ~T0 @X0 1 e ]
-"8 colorfunctions.c
-[; ;colorfunctions.c: 8: void colour_read_all(struct RGBC_rel *cf) {
-[v _colour_read_all `(v ~T0 @X0 1 ef1`*S2014 ]
+"7 timer.c
+[; ;timer.c: 7: void Timer0_init(void)
+[v _Timer0_init `(v ~T0 @X0 1 ef ]
+"8
+[; ;timer.c: 8: {
 {
-[e :U _colour_read_all ]
-[v _cf `*S2014 ~T0 @X0 1 r1 ]
+[e :U _Timer0_init ]
 [f ]
+"9
+[; ;timer.c: 9:     T0CON1bits.T0CS=0b010;
+[e = . . _T0CON1bits 0 2 -> -> 2 `i `uc ]
 "10
-[; ;colorfunctions.c: 10:     float R = color_read_Red();
-[v _R `f ~T0 @X0 1 a ]
-[e = _R -> ( _color_read_Red ..  `f ]
+[; ;timer.c: 10:     T0CON1bits.T0ASYNC=1;
+[e = . . _T0CON1bits 0 1 -> -> 1 `i `uc ]
 "11
-[; ;colorfunctions.c: 11:     float G= color_read_Green();
-[v _G `f ~T0 @X0 1 a ]
-[e = _G -> ( _color_read_Green ..  `f ]
+[; ;timer.c: 11:     T0CON1bits.T0CKPS=0b1000;
+[e = . . _T0CON1bits 0 0 -> -> 8 `i `uc ]
 "12
-[; ;colorfunctions.c: 12:     float B= color_read_Blue();
-[v _B `f ~T0 @X0 1 a ]
-[e = _B -> ( _color_read_Blue ..  `f ]
-"13
-[; ;colorfunctions.c: 13:     float C= color_read_Clear();
-[v _C `f ~T0 @X0 1 a ]
-[e = _C -> ( _color_read_Clear ..  `f ]
+[; ;timer.c: 12:     T0CON0bits.T016BIT=1;
+[e = . . _T0CON0bits 0 1 -> -> 1 `i `uc ]
+"15
+[; ;timer.c: 15:     TMR0H=0b00001011;
+[e = _TMR0H -> -> 11 `i `uc ]
+"16
+[; ;timer.c: 16:     TMR0L=0b11011011;
+[e = _TMR0L -> -> 219 `i `uc ]
 "17
-[; ;colorfunctions.c: 17:     (cf->Rf)=R;
-[e = . *U _cf 0 _R ]
+[; ;timer.c: 17:     T0CON0bits.T0EN=1;
+[e = . . _T0CON0bits 0 4 -> -> 1 `i `uc ]
 "18
-[; ;colorfunctions.c: 18:     (cf->Bf)=B;
-[e = . *U _cf 2 _B ]
+[; ;timer.c: 18: }
+[e :UE 2012 ]
+}
 "19
-[; ;colorfunctions.c: 19:     (cf->Gf)=G;
-[e = . *U _cf 1 _G ]
+[; ;timer.c: 19: void TimerReset(void)
+[v _TimerReset `(v ~T0 @X0 1 ef ]
 "20
-[; ;colorfunctions.c: 20:     (cf->Cf)=C;
-[e = . *U _cf 3 _C ]
+[; ;timer.c: 20: {
+{
+[e :U _TimerReset ]
+[f ]
 "21
-[; ;colorfunctions.c: 21: }
-[e :UE 2016 ]
-}
+[; ;timer.c: 21:     TMR0L = 0;
+[e = _TMR0L -> -> 0 `i `uc ]
+"22
+[; ;timer.c: 22:     TMR0H = 0;
+[e = _TMR0H -> -> 0 `i `uc ]
 "23
-[; ;colorfunctions.c: 23: void RGB2Hue(struct RGBC_rel *cf){
-[v _RGB2Hue `(v ~T0 @X0 1 ef1`*S2014 ]
-{
-[e :U _RGB2Hue ]
-[v _cf `*S2014 ~T0 @X0 1 r1 ]
-[f ]
+[; ;timer.c: 23: }
+[e :UE 2013 ]
+}
 "24
-[; ;colorfunctions.c: 24:     if ((cf->Rf == cf->Gf)&&(cf->Rf == cf->Bf)){
-[e $ ! && == . *U _cf 0 . *U _cf 1 == . *U _cf 0 . *U _cf 2 2018  ]
-{
+[; ;timer.c: 24: unsigned int getTimerValue(void)
+[v _getTimerValue `(ui ~T0 @X0 1 ef ]
 "25
-[; ;colorfunctions.c: 25:         cf->h=0;
-[e = . *U _cf 4 -> -> 0 `i `f ]
+[; ;timer.c: 25: {
+{
+[e :U _getTimerValue ]
+[f ]
 "26
-[; ;colorfunctions.c: 26:     } else{
-}
-[e $U 2019  ]
-[e :U 2018 ]
-{
-"27
-[; ;colorfunctions.c: 27:         signed int max=0;
-[v _max `i ~T0 @X0 1 a ]
-[e = _max -> 0 `i ]
+[; ;timer.c: 26:     unsigned int timerCount;
+[v _timerCount `ui ~T0 @X0 1 a ]
 "28
-[; ;colorfunctions.c: 28:         signed int min=0;
-[v _min `i ~T0 @X0 1 a ]
-[e = _min -> 0 `i ]
+[; ;timer.c: 28:     timerCount = TMR0L;
+[e = _timerCount -> _TMR0L `ui ]
 "30
-[; ;colorfunctions.c: 30:         if ((cf->Rf < cf->Gf)&(cf->Rf < cf->Bf)){
-[e $ ! & < . *U _cf 0 . *U _cf 1 < . *U _cf 0 . *U _cf 2 2020  ]
-{
+[; ;timer.c: 30:     timerCount |= (unsigned int)(TMR0H << 8);
+[e =| _timerCount -> << -> _TMR0H `i -> 8 `i `ui ]
 "31
-[; ;colorfunctions.c: 31:             min=cf->Rf;
-[e = _min -> . *U _cf 0 `i ]
+[; ;timer.c: 31:     return timerCount;
+[e ) _timerCount ]
+[e $UE 2014  ]
 "32
-[; ;colorfunctions.c: 32:         } else if((cf->Gf < cf->Rf)&(cf->Gf < cf->Bf)){
+[; ;timer.c: 32: }
+[e :UE 2014 ]
 }
-[e $U 2021  ]
-[e :U 2020 ]
-[e $ ! & < . *U _cf 1 . *U _cf 0 < . *U _cf 1 . *U _cf 2 2022  ]
-{
-"33
-[; ;colorfunctions.c: 33:             min=cf->Gf;
-[e = _min -> . *U _cf 1 `i ]
-"34
-[; ;colorfunctions.c: 34:         } else{
-}
-[e $U 2023  ]
-[e :U 2022 ]
-{
-"35
-[; ;colorfunctions.c: 35:             min=cf->Bf;
-[e = _min -> . *U _cf 2 `i ]
-"36
-[; ;colorfunctions.c: 36:         }
-}
-[e :U 2023 ]
-[e :U 2021 ]
-"38
-[; ;colorfunctions.c: 38:         if ((cf->Rf > cf->Gf)&(cf->Rf > cf->Bf)){
-[e $ ! & > . *U _cf 0 . *U _cf 1 > . *U _cf 0 . *U _cf 2 2024  ]
-{
-"39
-[; ;colorfunctions.c: 39:             max=(cf->Rf);
-[e = _max -> . *U _cf 0 `i ]
-"42
-[; ;colorfunctions.c: 42:             (cf->h)=60*(((cf->Gf)-(cf->Bf))/(max-min));
-[e = . *U _cf 4 * -> -> 60 `i `f / - . *U _cf 1 . *U _cf 2 -> - _max _min `f ]
-"43
-[; ;colorfunctions.c: 43:         } else if((cf->Gf > cf->Rf)&(cf->Gf > cf->Bf)){
-}
-[e $U 2025  ]
-[e :U 2024 ]
-[e $ ! & > . *U _cf 1 . *U _cf 0 > . *U _cf 1 . *U _cf 2 2026  ]
-{
-"44
-[; ;colorfunctions.c: 44:             max=cf->Gf;
-[e = _max -> . *U _cf 1 `i ]
-"45
-[; ;colorfunctions.c: 45:             (cf->h)=60*(2+(((cf->Bf)-(cf->Rf))/(max-min)));
-[e = . *U _cf 4 * -> -> 60 `i `f + -> -> 2 `i `f / - . *U _cf 2 . *U _cf 0 -> - _max _min `f ]
-"46
-[; ;colorfunctions.c: 46:         }else{
-}
-[e $U 2027  ]
-[e :U 2026 ]
-{
-"47
-[; ;colorfunctions.c: 47:             max=cf->Bf;
-[e = _max -> . *U _cf 2 `i ]
-"48
-[; ;colorfunctions.c: 48:             (cf->h)=60*(4+(((cf->Rf)-(cf->Gf))/(max-min)));
-[e = . *U _cf 4 * -> -> 60 `i `f + -> -> 4 `i `f / - . *U _cf 0 . *U _cf 1 -> - _max _min `f ]
-"49
-[; ;colorfunctions.c: 49:         }
-}
-[e :U 2027 ]
-[e :U 2025 ]
-"50
-[; ;colorfunctions.c: 50:         if (cf->h < 0){
-[e $ ! < . *U _cf 4 -> -> 0 `i `f 2028  ]
-{
-"51
-[; ;colorfunctions.c: 51:             cf->h= cf->h +360;
-[e = . *U _cf 4 + . *U _cf 4 -> -> 360 `i `f ]
-"52
-[; ;colorfunctions.c: 52:         }
-}
-[e :U 2028 ]
-"53
-[; ;colorfunctions.c: 53:     }
-}
-[e :U 2019 ]
-"54
-[; ;colorfunctions.c: 54: }
-[e :UE 2017 ]
-}
-"56
-[; ;colorfunctions.c: 56: char* Hue2Colour(struct RGBC_rel *cf)
-[v _Hue2Colour `(*uc ~T0 @X0 1 ef1`*S2014 ]
-"57
-[; ;colorfunctions.c: 57: {
-{
-[e :U _Hue2Colour ]
-"56
-[; ;colorfunctions.c: 56: char* Hue2Colour(struct RGBC_rel *cf)
-[v _cf `*S2014 ~T0 @X0 1 r1 ]
-"57
-[; ;colorfunctions.c: 57: {
-[f ]
-"58
-[; ;colorfunctions.c: 58:     char* colourname = "";
-[v _colourname `*uc ~T0 @X0 1 a ]
-[e = _colourname :s 1C ]
-"60
-[; ;colorfunctions.c: 60:     if (((cf->h)>352)&&((cf->h)<360))
-[e $ ! && > . *U _cf 4 -> -> 352 `i `f < . *U _cf 4 -> -> 360 `i `f 2030  ]
-"61
-[; ;colorfunctions.c: 61:     {
-{
-"63
-[; ;colorfunctions.c: 63:         colourname = "Red";
-[e = _colourname :s 2C ]
-"66
-[; ;colorfunctions.c: 66:         cf->colourindex=0;
-[e = . *U _cf 5 -> 0 `i ]
-"67
-[; ;colorfunctions.c: 67:     }
-}
-[e :U 2030 ]
-"68
-[; ;colorfunctions.c: 68:      if (((cf->h)>75)&&((cf->h)<79))
-[e $ ! && > . *U _cf 4 -> -> 75 `i `f < . *U _cf 4 -> -> 79 `i `f 2031  ]
-"69
-[; ;colorfunctions.c: 69:     {
-{
-"70
-[; ;colorfunctions.c: 70:         colourname = "Green";
-[e = _colourname :s 3C ]
-"71
-[; ;colorfunctions.c: 71:         cf->colourindex=1;
-[e = . *U _cf 5 -> 1 `i ]
-"72
-[; ;colorfunctions.c: 72:     }
-}
-[e $U 2032  ]
-"73
-[; ;colorfunctions.c: 73:     else if (((cf->h)>145)&&((cf->h)<164))
-[e :U 2031 ]
-[e $ ! && > . *U _cf 4 -> -> 145 `i `f < . *U _cf 4 -> -> 164 `i `f 2033  ]
-"74
-[; ;colorfunctions.c: 74:     {
-{
-"75
-[; ;colorfunctions.c: 75:         colourname = "Dark Blue";
-[e = _colourname :s 4C ]
-"76
-[; ;colorfunctions.c: 76:         cf->colourindex=2;
-[e = . *U _cf 5 -> 2 `i ]
-"77
-[; ;colorfunctions.c: 77:     }
-}
-[e $U 2034  ]
-"78
-[; ;colorfunctions.c: 78:     else if (((cf->h)>21)&&((cf->h)<25))
-[e :U 2033 ]
-[e $ ! && > . *U _cf 4 -> -> 21 `i `f < . *U _cf 4 -> -> 25 `i `f 2035  ]
-"79
-[; ;colorfunctions.c: 79:     {
-{
-"80
-[; ;colorfunctions.c: 80:         colourname = "Yellow";
-[e = _colourname :s 5C ]
-"81
-[; ;colorfunctions.c: 81:         cf->colourindex=3;
-[e = . *U _cf 5 -> 3 `i ]
-"82
-[; ;colorfunctions.c: 82:     }
-}
-[e $U 2036  ]
-"83
-[; ;colorfunctions.c: 83:     else if (((cf->h)>15)&&((cf->h)<19))
-[e :U 2035 ]
-[e $ ! && > . *U _cf 4 -> -> 15 `i `f < . *U _cf 4 -> -> 19 `i `f 2037  ]
-"84
-[; ;colorfunctions.c: 84:     {
-{
-"85
-[; ;colorfunctions.c: 85:         colourname = "Pink";
-[e = _colourname :s 6C ]
-"86
-[; ;colorfunctions.c: 86:         cf->colourindex=4;
-[e = . *U _cf 5 -> 4 `i ]
-"87
-[; ;colorfunctions.c: 87:     }
-}
-[e $U 2038  ]
-"88
-[; ;colorfunctions.c: 88:     else if (((cf->h)>7)&&((cf->h)<9))
-[e :U 2037 ]
-[e $ ! && > . *U _cf 4 -> -> 7 `i `f < . *U _cf 4 -> -> 9 `i `f 2039  ]
-"89
-[; ;colorfunctions.c: 89:     {
-{
-"90
-[; ;colorfunctions.c: 90:         colourname = "Orange";
-[e = _colourname :s 7C ]
-"91
-[; ;colorfunctions.c: 91:         cf->colourindex=5;
-[e = . *U _cf 5 -> 5 `i ]
-"92
-[; ;colorfunctions.c: 92:     }
-}
-[e $U 2040  ]
-"93
-[; ;colorfunctions.c: 93:     else if (((cf->h)>85)&&((cf->h)<94))
-[e :U 2039 ]
-[e $ ! && > . *U _cf 4 -> -> 85 `i `f < . *U _cf 4 -> -> 94 `i `f 2041  ]
-"94
-[; ;colorfunctions.c: 94:     {
-{
-"95
-[; ;colorfunctions.c: 95:         colourname = "Light Blue";
-[e = _colourname :s 8C ]
-"96
-[; ;colorfunctions.c: 96:         cf->colourindex=6;
-[e = . *U _cf 5 -> 6 `i ]
-"97
-[; ;colorfunctions.c: 97:     }
-}
-[e $U 2042  ]
-"98
-[; ;colorfunctions.c: 98:     else if (((cf->h)>26)&&((cf->h)<29))
-[e :U 2041 ]
-[e $ ! && > . *U _cf 4 -> -> 26 `i `f < . *U _cf 4 -> -> 29 `i `f 2043  ]
-"99
-[; ;colorfunctions.c: 99:     {
-{
-"100
-[; ;colorfunctions.c: 100:         colourname = "Eggshell";
-[e = _colourname :s 9C ]
-"101
-[; ;colorfunctions.c: 101:         cf->colourindex=7;
-[e = . *U _cf 5 -> 7 `i ]
-"102
-[; ;colorfunctions.c: 102:     }
-}
-[e :U 2043 ]
-[e :U 2042 ]
-[e :U 2040 ]
-[e :U 2038 ]
-[e :U 2036 ]
-[e :U 2034 ]
-[e :U 2032 ]
-"104
-[; ;colorfunctions.c: 104:     return colourname;
-[e ) _colourname ]
-[e $UE 2029  ]
-"105
-[; ;colorfunctions.c: 105: }
-[e :UE 2029 ]
-}
-"107
-[; ;colorfunctions.c: 107: void Colour2Action(struct RGBC_rel *cf)
-[v _Colour2Action `(v ~T0 @X0 1 ef1`*S2014 ]
-"108
-[; ;colorfunctions.c: 108: {
-{
-[e :U _Colour2Action ]
-"107
-[; ;colorfunctions.c: 107: void Colour2Action(struct RGBC_rel *cf)
-[v _cf `*S2014 ~T0 @X0 1 r1 ]
-"108
-[; ;colorfunctions.c: 108: {
-[f ]
-"109
-[; ;colorfunctions.c: 109:     if (cf->colourindex & 0)
-[e $ ! != & . *U _cf 5 -> 0 `i -> 0 `i 2045  ]
-"110
-[; ;colorfunctions.c: 110:     {
-{
-"111
-[; ;colorfunctions.c: 111:         Red_R90(&motorL,&motorR);
-[e ( _Red_R90 (2 , &U _motorL &U _motorR ]
-"112
-[; ;colorfunctions.c: 112:     }
-}
-[e :U 2045 ]
-"113
-[; ;colorfunctions.c: 113:     if (cf->colourindex & 1)
-[e $ ! != & . *U _cf 5 -> 1 `i -> 0 `i 2046  ]
-"114
-[; ;colorfunctions.c: 114:     {
-{
-"115
-[; ;colorfunctions.c: 115:         Green_L90(&motorL,&motorR);
-[e ( _Green_L90 (2 , &U _motorL &U _motorR ]
-"116
-[; ;colorfunctions.c: 116:     }
-}
-[e :U 2046 ]
-"117
-[; ;colorfunctions.c: 117:     if (cf->colourindex & 2)
-[e $ ! != & . *U _cf 5 -> 2 `i -> 0 `i 2047  ]
-"118
-[; ;colorfunctions.c: 118:     {
-{
-"119
-[; ;colorfunctions.c: 119:         Blue_T180(&motorL,&motorR);
-[e ( _Blue_T180 (2 , &U _motorL &U _motorR ]
-"120
-[; ;colorfunctions.c: 120:     }
-}
-[e :U 2047 ]
-"121
-[; ;colorfunctions.c: 121:     if (cf->colourindex & 3)
-[e $ ! != & . *U _cf 5 -> 3 `i -> 0 `i 2048  ]
-"122
-[; ;colorfunctions.c: 122:     {
-{
-"123
-[; ;colorfunctions.c: 123:         Yellow_rev1_R90(&motorL,&motorR);
-[e ( _Yellow_rev1_R90 (2 , &U _motorL &U _motorR ]
-"124
-[; ;colorfunctions.c: 124:     }
-}
-[e :U 2048 ]
-"125
-[; ;colorfunctions.c: 125:     if (cf->colourindex & 4)
-[e $ ! != & . *U _cf 5 -> 4 `i -> 0 `i 2049  ]
-"126
-[; ;colorfunctions.c: 126:     {
-{
-"127
-[; ;colorfunctions.c: 127:         Pink_rev1_L90(&motorL,&motorR);
-[e ( _Pink_rev1_L90 (2 , &U _motorL &U _motorR ]
-"128
-[; ;colorfunctions.c: 128:     }
-}
-[e :U 2049 ]
-"129
-[; ;colorfunctions.c: 129:     if (cf->colourindex & 5)
-[e $ ! != & . *U _cf 5 -> 5 `i -> 0 `i 2050  ]
-"130
-[; ;colorfunctions.c: 130:     {
-{
-"131
-[; ;colorfunctions.c: 131:         Orange_R135(&motorL,&motorR);
-[e ( _Orange_R135 (2 , &U _motorL &U _motorR ]
-"132
-[; ;colorfunctions.c: 132:     }
-}
-[e :U 2050 ]
-"133
-[; ;colorfunctions.c: 133:     if (cf->colourindex & 6)
-[e $ ! != & . *U _cf 5 -> 6 `i -> 0 `i 2051  ]
-"134
-[; ;colorfunctions.c: 134:     {
-{
-"135
-[; ;colorfunctions.c: 135:         LightBlue_L135(&motorL,&motorR);
-[e ( _LightBlue_L135 (2 , &U _motorL &U _motorR ]
-"136
-[; ;colorfunctions.c: 136:     }
-}
-[e :U 2051 ]
-"137
-[; ;colorfunctions.c: 137:     if (cf->colourindex & 7)
-[e $ ! != & . *U _cf 5 -> 7 `i -> 0 `i 2052  ]
-"138
-[; ;colorfunctions.c: 138:     {
-{
-"140
-[; ;colorfunctions.c: 140:     }
-}
-[e :U 2052 ]
-"142
-[; ;colorfunctions.c: 142: }
-[e :UE 2044 ]
-}
-[a 5C 89 101 108 108 111 119 0 ]
-[a 3C 71 114 101 101 110 0 ]
-[a 9C 69 103 103 115 104 101 108 108 0 ]
-[a 6C 80 105 110 107 0 ]
-[a 8C 76 105 103 104 116 32 66 108 117 101 0 ]
-[a 4C 68 97 114 107 32 66 108 117 101 0 ]
-[a 7C 79 114 97 110 103 101 0 ]
-[a 2C 82 101 100 0 ]
-[a 1C 0 ]

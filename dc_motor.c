@@ -1,5 +1,9 @@
 #include <xc.h>
 #include "dc_motor.h"
+#include "LED.h"
+#include "memory.h"
+#include "main.h"
+#include "timer.h"
 
 
 // function initialise T2 and CCP for DC motor control
@@ -88,6 +92,7 @@ void setMotorPWM(struct DC_motor *m)
 //function to stop the robot gradually 
 void stop(struct DC_motor *mL, struct DC_motor *mR)
 {
+    BrakeLightON;
     while((mL->power)>0 && (mR->power)>0)//whilst the power is non zero to each motor (in all functions power increases to both sides equally)
     {
         //individually check the power to each motor is above zero 
@@ -101,11 +106,13 @@ void stop(struct DC_motor *mL, struct DC_motor *mR)
         setMotorPWM(mR);
         __delay_us(10);//delay to decrease power slowly
     }
+    BrakeLightOFF;
 }
 
 //function to make the robot turn left
 void turnLeft(struct DC_motor *mL, struct DC_motor *mR)
 {
+    
     (mL->direction) = 1; //set motor direction backward for left
     (mR->direction) = 0; //set motor direction forward for right
     setMotorPWM(mL);//set new motor direction 
@@ -118,11 +125,12 @@ void turnLeft(struct DC_motor *mL, struct DC_motor *mR)
         setMotorPWM(mR);
         __delay_us(100);//delay to increase power slowly
     } 
+    
 }
 
 //function to make the robot turn right 
 void turnRight(struct DC_motor *mL, struct DC_motor *mR)
-{
+{ 
     (mL->direction) = 0; //set motor direction forward for left
     (mR->direction) = 1; //set motor direction backward for right
     setMotorPWM(mL);//set new motor direction 
@@ -170,6 +178,7 @@ void fullSpeedReverse(struct DC_motor *mL, struct DC_motor *mR)
 //function to turn left 90 degrees
 void Left45(struct DC_motor *mL, struct DC_motor *mR)
 {
+    IndicatorLeftON;
     //this has been tuned to invoke a turn enough times for a 45 degree change
     stop(mL,mR); //stop buggy
     __delay_ms(50);
@@ -177,11 +186,13 @@ void Left45(struct DC_motor *mL, struct DC_motor *mR)
     __delay_ms(_45dleftdelay);
     stop(mL,mR);//stop the rotation of the buggy 
     __delay_ms(50);//minimise intertia from buggy between 45 degree changes 
+    IndicatorLeftOFF;
 }
 
 //function to turn right 90 degrees
 void Right45(struct DC_motor *mL, struct DC_motor *mR)
 {   
+    IndicatorRightON;
  //this has been tuned to invoke a turn enough times for a 45 degree change
     stop(mL,mR);
     __delay_ms(50);
@@ -189,6 +200,8 @@ void Right45(struct DC_motor *mL, struct DC_motor *mR)
     __delay_ms(_45drightdelay);
     stop(mL,mR);//stop the rotation of the buggy 
     __delay_ms(50);//minimise intertia from buggy between 45 degree changes 
+    IndicatorRightOFF;
+    
 }
 
 void rotate180left(struct DC_motor *mL, struct DC_motor *mR)//from lab 6 
@@ -200,16 +213,23 @@ void rotate180left(struct DC_motor *mL, struct DC_motor *mR)//from lab 6
     Left45(mL,mR);
 }
 
+void reverseHalfSquare(struct DC_motor *mL, struct DC_motor *mR)
+{
+    stop(mL,mR); //stop buggy (it hits the wall)
+    __delay_ms(50);
+    fullSpeedReverse(mL,mR); // reverse 
+    __delay_ms(_halfsquare); // until a half square is reached
+    stop(mL,mR);
+    __delay_ms(50);
+}
+
 void Red_R90(struct DC_motor *mL, struct DC_motor *mR)
 {
-    
     if (ForwardFlag){ 
-        stop(mL,mR); //stop buggy (it hits the wall)
-        __delay_ms(50);
-        fullSpeedReverse(mL,mR); // reverse 
-        __delay_ms(_halfsquare); // until a half square is reached 
+        reverseHalfSquare(mL,mR);//reverse half square
         Right45(mL,mR);
         Right45(mL,mR);
+        TimerReset();//reset the timer in order to have time between actions
     }
     else {
         //execute left 90 turn 
@@ -219,16 +239,13 @@ void Red_R90(struct DC_motor *mL, struct DC_motor *mR)
 }
 
 void Green_L90(struct DC_motor *mL, struct DC_motor *mR)
-{
-    
+{   
     if (ForwardFlag){
-        stop(mL,mR); //stop buggy (it hits the wall)
-        fullSpeedReverse(mL,mR); // reverse 
-        __delay_ms(_halfsquare); // until a half square is reached
+        reverseHalfSquare(mL,mR);//reverse half square
         //execute left 90 turn
         Left45(mL,mR);
         Left45(mL,mR);
-        
+        TimerReset();//reset the timer in order to have time between actions    
     }
     else {
         //execute right 90 turn 
@@ -240,29 +257,26 @@ void Green_L90(struct DC_motor *mL, struct DC_motor *mR)
 void Blue_T180(struct DC_motor *mL, struct DC_motor *mR)
 {
     if (ForwardFlag){
-    stop(mL,mR); //stop buggy (it hits the wall)
-    fullSpeedReverse(mL,mR); // reverse 
-    __delay_ms(_halfsquare); // until a half square is reached 
+    reverseHalfSquare(mL,mR);//reverse half square
     //execute right 180 turn (depending on which side turns left/right more accurately)
-    rotate180left(mL,mR);   
+    rotate180left(mL,mR); 
+    TimerReset();//reset the timer in order to have time between actions
     }else{
     rotate180left(mL,mR);
     }
+    
 }
-void Yellow_REV1_R90(struct DC_motor *mL, struct DC_motor *mR)
+void Yellow_rev1_R90(struct DC_motor *mL, struct DC_motor *mR)
 { 
     if (ForwardFlag){
-        stop(mL,mR); //stop buggy (it hits the wall)
-        fullSpeedReverse(mL,mR); // reverse 
-        __delay_ms(_halfsquare); // until a half square is reached
-        stop(mL,mR); //stop buggy and execute function
-        __delay_ms(50);
+        reverseHalfSquare(mL,mR);//reverse half square
         //execute reverse 1 square & right 90 turn 
         fullSpeedReverse(mL,mR);
         __delay_ms(_1square);//delay corresponding to 1 square reversed
         //execute a 90 degree right turn
         Right45(mL,mR);
         Right45(mL,mR);
+        TimerReset();//reset the timer in order to have time between actions
     }
     else{
         //execute left turn 90 & forward 1 square 
@@ -276,16 +290,13 @@ void Yellow_REV1_R90(struct DC_motor *mL, struct DC_motor *mR)
 void Pink_rev1_L90(struct DC_motor *mL, struct DC_motor *mR)
 {
     if (ForwardFlag){
-        stop(mL,mR); //stop buggy (it hits the wall)
-        fullSpeedReverse(mL,mR); // reverse 
-        __delay_ms(_halfsquare); // until a half square is reached
-        stop(mL,mR); //stop buggy and execute function
-        __delay_ms(50);
+        reverseHalfSquare(mL,mR);//reverse half square
         //execute reverse 1 square & left 90 turn 
         fullSpeedReverse(mL,mR);
         __delay_ms(_1square);//delay corresponding to 1 square reversed
         Left45(mL,mR);
         Left45(mL,mR); //execute a 90 degree left turn
+        TimerReset();//reset the timer in order to have time between actions
     }
     else if(ForwardFlag&0){
         //execute right turn 90 & forward 1 square 
@@ -293,21 +304,18 @@ void Pink_rev1_L90(struct DC_motor *mL, struct DC_motor *mR)
         Right45(mL,mR);//execute a 90 degree right turn
         fullSpeedAhead(mL,mR);
         __delay_ms(_1square);//delay corresponding to 1 square forward
-        stop(mL,mR);
-        
+        stop(mL,mR);        
     }
 }
 void Orange_R135(struct DC_motor *mL, struct DC_motor *mR)
 {
-    
     if (ForwardFlag){
-        stop(mL,mR); //stop buggy (it hits the wall)
-        fullSpeedReverse(mL,mR); // reverse 
-        __delay_ms(_halfsquare); // until a half square is reached
+        reverseHalfSquare(mL,mR);//reverse half square
         //execute Right 135 turn
         Right45(mL,mR);
         Right45(mL,mR);
         Right45(mL,mR);
+        TimerReset();//reset the timer in order to have time between actions
     }
     else{
         //execute Left 135 turn  
@@ -320,14 +328,12 @@ void LightBlue_L135(struct DC_motor *mL, struct DC_motor *mR)
 {
      
      if (ForwardFlag){
-        stop(mL,mR); //stop buggy (it hits the wall)
-        fullSpeedReverse(mL,mR); // reverse 
-        __delay_ms(_halfsquare); // until a half square is reached
+        reverseHalfSquare(mL,mR);//reverse half square
         //execute Left 135 turn  
         Left45(mL,mR);
         Left45(mL,mR);
         Left45(mL,mR);
-        stop(mL,mR);
+        TimerReset();//reset the timer in order to have time between actions
     }
     else{
          //execute Right 135 turn
@@ -336,19 +342,38 @@ void LightBlue_L135(struct DC_motor *mL, struct DC_motor *mR)
         Right45(mL,mR);     
     }
 }
-void White(struct DC_motor *mL, struct DC_motor *mR)
+void White(struct DC_motor *mL, struct DC_motor *mR,unsigned int movementCount, unsigned int *movementMemory, unsigned int *timerMemory)
 {
-    stop(mL,mR); //stop buggy (it hits the wall)
-    fullSpeedReverse(mL,mR); // reverse 
-    __delay_ms(_halfsquare); // until a half square is reached
-    stop(mL,mR); //stop buggy 
-    
+    reverseHalfSquare(mL,mR);//reverse half square
     rotate180left(mL,mR); //rotate buggy 180 degrees to face the reverse direction of the maze
-    
+    __delay_ms(500);//delay starting the retrace
+    ForwardFlag = 0;//now put it in reverse mode 
     //execute the reverse of all the commands sent 
-    
-    
-    //calibration sequence for white 
-    //here reverse the array containing the history of turn (i) and distance of the buggy travel (ii) 
+    for (unsigned int i=movementCount-1; i>=0;i--){
+        if (movementMemory[i]==0){
+            Red_R90(mL,mR);}
+        else if (movementMemory[i]==1){
+            Green_L90(mL,mR);}
+        else if (movementMemory[i]==2){
+            Blue_T180(mL,mR);}
+        else if (movementMemory[i]==3){
+            Yellow_rev1_R90(mL,mR);}
+        else if (movementMemory[i]==4){
+            Pink_rev1_L90(mL,mR);}
+        else if (movementMemory[i]==5){
+            Orange_R135(mL,mR);}
+        else if (movementMemory[i]==6){
+            LightBlue_L135(mL,mR);}
+        //now we read the timer memory to find the time between functions 
+        TimerReset();//reset the timer in order to count up from 0->timerMemory[i]
+        unsigned int tempTimer = getTimerValue();
+        while(tempTimer<timerMemory[i])
+        {
+            fullSpeedAhead(mL,mR);
+            tempTimer = getTimerValue();
+        }
+        stop(mL,mR);//stop the buggy and perform the next action 
+    }
+     
     stop(mL,mR);// stop buggy after retracing is done 
 }

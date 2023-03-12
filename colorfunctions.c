@@ -3,9 +3,10 @@
 #include "colorclick.h"
 #include "colorfunctions.h"
 #include "dc_motor.h"
+#include "main.h"
 
 void colour_read_all(struct RGBC_rel *cf) {
-    //stores all absolute color values  in teh struct
+    //stores all absolute color values  in the struct
     float R = color_read_Red();
     float G= color_read_Green();
     float B= color_read_Blue();
@@ -67,16 +68,11 @@ char* Hue2Colour(struct RGBC_rel *cf)
      if (((cf->h)>75)&&((cf->h)<79))
     {
         colourname = "Green";
-        cf->colourindex=7; //gg
+        cf->colourindex=1; //gg
     }
-    else if (((cf->h)>26)&&((cf->h)<29))
+    else if (((cf->h)>145)&&((cf->h)<164))
     {
-        colourname = "Eggshell";
-        cf->colourindex=1;
-    }
-    else if (((cf->h)>15)&&((cf->h)<19))
-    {
-        colourname = "Pink";
+        colourname = "Dark Blue";
         cf->colourindex=2;
     }
     else if (((cf->h)>21)&&((cf->h)<25))
@@ -84,58 +80,62 @@ char* Hue2Colour(struct RGBC_rel *cf)
         colourname = "Yellow";
         cf->colourindex=3;
     }
+    else if (((cf->h)>15)&&((cf->h)<19))
+    {
+        colourname = "Pink";
+        cf->colourindex=4;
+    }
     else if (((cf->h)>7)&&((cf->h)<9))
     {
         colourname = "Orange";
-        cf->colourindex=4;
+        cf->colourindex=5;
     }
     else if (((cf->h)>85)&&((cf->h)<94))
     {
         colourname = "Light Blue";
-        cf->colourindex=5;
-    }
-    else if (((cf->h)>145)&&((cf->h)<164))
-    {
-        colourname = "Dark Blue";
         cf->colourindex=6;
     }
-    
+    else if (((cf->h)>26)&&((cf->h)<29))
+    {
+        colourname = "Eggshell";
+        cf->colourindex=7;
+    }
     return colourname;
 }
-//
-//void Colour2Action(struct RGBC_rel *cf)
-//{
-//    if (cf->colourindex & 0)
-//    {
-//        Red_R90(&motorL,&motorR);
-//    }
-//    if (cf->colourindex & 1)
-//    {
-//        White(&motorL,&motorR);
-//    }
-//    if (cf->colourindex & 2)
-//    {
-//        Yellow_REV1_L90(&motorL,&motorR);
-//    }
-//    if (cf->colourindex & 3)
-//    {
-//        Red_R90(&motorL,&motorR);
-//    }
-//    if (cf->colourindex & 4)
-//    {
-//        Orange_R135(&motorL,&motorR);
-//    }
-//    if (cf->colourindex & 5)
-//    {
-//        LightBlue_L135(&motorL,&motorR);
-//    }
-//    if (cf->colourindex & 6)
-//    {
-//        Blue_T180(&motorL,&motorR);
-//    }
-//    if (cf->colourindex & 7)
-//    {
-//        Green_L90(&motorL,&motorR);
-//    }
-//
-//}
+
+void Colour2Action(struct RGBC_rel *cf)
+{
+    if (cf->colourindex & 0)
+    {
+        Red_R90(&motorL,&motorR);
+    }
+    if (cf->colourindex & 1)
+    {
+        Green_L90(&motorL,&motorR);
+    }
+    if (cf->colourindex & 2)
+    {
+        Blue_T180(&motorL,&motorR);
+    }
+    if (cf->colourindex & 3)
+    {
+        Yellow_rev1_R90(&motorL,&motorR);
+    }
+    if (cf->colourindex & 4)
+    {
+        Pink_rev1_L90(&motorL,&motorR);
+    }
+    if (cf->colourindex & 5)
+    {
+        Orange_R135(&motorL,&motorR);
+    }
+    if (cf->colourindex & 6)
+    {
+        LightBlue_L135(&motorL,&motorR);
+    }
+    if (cf->colourindex & 7)
+    {
+        White(&motorL,&motorR,movementCount,movementMemory,timerMemory);
+    }
+
+}
