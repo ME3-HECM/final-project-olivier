@@ -4,11 +4,11 @@
 
 Your task is to develop an autonomous robot that can navigate a "mine" using a series of instructions coded in coloured cards and return to its starting position.  Your robot must be able to perform the following: 
 
-1. Navigate towards a coloured card and stop before impacting the card
-1. Read the card colour
-1. Interpret the card colour using a predefined code and perform the navigation instruction
-1. When the final card is reached, navigate back to the starting position
-1. Handle exceptions and return back to the starting position if final card cannot be found
+- [x]  Navigate towards a coloured card and stop before impacting the card
+- [x]  Read the card colour
+- [x]  Interpret the card colour using a predefined code and perform the navigation instruction
+- [x]  When the final card is reached, navigate back to the starting position
+- [x]  Handle exceptions and return back to the starting position if final card cannot be found
 
 ## "Mine" environment specification
 
@@ -57,4 +57,57 @@ The voltage at BAT-VSENSE will always be one third of that at the battery. Measu
 
 ## Solution Evolution
 ### Colour Calibration
-Initially we planned to use raw RGB values from the converter but realised these fluctate a lot with light so instead moved to RGB values relative to total light however it was rather difficult to detect colours with relative values so we decided on Hue Values with the addition of the relative values to distinguish between colours with overlapping values.
+Initially we planned to use raw RGB values from the converter but realised these fluctate a lot with light so instead moved to RGB values relative to total light however it was rather difficult to detect colours with relative values so we decided on Hue Values.Serial communication was used to read out the RGBC values from the sensors, the calculated hues then finally when calibrated, the perceived colour based on the hue of the surface being faced.
+'''
+char* Hue2Colour(struct RGBC_rel *cf)
+{
+    char* colourname = "";
+  
+    if (((cf->h)>352)&&((cf->h)<360))
+    {
+        //colourname for serial printing
+        colourname = "Red";
+        //colourindex can be picked up by other functions
+        //to process relevant action
+        cf->colourindex=0;
+    }
+     if (((cf->h)>75)&&((cf->h)<79))
+    {
+        colourname = "Green";
+        cf->colourindex=7; //gg
+    }
+    else if (((cf->h)>26)&&((cf->h)<29))
+    {
+        colourname = "Eggshell";
+        cf->colourindex=1;
+    }
+    else if (((cf->h)>15)&&((cf->h)<19))
+    {
+        colourname = "Pink";
+        cf->colourindex=2;
+    }
+    else if (((cf->h)>21)&&((cf->h)<25))
+    {
+        colourname = "Yellow";
+        cf->colourindex=3;
+    }
+    else if (((cf->h)>7)&&((cf->h)<9))
+    {
+        colourname = "Orange";
+        cf->colourindex=4;
+    }
+    else if (((cf->h)>85)&&((cf->h)<94))
+    {
+        colourname = "Light Blue";
+        cf->colourindex=5;
+    }
+    else if (((cf->h)>145)&&((cf->h)<164))
+    {
+        colourname = "Dark Blue";
+        cf->colourindex=6;
+    }
+    
+    return colourname;
+}
+'''
+To maintain consistency we used a black cover over the colourclick when calibrating the hue ranges for each colour card, this was so our calibration was independent of ambient light kevels. This way we did not have to change the hue ranges when the buggy was deployed during the challenge.
