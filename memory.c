@@ -18,7 +18,7 @@ void memoryUpdate(struct RGBC_rel *cf, unsigned int movementCount, unsigned int 
 }
 void maxTimeReturn(void)
 {
-    memoryUpdate()
-    White(&motorL,&motorR,movementCount,movementMemory,timerMemory);
+//    memoryUpdate()
+   // White(&motorL,&motorR,movementCount,movementMemory,timerMemory);
 }
 

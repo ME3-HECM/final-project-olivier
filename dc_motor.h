@@ -9,8 +9,8 @@
 
 //variable for a forward motion
 volatile char ForwardFlag = 1;
-int _45dleftdelay = 170; //delay corresponging to a 15 degree turn left
-int _45drightdelay = 170; //delay corresponding to a 15 degree turn right
+int _45dleftdelay = 150; //delay corresponging to a 15 degree turn left
+int _45drightdelay = 150; //delay corresponding to a 15 degree turn right
 int _1square = 700; //delay corresponding to 1 square travel
 int _halfsquare = 350; //delay corresponding to a half square travel (for reversal to correct position after colour is sensed)
 

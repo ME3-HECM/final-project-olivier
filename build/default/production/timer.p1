@@ -2031,65 +2031,77 @@ Version 4.0 HI-TECH Software Intermediate Code
 "10
 [; ;timer.c: 10:     T0CON1bits.T0ASYNC=1;
 [e = . . _T0CON1bits 0 1 -> -> 1 `i `uc ]
-"11
-[; ;timer.c: 11:     T0CON1bits.T0CKPS=0b1000;
-[e = . . _T0CON1bits 0 0 -> -> 8 `i `uc ]
 "12
-[; ;timer.c: 12:     T0CON0bits.T016BIT=1;
+[; ;timer.c: 12:     T0CON1bits.T0CKPS=0b1100;
+[e = . . _T0CON1bits 0 0 -> -> 12 `i `uc ]
+"13
+[; ;timer.c: 13:     T0CON0bits.T016BIT=1;
 [e = . . _T0CON0bits 0 1 -> -> 1 `i `uc ]
-"15
-[; ;timer.c: 15:     TMR0H=0b00001011;
-[e = _TMR0H -> -> 11 `i `uc ]
 "16
-[; ;timer.c: 16:     TMR0L=0b11011011;
-[e = _TMR0L -> -> 219 `i `uc ]
+[; ;timer.c: 16:     TMR0H=0b00000000;
+[e = _TMR0H -> -> 0 `i `uc ]
 "17
-[; ;timer.c: 17:     T0CON0bits.T0EN=1;
+[; ;timer.c: 17:     TMR0L=0b00000000;
+[e = _TMR0L -> -> 0 `i `uc ]
+"19
+[; ;timer.c: 19:     T0CON1bits.T0CKPS=0b1000;
+[e = . . _T0CON1bits 0 0 -> -> 8 `i `uc ]
+"20
+[; ;timer.c: 20:     T0CON0bits.T016BIT=1;
+[e = . . _T0CON0bits 0 1 -> -> 1 `i `uc ]
+"23
+[; ;timer.c: 23:     TMR0H=0b00001011;
+[e = _TMR0H -> -> 11 `i `uc ]
+"24
+[; ;timer.c: 24:     TMR0L=0b11011011;
+[e = _TMR0L -> -> 219 `i `uc ]
+"26
+[; ;timer.c: 26:     T0CON0bits.T0EN=1;
 [e = . . _T0CON0bits 0 4 -> -> 1 `i `uc ]
-"18
-[; ;timer.c: 18: }
+"27
+[; ;timer.c: 27: }
 [e :UE 2015 ]
 }
-"19
-[; ;timer.c: 19: void TimerReset(void)
+"28
+[; ;timer.c: 28: void TimerReset(void)
 [v _TimerReset `(v ~T0 @X0 1 ef ]
-"20
-[; ;timer.c: 20: {
+"29
+[; ;timer.c: 29: {
 {
 [e :U _TimerReset ]
 [f ]
-"21
-[; ;timer.c: 21:     TMR0L = 0;
+"30
+[; ;timer.c: 30:     TMR0L = 0;
 [e = _TMR0L -> -> 0 `i `uc ]
-"22
-[; ;timer.c: 22:     TMR0H = 0;
+"31
+[; ;timer.c: 31:     TMR0H = 0;
 [e = _TMR0H -> -> 0 `i `uc ]
-"23
-[; ;timer.c: 23: }
+"32
+[; ;timer.c: 32: }
 [e :UE 2016 ]
 }
-"24
-[; ;timer.c: 24: unsigned int getTimerValue(void)
+"33
+[; ;timer.c: 33: unsigned int getTimerValue(void)
 [v _getTimerValue `(ui ~T0 @X0 1 ef ]
-"25
-[; ;timer.c: 25: {
+"34
+[; ;timer.c: 34: {
 {
 [e :U _getTimerValue ]
 [f ]
-"26
-[; ;timer.c: 26:     unsigned int timerCount;
+"35
+[; ;timer.c: 35:     unsigned int timerCount;
 [v _timerCount `ui ~T0 @X0 1 a ]
-"28
-[; ;timer.c: 28:     timerCount = TMR0L;
+"37
+[; ;timer.c: 37:     timerCount = TMR0L;
 [e = _timerCount -> _TMR0L `ui ]
-"30
-[; ;timer.c: 30:     timerCount |= (unsigned int)(TMR0H << 8);
+"39
+[; ;timer.c: 39:     timerCount |= (unsigned int)(TMR0H << 8);
 [e =| _timerCount -> << -> _TMR0H `i -> 8 `i `ui ]
-"31
-[; ;timer.c: 31:     return timerCount;
+"40
+[; ;timer.c: 40:     return timerCount;
 [e ) _timerCount ]
 [e $UE 2017  ]
-"32
-[; ;timer.c: 32: }
+"41
+[; ;timer.c: 41: }
 [e :UE 2017 ]
 }

@@ -24295,62 +24295,6 @@ void TimerReset(void);
 unsigned int getTimerValue(void);
 # 7 "./memory.h" 2
 
-
-
-
-unsigned int movementMemory[20];
-unsigned int timerMemory[20];
-void memoryUpdate(struct RGBC_rel *cf, unsigned int movementCount, unsigned int *movementMemory, unsigned int *timerMemory);
-# 7 "./dc_motor.h" 2
-
-
-
-
-volatile char ForwardFlag = 1;
-int _45dleftdelay = 170;
-int _45drightdelay = 170;
-int _1square = 700;
-int _halfsquare = 350;
-
-typedef struct DC_motor {
-    char power;
-    char direction;
-    char brakemode;
-    unsigned int PWMperiod;
-    unsigned char *posDutyHighByte;
-    unsigned char *negDutyHighByte;
-} DC_motor;
-
-struct DC_motor motorL, motorR;
-
-
-
-void initDCmotorsPWM(unsigned int PWMperiod);
-void setMotorPWM(struct DC_motor *m);
-void stop(struct DC_motor *mL, struct DC_motor *mR);
-void turnLeft(struct DC_motor *mL, struct DC_motor *mR);
-void turnRight(struct DC_motor *mL, struct DC_motor *mR);
-void fullSpeedAhead(struct DC_motor *mL, struct DC_motor *mR);
-void fullSpeedReverse(struct DC_motor *mL, struct DC_motor *mR);
-
-void Left45(struct DC_motor *mL, struct DC_motor *mR);
-void Right45(struct DC_motor *mL, struct DC_motor *mR);
-void rotate180left(struct DC_motor *mL, struct DC_motor *mR);
-void reverseHalfSquare(struct DC_motor *mL, struct DC_motor *mR);
-
-
-void Red_R90(struct DC_motor *mL, struct DC_motor *mR);
-void Green_L90(struct DC_motor *mL, struct DC_motor *mR);
-void Blue_T180(struct DC_motor *mL, struct DC_motor *mR);
-void Yellow_rev1_R90(struct DC_motor *mL, struct DC_motor *mR);
-void Pink_rev1_L90(struct DC_motor *mL, struct DC_motor *mR);
-void Orange_R135(struct DC_motor *mL, struct DC_motor *mR);
-void LightBlue_L135(struct DC_motor *mL, struct DC_motor *mR);
-void White(struct DC_motor *mL, struct DC_motor *mR,unsigned int movementCount, unsigned int *movementMemory, unsigned int *timerMemory);
-# 2 "dc_motor.c" 2
-
-
-
 # 1 "./main.h" 1
 
 
@@ -24602,19 +24546,74 @@ unsigned char I2C_2_Master_Read(unsigned char ack);
 # 8 "./main.h" 2
 
 
+# 1 "./dc_motor.h" 1
+# 10 "./main.h" 2
 
 
 
 
+
+volatile unsigned int maxTime = 0;
 
 void main(void);
-# 5 "dc_motor.c" 2
+# 8 "./memory.h" 2
 
 
 
 
+unsigned int movementMemory[20];
+unsigned int timerMemory[20];
+void memoryUpdate(struct RGBC_rel *cf, unsigned int movementCount, unsigned int *movementMemory, unsigned int *timerMemory);
+
+void maxTimeReturn(void);
+# 7 "./dc_motor.h" 2
 
 
+
+
+volatile char ForwardFlag = 1;
+int _45dleftdelay = 150;
+int _45drightdelay = 150;
+int _1square = 700;
+int _halfsquare = 350;
+
+typedef struct DC_motor {
+    char power;
+    char direction;
+    char brakemode;
+    unsigned int PWMperiod;
+    unsigned char *posDutyHighByte;
+    unsigned char *negDutyHighByte;
+} DC_motor;
+
+struct DC_motor motorL, motorR;
+
+
+
+void initDCmotorsPWM(unsigned int PWMperiod);
+void setMotorPWM(struct DC_motor *m);
+void stop(struct DC_motor *mL, struct DC_motor *mR);
+void turnLeft(struct DC_motor *mL, struct DC_motor *mR);
+void turnRight(struct DC_motor *mL, struct DC_motor *mR);
+void fullSpeedAhead(struct DC_motor *mL, struct DC_motor *mR);
+void fullSpeedReverse(struct DC_motor *mL, struct DC_motor *mR);
+
+void Left45(struct DC_motor *mL, struct DC_motor *mR);
+void Right45(struct DC_motor *mL, struct DC_motor *mR);
+void rotate180left(struct DC_motor *mL, struct DC_motor *mR);
+void reverseHalfSquare(struct DC_motor *mL, struct DC_motor *mR);
+
+
+void Red_R90(struct DC_motor *mL, struct DC_motor *mR);
+void Green_L90(struct DC_motor *mL, struct DC_motor *mR);
+void Blue_T180(struct DC_motor *mL, struct DC_motor *mR);
+void Yellow_rev1_R90(struct DC_motor *mL, struct DC_motor *mR);
+void Pink_rev1_L90(struct DC_motor *mL, struct DC_motor *mR);
+void Orange_R135(struct DC_motor *mL, struct DC_motor *mR);
+void LightBlue_L135(struct DC_motor *mL, struct DC_motor *mR);
+void White(struct DC_motor *mL, struct DC_motor *mR,unsigned int movementCount, unsigned int *movementMemory, unsigned int *timerMemory);
+# 2 "dc_motor.c" 2
+# 11 "dc_motor.c"
 void initDCmotorsPWM(unsigned int PWMperiod){
 
     TRISEbits.TRISE2=0;
@@ -24720,8 +24719,8 @@ void stop(struct DC_motor *mL, struct DC_motor *mR)
 void turnLeft(struct DC_motor *mL, struct DC_motor *mR)
 {
 
-    (mL->direction) = 1;
-    (mR->direction) = 0;
+    (mL->direction) = 0;
+    (mR->direction) = 1;
     setMotorPWM(mL);
     setMotorPWM(mR);
     for (unsigned int i = 0; i <50; i++)
@@ -24738,8 +24737,8 @@ void turnLeft(struct DC_motor *mL, struct DC_motor *mR)
 
 void turnRight(struct DC_motor *mL, struct DC_motor *mR)
 {
-    (mL->direction) = 0;
-    (mR->direction) = 1;
+    (mL->direction) = 1;
+    (mR->direction) = 0;
     setMotorPWM(mL);
     setMotorPWM(mR);
     for (unsigned int i = 0; i <50; i++)
@@ -24906,7 +24905,7 @@ void Pink_rev1_L90(struct DC_motor *mL, struct DC_motor *mR)
         Left45(mL,mR);
         TimerReset();
     }
-    else if(ForwardFlag&0){
+    else {
 
         Right45(mL,mR);
         Right45(mL,mR);

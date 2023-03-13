@@ -2017,11 +2017,17 @@ Version 4.0 HI-TECH Software Intermediate Code
 "16 ./colorfunctions.h
 [; ;./colorfunctions.h: 16: struct RGBC_rel colorf;
 [v _colorf `S2017 ~T0 @X0 1 e ]
-"11 ./memory.h
-[; ;./memory.h: 11: unsigned int movementMemory[20];
+"15 ./main.h
+[; ;./main.h: 15: volatile unsigned int maxTime = 0;
+[v _maxTime `Vui ~T0 @X0 1 e ]
+[i _maxTime
+-> -> 0 `i `ui
+]
+"12 ./memory.h
+[; ;./memory.h: 12: unsigned int movementMemory[20];
 [v _movementMemory `ui ~T0 @X0 -> 20 `i e ]
-"12
-[; ;./memory.h: 12: unsigned int timerMemory[20];
+"13
+[; ;./memory.h: 13: unsigned int timerMemory[20];
 [v _timerMemory `ui ~T0 @X0 -> 20 `i e ]
 "11 ./dc_motor.h
 [; ;./dc_motor.h: 11: volatile char ForwardFlag = 1;
@@ -2030,16 +2036,16 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 1 `i `uc
 ]
 "12
-[; ;./dc_motor.h: 12: int _45dleftdelay = 170;
+[; ;./dc_motor.h: 12: int _45dleftdelay = 150;
 [v __45dleftdelay `i ~T0 @X0 1 e ]
 [i __45dleftdelay
--> 170 `i
+-> 150 `i
 ]
 "13
-[; ;./dc_motor.h: 13: int _45drightdelay = 170;
+[; ;./dc_motor.h: 13: int _45drightdelay = 150;
 [v __45drightdelay `i ~T0 @X0 1 e ]
 [i __45drightdelay
--> 170 `i
+-> 150 `i
 ]
 "14
 [; ;./dc_motor.h: 14: int _1square = 700;
@@ -2232,8 +2238,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _colourname `*uc ~T0 @X0 1 a ]
 [e = _colourname :s 1C ]
 "59
-[; ;colorfunctions.c: 59:     if (((cf->h)>352)&&((cf->h)<360))
-[e $ ! && > . *U _cf 4 -> -> 352 `i `f < . *U _cf 4 -> -> 360 `i `f 2033  ]
+[; ;colorfunctions.c: 59:     if (((cf->h)>350)&&((cf->h)<360))
+[e $ ! && > . *U _cf 4 -> -> 350 `i `f < . *U _cf 4 -> -> 360 `i `f 2033  ]
 "60
 [; ;colorfunctions.c: 60:     {
 {
@@ -2248,8 +2254,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 }
 [e :U 2033 ]
 "67
-[; ;colorfunctions.c: 67:      if (((cf->h)>75)&&((cf->h)<79))
-[e $ ! && > . *U _cf 4 -> -> 75 `i `f < . *U _cf 4 -> -> 79 `i `f 2034  ]
+[; ;colorfunctions.c: 67:      if (((cf->h)>70)&&((cf->h)<79))
+[e $ ! && > . *U _cf 4 -> -> 70 `i `f < . *U _cf 4 -> -> 79 `i `f 2034  ]
 "68
 [; ;colorfunctions.c: 68:     {
 {
@@ -2264,9 +2270,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 }
 [e $U 2035  ]
 "72
-[; ;colorfunctions.c: 72:     else if (((cf->h)>145)&&((cf->h)<164))
+[; ;colorfunctions.c: 72:     else if (((cf->h)>145)&&((cf->h)<180))
 [e :U 2034 ]
-[e $ ! && > . *U _cf 4 -> -> 145 `i `f < . *U _cf 4 -> -> 164 `i `f 2036  ]
+[e $ ! && > . *U _cf 4 -> -> 145 `i `f < . *U _cf 4 -> -> 180 `i `f 2036  ]
 "73
 [; ;colorfunctions.c: 73:     {
 {
@@ -2315,9 +2321,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 }
 [e $U 2041  ]
 "87
-[; ;colorfunctions.c: 87:     else if (((cf->h)>7)&&((cf->h)<9))
+[; ;colorfunctions.c: 87:     else if (((cf->h)>3)&&((cf->h)<11))
 [e :U 2040 ]
-[e $ ! && > . *U _cf 4 -> -> 7 `i `f < . *U _cf 4 -> -> 9 `i `f 2042  ]
+[e $ ! && > . *U _cf 4 -> -> 3 `i `f < . *U _cf 4 -> -> 11 `i `f 2042  ]
 "88
 [; ;colorfunctions.c: 88:     {
 {
@@ -2332,9 +2338,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 }
 [e $U 2043  ]
 "92
-[; ;colorfunctions.c: 92:     else if (((cf->h)>85)&&((cf->h)<94))
+[; ;colorfunctions.c: 92:     else if (((cf->h)>85)&&((cf->h)<105))
 [e :U 2042 ]
-[e $ ! && > . *U _cf 4 -> -> 85 `i `f < . *U _cf 4 -> -> 94 `i `f 2044  ]
+[e $ ! && > . *U _cf 4 -> -> 85 `i `f < . *U _cf 4 -> -> 105 `i `f 2044  ]
 "93
 [; ;colorfunctions.c: 93:     {
 {
@@ -2349,9 +2355,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 }
 [e $U 2045  ]
 "97
-[; ;colorfunctions.c: 97:     else if (((cf->h)>26)&&((cf->h)<29))
+[; ;colorfunctions.c: 97:     else if (((cf->h)>25)&&((cf->h)<33))
 [e :U 2044 ]
-[e $ ! && > . *U _cf 4 -> -> 26 `i `f < . *U _cf 4 -> -> 29 `i `f 2046  ]
+[e $ ! && > . *U _cf 4 -> -> 25 `i `f < . *U _cf 4 -> -> 33 `i `f 2046  ]
 "98
 [; ;colorfunctions.c: 98:     {
 {
@@ -2495,6 +2501,16 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 2053 ]
 [e :U 2051 ]
 [e :U 2049 ]
+"135
+[; ;colorfunctions.c: 135:     if (cf->colourindex & 7)
+[e $ ! != & . *U _cf 5 -> 7 `i -> 0 `i 2061  ]
+"136
+[; ;colorfunctions.c: 136:     {
+{
+"138
+[; ;colorfunctions.c: 138:     }
+}
+[e :U 2061 ]
 "140
 [; ;colorfunctions.c: 140: }
 [e :UE 2047 ]

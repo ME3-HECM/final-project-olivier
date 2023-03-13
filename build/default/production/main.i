@@ -24547,20 +24547,36 @@ void TimerReset(void);
 unsigned int getTimerValue(void);
 # 7 "./memory.h" 2
 
+# 1 "./main.h" 1
+# 10 "./main.h"
+# 1 "./dc_motor.h" 1
+# 10 "./main.h" 2
+
+
+
+
+
+volatile unsigned int maxTime = 0;
+
+void main(void);
+# 8 "./memory.h" 2
+
 
 
 
 unsigned int movementMemory[20];
 unsigned int timerMemory[20];
 void memoryUpdate(struct RGBC_rel *cf, unsigned int movementCount, unsigned int *movementMemory, unsigned int *timerMemory);
+
+void maxTimeReturn(void);
 # 7 "./dc_motor.h" 2
 
 
 
 
 volatile char ForwardFlag = 1;
-int _45dleftdelay = 170;
-int _45drightdelay = 170;
+int _45dleftdelay = 150;
+int _45drightdelay = 150;
 int _1square = 700;
 int _halfsquare = 350;
 
@@ -24602,10 +24618,6 @@ void White(struct DC_motor *mL, struct DC_motor *mR,unsigned int movementCount, 
 # 12 "main.c" 2
 
 
-# 1 "./main.h" 1
-# 15 "./main.h"
-void main(void);
-# 14 "main.c" 2
 
 
 
@@ -24634,10 +24646,11 @@ void main(void) {
 
     TRISFbits.TRISF2=1;
     ANSELFbits.ANSELF2=0;
-    while(PORTFbits.RF2){
-    }
     char wall=0;
     ClickLEDOn(0);
+    unsigned int movementCount = 0;
+    while(PORTFbits.RF2){};
+        _delay((unsigned long)((1000)*(64000000/4000.0)));
     while (1){
         fullSpeedAhead(&motorL,&motorR);
 
@@ -24654,10 +24667,11 @@ void main(void) {
 
                  wall=1;
                  ClickLEDOn(1);
+                 _delay((unsigned long)((500)*(64000000/4000.0)));
                  stop(&motorL,&motorR);
-                 _delay((unsigned long)((2000)*(64000000/4000.0)));
              }
         }
+        _delay((unsigned long)((2000)*(64000000/4000.0)));
         colour_read_all(&colorf);
         RGB2Hue(&colorf);
         Hue2Colour(&colorf);

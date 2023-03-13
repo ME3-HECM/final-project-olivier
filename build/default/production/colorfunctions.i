@@ -24488,60 +24488,6 @@ void TimerReset(void);
 unsigned int getTimerValue(void);
 # 7 "./memory.h" 2
 
-
-
-
-unsigned int movementMemory[20];
-unsigned int timerMemory[20];
-void memoryUpdate(struct RGBC_rel *cf, unsigned int movementCount, unsigned int *movementMemory, unsigned int *timerMemory);
-# 7 "./dc_motor.h" 2
-
-
-
-
-volatile char ForwardFlag = 1;
-int _45dleftdelay = 170;
-int _45drightdelay = 170;
-int _1square = 700;
-int _halfsquare = 350;
-
-typedef struct DC_motor {
-    char power;
-    char direction;
-    char brakemode;
-    unsigned int PWMperiod;
-    unsigned char *posDutyHighByte;
-    unsigned char *negDutyHighByte;
-} DC_motor;
-
-struct DC_motor motorL, motorR;
-
-
-
-void initDCmotorsPWM(unsigned int PWMperiod);
-void setMotorPWM(struct DC_motor *m);
-void stop(struct DC_motor *mL, struct DC_motor *mR);
-void turnLeft(struct DC_motor *mL, struct DC_motor *mR);
-void turnRight(struct DC_motor *mL, struct DC_motor *mR);
-void fullSpeedAhead(struct DC_motor *mL, struct DC_motor *mR);
-void fullSpeedReverse(struct DC_motor *mL, struct DC_motor *mR);
-
-void Left45(struct DC_motor *mL, struct DC_motor *mR);
-void Right45(struct DC_motor *mL, struct DC_motor *mR);
-void rotate180left(struct DC_motor *mL, struct DC_motor *mR);
-void reverseHalfSquare(struct DC_motor *mL, struct DC_motor *mR);
-
-
-void Red_R90(struct DC_motor *mL, struct DC_motor *mR);
-void Green_L90(struct DC_motor *mL, struct DC_motor *mR);
-void Blue_T180(struct DC_motor *mL, struct DC_motor *mR);
-void Yellow_rev1_R90(struct DC_motor *mL, struct DC_motor *mR);
-void Pink_rev1_L90(struct DC_motor *mL, struct DC_motor *mR);
-void Orange_R135(struct DC_motor *mL, struct DC_motor *mR);
-void LightBlue_L135(struct DC_motor *mL, struct DC_motor *mR);
-void White(struct DC_motor *mL, struct DC_motor *mR,unsigned int movementCount, unsigned int *movementMemory, unsigned int *timerMemory);
-# 5 "colorfunctions.c" 2
-
 # 1 "./main.h" 1
 
 
@@ -24595,13 +24541,74 @@ unsigned char I2C_2_Master_Read(unsigned char ack);
 # 8 "./main.h" 2
 
 
+# 1 "./dc_motor.h" 1
+# 10 "./main.h" 2
 
 
 
 
+
+volatile unsigned int maxTime = 0;
 
 void main(void);
-# 6 "colorfunctions.c" 2
+# 8 "./memory.h" 2
+
+
+
+
+unsigned int movementMemory[20];
+unsigned int timerMemory[20];
+void memoryUpdate(struct RGBC_rel *cf, unsigned int movementCount, unsigned int *movementMemory, unsigned int *timerMemory);
+
+void maxTimeReturn(void);
+# 7 "./dc_motor.h" 2
+
+
+
+
+volatile char ForwardFlag = 1;
+int _45dleftdelay = 150;
+int _45drightdelay = 150;
+int _1square = 700;
+int _halfsquare = 350;
+
+typedef struct DC_motor {
+    char power;
+    char direction;
+    char brakemode;
+    unsigned int PWMperiod;
+    unsigned char *posDutyHighByte;
+    unsigned char *negDutyHighByte;
+} DC_motor;
+
+struct DC_motor motorL, motorR;
+
+
+
+void initDCmotorsPWM(unsigned int PWMperiod);
+void setMotorPWM(struct DC_motor *m);
+void stop(struct DC_motor *mL, struct DC_motor *mR);
+void turnLeft(struct DC_motor *mL, struct DC_motor *mR);
+void turnRight(struct DC_motor *mL, struct DC_motor *mR);
+void fullSpeedAhead(struct DC_motor *mL, struct DC_motor *mR);
+void fullSpeedReverse(struct DC_motor *mL, struct DC_motor *mR);
+
+void Left45(struct DC_motor *mL, struct DC_motor *mR);
+void Right45(struct DC_motor *mL, struct DC_motor *mR);
+void rotate180left(struct DC_motor *mL, struct DC_motor *mR);
+void reverseHalfSquare(struct DC_motor *mL, struct DC_motor *mR);
+
+
+void Red_R90(struct DC_motor *mL, struct DC_motor *mR);
+void Green_L90(struct DC_motor *mL, struct DC_motor *mR);
+void Blue_T180(struct DC_motor *mL, struct DC_motor *mR);
+void Yellow_rev1_R90(struct DC_motor *mL, struct DC_motor *mR);
+void Pink_rev1_L90(struct DC_motor *mL, struct DC_motor *mR);
+void Orange_R135(struct DC_motor *mL, struct DC_motor *mR);
+void LightBlue_L135(struct DC_motor *mL, struct DC_motor *mR);
+void White(struct DC_motor *mL, struct DC_motor *mR,unsigned int movementCount, unsigned int *movementMemory, unsigned int *timerMemory);
+# 5 "colorfunctions.c" 2
+
 
 
 void colour_read_all(struct RGBC_rel *cf) {
@@ -24655,7 +24662,7 @@ void RGB2Hue(struct RGBC_rel *cf){
 char* Hue2Colour(struct RGBC_rel *cf)
 {
     char* colourname = "";
-    if (((cf->h)>352)&&((cf->h)<360))
+    if (((cf->h)>350)&&((cf->h)<360))
     {
 
         colourname = "Red";
@@ -24663,12 +24670,12 @@ char* Hue2Colour(struct RGBC_rel *cf)
 
         cf->colourindex=0;
     }
-     if (((cf->h)>75)&&((cf->h)<79))
+     if (((cf->h)>70)&&((cf->h)<79))
     {
         colourname = "Green";
         cf->colourindex=1;
     }
-    else if (((cf->h)>145)&&((cf->h)<164))
+    else if (((cf->h)>145)&&((cf->h)<180))
     {
         colourname = "Dark Blue";
         cf->colourindex=2;
@@ -24683,17 +24690,17 @@ char* Hue2Colour(struct RGBC_rel *cf)
         colourname = "Pink";
         cf->colourindex=4;
     }
-    else if (((cf->h)>7)&&((cf->h)<9))
+    else if (((cf->h)>3)&&((cf->h)<11))
     {
         colourname = "Orange";
         cf->colourindex=5;
     }
-    else if (((cf->h)>85)&&((cf->h)<94))
+    else if (((cf->h)>85)&&((cf->h)<105))
     {
         colourname = "Light Blue";
         cf->colourindex=6;
     }
-    else if (((cf->h)>26)&&((cf->h)<29))
+    else if (((cf->h)>25)&&((cf->h)<33))
     {
         colourname = "Eggshell";
         cf->colourindex=7;
@@ -24731,9 +24738,9 @@ void Colour2Action(struct RGBC_rel *cf)
     {
         LightBlue_L135(&motorL,&motorR);
     }
+    if (cf->colourindex & 7)
+    {
 
-
-
-
+    }
 
 }

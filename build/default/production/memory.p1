@@ -3,6 +3,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;./colorfunctions.h: 8: typedef struct RGBC_rel{
 [s S2015 `f 1 `f 1 `f 1 `f 1 `f 1 `i 1 ]
 [n S2015 RGBC_rel Rf Gf Bf Cf h colourindex ]
+"17 ./dc_motor.h
+[; ;./dc_motor.h: 17: typedef struct DC_motor {
+[s S2018 `uc 1 `uc 1 `uc 1 `ui 1 `*uc 1 `*uc 1 ]
+[n S2018 DC_motor power direction brakemode PWMperiod posDutyHighByte negDutyHighByte ]
 "7 ./timer.h
 [; ;./timer.h: 7: unsigned int getTimerValue(void);
 [v _getTimerValue `(ui ~T0 @X0 0 ef ]
@@ -1983,43 +1987,95 @@ Version 4.0 HI-TECH Software Intermediate Code
 "16 ./colorfunctions.h
 [; ;./colorfunctions.h: 16: struct RGBC_rel colorf;
 [v _colorf `S2015 ~T0 @X0 1 e ]
-"11 ./memory.h
-[; ;./memory.h: 11: unsigned int movementMemory[20];
-[v _movementMemory `ui ~T0 @X0 -> 20 `i e ]
+"11 ./dc_motor.h
+[; ;./dc_motor.h: 11: volatile char ForwardFlag = 1;
+[v _ForwardFlag `Vuc ~T0 @X0 1 e ]
+[i _ForwardFlag
+-> -> 1 `i `uc
+]
 "12
-[; ;./memory.h: 12: unsigned int timerMemory[20];
+[; ;./dc_motor.h: 12: int _45dleftdelay = 150;
+[v __45dleftdelay `i ~T0 @X0 1 e ]
+[i __45dleftdelay
+-> 150 `i
+]
+"13
+[; ;./dc_motor.h: 13: int _45drightdelay = 150;
+[v __45drightdelay `i ~T0 @X0 1 e ]
+[i __45drightdelay
+-> 150 `i
+]
+"14
+[; ;./dc_motor.h: 14: int _1square = 700;
+[v __1square `i ~T0 @X0 1 e ]
+[i __1square
+-> 700 `i
+]
+"15
+[; ;./dc_motor.h: 15: int _halfsquare = 350;
+[v __halfsquare `i ~T0 @X0 1 e ]
+[i __halfsquare
+-> 350 `i
+]
+"26
+[; ;./dc_motor.h: 26: struct DC_motor motorL, motorR;
+[v _motorL `S2018 ~T0 @X0 1 e ]
+[v _motorR `S2018 ~T0 @X0 1 e ]
+"15 ./main.h
+[; ;./main.h: 15: volatile unsigned int maxTime = 0;
+[v _maxTime `Vui ~T0 @X0 1 e ]
+[i _maxTime
+-> -> 0 `i `ui
+]
+"12 ./memory.h
+[; ;./memory.h: 12: unsigned int movementMemory[20];
+[v _movementMemory `ui ~T0 @X0 -> 20 `i e ]
+"13
+[; ;./memory.h: 13: unsigned int timerMemory[20];
 [v _timerMemory `ui ~T0 @X0 -> 20 `i e ]
-"7 memory.c
-[; ;memory.c: 7: void memoryUpdate(struct RGBC_rel *cf, unsigned int movementCount, unsigned int *movementMemory, unsigned int *timerMemory)
+"10 memory.c
+[; ;memory.c: 10: void memoryUpdate(struct RGBC_rel *cf, unsigned int movementCount, unsigned int *movementMemory, unsigned int *timerMemory)
 [v _memoryUpdate `(v ~T0 @X0 1 ef4`*S2015`ui`*ui`*ui ]
-"8
-[; ;memory.c: 8: {
+"11
+[; ;memory.c: 11: {
 {
 [e :U _memoryUpdate ]
-"7
-[; ;memory.c: 7: void memoryUpdate(struct RGBC_rel *cf, unsigned int movementCount, unsigned int *movementMemory, unsigned int *timerMemory)
+"10
+[; ;memory.c: 10: void memoryUpdate(struct RGBC_rel *cf, unsigned int movementCount, unsigned int *movementMemory, unsigned int *timerMemory)
 [v _cf `*S2015 ~T0 @X0 1 r1 ]
 [v _movementCount `ui ~T0 @X0 1 r2 ]
 [v _movementMemory `*ui ~T0 @X0 1 r3 ]
 [v _timerMemory `*ui ~T0 @X0 1 r4 ]
-"8
-[; ;memory.c: 8: {
+"11
+[; ;memory.c: 11: {
 [f ]
-"10
-[; ;memory.c: 10:     int colourcode = cf->colourindex;
+"13
+[; ;memory.c: 13:     int colourcode = cf->colourindex;
 [v _colourcode `i ~T0 @X0 1 a ]
 [e = _colourcode . *U _cf 5 ]
-"12
-[; ;memory.c: 12:     unsigned int timerVal = getTimerValue();
+"15
+[; ;memory.c: 15:     unsigned int timerVal = getTimerValue();
 [v _timerVal `ui ~T0 @X0 1 a ]
 [e = _timerVal ( _getTimerValue ..  ]
-"13
-[; ;memory.c: 13:     timerMemory[movementCount] = timerVal;
+"16
+[; ;memory.c: 16:     timerMemory[movementCount] = timerVal;
 [e = *U + _timerMemory * -> _movementCount `ux -> -> # *U _timerMemory `ui `ux _timerVal ]
-"14
-[; ;memory.c: 14:     movementMemory[movementCount] = colourcode;
+"17
+[; ;memory.c: 17:     movementMemory[movementCount] = colourcode;
 [e = *U + _movementMemory * -> _movementCount `ux -> -> # *U _movementMemory `ui `ux -> _colourcode `ui ]
-"15
-[; ;memory.c: 15: }
-[e :UE 2016 ]
+"18
+[; ;memory.c: 18: }
+[e :UE 2019 ]
+}
+"19
+[; ;memory.c: 19: void maxTimeReturn(void)
+[v _maxTimeReturn `(v ~T0 @X0 1 ef ]
+"20
+[; ;memory.c: 20: {
+{
+[e :U _maxTimeReturn ]
+[f ]
+"23
+[; ;memory.c: 23: }
+[e :UE 2020 ]
 }

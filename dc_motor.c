@@ -113,8 +113,8 @@ void stop(struct DC_motor *mL, struct DC_motor *mR)
 void turnLeft(struct DC_motor *mL, struct DC_motor *mR)
 {
     
-    (mL->direction) = 1; //set motor direction backward for left
-    (mR->direction) = 0; //set motor direction forward for right
+    (mL->direction) = 0; //set motor direction backward for left
+    (mR->direction) = 1; //set motor direction forward for right
     setMotorPWM(mL);//set new motor direction 
     setMotorPWM(mR);
     for (unsigned int i = 0; i <50; i++)//increase power value up to 50/100% of power (this value is tunable for how fast you want it to go)
@@ -131,8 +131,8 @@ void turnLeft(struct DC_motor *mL, struct DC_motor *mR)
 //function to make the robot turn right 
 void turnRight(struct DC_motor *mL, struct DC_motor *mR)
 { 
-    (mL->direction) = 0; //set motor direction forward for left
-    (mR->direction) = 1; //set motor direction backward for right
+    (mL->direction) = 1; //set motor direction forward for left
+    (mR->direction) = 0; //set motor direction backward for right
     setMotorPWM(mL);//set new motor direction 
     setMotorPWM(mR);
     for (unsigned int i = 0; i <50; i++)//increase power value up to 50/100% of power (this value is tunable for how fast you want it to go)

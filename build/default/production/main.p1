@@ -57,7 +57,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 "12319
 [; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\pic\include\proc\pic18f67k40.h: 12319: extern volatile ANSELFbits_t ANSELFbits __attribute__((address(0xEB4)));
 [v _ANSELFbits `VS567 ~T0 @X0 0 e@3764 ]
-"30585
+"56 ./colorclick.h
+[; ;./colorclick.h: 56: void ClickLEDOn(char power);
+[v _ClickLEDOn `(v ~T0 @X0 0 ef1`uc ]
+"30585 C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\pic\include\proc\pic18f67k40.h
 [; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\pic\include\proc\pic18f67k40.h: 30585:     struct {
 [s S1412 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S1412 . RF0 RF1 RF2 RF3 RF4 RF5 RF6 RF7 ]
@@ -72,16 +75,13 @@ Version 4.0 HI-TECH Software Intermediate Code
 "30601
 [; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\pic\include\proc\pic18f67k40.h: 30601: extern volatile PORTFbits_t PORTFbits __attribute__((address(0xF8E)));
 [v _PORTFbits `VS1411 ~T0 @X0 0 e@3982 ]
-"56 ./colorclick.h
-[; ;./colorclick.h: 56: void ClickLEDOn(char power);
-[v _ClickLEDOn `(v ~T0 @X0 0 ef1`uc ]
-"35 ./dc_motor.h
-[; ;./dc_motor.h: 35: void fullSpeedAhead(struct DC_motor *mL, struct DC_motor *mR);
-[v _fullSpeedAhead `(v ~T0 @X0 0 ef2`*S2018`*S2018 ]
 [v F192 `(v ~T0 @X0 1 tf1`ul ]
 "12 C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\pic\include\builtins.h
 [v __delay `JF192 ~T0 @X0 0 e ]
 [p i __delay ]
+"35 ./dc_motor.h
+[; ;./dc_motor.h: 35: void fullSpeedAhead(struct DC_motor *mL, struct DC_motor *mR);
+[v _fullSpeedAhead `(v ~T0 @X0 0 ef2`*S2018`*S2018 ]
 "18 ./colorfunctions.h
 [; ;./colorfunctions.h: 18: void colour_read_all(struct RGBC_rel *cf);
 [v _colour_read_all `(v ~T0 @X0 0 ef1`*S2015 ]
@@ -2085,11 +2085,17 @@ Version 4.0 HI-TECH Software Intermediate Code
 "16 ./colorfunctions.h
 [; ;./colorfunctions.h: 16: struct RGBC_rel colorf;
 [v _colorf `S2015 ~T0 @X0 1 e ]
-"11 ./memory.h
-[; ;./memory.h: 11: unsigned int movementMemory[20];
+"15 ./main.h
+[; ;./main.h: 15: volatile unsigned int maxTime = 0;
+[v _maxTime `Vui ~T0 @X0 1 e ]
+[i _maxTime
+-> -> 0 `i `ui
+]
+"12 ./memory.h
+[; ;./memory.h: 12: unsigned int movementMemory[20];
 [v _movementMemory `ui ~T0 @X0 -> 20 `i e ]
-"12
-[; ;./memory.h: 12: unsigned int timerMemory[20];
+"13
+[; ;./memory.h: 13: unsigned int timerMemory[20];
 [v _timerMemory `ui ~T0 @X0 -> 20 `i e ]
 "11 ./dc_motor.h
 [; ;./dc_motor.h: 11: volatile char ForwardFlag = 1;
@@ -2098,16 +2104,16 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 1 `i `uc
 ]
 "12
-[; ;./dc_motor.h: 12: int _45dleftdelay = 170;
+[; ;./dc_motor.h: 12: int _45dleftdelay = 150;
 [v __45dleftdelay `i ~T0 @X0 1 e ]
 [i __45dleftdelay
--> 170 `i
+-> 150 `i
 ]
 "13
-[; ;./dc_motor.h: 13: int _45drightdelay = 170;
+[; ;./dc_motor.h: 13: int _45drightdelay = 150;
 [v __45drightdelay `i ~T0 @X0 1 e ]
 [i __45drightdelay
--> 170 `i
+-> 150 `i
 ]
 "14
 [; ;./dc_motor.h: 14: int _1square = 700;
@@ -2197,107 +2203,113 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main.c: 41:     ANSELFbits.ANSELF2=0;
 [e = . . _ANSELFbits 0 2 -> -> 0 `i `uc ]
 "42
-[; ;main.c: 42:     while(PORTFbits.RF2){
+[; ;main.c: 42:     char wall=0;
+[v _wall `uc ~T0 @X0 1 a ]
+[e = _wall -> -> 0 `i `uc ]
+"43
+[; ;main.c: 43:     ClickLEDOn(0);
+[e ( _ClickLEDOn (1 -> -> 0 `i `uc ]
+"44
+[; ;main.c: 44:     unsigned int movementCount = 0;
+[v _movementCount `ui ~T0 @X0 1 a ]
+[e = _movementCount -> -> 0 `i `ui ]
+"45
+[; ;main.c: 45:     while(PORTFbits.RF2){};
 [e $U 2020  ]
 [e :U 2021 ]
 {
-"43
-[; ;main.c: 43:     }
 }
 [e :U 2020 ]
-"42
-[; ;main.c: 42:     while(PORTFbits.RF2){
 [e $ != -> . . _PORTFbits 0 2 `i -> 0 `i 2021  ]
 [e :U 2022 ]
-"44
-[; ;main.c: 44:     char wall=0;
-[v _wall `uc ~T0 @X0 1 a ]
-[e = _wall -> -> 0 `i `uc ]
-"45
-[; ;main.c: 45:     ClickLEDOn(0);
-[e ( _ClickLEDOn (1 -> -> 0 `i `uc ]
 "46
-[; ;main.c: 46:     while (1){
+[; ;main.c: 46:         _delay((unsigned long)((1000)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+"47
+[; ;main.c: 47:     while (1){
 [e :U 2024 ]
 {
-"47
-[; ;main.c: 47:         fullSpeedAhead(&motorL,&motorR);
+"48
+[; ;main.c: 48:         fullSpeedAhead(&motorL,&motorR);
 [e ( _fullSpeedAhead (2 , &U _motorL &U _motorR ]
-"49
-[; ;main.c: 49:         _delay((unsigned long)((1000)*(64000000/4000.0)));
-[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
 "50
-[; ;main.c: 50:         while (!wall){
+[; ;main.c: 50:         _delay((unsigned long)((1000)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+"51
+[; ;main.c: 51:         while (!wall){
 [e $U 2026  ]
 [e :U 2027 ]
 {
-"52
-[; ;main.c: 52:             colour_read_all(&colorf);
-[e ( _colour_read_all (1 &U _colorf ]
 "53
-[; ;main.c: 53:             Color2String(data,&colorf);
+[; ;main.c: 53:             colour_read_all(&colorf);
+[e ( _colour_read_all (1 &U _colorf ]
+"54
+[; ;main.c: 54:             Color2String(data,&colorf);
 [e ( _Color2String (2 , &U _data &U _colorf ]
-"57
-[; ;main.c: 57:              if (colorf.Cf<100)
-[e $ ! < . _colorf 3 -> -> 100 `i `f 2029  ]
 "58
-[; ;main.c: 58:              {
+[; ;main.c: 58:              if (colorf.Cf<100)
+[e $ ! < . _colorf 3 -> -> 100 `i `f 2029  ]
+"59
+[; ;main.c: 59:              {
 {
-"60
-[; ;main.c: 60:                  wall=1;
-[e = _wall -> -> 1 `i `uc ]
 "61
-[; ;main.c: 61:                  ClickLEDOn(1);
-[e ( _ClickLEDOn (1 -> -> 1 `i `uc ]
+[; ;main.c: 61:                  wall=1;
+[e = _wall -> -> 1 `i `uc ]
 "62
-[; ;main.c: 62:                  stop(&motorL,&motorR);
-[e ( _stop (2 , &U _motorL &U _motorR ]
+[; ;main.c: 62:                  ClickLEDOn(1);
+[e ( _ClickLEDOn (1 -> -> 1 `i `uc ]
 "63
-[; ;main.c: 63:                  _delay((unsigned long)((2000)*(64000000/4000.0)));
-[e ( __delay (1 -> * -> -> 2000 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+[; ;main.c: 63:                  _delay((unsigned long)((500)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 500 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
 "64
-[; ;main.c: 64:              }
+[; ;main.c: 64:                  stop(&motorL,&motorR);
+[e ( _stop (2 , &U _motorL &U _motorR ]
+"65
+[; ;main.c: 65:              }
 }
 [e :U 2029 ]
-"65
-[; ;main.c: 65:         }
+"66
+[; ;main.c: 66:         }
 }
 [e :U 2026 ]
-"50
-[; ;main.c: 50:         while (!wall){
+"51
+[; ;main.c: 51:         while (!wall){
 [e $ ! != -> _wall `i -> 0 `i 2027  ]
 [e :U 2028 ]
-"66
-[; ;main.c: 66:         colour_read_all(&colorf);
-[e ( _colour_read_all (1 &U _colorf ]
 "67
-[; ;main.c: 67:         RGB2Hue(&colorf);
-[e ( _RGB2Hue (1 &U _colorf ]
+[; ;main.c: 67:         _delay((unsigned long)((2000)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 2000 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
 "68
-[; ;main.c: 68:         Hue2Colour(&colorf);
-[e ( _Hue2Colour (1 &U _colorf ]
+[; ;main.c: 68:         colour_read_all(&colorf);
+[e ( _colour_read_all (1 &U _colorf ]
 "69
-[; ;main.c: 69:         Colour2Action(&colorf);
-[e ( _Colour2Action (1 &U _colorf ]
+[; ;main.c: 69:         RGB2Hue(&colorf);
+[e ( _RGB2Hue (1 &U _colorf ]
+"70
+[; ;main.c: 70:         Hue2Colour(&colorf);
+[e ( _Hue2Colour (1 &U _colorf ]
 "71
-[; ;main.c: 71:         Color2String(data,&colorf);
-[e ( _Color2String (2 , &U _data &U _colorf ]
-"72
-[; ;main.c: 72:         _delay((unsigned long)((1000)*(64000000/4000.0)));
-[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+[; ;main.c: 71:         Colour2Action(&colorf);
+[e ( _Colour2Action (1 &U _colorf ]
 "73
-[; ;main.c: 73:         wall=0;
-[e = _wall -> -> 0 `i `uc ]
+[; ;main.c: 73:         Color2String(data,&colorf);
+[e ( _Color2String (2 , &U _data &U _colorf ]
 "74
-[; ;main.c: 74:         ClickLEDOn(0);
-[e ( _ClickLEDOn (1 -> -> 0 `i `uc ]
+[; ;main.c: 74:         _delay((unsigned long)((1000)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
 "75
-[; ;main.c: 75:     }
+[; ;main.c: 75:         wall=0;
+[e = _wall -> -> 0 `i `uc ]
+"76
+[; ;main.c: 76:         ClickLEDOn(0);
+[e ( _ClickLEDOn (1 -> -> 0 `i `uc ]
+"77
+[; ;main.c: 77:     }
 }
 [e :U 2023 ]
 [e $U 2024  ]
 [e :U 2025 ]
-"76
-[; ;main.c: 76: }
+"78
+[; ;main.c: 78: }
 [e :UE 2019 ]
 }
