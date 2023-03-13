@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=final-project-olivier.X
+PROJECTNAME=final-project-olivier
 
 # Active Configuration
 DEFAULTCONF=default
