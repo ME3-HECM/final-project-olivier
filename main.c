@@ -15,12 +15,11 @@
 #define _XTAL_FREQ 64000000 //note intrinsic _delay function is 62.5ns at 64,000,000Hz  
 
 void main(void) {
-    char data[80];
+    char data[100];
     initUSART4();
     color_click_init();
     I2C_2_Master_Init();
     LED_init();
-    
     unsigned int PWMcycle = 99;
     initDCmotorsPWM(PWMcycle);
 
@@ -37,32 +36,41 @@ void main(void) {
     motorR.posDutyHighByte=(unsigned char *)(&CCPR3H);  //store address of CCP3 duty high byte
     motorR.negDutyHighByte=(unsigned char *)(&CCPR4H);  //store address of CCP4 duty high byte
     motorR.PWMperiod=PWMcycle; 			//store PWMperiod for motor (value of T2PR in this case)
-
+    
+    TRISFbits.TRISF2=1;
+    ANSELFbits.ANSELF2=0;
+    while(PORTFbits.RF2){
+    }
     char wall=0;
+    ClickLEDOn(0);
     while (1){ 
+        fullSpeedAhead(&motorL,&motorR);
         //wait to run into a wall
+        __delay_ms(1000);
         while (!wall){
+            
             colour_read_all(&colorf);
             Color2String(data,&colorf);
              
              //when in contact with a wall or card a lot less light is received
              //by sensors so all sensor values fall
-             if (colorf.Cf<1500)
+             if (colorf.Cf<100)
              {
                  //flag that a wall has been detected
                  wall=1;
                  ClickLEDOn(1);
-                 __delay_ms(1000);
+                 stop(&motorL,&motorR);
+                 __delay_ms(2000);
              }
         }
         colour_read_all(&colorf);
         RGB2Hue(&colorf);
-        //Colour2Action(&colorf);
+        Hue2Colour(&colorf);
+        Colour2Action(&colorf);
         //output color values being read to serial
         Color2String(data,&colorf);
         __delay_ms(1000);
         wall=0;
         ClickLEDOn(0);
-        Orange_R135(&motorL,&motorR);
-}
+    }
 }

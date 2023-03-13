@@ -56,7 +56,6 @@ void RGB2Hue(struct RGBC_rel *cf){
 char* Hue2Colour(struct RGBC_rel *cf)
 {
     char* colourname = "";
-  
     if (((cf->h)>352)&&((cf->h)<360))
     {
         //colourname for serial printing
@@ -68,7 +67,7 @@ char* Hue2Colour(struct RGBC_rel *cf)
      if (((cf->h)>75)&&((cf->h)<79))
     {
         colourname = "Green";
-        cf->colourindex=1; //gg
+        cf->colourindex=1; 
     }
     else if (((cf->h)>145)&&((cf->h)<164))
     {
@@ -105,37 +104,37 @@ char* Hue2Colour(struct RGBC_rel *cf)
 
 void Colour2Action(struct RGBC_rel *cf)
 {
-    if (cf->colourindex & 0)
+    if (cf->colourindex == 0)
     {
         Red_R90(&motorL,&motorR);
     }
-    if (cf->colourindex & 1)
+    else if (cf->colourindex == 1)
     {
         Green_L90(&motorL,&motorR);
     }
-    if (cf->colourindex & 2)
+    else if (cf->colourindex == 2)
     {
         Blue_T180(&motorL,&motorR);
     }
-    if (cf->colourindex & 3)
+    else if (cf->colourindex == 3)
     {
         Yellow_rev1_R90(&motorL,&motorR);
     }
-    if (cf->colourindex & 4)
+    else if (cf->colourindex == 4)
     {
         Pink_rev1_L90(&motorL,&motorR);
     }
-    if (cf->colourindex & 5)
+    else if (cf->colourindex == 5)
     {
         Orange_R135(&motorL,&motorR);
     }
-    if (cf->colourindex & 6)
+    else if (cf->colourindex == 6)
     {
         LightBlue_L135(&motorL,&motorR);
     }
-    if (cf->colourindex & 7)
-    {
-        White(&motorL,&motorR,movementCount,movementMemory,timerMemory);
-    }
+    //else if (cf->colourindex & 7)
+   // {
+   //    // White(&motorL,&motorR,*movementCount,movementMemory,timerMemory);
+   // }
 
 }
