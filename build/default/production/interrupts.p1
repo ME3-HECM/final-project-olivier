@@ -1,96 +1,58 @@
 Version 4.0 HI-TECH Software Intermediate Code
-"14832 C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\pic\include\proc\pic18lf67k40.h
-[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\pic\include\proc\pic18lf67k40.h: 14832:     struct {
-[s S690 :4 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S690 . SSPM CKP SSPEN SSPOV WCOL ]
-"14839
-[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\pic\include\proc\pic18lf67k40.h: 14839:     struct {
-[s S691 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S691 . SSPM0 SSPM1 SSPM2 SSPM3 ]
-"14845
-[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\pic\include\proc\pic18lf67k40.h: 14845:     struct {
-[s S692 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S692 . SSPM02 SSPM12 SSPM22 SSPM32 CKP2 SSPEN2 SSPOV2 WCOL2 ]
-"14831
-[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\pic\include\proc\pic18lf67k40.h: 14831: typedef union {
-[u S689 `S690 1 `S691 1 `S692 1 ]
-[n S689 . . . . ]
-"14856
-[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\pic\include\proc\pic18lf67k40.h: 14856: extern volatile SSP2CON1bits_t SSP2CON1bits __attribute__((address(0xED9)));
-[v _SSP2CON1bits `VS689 ~T0 @X0 0 e@3801 ]
-"14182
-[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\pic\include\proc\pic18lf67k40.h: 14182: extern volatile unsigned char SSP2ADD __attribute__((address(0xED6)));
-[v _SSP2ADD `Vuc ~T0 @X0 0 e@3798 ]
-"29672
-[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\pic\include\proc\pic18lf67k40.h: 29672:     struct {
-[s S1377 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S1377 . TRISD0 TRISD1 TRISD2 TRISD3 TRISD4 TRISD5 TRISD6 TRISD7 ]
-"29671
-[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\pic\include\proc\pic18lf67k40.h: 29671: typedef union {
-[u S1376 `S1377 1 ]
-[n S1376 . . ]
-"29683
-[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\pic\include\proc\pic18lf67k40.h: 29683: extern volatile TRISDbits_t TRISDbits __attribute__((address(0xF84)));
-[v _TRISDbits `VS1376 ~T0 @X0 0 e@3972 ]
-"11468
-[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\pic\include\proc\pic18lf67k40.h: 11468:     struct {
-[s S539 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S539 . ANSELD0 ANSELD1 ANSELD2 ANSELD3 ANSELD4 ANSELD5 ANSELD6 ANSELD7 ]
-"11467
-[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\pic\include\proc\pic18lf67k40.h: 11467: typedef union {
-[u S538 `S539 1 ]
-[n S538 . . ]
-"11479
-[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\pic\include\proc\pic18lf67k40.h: 11479: extern volatile ANSELDbits_t ANSELDbits __attribute__((address(0xEA7)));
-[v _ANSELDbits `VS538 ~T0 @X0 0 e@3751 ]
-"3862
-[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\pic\include\proc\pic18lf67k40.h: 3862: extern volatile unsigned char SSP2DATPPS __attribute__((address(0xE1D)));
-[v _SSP2DATPPS `Vuc ~T0 @X0 0 e@3613 ]
-"3796
-[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\pic\include\proc\pic18lf67k40.h: 3796: extern volatile unsigned char SSP2CLKPPS __attribute__((address(0xE1C)));
-[v _SSP2CLKPPS `Vuc ~T0 @X0 0 e@3612 ]
-"8474
-[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\pic\include\proc\pic18lf67k40.h: 8474: extern volatile unsigned char RD5PPS __attribute__((address(0xE6F)));
-[v _RD5PPS `Vuc ~T0 @X0 0 e@3695 ]
-"8524
-[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\pic\include\proc\pic18lf67k40.h: 8524: extern volatile unsigned char RD6PPS __attribute__((address(0xE70)));
-[v _RD6PPS `Vuc ~T0 @X0 0 e@3696 ]
-"14372
-[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\pic\include\proc\pic18lf67k40.h: 14372: extern volatile unsigned char SSP2STAT __attribute__((address(0xED8)));
-[v _SSP2STAT `Vuc ~T0 @X0 0 e@3800 ]
-"14946
-[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\pic\include\proc\pic18lf67k40.h: 14946: extern volatile unsigned char SSP2CON2 __attribute__((address(0xEDA)));
-[v _SSP2CON2 `Vuc ~T0 @X0 0 e@3802 ]
-"14952
-[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\pic\include\proc\pic18lf67k40.h: 14952:     struct {
-[s S694 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S694 . SEN RSEN PEN RCEN ACKEN ACKDT ACKSTAT GCEN ]
-"14962
-[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\pic\include\proc\pic18lf67k40.h: 14962:     struct {
-[s S695 :1 `uc 1 :5 `uc 1 ]
-[n S695 . . ADMSK ]
-"14966
-[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\pic\include\proc\pic18lf67k40.h: 14966:     struct {
-[s S696 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S696 . . ADMSK1 ADMSK2 ADMSK3 ADMSK4 ADMSK5 ]
-"14974
-[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\pic\include\proc\pic18lf67k40.h: 14974:     struct {
-[s S697 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S697 . SEN2 ADMSK12 ADMSK22 ADMSK32 ACKEN2 ACKDT2 ACKSTAT2 GCEN2 ]
-"14984
-[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\pic\include\proc\pic18lf67k40.h: 14984:     struct {
-[s S698 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S698 . . RSEN2 PEN2 RCEN2 ADMSK42 ADMSK52 ]
-"14951
-[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\pic\include\proc\pic18lf67k40.h: 14951: typedef union {
-[u S693 `S694 1 `S695 1 `S696 1 `S697 1 `S698 1 ]
-[n S693 . . . . . . ]
-"14993
-[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\pic\include\proc\pic18lf67k40.h: 14993: extern volatile SSP2CON2bits_t SSP2CON2bits __attribute__((address(0xEDA)));
-[v _SSP2CON2bits `VS693 ~T0 @X0 0 e@3802 ]
-"14162
-[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\pic\include\proc\pic18lf67k40.h: 14162: extern volatile unsigned char SSP2BUF __attribute__((address(0xED5)));
-[v _SSP2BUF `Vuc ~T0 @X0 0 e@3797 ]
+"8 ./colorfunctions.h
+[; ;./colorfunctions.h: 8: typedef struct RGBC_rel{
+[s S2012 `f 1 `f 1 `f 1 `f 1 `f 1 `i 1 ]
+[n S2012 RGBC_rel Rf Gf Bf Cf h colourindex ]
+"17 ./dc_motor.h
+[; ;./dc_motor.h: 17: typedef struct DC_motor {
+[s S2015 `uc 1 `uc 1 `uc 1 `ui 1 `*uc 1 `*uc 1 ]
+[n S2015 DC_motor power direction brakemode PWMperiod posDutyHighByte negDutyHighByte ]
+"4810 C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\pic\include\proc\pic18lf67k40.h
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\pic\include\proc\pic18lf67k40.h: 4810:     struct {
+[s S274 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S274 . TX3IE RC3IE TX4IE RC4IE TX5IE RC5IE ]
+"4809
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\pic\include\proc\pic18lf67k40.h: 4809: typedef union {
+[u S273 `S274 1 ]
+[n S273 . . ]
+"4819
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\pic\include\proc\pic18lf67k40.h: 4819: extern volatile PIE4bits_t PIE4bits __attribute__((address(0xE2D)));
+[v _PIE4bits `VS273 ~T0 @X0 0 e@3629 ]
+"40444
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\pic\include\proc\pic18lf67k40.h: 40444:     struct {
+[s S1982 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S1982 . INT0EDG INT1EDG INT2EDG INT3EDG . IPEN PEIE_GIEL GIE_GIEH ]
+"40454
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\pic\include\proc\pic18lf67k40.h: 40454:     struct {
+[s S1983 :6 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S1983 . . PEIE GIE ]
+"40459
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\pic\include\proc\pic18lf67k40.h: 40459:     struct {
+[s S1984 :6 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S1984 . . GIEL GIEH ]
+"40443
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\pic\include\proc\pic18lf67k40.h: 40443: typedef union {
+[u S1981 `S1982 1 `S1983 1 `S1984 1 ]
+[n S1981 . . . . ]
+"40465
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\pic\include\proc\pic18lf67k40.h: 40465: extern volatile INTCONbits_t INTCONbits __attribute__((address(0xFF2)));
+[v _INTCONbits `VS1981 ~T0 @X0 0 e@4082 ]
+[t ~ __interrupt . k ]
+[t T1 __interrupt high_priority ]
+"5093
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\pic\include\proc\pic18lf67k40.h: 5093:     struct {
+[s S286 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S286 . INT0IF INT1IF INT2IF INT3IF IOCIF TMR0IF ]
+"5092
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\pic\include\proc\pic18lf67k40.h: 5092: typedef union {
+[u S285 `S286 1 ]
+[n S285 . . ]
+"5102
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\pic\include\proc\pic18lf67k40.h: 5102: extern volatile PIR0bits_t PIR0bits __attribute__((address(0xE33)));
+[v _PIR0bits `VS285 ~T0 @X0 0 e@3635 ]
+"4 interrupts.c
+[; ;interrupts.c: 4: extern volatile unsigned int maxTime;
+[v _maxTime `Vui ~T0 @X0 0 e ]
 "54 C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\pic\include\proc\pic18lf67k40.h
 [; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\pic\include\proc\pic18lf67k40.h: 54: __asm("PPSLOCK equ 0DEFh");
 [; <" PPSLOCK equ 0DEFh ;# ">
@@ -2062,189 +2024,103 @@ Version 4.0 HI-TECH Software Intermediate Code
 "40893
 [; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\pic\include\proc\pic18lf67k40.h: 40893: __asm("TOSU equ 0FFFh");
 [; <" TOSU equ 0FFFh ;# ">
-"4 i2c.c
-[; ;i2c.c: 4: void I2C_2_Master_Init(void)
-[v _I2C_2_Master_Init `(v ~T0 @X0 1 ef ]
-"5
-[; ;i2c.c: 5: {
-{
-[e :U _I2C_2_Master_Init ]
-[f ]
-"7
-[; ;i2c.c: 7:   SSP2CON1bits.SSPM= 0b1000;
-[e = . . _SSP2CON1bits 0 0 -> -> 8 `i `uc ]
-"8
-[; ;i2c.c: 8:   SSP2CON1bits.SSPEN = 1;
-[e = . . _SSP2CON1bits 0 2 -> -> 1 `i `uc ]
-"9
-[; ;i2c.c: 9:   SSP2ADD = (64000000/(4*100000))-1;
-[e = _SSP2ADD -> - / -> 64000000 `l * -> -> 4 `i `l -> 100000 `l -> -> 1 `i `l `uc ]
-"12
-[; ;i2c.c: 12:   TRISDbits.TRISD5 = 1;
-[e = . . _TRISDbits 0 5 -> -> 1 `i `uc ]
+"16 ./colorfunctions.h
+[; ;./colorfunctions.h: 16: struct RGBC_rel colorf;
+[v _colorf `S2012 ~T0 @X0 1 e ]
+"12 ./memory.h
+[; ;./memory.h: 12: unsigned int movementMemory[20];
+[v _movementMemory `ui ~T0 @X0 -> 20 `i e ]
 "13
-[; ;i2c.c: 13:   TRISDbits.TRISD6 = 1;
-[e = . . _TRISDbits 0 6 -> -> 1 `i `uc ]
+[; ;./memory.h: 13: unsigned int timerMemory[20];
+[v _timerMemory `ui ~T0 @X0 -> 20 `i e ]
+"11 ./dc_motor.h
+[; ;./dc_motor.h: 11: volatile char ForwardFlag = 1;
+[v _ForwardFlag `Vuc ~T0 @X0 1 e ]
+[i _ForwardFlag
+-> -> 1 `i `uc
+]
+"12
+[; ;./dc_motor.h: 12: int _45dleftdelay = 170;
+[v __45dleftdelay `i ~T0 @X0 1 e ]
+[i __45dleftdelay
+-> 170 `i
+]
+"13
+[; ;./dc_motor.h: 13: int _45drightdelay = 170;
+[v __45drightdelay `i ~T0 @X0 1 e ]
+[i __45drightdelay
+-> 170 `i
+]
 "14
-[; ;i2c.c: 14:   ANSELDbits.ANSELD5=0;
-[e = . . _ANSELDbits 0 5 -> -> 0 `i `uc ]
+[; ;./dc_motor.h: 14: int _1square = 700;
+[v __1square `i ~T0 @X0 1 e ]
+[i __1square
+-> 700 `i
+]
 "15
-[; ;i2c.c: 15:   ANSELDbits.ANSELD6=0;
-[e = . . _ANSELDbits 0 6 -> -> 0 `i `uc ]
-"16
-[; ;i2c.c: 16:   SSP2DATPPS=0x1D;
-[e = _SSP2DATPPS -> -> 29 `i `uc ]
+[; ;./dc_motor.h: 15: int _halfsquare = 350;
+[v __halfsquare `i ~T0 @X0 1 e ]
+[i __halfsquare
+-> 350 `i
+]
+"26
+[; ;./dc_motor.h: 26: struct DC_motor motorL, motorR;
+[v _motorL `S2015 ~T0 @X0 1 e ]
+[v _motorR `S2015 ~T0 @X0 1 e ]
+"15 ./main.h
+[; ;./main.h: 15: volatile unsigned int maxTime = 0;
+[v _maxTime `Vui ~T0 @X0 1 e ]
+[i _maxTime
+-> -> 0 `i `ui
+]
+"5 interrupts.c
+[; ;interrupts.c: 5: void Interrupts_init(void)
+[v _Interrupts_init `(v ~T0 @X0 1 ef ]
+"6
+[; ;interrupts.c: 6: {
+{
+[e :U _Interrupts_init ]
+[f ]
+"8
+[; ;interrupts.c: 8:     PIE4bits.RC4IE=1;
+[e = . . _PIE4bits 0 3 -> -> 1 `i `uc ]
+"10
+[; ;interrupts.c: 10:     INTCONbits.IPEN=1;
+[e = . . _INTCONbits 0 5 -> -> 1 `i `uc ]
+"15
+[; ;interrupts.c: 15:     INTCONbits.PEIE=1;
+[e = . . _INTCONbits 1 1 -> -> 1 `i `uc ]
 "17
-[; ;i2c.c: 17:   SSP2CLKPPS=0x1E;
-[e = _SSP2CLKPPS -> -> 30 `i `uc ]
-"18
-[; ;i2c.c: 18:   RD5PPS=0x1C;
-[e = _RD5PPS -> -> 28 `i `uc ]
+[; ;interrupts.c: 17:     INTCONbits.GIE=1;
+[e = . . _INTCONbits 1 2 -> -> 1 `i `uc ]
 "19
-[; ;i2c.c: 19:   RD6PPS=0x1B;
-[e = _RD6PPS -> -> 27 `i `uc ]
-"20
-[; ;i2c.c: 20: }
-[e :UE 2012 ]
+[; ;interrupts.c: 19: }
+[e :UE 2016 ]
 }
-"22
-[; ;i2c.c: 22: void I2C_2_Master_Idle(void)
-[v _I2C_2_Master_Idle `(v ~T0 @X0 1 ef ]
-"23
-[; ;i2c.c: 23: {
-{
-[e :U _I2C_2_Master_Idle ]
-[f ]
-"24
-[; ;i2c.c: 24:   while ((SSP2STAT & 0x04) || (SSP2CON2 & 0x1F));
-[e $U 2014  ]
-[e :U 2015 ]
-[e :U 2014 ]
-[e $ || != & -> _SSP2STAT `i -> 4 `i -> 0 `i != & -> _SSP2CON2 `i -> 31 `i -> 0 `i 2015  ]
-[e :U 2016 ]
+[v $root$_HighISR `(v ~T0 @X0 0 e ]
 "25
-[; ;i2c.c: 25: }
-[e :UE 2013 ]
-}
+[; ;interrupts.c: 25: void __attribute__((picinterrupt(("high_priority")))) HighISR()
+[v _HighISR `(v ~T1 @X0 1 ef ]
 "27
-[; ;i2c.c: 27: void I2C_2_Master_Start(void)
-[v _I2C_2_Master_Start `(v ~T0 @X0 1 ef ]
+[; ;interrupts.c: 27: {
+{
+[e :U _HighISR ]
+[f ]
 "28
-[; ;i2c.c: 28: {
+[; ;interrupts.c: 28:     if (PIR0bits.TMR0IF) {
+[e $ ! != -> . . _PIR0bits 0 5 `i -> 0 `i 2018  ]
 {
-[e :U _I2C_2_Master_Start ]
-[f ]
 "29
-[; ;i2c.c: 29:   I2C_2_Master_Idle();
-[e ( _I2C_2_Master_Idle ..  ]
+[; ;interrupts.c: 29:     maxTime = 1;
+[e = _maxTime -> -> 1 `i `ui ]
 "30
-[; ;i2c.c: 30:   SSP2CON2bits.SEN = 1;
-[e = . . _SSP2CON2bits 0 0 -> -> 1 `i `uc ]
+[; ;interrupts.c: 30:     PIR0bits.TMR0IF=0;
+[e = . . _PIR0bits 0 5 -> -> 0 `i `uc ]
 "31
-[; ;i2c.c: 31: }
+[; ;interrupts.c: 31:     }
+}
+[e :U 2018 ]
+"32
+[; ;interrupts.c: 32: }
 [e :UE 2017 ]
-}
-"33
-[; ;i2c.c: 33: void I2C_2_Master_RepStart(void)
-[v _I2C_2_Master_RepStart `(v ~T0 @X0 1 ef ]
-"34
-[; ;i2c.c: 34: {
-{
-[e :U _I2C_2_Master_RepStart ]
-[f ]
-"35
-[; ;i2c.c: 35:   I2C_2_Master_Idle();
-[e ( _I2C_2_Master_Idle ..  ]
-"36
-[; ;i2c.c: 36:   SSP2CON2bits.RSEN = 1;
-[e = . . _SSP2CON2bits 0 1 -> -> 1 `i `uc ]
-"37
-[; ;i2c.c: 37: }
-[e :UE 2018 ]
-}
-"39
-[; ;i2c.c: 39: void I2C_2_Master_Stop()
-[v _I2C_2_Master_Stop `(v ~T0 @X0 1 ef ]
-"40
-[; ;i2c.c: 40: {
-{
-[e :U _I2C_2_Master_Stop ]
-[f ]
-"41
-[; ;i2c.c: 41:   I2C_2_Master_Idle();
-[e ( _I2C_2_Master_Idle ..  ]
-"42
-[; ;i2c.c: 42:   SSP2CON2bits.PEN = 1;
-[e = . . _SSP2CON2bits 0 2 -> -> 1 `i `uc ]
-"43
-[; ;i2c.c: 43: }
-[e :UE 2019 ]
-}
-"45
-[; ;i2c.c: 45: void I2C_2_Master_Write(unsigned char data_byte)
-[v _I2C_2_Master_Write `(v ~T0 @X0 1 ef1`uc ]
-"46
-[; ;i2c.c: 46: {
-{
-[e :U _I2C_2_Master_Write ]
-"45
-[; ;i2c.c: 45: void I2C_2_Master_Write(unsigned char data_byte)
-[v _data_byte `uc ~T0 @X0 1 r1 ]
-"46
-[; ;i2c.c: 46: {
-[f ]
-"47
-[; ;i2c.c: 47:   I2C_2_Master_Idle();
-[e ( _I2C_2_Master_Idle ..  ]
-"48
-[; ;i2c.c: 48:   SSP2BUF = data_byte;
-[e = _SSP2BUF _data_byte ]
-"49
-[; ;i2c.c: 49: }
-[e :UE 2020 ]
-}
-"51
-[; ;i2c.c: 51: unsigned char I2C_2_Master_Read(unsigned char ack)
-[v _I2C_2_Master_Read `(uc ~T0 @X0 1 ef1`uc ]
-"52
-[; ;i2c.c: 52: {
-{
-[e :U _I2C_2_Master_Read ]
-"51
-[; ;i2c.c: 51: unsigned char I2C_2_Master_Read(unsigned char ack)
-[v _ack `uc ~T0 @X0 1 r1 ]
-"52
-[; ;i2c.c: 52: {
-[f ]
-"53
-[; ;i2c.c: 53:   unsigned char tmp;
-[v _tmp `uc ~T0 @X0 1 a ]
-"54
-[; ;i2c.c: 54:   I2C_2_Master_Idle();
-[e ( _I2C_2_Master_Idle ..  ]
-"55
-[; ;i2c.c: 55:   SSP2CON2bits.RCEN = 1;
-[e = . . _SSP2CON2bits 0 3 -> -> 1 `i `uc ]
-"56
-[; ;i2c.c: 56:   I2C_2_Master_Idle();
-[e ( _I2C_2_Master_Idle ..  ]
-"57
-[; ;i2c.c: 57:   tmp = SSP2BUF;
-[e = _tmp _SSP2BUF ]
-"58
-[; ;i2c.c: 58:   I2C_2_Master_Idle();
-[e ( _I2C_2_Master_Idle ..  ]
-"59
-[; ;i2c.c: 59:   SSP2CON2bits.ACKDT = !ack;
-[e = . . _SSP2CON2bits 0 5 -> -> ! != -> _ack `i -> 0 `i `i `uc ]
-"60
-[; ;i2c.c: 60:   SSP2CON2bits.ACKEN = 1;
-[e = . . _SSP2CON2bits 0 4 -> -> 1 `i `uc ]
-"61
-[; ;i2c.c: 61:   return tmp;
-[e ) _tmp ]
-[e $UE 2021  ]
-"62
-[; ;i2c.c: 62: }
-[e :UE 2021 ]
 }

@@ -26,7 +26,7 @@ void __interrupt(high_priority) HighISR()
 // When reg is cleared this flag is set and the ISR 
 {  
     if (PIR0bits.TMR0IF) {//interrupt source is the timer overflowing (16.77 seconds)
-    maxTime = 1;//
+    maxTime = 1;//trigger the max time 
     PIR0bits.TMR0IF=0;//turn off interrupt flag 
     }
 }
