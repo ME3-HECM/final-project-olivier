@@ -12,4 +12,7 @@ unsigned int movementMemory[20];
 unsigned int timerMemory[20];
 void memoryUpdate(struct RGBC_rel *cf, unsigned int movementCount, unsigned int *movementMemory, unsigned int *timerMemory);
 
+void maxTimeReturn(void);
+
+
 #endif

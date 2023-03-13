@@ -299,7 +299,7 @@ void Pink_rev1_L90(struct DC_motor *mL, struct DC_motor *mR)
         Left45(mL,mR); //execute a 90 degree left turn
         TimerReset();//reset the timer in order to have time between actions
     }
-    else if(ForwardFlag&0){
+    else {
         //execute right turn 90 & forward 1 square 
         Right45(mL,mR);
         Right45(mL,mR);//execute a 90 degree right turn
