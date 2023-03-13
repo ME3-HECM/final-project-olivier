@@ -42,7 +42,11 @@ void main(void) {
     while(PORTFbits.RF2){
     }
     char wall=0;
+
     ClickLEDOn(0);
+
+    unsigned int movementCount = 0;
+
     while (1){ 
         fullSpeedAhead(&motorL,&motorR);
         //wait to run into a wall
