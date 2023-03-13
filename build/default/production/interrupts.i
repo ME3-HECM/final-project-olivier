@@ -1,4 +1,4 @@
-# 1 "i2c.c"
+# 1 "interrupts.c"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 288 "<built-in>" 3
@@ -6,7 +6,7 @@
 # 1 "<built-in>" 2
 # 1 "C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
-# 1 "i2c.c" 2
+# 1 "interrupts.c" 2
 # 1 "C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\\pic\\include\\xc.h" 1 3
 # 18 "C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\\pic\\include\\xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -24207,7 +24207,249 @@ __attribute__((__unsupported__("The READTIMER" "0" "() macro is not available wi
 unsigned char __t1rd16on(void);
 unsigned char __t3rd16on(void);
 # 34 "C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\\pic\\include\\xc.h" 2 3
-# 1 "i2c.c" 2
+# 1 "interrupts.c" 2
+
+# 1 "./main.h" 1
+
+
+
+
+# 1 "./serial.h" 1
+
+
+
+
+# 1 "./colorfunctions.h" 1
+
+
+
+
+
+
+
+typedef struct RGBC_rel{
+   float Rf, Gf, Bf, Cf;
+   float h;
+   int colourindex;
+} RGBC_rel;
+
+
+
+struct RGBC_rel colorf;
+
+void colour_read_all(struct RGBC_rel *cf);
+void RGB2Hue(struct RGBC_rel *cf);
+
+
+char* Hue2Colour(struct RGBC_rel *cf);
+
+
+void Colour2Action(struct RGBC_rel *cf);
+# 5 "./serial.h" 2
+
+# 1 "./colorclick.h" 1
+# 15 "./colorclick.h"
+void color_click_init(void);
+
+void color_write_reg(char reg, char value);
+
+void color_turn_on_led(void);
+
+void color_turn_off_led(void);
+
+
+
+
+
+
+void color_writetoaddr(char address, char value);
+
+
+
+
+
+unsigned int color_read_Red(void);
+
+
+
+
+
+unsigned int color_read_Green(void);
+
+
+
+
+
+unsigned int color_read_Blue(void);
+
+
+
+
+
+unsigned int color_read_Clear(void);
+
+
+
+void ClickLEDOn(char power);
+# 6 "./serial.h" 2
+
+
+
+
+void initUSART4(void);
+char getCharSerial4(void);
+void sendCharSerial4(char charToSend);
+void sendStringSerial4(char *string);
+
+void Color2String(char *buf,struct RGBC_rel *cf);
+# 5 "./main.h" 2
+
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\include\\c99\\stdio.h" 1 3
+# 24 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\include\\c99\\stdio.h" 3
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\include\\c99\\bits/alltypes.h" 1 3
+
+
+
+
+
+typedef void * va_list[1];
+
+
+
+
+typedef void * __isoc_va_list[1];
+# 137 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\include\\c99\\bits/alltypes.h" 3
+typedef long ssize_t;
+# 246 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\include\\c99\\bits/alltypes.h" 3
+typedef long long off_t;
+# 399 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\include\\c99\\bits/alltypes.h" 3
+typedef struct _IO_FILE FILE;
+# 24 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\include\\c99\\stdio.h" 2 3
+# 52 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\include\\c99\\stdio.h" 3
+typedef union _G_fpos64_t {
+ char __opaque[16];
+ double __align;
+} fpos_t;
+
+extern FILE *const stdin;
+extern FILE *const stdout;
+extern FILE *const stderr;
+
+
+
+
+
+FILE *fopen(const char *restrict, const char *restrict);
+FILE *freopen(const char *restrict, const char *restrict, FILE *restrict);
+int fclose(FILE *);
+
+int remove(const char *);
+int rename(const char *, const char *);
+
+int feof(FILE *);
+int ferror(FILE *);
+int fflush(FILE *);
+void clearerr(FILE *);
+
+int fseek(FILE *, long, int);
+long ftell(FILE *);
+void rewind(FILE *);
+
+int fgetpos(FILE *restrict, fpos_t *restrict);
+int fsetpos(FILE *, const fpos_t *);
+
+size_t fread(void *restrict, size_t, size_t, FILE *restrict);
+size_t fwrite(const void *restrict, size_t, size_t, FILE *restrict);
+
+int fgetc(FILE *);
+int getc(FILE *);
+int getchar(void);
+int ungetc(int, FILE *);
+
+int fputc(int, FILE *);
+int putc(int, FILE *);
+int putchar(int);
+
+char *fgets(char *restrict, int, FILE *restrict);
+
+char *gets(char *);
+
+
+int fputs(const char *restrict, FILE *restrict);
+int puts(const char *);
+
+__attribute__((__format__(__printf__, 1, 2)))
+int printf(const char *restrict, ...);
+__attribute__((__format__(__printf__, 2, 3)))
+int fprintf(FILE *restrict, const char *restrict, ...);
+__attribute__((__format__(__printf__, 2, 3)))
+int sprintf(char *restrict, const char *restrict, ...);
+__attribute__((__format__(__printf__, 3, 4)))
+int snprintf(char *restrict, size_t, const char *restrict, ...);
+
+__attribute__((__format__(__printf__, 1, 0)))
+int vprintf(const char *restrict, __isoc_va_list);
+int vfprintf(FILE *restrict, const char *restrict, __isoc_va_list);
+__attribute__((__format__(__printf__, 2, 0)))
+int vsprintf(char *restrict, const char *restrict, __isoc_va_list);
+__attribute__((__format__(__printf__, 3, 0)))
+int vsnprintf(char *restrict, size_t, const char *restrict, __isoc_va_list);
+
+__attribute__((__format__(__scanf__, 1, 2)))
+int scanf(const char *restrict, ...);
+__attribute__((__format__(__scanf__, 2, 3)))
+int fscanf(FILE *restrict, const char *restrict, ...);
+__attribute__((__format__(__scanf__, 2, 3)))
+int sscanf(const char *restrict, const char *restrict, ...);
+
+__attribute__((__format__(__scanf__, 1, 0)))
+int vscanf(const char *restrict, __isoc_va_list);
+int vfscanf(FILE *restrict, const char *restrict, __isoc_va_list);
+__attribute__((__format__(__scanf__, 2, 0)))
+int vsscanf(const char *restrict, const char *restrict, __isoc_va_list);
+
+void perror(const char *);
+
+int setvbuf(FILE *restrict, char *restrict, int, size_t);
+void setbuf(FILE *restrict, char *restrict);
+
+char *tmpnam(char *);
+FILE *tmpfile(void);
+
+
+
+
+FILE *fmemopen(void *restrict, size_t, const char *restrict);
+FILE *open_memstream(char **, size_t *);
+FILE *fdopen(int, const char *);
+FILE *popen(const char *, const char *);
+int pclose(FILE *);
+int fileno(FILE *);
+int fseeko(FILE *, off_t, int);
+off_t ftello(FILE *);
+int dprintf(int, const char *restrict, ...);
+int vdprintf(int, const char *restrict, __isoc_va_list);
+void flockfile(FILE *);
+int ftrylockfile(FILE *);
+void funlockfile(FILE *);
+int getc_unlocked(FILE *);
+int getchar_unlocked(void);
+int putc_unlocked(int, FILE *);
+int putchar_unlocked(int);
+ssize_t getdelim(char **restrict, size_t *restrict, int, FILE *restrict);
+ssize_t getline(char **restrict, size_t *restrict, FILE *restrict);
+int renameat(int, const char *, int, const char *);
+char *ctermid(char *);
+
+
+
+
+
+
+
+char *tempnam(const char *, const char *);
+# 6 "./main.h" 2
+
 
 # 1 "./i2c.h" 1
 # 13 "./i2c.h"
@@ -24242,65 +24484,141 @@ void I2C_2_Master_Write(unsigned char data_byte);
 
 
 unsigned char I2C_2_Master_Read(unsigned char ack);
-# 2 "i2c.c" 2
+# 8 "./main.h" 2
 
 
-void I2C_2_Master_Init(void)
+# 1 "./dc_motor.h" 1
+
+
+
+
+# 1 "./dc_motor.h" 1
+# 5 "./dc_motor.h" 2
+
+# 1 "./LED.h" 1
+
+
+
+
+
+
+void LED_init(void);
+# 6 "./dc_motor.h" 2
+
+# 1 "./memory.h" 1
+
+
+
+
+# 1 "./memory.h" 1
+# 5 "./memory.h" 2
+
+
+# 1 "./timer.h" 1
+
+
+
+
+void Timer0_init(void);
+void TimerReset(void);
+unsigned int getTimerValue(void);
+# 7 "./memory.h" 2
+
+# 1 "./main.h" 1
+# 8 "./memory.h" 2
+
+
+
+
+unsigned int movementMemory[20];
+unsigned int timerMemory[20];
+void memoryUpdate(struct RGBC_rel *cf, unsigned int movementCount, unsigned int *movementMemory, unsigned int *timerMemory);
+
+void maxTimeReturn(void);
+# 7 "./dc_motor.h" 2
+
+
+
+
+volatile char ForwardFlag = 1;
+int _45dleftdelay = 170;
+int _45drightdelay = 170;
+int _1square = 700;
+int _halfsquare = 350;
+
+typedef struct DC_motor {
+    char power;
+    char direction;
+    char brakemode;
+    unsigned int PWMperiod;
+    unsigned char *posDutyHighByte;
+    unsigned char *negDutyHighByte;
+} DC_motor;
+
+struct DC_motor motorL, motorR;
+
+
+
+void initDCmotorsPWM(unsigned int PWMperiod);
+void setMotorPWM(struct DC_motor *m);
+void stop(struct DC_motor *mL, struct DC_motor *mR);
+void turnLeft(struct DC_motor *mL, struct DC_motor *mR);
+void turnRight(struct DC_motor *mL, struct DC_motor *mR);
+void fullSpeedAhead(struct DC_motor *mL, struct DC_motor *mR);
+void fullSpeedReverse(struct DC_motor *mL, struct DC_motor *mR);
+
+void Left45(struct DC_motor *mL, struct DC_motor *mR);
+void Right45(struct DC_motor *mL, struct DC_motor *mR);
+void rotate180left(struct DC_motor *mL, struct DC_motor *mR);
+void reverseHalfSquare(struct DC_motor *mL, struct DC_motor *mR);
+
+
+void Red_R90(struct DC_motor *mL, struct DC_motor *mR);
+void Green_L90(struct DC_motor *mL, struct DC_motor *mR);
+void Blue_T180(struct DC_motor *mL, struct DC_motor *mR);
+void Yellow_rev1_R90(struct DC_motor *mL, struct DC_motor *mR);
+void Pink_rev1_L90(struct DC_motor *mL, struct DC_motor *mR);
+void Orange_R135(struct DC_motor *mL, struct DC_motor *mR);
+void LightBlue_L135(struct DC_motor *mL, struct DC_motor *mR);
+void White(struct DC_motor *mL, struct DC_motor *mR,unsigned int movementCount, unsigned int *movementMemory, unsigned int *timerMemory);
+# 10 "./main.h" 2
+
+
+
+
+
+volatile unsigned int maxTime = 0;
+
+void main(void);
+# 2 "interrupts.c" 2
+
+
+extern volatile unsigned int maxTime;
+void Interrupts_init(void)
 {
 
-  SSP2CON1bits.SSPM= 0b1000;
-  SSP2CON1bits.SSPEN = 1;
-  SSP2ADD = (64000000/(4*100000))-1;
+    PIE4bits.RC4IE=1;
+
+    INTCONbits.IPEN=1;
 
 
-  TRISDbits.TRISD5 = 1;
-  TRISDbits.TRISD6 = 1;
-  ANSELDbits.ANSELD5=0;
-  ANSELDbits.ANSELD6=0;
-  SSP2DATPPS=0x1D;
-  SSP2CLKPPS=0x1E;
-  RD5PPS=0x1C;
-  RD6PPS=0x1B;
+
+
+    INTCONbits.PEIE=1;
+
+    INTCONbits.GIE=1;
+
 }
 
-void I2C_2_Master_Idle(void)
-{
-  while ((SSP2STAT & 0x04) || (SSP2CON2 & 0x1F));
-}
 
-void I2C_2_Master_Start(void)
-{
-  I2C_2_Master_Idle();
-  SSP2CON2bits.SEN = 1;
-}
 
-void I2C_2_Master_RepStart(void)
-{
-  I2C_2_Master_Idle();
-  SSP2CON2bits.RSEN = 1;
-}
 
-void I2C_2_Master_Stop()
-{
-  I2C_2_Master_Idle();
-  SSP2CON2bits.PEN = 1;
-}
 
-void I2C_2_Master_Write(unsigned char data_byte)
-{
-  I2C_2_Master_Idle();
-  SSP2BUF = data_byte;
-}
+void __attribute__((picinterrupt(("high_priority")))) HighISR()
 
-unsigned char I2C_2_Master_Read(unsigned char ack)
 {
-  unsigned char tmp;
-  I2C_2_Master_Idle();
-  SSP2CON2bits.RCEN = 1;
-  I2C_2_Master_Idle();
-  tmp = SSP2BUF;
-  I2C_2_Master_Idle();
-  SSP2CON2bits.ACKDT = !ack;
-  SSP2CON2bits.ACKEN = 1;
-  return tmp;
+    if (PIR0bits.TMR0IF) {
+    maxTime = 1;
+    PIR0bits.TMR0IF=0;
+    }
 }

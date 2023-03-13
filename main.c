@@ -12,7 +12,9 @@
 #include "dc_motor.h"
 #include "LED.h"
 #include "main.h"
+#include "interrupts.h"
 #define _XTAL_FREQ 64000000 //note intrinsic _delay function is 62.5ns at 64,000,000Hz  
+
 
 void main(void) {
     char data[100];
@@ -20,6 +22,8 @@ void main(void) {
     color_click_init();
     I2C_2_Master_Init();
     LED_init();
+    Interrupts_init();
+    Timer0_init();
     unsigned int PWMcycle = 99;
     initDCmotorsPWM(PWMcycle);
 
@@ -37,40 +41,42 @@ void main(void) {
     motorR.negDutyHighByte=(unsigned char *)(&CCPR4H);  //store address of CCP4 duty high byte
     motorR.PWMperiod=PWMcycle; 			//store PWMperiod for motor (value of T2PR in this case)
     
-    TRISFbits.TRISF2=1;
-    ANSELFbits.ANSELF2=0;
-    while(PORTFbits.RF2){
+    TRISFbits.TRISF2=1;//set the RF2 button to be an input 
+    ANSELFbits.ANSELF2=0;//makes the button digital (0 or 1)
+    while(PORTFbits.RF2){//wait for the RF2 button press
     }
-    char wall=0;
+    char wall=0;//set the wall condition to 0
 
-    ClickLEDOn(0);
+    ClickLEDOn(0);//set the clicker LED initially to off
 
-    unsigned int movementCount = 0;
+    unsigned int movementCount = 0;//define the movement counter
 
-    while (1){ 
-        fullSpeedAhead(&motorL,&motorR);
+    while (1){ //main function
+        fullSpeedAhead(&motorL,&motorR);//move the buggy forwards
+        if (maxTime==1){//if the maximum time between actions (8 seconds) has been reached 
+            stop(&motorL,&motorR);//testing to see if the timer interrupt will work currently it overflows after 8 seconds 
+            __delay_ms(3000);
+        }
         //wait to run into a wall
-        __delay_ms(1000);
         while (!wall){
-            
-            colour_read_all(&colorf);
-            Color2String(data,&colorf);
-             
+            colour_read_all(&colorf);//read RGB values from colour clicker
+            Color2String(data,&colorf);//output a string of the colour
              //when in contact with a wall or card a lot less light is received
              //by sensors so all sensor values fall
-             if (colorf.Cf<100)
+             if (colorf.Cf<100)//wait for the clear value to be under a certain threshold (dark)
              {
                  //flag that a wall has been detected
                  wall=1;
-                 ClickLEDOn(1);
-                 stop(&motorL,&motorR);
-                 __delay_ms(2000);
+                 ClickLEDOn(1);//turn on the LED to read the wall colour
+                 stop(&motorL,&motorR);//stop the buggy 
+                 __delay_ms(2000);//this delay makes sure that the colour is constant when being read
              }
         }
-        colour_read_all(&colorf);
-        RGB2Hue(&colorf);
-        Hue2Colour(&colorf);
-        Colour2Action(&colorf);
+        colour_read_all(&colorf);//read the colours from the colour click
+        RGB2Hue(&colorf);//takes the RGB values and outputs hue 
+        Hue2Colour(&colorf);//takes the hue and outputs the colour
+        Colour2Action(&colorf);//perform the action
+        
         //output color values being read to serial
         Color2String(data,&colorf);
         __delay_ms(1000);
