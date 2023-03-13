@@ -1,4 +1,3 @@
-
 #ifndef _colorfunctions_H
 #define	_colorfunctions_H
 
@@ -23,6 +22,5 @@ void RGB2Hue(struct RGBC_rel *cf);
 char* Hue2Colour(struct RGBC_rel *cf);
 //This functionn takes the colourbeing looked at as a number reference 
 //and calls the relevant function
-//void Colour2Action(struct RGBC_rel *cf);
+void Colour2Action(struct RGBC_rel *cf);
 #endif	/* XC_HEADER_TEMPLATE_H */
-

@@ -1,4 +1,4 @@
-# 1 "i2c.c"
+# 1 "memory.c"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 288 "<built-in>" 3
@@ -6,7 +6,7 @@
 # 1 "<built-in>" 2
 # 1 "C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
-# 1 "i2c.c" 2
+# 1 "memory.c" 2
 # 1 "C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\\pic\\include\\xc.h" 1 3
 # 18 "C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\\pic\\include\\xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -24207,100 +24207,72 @@ __attribute__((__unsupported__("The READTIMER" "0" "() macro is not available wi
 unsigned char __t1rd16on(void);
 unsigned char __t3rd16on(void);
 # 34 "C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\\pic\\include\\xc.h" 2 3
-# 1 "i2c.c" 2
+# 1 "memory.c" 2
 
-# 1 "./i2c.h" 1
-# 13 "./i2c.h"
-void I2C_2_Master_Init(void);
+# 1 "./memory.h" 1
 
 
 
 
-void I2C_2_Master_Idle(void);
+# 1 "./memory.h" 1
+# 5 "./memory.h" 2
+
+# 1 "./colorfunctions.h" 1
 
 
 
 
-void I2C_2_Master_Start(void);
+
+
+
+typedef struct RGBC_rel{
+   float Rf, Gf, Bf, Cf;
+   float h;
+   int colourindex;
+} RGBC_rel;
+
+
+
+struct RGBC_rel colorf;
+
+void colour_read_all(struct RGBC_rel *cf);
+void RGB2Hue(struct RGBC_rel *cf);
+
+
+char* Hue2Colour(struct RGBC_rel *cf);
+
+
+void Colour2Action(struct RGBC_rel *cf);
+# 6 "./memory.h" 2
+
+# 1 "./timer.h" 1
 
 
 
 
-void I2C_2_Master_RepStart(void);
+void Timer0_init(void);
+void TimerReset(void);
+unsigned int getTimerValue(void);
+# 7 "./memory.h" 2
 
 
 
 
-void I2C_2_Master_Stop(void);
+unsigned int movementMemory[20];
+unsigned int timerMemory[20];
+void memoryUpdate(struct RGBC_rel *cf, unsigned int movementCount, unsigned int *movementMemory, unsigned int *timerMemory);
+# 2 "memory.c" 2
 
 
 
 
-void I2C_2_Master_Write(unsigned char data_byte);
 
-
-
-
-unsigned char I2C_2_Master_Read(unsigned char ack);
-# 2 "i2c.c" 2
-
-
-void I2C_2_Master_Init(void)
+void memoryUpdate(struct RGBC_rel *cf, unsigned int movementCount, unsigned int *movementMemory, unsigned int *timerMemory)
 {
 
-  SSP2CON1bits.SSPM= 0b1000;
-  SSP2CON1bits.SSPEN = 1;
-  SSP2ADD = (64000000/(4*100000))-1;
+    int colourcode = cf->colourindex;
 
-
-  TRISDbits.TRISD5 = 1;
-  TRISDbits.TRISD6 = 1;
-  ANSELDbits.ANSELD5=0;
-  ANSELDbits.ANSELD6=0;
-  SSP2DATPPS=0x1D;
-  SSP2CLKPPS=0x1E;
-  RD5PPS=0x1C;
-  RD6PPS=0x1B;
-}
-
-void I2C_2_Master_Idle(void)
-{
-  while ((SSP2STAT & 0x04) || (SSP2CON2 & 0x1F));
-}
-
-void I2C_2_Master_Start(void)
-{
-  I2C_2_Master_Idle();
-  SSP2CON2bits.SEN = 1;
-}
-
-void I2C_2_Master_RepStart(void)
-{
-  I2C_2_Master_Idle();
-  SSP2CON2bits.RSEN = 1;
-}
-
-void I2C_2_Master_Stop()
-{
-  I2C_2_Master_Idle();
-  SSP2CON2bits.PEN = 1;
-}
-
-void I2C_2_Master_Write(unsigned char data_byte)
-{
-  I2C_2_Master_Idle();
-  SSP2BUF = data_byte;
-}
-
-unsigned char I2C_2_Master_Read(unsigned char ack)
-{
-  unsigned char tmp;
-  I2C_2_Master_Idle();
-  SSP2CON2bits.RCEN = 1;
-  I2C_2_Master_Idle();
-  tmp = SSP2BUF;
-  I2C_2_Master_Idle();
-  SSP2CON2bits.ACKDT = !ack;
-  SSP2CON2bits.ACKEN = 1;
-  return tmp;
+    unsigned int timerVal = getTimerValue();
+    timerMemory[movementCount] = timerVal;
+    movementMemory[movementCount] = colourcode;
 }
