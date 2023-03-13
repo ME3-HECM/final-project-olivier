@@ -9,6 +9,14 @@
       <itemPath>serial.h</itemPath>
       <itemPath>dc_motor.h</itemPath>
       <itemPath>colorfunctions.h</itemPath>
+<<<<<<< HEAD
+=======
+      <itemPath>main.h</itemPath>
+<<<<<<< HEAD
+      <itemPath>interrupts.h</itemPath>
+=======
+>>>>>>> 7d2d5efb59424e17314051f30811b499bc4df8a1
+>>>>>>> motor-function-testing
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -26,6 +34,14 @@
       <itemPath>dc_motor.c</itemPath>
       <itemPath>memory.c</itemPath>
       <itemPath>timer.c</itemPath>
+<<<<<<< HEAD
+=======
+      <itemPath>colorfunctions.c</itemPath>
+<<<<<<< HEAD
+      <itemPath>interrupts.c</itemPath>
+=======
+>>>>>>> 7d2d5efb59424e17314051f30811b499bc4df8a1
+>>>>>>> motor-function-testing
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"

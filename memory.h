@@ -5,6 +5,7 @@
 #include "memory.h"
 #include "colorfunctions.h"
 #include "timer.h"
+#include "main.h"
 
 #define _XTAL_FREQ 64000000 //note intrinsic _delay function is 62.5ns at 64,000,000Hz
 
