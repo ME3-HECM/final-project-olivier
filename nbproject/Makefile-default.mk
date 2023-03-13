@@ -51,10 +51,7 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-<<<<<<< HEAD
 SOURCEFILES_QUOTED_IF_SPACED=colorclick.c colorfunctions.c i2c.c main.c serial.c LED.c dc_motor.c memory.c timer.c
-=======
-<<<<<<< HEAD
 SOURCEFILES_QUOTED_IF_SPACED=i2c.c main.c dc_motor.c serial.c colorclick.c LED.c memory.c timer.c colorfunctions.c interrupts.c
 
 # Object Files Quoted if spaced
@@ -66,9 +63,7 @@ OBJECTFILES=${OBJECTDIR}/i2c.p1 ${OBJECTDIR}/main.p1 ${OBJECTDIR}/dc_motor.p1 ${
 
 # Source Files
 SOURCEFILES=i2c.c main.c dc_motor.c serial.c colorclick.c LED.c memory.c timer.c colorfunctions.c interrupts.c
-=======
 SOURCEFILES_QUOTED_IF_SPACED=i2c.c main.c dc_motor.c serial.c colorclick.c LED.c memory.c timer.c colorfunctions.c
->>>>>>> motor-function-testing
 
 # Object Files Quoted if spaced
 OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/colorclick.p1 ${OBJECTDIR}/colorfunctions.p1 ${OBJECTDIR}/i2c.p1 ${OBJECTDIR}/main.p1 ${OBJECTDIR}/serial.p1 ${OBJECTDIR}/LED.p1 ${OBJECTDIR}/dc_motor.p1 ${OBJECTDIR}/memory.p1 ${OBJECTDIR}/timer.p1
@@ -78,12 +73,8 @@ POSSIBLE_DEPFILES=${OBJECTDIR}/colorclick.p1.d ${OBJECTDIR}/colorfunctions.p1.d 
 OBJECTFILES=${OBJECTDIR}/colorclick.p1 ${OBJECTDIR}/colorfunctions.p1 ${OBJECTDIR}/i2c.p1 ${OBJECTDIR}/main.p1 ${OBJECTDIR}/serial.p1 ${OBJECTDIR}/LED.p1 ${OBJECTDIR}/dc_motor.p1 ${OBJECTDIR}/memory.p1 ${OBJECTDIR}/timer.p1
 
 # Source Files
-<<<<<<< HEAD
 SOURCEFILES=colorclick.c colorfunctions.c i2c.c main.c serial.c LED.c dc_motor.c memory.c timer.c
-=======
 SOURCEFILES=i2c.c main.c dc_motor.c serial.c colorclick.c LED.c memory.c timer.c colorfunctions.c
->>>>>>> 7d2d5efb59424e17314051f30811b499bc4df8a1
->>>>>>> motor-function-testing
 
 
 
@@ -199,9 +190,7 @@ ${OBJECTDIR}/colorfunctions.p1: colorfunctions.c  nbproject/Makefile-${CND_CONF}
 	@-${MV} ${OBJECTDIR}/colorfunctions.d ${OBJECTDIR}/colorfunctions.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/colorfunctions.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
+
 ${OBJECTDIR}/interrupts.p1: interrupts.c  nbproject/Makefile-${CND_CONF}.mk 
 	@${MKDIR} "${OBJECTDIR}" 
 	@${RM} ${OBJECTDIR}/interrupts.p1.d 
@@ -209,11 +198,9 @@ ${OBJECTDIR}/interrupts.p1: interrupts.c  nbproject/Makefile-${CND_CONF}.mk
 	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -mdebugger=pickit4   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/interrupts.p1 interrupts.c 
 	@-${MV} ${OBJECTDIR}/interrupts.d ${OBJECTDIR}/interrupts.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/interrupts.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
-	
-=======
->>>>>>> 7d2d5efb59424e17314051f30811b499bc4df8a1
+
 else
->>>>>>> motor-function-testing
+
 ${OBJECTDIR}/i2c.p1: i2c.c  nbproject/Makefile-${CND_CONF}.mk 
 	@${MKDIR} "${OBJECTDIR}" 
 	@${RM} ${OBJECTDIR}/i2c.p1.d 
@@ -270,8 +257,7 @@ ${OBJECTDIR}/timer.p1: timer.c  nbproject/Makefile-${CND_CONF}.mk
 	@-${MV} ${OBJECTDIR}/timer.d ${OBJECTDIR}/timer.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/timer.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
-<<<<<<< HEAD
-=======
+
 ${OBJECTDIR}/colorfunctions.p1: colorfunctions.c  nbproject/Makefile-${CND_CONF}.mk 
 	@${MKDIR} "${OBJECTDIR}" 
 	@${RM} ${OBJECTDIR}/colorfunctions.p1.d 
@@ -280,7 +266,7 @@ ${OBJECTDIR}/colorfunctions.p1: colorfunctions.c  nbproject/Makefile-${CND_CONF}
 	@-${MV} ${OBJECTDIR}/colorfunctions.d ${OBJECTDIR}/colorfunctions.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/colorfunctions.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
-<<<<<<< HEAD
+
 ${OBJECTDIR}/interrupts.p1: interrupts.c  nbproject/Makefile-${CND_CONF}.mk 
 	@${MKDIR} "${OBJECTDIR}" 
 	@${RM} ${OBJECTDIR}/interrupts.p1.d 
@@ -290,8 +276,7 @@ ${OBJECTDIR}/interrupts.p1: interrupts.c  nbproject/Makefile-${CND_CONF}.mk
 	@${FIXDEPS} ${OBJECTDIR}/interrupts.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
 =======
->>>>>>> 7d2d5efb59424e17314051f30811b499bc4df8a1
->>>>>>> motor-function-testing
+
 endif
 
 # ------------------------------------------------------------------------------------
