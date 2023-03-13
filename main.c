@@ -39,6 +39,7 @@ void main(void) {
     motorR.PWMperiod=PWMcycle; 			//store PWMperiod for motor (value of T2PR in this case)
 
     char wall=0;
+    unsigned int movementCount = 0;
     while (1){ 
         //wait to run into a wall
         while (!wall){
