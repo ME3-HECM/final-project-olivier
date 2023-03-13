@@ -13,7 +13,10 @@
       <itemPath>timer.h</itemPath>
       <itemPath>colorfunctions.h</itemPath>
       <itemPath>main.h</itemPath>
+<<<<<<< HEAD
       <itemPath>interrupts.h</itemPath>
+=======
+>>>>>>> 7d2d5efb59424e17314051f30811b499bc4df8a1
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -31,7 +34,10 @@
       <itemPath>memory.c</itemPath>
       <itemPath>timer.c</itemPath>
       <itemPath>colorfunctions.c</itemPath>
+<<<<<<< HEAD
       <itemPath>interrupts.c</itemPath>
+=======
+>>>>>>> 7d2d5efb59424e17314051f30811b499bc4df8a1
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
