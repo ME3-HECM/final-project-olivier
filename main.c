@@ -18,6 +18,7 @@
 
 void main(void) {
     char data[100];
+    //initialisation of modules
     initUSART4();
     color_click_init();
     I2C_2_Master_Init();

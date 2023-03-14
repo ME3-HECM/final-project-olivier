@@ -12,14 +12,14 @@
   0h - 3h		(dist/default/production\final-project-olivier.X.production.hex)
   8h - 2Fh		(dist/default/production\final-project-olivier.X.production.hex)
   E00h - E50h		(dist/default/production\final-project-olivier.X.production.hex)
-  E52h - 4523h		(dist/default/production\final-project-olivier.X.production.hex)
+  E52h - 450Bh		(dist/default/production\final-project-olivier.X.production.hex)
   200000h - 20000Fh		(dist/default/production\final-project-olivier.X.production.hex)
   300000h - 30000Bh		(dist/default/production\final-project-olivier.X.production.hex)
  Unused ranges:
   4h - 7h
   30h - DFFh
   E51h - E51h
-  4524h - 1FFFFFh
+  450Ch - 1FFFFFh
   200010h - 2FFFFFh
 
 ### Hex Memory Map ###
@@ -913,9 +913,7 @@
 000044D0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 000044E0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 000044F0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
-00004500 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
-00004510 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
-00004520 | H1 H1 H1 H1 -- -- -- -- -- -- -- -- -- -- -- --
+00004500 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 -- -- -- --
 ----------------------------------------------------------
 00200000 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 ----------------------------------------------------------

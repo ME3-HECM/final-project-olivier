@@ -24651,7 +24651,6 @@ void main(void) {
 
     while (1){
         fullSpeedAhead(&motorL,&motorR);
-        _delay((unsigned long)((1000)*(64000000/4000.0)));
         if (maxTime==1){
             stop(&motorL,&motorR);
             _delay((unsigned long)((3000)*(64000000/4000.0)));
