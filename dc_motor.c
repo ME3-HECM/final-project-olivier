@@ -346,11 +346,10 @@ void White(struct DC_motor *mL, struct DC_motor *mR,unsigned int movementCount, 
         reverseHalfSquare(mL,mR);//reverse half square
         rotate180left(mL,mR); //rotate buggy 180 degrees to face the reverse direction of the maze
         __delay_ms(500);//delay starting the retrace
-        reverseHalfSquare(mL,mR);//reverse half square to get back to the white card
         ForwardFlag = 0;//now put it in reverse mode 
         retracingDone = 1;//say the retracing is now done and so it will exit after the for loop
         //execute the reverse of all the commands sent 
-        for (int i=movementCount-1; i>=0;i--){
+        for (int i=movementCount; i>=0;i--){
             BrakeLightON;
             __delay_ms(200); //ensure the momentum of the buggy has been dissipated
             if (movementMemory[i]==0){
@@ -368,7 +367,7 @@ void White(struct DC_motor *mL, struct DC_motor *mR,unsigned int movementCount, 
             else if (movementMemory[i]==6){
                 LightBlue_L135(mL,mR);}
             else if (movementMemory[i]==7){
-                stop(mL,mR);}
+                stop(mL,mR);}//7 = white so just stop and then carry on 
             BrakeLightON; 
             //now we read the timer memory to find the time between functions 
             unsigned int tempTimer = 0;

@@ -32,6 +32,6 @@ unsigned int getTimerValue(void)
     timerCount = TMR0L;
     // Read high byte of TMR0, shift left 8 bits, and combine with low byte of TMR0
     timerCount |= (unsigned int)(TMR0H << 8);
-    return timerCount; // Return 16-bit timer value
+    return timerCount*1.048576; // Return 16-bit timer value in ms 
 }
  

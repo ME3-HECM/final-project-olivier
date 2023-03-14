@@ -97,6 +97,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 "15 ./serial.h
 [; ;./serial.h: 15: void Color2String(char *buf,struct RGBC_rel *cf);
 [v _Color2String `(v ~T0 @X0 0 ef2`*uc`*S2012 ]
+"13 ./memory.h
+[; ;./memory.h: 13: void memoryUpdateTime(volatile unsigned int movementCount, volatile unsigned int *timerMemory);
+[v _memoryUpdateTime `(v ~T0 @X0 0 ef2`Vui`*Vui ]
 "34 ./dc_motor.h
 [; ;./dc_motor.h: 34: void stop(struct DC_motor *mL, struct DC_motor *mR);
 [v _stop `(v ~T0 @X0 0 ef2`*S2015`*S2015 ]
@@ -106,9 +109,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 "22
 [; ;./colorfunctions.h: 22: char* Hue2Colour(struct RGBC_rel *cf);
 [v _Hue2Colour `(*uc ~T0 @X0 0 ef1`*S2012 ]
-"11 ./memory.h
-[; ;./memory.h: 11: void memoryUpdate(struct RGBC_rel *cf, unsigned int movementCount, volatile unsigned int *movementMemory, volatile unsigned int *timerMemory);
-[v _memoryUpdate `(v ~T0 @X0 0 ef4`*S2012`ui`*Vui`*Vui ]
+"12 ./memory.h
+[; ;./memory.h: 12: void memoryUpdateMovement(struct RGBC_rel *cf, volatile unsigned int movementCount, volatile unsigned int *movementMemory);
+[v _memoryUpdateMovement `(v ~T0 @X0 0 ef3`*S2012`Vui`*Vui ]
 "25 ./colorfunctions.h
 [; ;./colorfunctions.h: 25: void Colour2Action(struct RGBC_rel *cf);
 [v _Colour2Action `(v ~T0 @X0 0 ef1`*S2012 ]
@@ -2133,28 +2136,28 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 0 `i `ui
 ]
 "14
-[; ;./dc_motor.h: 14: int _45dleftdelay = 146;
-[v __45dleftdelay `i ~T0 @X0 1 e ]
+[; ;./dc_motor.h: 14: unsigned int _45dleftdelay = 146;
+[v __45dleftdelay `ui ~T0 @X0 1 e ]
 [i __45dleftdelay
--> 146 `i
+-> -> 146 `i `ui
 ]
 "15
-[; ;./dc_motor.h: 15: int _45drightdelay = 149;
-[v __45drightdelay `i ~T0 @X0 1 e ]
+[; ;./dc_motor.h: 15: unsigned int _45drightdelay = 149;
+[v __45drightdelay `ui ~T0 @X0 1 e ]
 [i __45drightdelay
--> 149 `i
+-> -> 149 `i `ui
 ]
 "16
-[; ;./dc_motor.h: 16: int _1square = 700;
-[v __1square `i ~T0 @X0 1 e ]
+[; ;./dc_motor.h: 16: unsigned int _1square = 700;
+[v __1square `ui ~T0 @X0 1 e ]
 [i __1square
--> 700 `i
+-> -> 700 `i `ui
 ]
 "17
-[; ;./dc_motor.h: 17: int _halfsquare = 350;
-[v __halfsquare `i ~T0 @X0 1 e ]
+[; ;./dc_motor.h: 17: unsigned int _halfsquare = 350;
+[v __halfsquare `ui ~T0 @X0 1 e ]
 [i __halfsquare
--> 350 `i
+-> -> 350 `i `ui
 ]
 "28
 [; ;./dc_motor.h: 28: struct DC_motor motorL, motorR;
@@ -2291,59 +2294,62 @@ Version 4.0 HI-TECH Software Intermediate Code
 "65
 [; ;main.c: 65:              {
 {
-"73
-[; ;main.c: 73:                  wall=1;
-[e = _wall -> -> 1 `i `uc ]
+"72
+[; ;main.c: 72:             memoryUpdateTime(movementCount,timerMemory);
+[e ( _memoryUpdateTime (2 , _movementCount &U _timerMemory ]
 "74
-[; ;main.c: 74:                  ClickLEDOn(1);
-[e ( _ClickLEDOn (1 -> -> 1 `i `uc ]
+[; ;main.c: 74:             wall=1;
+[e = _wall -> -> 1 `i `uc ]
 "75
-[; ;main.c: 75:                  stop(&motorL,&motorR);
-[e ( _stop (2 , &U _motorL &U _motorR ]
+[; ;main.c: 75:             ClickLEDOn(1);
+[e ( _ClickLEDOn (1 -> -> 1 `i `uc ]
 "76
-[; ;main.c: 76:                  _delay((unsigned long)((2000)*(64000000/4000.0)));
-[e ( __delay (1 -> * -> -> 2000 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+[; ;main.c: 76:             stop(&motorL,&motorR);
+[e ( _stop (2 , &U _motorL &U _motorR ]
 "77
-[; ;main.c: 77:              }
+[; ;main.c: 77:             _delay((unsigned long)((2000)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 2000 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+"78
+[; ;main.c: 78:             }
 }
 [e :U 2026 ]
-"78
-[; ;main.c: 78:         }
+"79
+[; ;main.c: 79:         }
 }
 [e :U 2023 ]
 "59
 [; ;main.c: 59:         while (!wall){
 [e $ ! != -> _wall `i -> 0 `i 2024  ]
 [e :U 2025 ]
-"79
-[; ;main.c: 79:         colour_read_all(&colorf);
-[e ( _colour_read_all (1 &U _colorf ]
 "80
-[; ;main.c: 80:         wall=0;
-[e = _wall -> -> 0 `i `uc ]
+[; ;main.c: 80:         colour_read_all(&colorf);
+[e ( _colour_read_all (1 &U _colorf ]
 "81
-[; ;main.c: 81:         ClickLEDOn(0);
-[e ( _ClickLEDOn (1 -> -> 0 `i `uc ]
+[; ;main.c: 81:         wall=0;
+[e = _wall -> -> 0 `i `uc ]
 "82
-[; ;main.c: 82:         RGB2Hue(&colorf);
-[e ( _RGB2Hue (1 &U _colorf ]
+[; ;main.c: 82:         ClickLEDOn(0);
+[e ( _ClickLEDOn (1 -> -> 0 `i `uc ]
 "83
-[; ;main.c: 83:         Hue2Colour(&colorf);
-[e ( _Hue2Colour (1 &U _colorf ]
+[; ;main.c: 83:         RGB2Hue(&colorf);
+[e ( _RGB2Hue (1 &U _colorf ]
 "84
-[; ;main.c: 84:         memoryUpdate(&colorf,movementCount,movementMemory,timerMemory);
-[e ( _memoryUpdate (4 , , , &U _colorf _movementCount &U _movementMemory &U _timerMemory ]
+[; ;main.c: 84:         Hue2Colour(&colorf);
+[e ( _Hue2Colour (1 &U _colorf ]
 "85
-[; ;main.c: 85:         Colour2Action(&colorf);
-[e ( _Colour2Action (1 &U _colorf ]
+[; ;main.c: 85:         memoryUpdateMovement(&colorf,movementCount,movementMemory);
+[e ( _memoryUpdateMovement (3 , , &U _colorf _movementCount &U _movementMemory ]
 "86
-[; ;main.c: 86:         if (colorf.colourindex == 7)
-[e $ ! == . _colorf 5 -> 7 `i 2027  ]
+[; ;main.c: 86:         Colour2Action(&colorf);
+[e ( _Colour2Action (1 &U _colorf ]
 "87
-[; ;main.c: 87:         {
-{
+[; ;main.c: 87:         if (colorf.colourindex == 7)
+[e $ ! == . _colorf 5 -> 7 `i 2027  ]
 "88
-[; ;main.c: 88:             while(!retracingDone){}
+[; ;main.c: 88:         {
+{
+"89
+[; ;main.c: 89:             while(!retracingDone){}
 [e $U 2028  ]
 [e :U 2029 ]
 {
@@ -2362,20 +2368,14 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main.c: 92:         movementCount++;
 [e ++ _movementCount -> -> 1 `i `Vui ]
 "99
-[; ;main.c: 99:         Color2String(data,&colorf);
-[e ( _Color2String (2 , &U _data &U _colorf ]
-"100
-[; ;main.c: 100:         _delay((unsigned long)((1000)*(64000000/4000.0)));
-[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"102
-[; ;main.c: 102:     }
+[; ;main.c: 99:     }
 }
 [e :U 2020 ]
 "56
 [; ;main.c: 56:     while (!retracingDone){
 [e $ ! != _retracingDone -> -> 0 `i `ui 2021  ]
 [e :U 2022 ]
-"103
-[; ;main.c: 103: }
+"100
+[; ;main.c: 100: }
 [e :UE 2016 ]
 }

@@ -2000,28 +2000,28 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 0 `i `ui
 ]
 "14
-[; ;./dc_motor.h: 14: int _45dleftdelay = 146;
-[v __45dleftdelay `i ~T0 @X0 1 e ]
+[; ;./dc_motor.h: 14: unsigned int _45dleftdelay = 146;
+[v __45dleftdelay `ui ~T0 @X0 1 e ]
 [i __45dleftdelay
--> 146 `i
+-> -> 146 `i `ui
 ]
 "15
-[; ;./dc_motor.h: 15: int _45drightdelay = 149;
-[v __45drightdelay `i ~T0 @X0 1 e ]
+[; ;./dc_motor.h: 15: unsigned int _45drightdelay = 149;
+[v __45drightdelay `ui ~T0 @X0 1 e ]
 [i __45drightdelay
--> 149 `i
+-> -> 149 `i `ui
 ]
 "16
-[; ;./dc_motor.h: 16: int _1square = 700;
-[v __1square `i ~T0 @X0 1 e ]
+[; ;./dc_motor.h: 16: unsigned int _1square = 700;
+[v __1square `ui ~T0 @X0 1 e ]
 [i __1square
--> 700 `i
+-> -> 700 `i `ui
 ]
 "17
-[; ;./dc_motor.h: 17: int _halfsquare = 350;
-[v __halfsquare `i ~T0 @X0 1 e ]
+[; ;./dc_motor.h: 17: unsigned int _halfsquare = 350;
+[v __halfsquare `ui ~T0 @X0 1 e ]
 [i __halfsquare
--> 350 `i
+-> -> 350 `i `ui
 ]
 "28
 [; ;./dc_motor.h: 28: struct DC_motor motorL, motorR;
@@ -2054,18 +2054,17 @@ Version 4.0 HI-TECH Software Intermediate Code
 ..
 ]
 "10 memory.c
-[; ;memory.c: 10: void memoryUpdate(struct RGBC_rel *cf, unsigned int movementCount, volatile unsigned int *movementMemory, volatile unsigned int *timerMemory)
-[v _memoryUpdate `(v ~T0 @X0 1 ef4`*S2012`ui`*Vui`*Vui ]
+[; ;memory.c: 10: void memoryUpdateMovement(struct RGBC_rel *cf, volatile unsigned int movementCount, volatile unsigned int *movementMemory)
+[v _memoryUpdateMovement `(v ~T0 @X0 1 ef3`*S2012`Vui`*Vui ]
 "11
 [; ;memory.c: 11: {
 {
-[e :U _memoryUpdate ]
+[e :U _memoryUpdateMovement ]
 "10
-[; ;memory.c: 10: void memoryUpdate(struct RGBC_rel *cf, unsigned int movementCount, volatile unsigned int *movementMemory, volatile unsigned int *timerMemory)
+[; ;memory.c: 10: void memoryUpdateMovement(struct RGBC_rel *cf, volatile unsigned int movementCount, volatile unsigned int *movementMemory)
 [v _cf `*S2012 ~T0 @X0 1 r1 ]
-[v _movementCount `ui ~T0 @X0 1 r2 ]
+[v _movementCount `Vui ~T0 @X0 1 r2 ]
 [v _movementMemory `*Vui ~T0 @X0 1 r3 ]
-[v _timerMemory `*Vui ~T0 @X0 1 r4 ]
 "11
 [; ;memory.c: 11: {
 [f ]
@@ -2073,35 +2072,53 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;memory.c: 13:     int colourcode = cf->colourindex;
 [v _colourcode `i ~T0 @X0 1 a ]
 [e = _colourcode . *U _cf 5 ]
-"15
-[; ;memory.c: 15:     unsigned int timerVal = getTimerValue();
-[v _timerVal `ui ~T0 @X0 1 a ]
-[e = _timerVal ( _getTimerValue ..  ]
-"16
-[; ;memory.c: 16:     timerMemory[movementCount] = timerVal;
-[e = *U + _timerMemory * -> _movementCount `ux -> -> # *U _timerMemory `ui `ux _timerVal ]
-"17
-[; ;memory.c: 17:     movementMemory[movementCount] = colourcode;
+"14
+[; ;memory.c: 14:     movementMemory[movementCount] = colourcode;
 [e = *U + _movementMemory * -> _movementCount `ux -> -> # *U _movementMemory `ui `ux -> _colourcode `ui ]
-"18
-[; ;memory.c: 18: }
+"15
+[; ;memory.c: 15: }
 [e :UE 2016 ]
 }
+"16
+[; ;memory.c: 16: void memoryUpdateTime(volatile unsigned int movementCount, volatile unsigned int *timerMemory)
+[v _memoryUpdateTime `(v ~T0 @X0 1 ef2`Vui`*Vui ]
+"17
+[; ;memory.c: 17: {
+{
+[e :U _memoryUpdateTime ]
+"16
+[; ;memory.c: 16: void memoryUpdateTime(volatile unsigned int movementCount, volatile unsigned int *timerMemory)
+[v _movementCount `Vui ~T0 @X0 1 r1 ]
+[v _timerMemory `*Vui ~T0 @X0 1 r2 ]
+"17
+[; ;memory.c: 17: {
+[f ]
+"18
+[; ;memory.c: 18:     unsigned int timerVal = getTimerValue()-(_halfsquare+50);
+[v _timerVal `ui ~T0 @X0 1 a ]
+[e = _timerVal - ( _getTimerValue ..  + __halfsquare -> -> 50 `i `ui ]
 "19
-[; ;memory.c: 19: void maxTimeReturn(void)
-[v _maxTimeReturn `(v ~T0 @X0 1 ef ]
+[; ;memory.c: 19:     timerMemory[movementCount] = timerVal;
+[e = *U + _timerMemory * -> _movementCount `ux -> -> # *U _timerMemory `ui `ux _timerVal ]
 "20
-[; ;memory.c: 20: {
+[; ;memory.c: 20: }
+[e :UE 2017 ]
+}
+"21
+[; ;memory.c: 21: void maxTimeReturn(void)
+[v _maxTimeReturn `(v ~T0 @X0 1 ef ]
+"22
+[; ;memory.c: 22: {
 {
 [e :U _maxTimeReturn ]
 [f ]
-"21
-[; ;memory.c: 21:     stop(&motorL,&motorR);
+"23
+[; ;memory.c: 23:     stop(&motorL,&motorR);
 [e ( _stop (2 , &U _motorL &U _motorR ]
-"22
-[; ;memory.c: 22:     maxTime = 0;
-[e = _maxTime -> -> 0 `i `ui ]
 "24
-[; ;memory.c: 24: }
-[e :UE 2017 ]
+[; ;memory.c: 24:     maxTime = 0;
+[e = _maxTime -> -> 0 `i `ui ]
+"26
+[; ;memory.c: 26: }
+[e :UE 2018 ]
 }

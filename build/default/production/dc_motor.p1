@@ -2376,28 +2376,28 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 0 `i `ui
 ]
 "14
-[; ;./dc_motor.h: 14: int _45dleftdelay = 146;
-[v __45dleftdelay `i ~T0 @X0 1 e ]
+[; ;./dc_motor.h: 14: unsigned int _45dleftdelay = 146;
+[v __45dleftdelay `ui ~T0 @X0 1 e ]
 [i __45dleftdelay
--> 146 `i
+-> -> 146 `i `ui
 ]
 "15
-[; ;./dc_motor.h: 15: int _45drightdelay = 149;
-[v __45drightdelay `i ~T0 @X0 1 e ]
+[; ;./dc_motor.h: 15: unsigned int _45drightdelay = 149;
+[v __45drightdelay `ui ~T0 @X0 1 e ]
 [i __45drightdelay
--> 149 `i
+-> -> 149 `i `ui
 ]
 "16
-[; ;./dc_motor.h: 16: int _1square = 700;
-[v __1square `i ~T0 @X0 1 e ]
+[; ;./dc_motor.h: 16: unsigned int _1square = 700;
+[v __1square `ui ~T0 @X0 1 e ]
 [i __1square
--> 700 `i
+-> -> 700 `i `ui
 ]
 "17
-[; ;./dc_motor.h: 17: int _halfsquare = 350;
-[v __halfsquare `i ~T0 @X0 1 e ]
+[; ;./dc_motor.h: 17: unsigned int _halfsquare = 350;
+[v __halfsquare `ui ~T0 @X0 1 e ]
 [i __halfsquare
--> 350 `i
+-> -> 350 `i `ui
 ]
 "28
 [; ;./dc_motor.h: 28: struct DC_motor motorL, motorR;
@@ -3472,105 +3472,102 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;dc_motor.c: 348:         _delay((unsigned long)((500)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 500 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
 "349
-[; ;dc_motor.c: 349:         reverseHalfSquare(mL,mR);
-[e ( _reverseHalfSquare (2 , _mL _mR ]
-"350
-[; ;dc_motor.c: 350:         ForwardFlag = 0;
+[; ;dc_motor.c: 349:         ForwardFlag = 0;
 [e = _ForwardFlag -> -> 0 `i `uc ]
-"351
-[; ;dc_motor.c: 351:         retracingDone = 1;
+"350
+[; ;dc_motor.c: 350:         retracingDone = 1;
 [e = _retracingDone -> -> 1 `i `ui ]
-"353
-[; ;dc_motor.c: 353:         for (int i=movementCount-1; i>=0;i--){
+"352
+[; ;dc_motor.c: 352:         for (int i=movementCount; i>=0;i--){
 {
 [v _i `i ~T0 @X0 1 a ]
-[e = _i -> - _movementCount -> -> 1 `i `ui `i ]
+[e = _i -> _movementCount `i ]
 [e $ >= _i -> 0 `i 2073  ]
 [e $U 2074  ]
 [e :U 2073 ]
 {
-"354
-[; ;dc_motor.c: 354:             LATDbits.LATD4 = 1;;
+"353
+[; ;dc_motor.c: 353:             LATDbits.LATD4 = 1;;
 [e = . . _LATDbits 0 4 -> -> 1 `i `uc ]
-"355
-[; ;dc_motor.c: 355:             _delay((unsigned long)((200)*(64000000/4000.0)));
+"354
+[; ;dc_motor.c: 354:             _delay((unsigned long)((200)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 200 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"356
-[; ;dc_motor.c: 356:             if (movementMemory[i]==0){
+"355
+[; ;dc_motor.c: 355:             if (movementMemory[i]==0){
 [e $ ! == *U + _movementMemory * -> _i `x -> -> # *U _movementMemory `i `x -> -> 0 `i `ui 2076  ]
 {
-"357
-[; ;dc_motor.c: 357:                 Red_R90(mL,mR);}
+"356
+[; ;dc_motor.c: 356:                 Red_R90(mL,mR);}
 [e ( _Red_R90 (2 , _mL _mR ]
 }
 [e $U 2077  ]
-"358
-[; ;dc_motor.c: 358:             else if (movementMemory[i]==1){
+"357
+[; ;dc_motor.c: 357:             else if (movementMemory[i]==1){
 [e :U 2076 ]
 [e $ ! == *U + _movementMemory * -> _i `x -> -> # *U _movementMemory `i `x -> -> 1 `i `ui 2078  ]
 {
-"359
-[; ;dc_motor.c: 359:                 Green_L90(mL,mR);}
+"358
+[; ;dc_motor.c: 358:                 Green_L90(mL,mR);}
 [e ( _Green_L90 (2 , _mL _mR ]
 }
 [e $U 2079  ]
-"360
-[; ;dc_motor.c: 360:             else if (movementMemory[i]==2){
+"359
+[; ;dc_motor.c: 359:             else if (movementMemory[i]==2){
 [e :U 2078 ]
 [e $ ! == *U + _movementMemory * -> _i `x -> -> # *U _movementMemory `i `x -> -> 2 `i `ui 2080  ]
 {
-"361
-[; ;dc_motor.c: 361:                 Blue_T180(mL,mR);}
+"360
+[; ;dc_motor.c: 360:                 Blue_T180(mL,mR);}
 [e ( _Blue_T180 (2 , _mL _mR ]
 }
 [e $U 2081  ]
-"362
-[; ;dc_motor.c: 362:             else if (movementMemory[i]==3){
+"361
+[; ;dc_motor.c: 361:             else if (movementMemory[i]==3){
 [e :U 2080 ]
 [e $ ! == *U + _movementMemory * -> _i `x -> -> # *U _movementMemory `i `x -> -> 3 `i `ui 2082  ]
 {
-"363
-[; ;dc_motor.c: 363:                 Yellow_rev1_R90(mL,mR);}
+"362
+[; ;dc_motor.c: 362:                 Yellow_rev1_R90(mL,mR);}
 [e ( _Yellow_rev1_R90 (2 , _mL _mR ]
 }
 [e $U 2083  ]
-"364
-[; ;dc_motor.c: 364:             else if (movementMemory[i]==4){
+"363
+[; ;dc_motor.c: 363:             else if (movementMemory[i]==4){
 [e :U 2082 ]
 [e $ ! == *U + _movementMemory * -> _i `x -> -> # *U _movementMemory `i `x -> -> 4 `i `ui 2084  ]
 {
-"365
-[; ;dc_motor.c: 365:                 Pink_rev1_L90(mL,mR);}
+"364
+[; ;dc_motor.c: 364:                 Pink_rev1_L90(mL,mR);}
 [e ( _Pink_rev1_L90 (2 , _mL _mR ]
 }
 [e $U 2085  ]
-"366
-[; ;dc_motor.c: 366:             else if (movementMemory[i]==5){
+"365
+[; ;dc_motor.c: 365:             else if (movementMemory[i]==5){
 [e :U 2084 ]
 [e $ ! == *U + _movementMemory * -> _i `x -> -> # *U _movementMemory `i `x -> -> 5 `i `ui 2086  ]
 {
-"367
-[; ;dc_motor.c: 367:                 Orange_R135(mL,mR);}
+"366
+[; ;dc_motor.c: 366:                 Orange_R135(mL,mR);}
 [e ( _Orange_R135 (2 , _mL _mR ]
 }
 [e $U 2087  ]
-"368
-[; ;dc_motor.c: 368:             else if (movementMemory[i]==6){
+"367
+[; ;dc_motor.c: 367:             else if (movementMemory[i]==6){
 [e :U 2086 ]
 [e $ ! == *U + _movementMemory * -> _i `x -> -> # *U _movementMemory `i `x -> -> 6 `i `ui 2088  ]
 {
-"369
-[; ;dc_motor.c: 369:                 LightBlue_L135(mL,mR);}
+"368
+[; ;dc_motor.c: 368:                 LightBlue_L135(mL,mR);}
 [e ( _LightBlue_L135 (2 , _mL _mR ]
 }
 [e $U 2089  ]
-"370
-[; ;dc_motor.c: 370:             else if (movementMemory[i]==7){
+"369
+[; ;dc_motor.c: 369:             else if (movementMemory[i]==7){
 [e :U 2088 ]
 [e $ ! == *U + _movementMemory * -> _i `x -> -> # *U _movementMemory `i `x -> -> 7 `i `ui 2090  ]
 {
-"371
-[; ;dc_motor.c: 371:                 stop(mL,mR);}
+"370
+[; ;dc_motor.c: 370:                 stop(mL,mR);}
 [e ( _stop (2 , _mL _mR ]
 }
 [e :U 2090 ]
@@ -3581,65 +3578,65 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 2081 ]
 [e :U 2079 ]
 [e :U 2077 ]
-"372
-[; ;dc_motor.c: 372:             LATDbits.LATD4 = 1;;
+"371
+[; ;dc_motor.c: 371:             LATDbits.LATD4 = 1;;
 [e = . . _LATDbits 0 4 -> -> 1 `i `uc ]
-"374
-[; ;dc_motor.c: 374:             unsigned int tempTimer = 0;
+"373
+[; ;dc_motor.c: 373:             unsigned int tempTimer = 0;
 [v _tempTimer `ui ~T0 @X0 1 a ]
 [e = _tempTimer -> -> 0 `i `ui ]
-"375
-[; ;dc_motor.c: 375:             TimerReset();
+"374
+[; ;dc_motor.c: 374:             TimerReset();
 [e ( _TimerReset ..  ]
-"376
-[; ;dc_motor.c: 376:             fullSpeedAhead(mL,mR);
+"375
+[; ;dc_motor.c: 375:             fullSpeedAhead(mL,mR);
 [e ( _fullSpeedAhead (2 , _mL _mR ]
-"377
-[; ;dc_motor.c: 377:             while(tempTimer<timerMemory[i])
+"376
+[; ;dc_motor.c: 376:             while(tempTimer<timerMemory[i])
 [e $U 2091  ]
 [e :U 2092 ]
-"378
-[; ;dc_motor.c: 378:             {
+"377
+[; ;dc_motor.c: 377:             {
 {
-"379
-[; ;dc_motor.c: 379:                 tempTimer = getTimerValue();
+"378
+[; ;dc_motor.c: 378:                 tempTimer = getTimerValue();
 [e = _tempTimer ( _getTimerValue ..  ]
-"380
-[; ;dc_motor.c: 380:             }
+"379
+[; ;dc_motor.c: 379:             }
 }
 [e :U 2091 ]
-"377
-[; ;dc_motor.c: 377:             while(tempTimer<timerMemory[i])
+"376
+[; ;dc_motor.c: 376:             while(tempTimer<timerMemory[i])
 [e $ < _tempTimer *U + _timerMemory * -> _i `x -> -> # *U _timerMemory `i `x 2092  ]
 [e :U 2093 ]
-"381
-[; ;dc_motor.c: 381:             stop(mL,mR);
+"380
+[; ;dc_motor.c: 380:             stop(mL,mR);
 [e ( _stop (2 , _mL _mR ]
-"382
-[; ;dc_motor.c: 382:         }
+"381
+[; ;dc_motor.c: 381:         }
 }
 [e -- _i -> 1 `i ]
 [e $ >= _i -> 0 `i 2073  ]
 [e :U 2074 ]
 }
-"383
-[; ;dc_motor.c: 383:     }
+"382
+[; ;dc_motor.c: 382:     }
 }
 [e :U 2070 ]
 "345
 [; ;dc_motor.c: 345:     while (!retracingDone){
 [e $ ! != _retracingDone -> -> 0 `i `ui 2071  ]
 [e :U 2072 ]
-"384
-[; ;dc_motor.c: 384:     stop(mL,mR);
+"383
+[; ;dc_motor.c: 383:     stop(mL,mR);
 [e ( _stop (2 , _mL _mR ]
-"385
-[; ;dc_motor.c: 385:     _delay((unsigned long)((1000)*(64000000/4000.0)));
+"384
+[; ;dc_motor.c: 384:     _delay((unsigned long)((1000)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"386
-[; ;dc_motor.c: 386:     LATDbits.LATD4 = 0;;
+"385
+[; ;dc_motor.c: 385:     LATDbits.LATD4 = 0;;
 [e = . . _LATDbits 0 4 -> -> 0 `i `uc ]
-"388
-[; ;dc_motor.c: 388: }
+"387
+[; ;dc_motor.c: 387: }
 [e :UE 2069 ]
 }

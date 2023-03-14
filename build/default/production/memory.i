@@ -24533,10 +24533,10 @@ void LED_init(void);
 volatile char ForwardFlag = 1;
 
 volatile unsigned int retracingDone = 0;
-int _45dleftdelay = 146;
-int _45drightdelay = 149;
-int _1square = 700;
-int _halfsquare = 350;
+unsigned int _45dleftdelay = 146;
+unsigned int _45drightdelay = 149;
+unsigned int _1square = 700;
+unsigned int _halfsquare = 350;
 
 typedef struct DC_motor {
     char power;
@@ -24588,7 +24588,9 @@ void main(void);
 
 
 
-void memoryUpdate(struct RGBC_rel *cf, unsigned int movementCount, volatile unsigned int *movementMemory, volatile unsigned int *timerMemory);
+
+void memoryUpdateMovement(struct RGBC_rel *cf, volatile unsigned int movementCount, volatile unsigned int *movementMemory);
+void memoryUpdateTime(volatile unsigned int movementCount, volatile unsigned int *timerMemory);
 void maxTimeReturn(void);
 # 2 "memory.c" 2
 
@@ -24599,14 +24601,16 @@ void maxTimeReturn(void);
 
 
 
-void memoryUpdate(struct RGBC_rel *cf, unsigned int movementCount, volatile unsigned int *movementMemory, volatile unsigned int *timerMemory)
+void memoryUpdateMovement(struct RGBC_rel *cf, volatile unsigned int movementCount, volatile unsigned int *movementMemory)
 {
 
     int colourcode = cf->colourindex;
-
-    unsigned int timerVal = getTimerValue();
-    timerMemory[movementCount] = timerVal;
     movementMemory[movementCount] = colourcode;
+}
+void memoryUpdateTime(volatile unsigned int movementCount, volatile unsigned int *timerMemory)
+{
+    unsigned int timerVal = getTimerValue()-(_halfsquare+50);
+    timerMemory[movementCount] = timerVal;
 }
 void maxTimeReturn(void)
 {

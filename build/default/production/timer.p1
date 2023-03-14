@@ -2097,8 +2097,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;timer.c: 34:     timerCount |= (unsigned int)(TMR0H << 8);
 [e =| _timerCount -> << -> _TMR0H `i -> 8 `i `ui ]
 "35
-[; ;timer.c: 35:     return timerCount;
-[e ) _timerCount ]
+[; ;timer.c: 35:     return timerCount*1.048576;
+[e ) -> * -> _timerCount `d .1.048576 `ui ]
 [e $UE 2014  ]
 "36
 [; ;timer.c: 36: }

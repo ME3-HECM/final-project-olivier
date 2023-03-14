@@ -24541,9 +24541,13 @@ volatile unsigned int timerMemory[20] = {};
 void main(void);
 # 8 "./memory.h" 2
 
+# 1 "./dc_motor.h" 1
+# 9 "./memory.h" 2
 
 
-void memoryUpdate(struct RGBC_rel *cf, unsigned int movementCount, volatile unsigned int *movementMemory, volatile unsigned int *timerMemory);
+
+void memoryUpdateMovement(struct RGBC_rel *cf, volatile unsigned int movementCount, volatile unsigned int *movementMemory);
+void memoryUpdateTime(volatile unsigned int movementCount, volatile unsigned int *timerMemory);
 void maxTimeReturn(void);
 # 7 "./dc_motor.h" 2
 
@@ -24553,10 +24557,10 @@ void maxTimeReturn(void);
 volatile char ForwardFlag = 1;
 
 volatile unsigned int retracingDone = 0;
-int _45dleftdelay = 146;
-int _45drightdelay = 149;
-int _1square = 700;
-int _halfsquare = 350;
+unsigned int _45dleftdelay = 146;
+unsigned int _45drightdelay = 149;
+unsigned int _1square = 700;
+unsigned int _halfsquare = 350;
 
 typedef struct DC_motor {
     char power;
@@ -24667,24 +24671,24 @@ void main(void) {
 
 
 
+            memoryUpdateTime(movementCount,timerMemory);
 
-                 wall=1;
-                 ClickLEDOn(1);
-                 stop(&motorL,&motorR);
-                 _delay((unsigned long)((2000)*(64000000/4000.0)));
-             }
+            wall=1;
+            ClickLEDOn(1);
+            stop(&motorL,&motorR);
+            _delay((unsigned long)((2000)*(64000000/4000.0)));
+            }
         }
         colour_read_all(&colorf);
         wall=0;
         ClickLEDOn(0);
         RGB2Hue(&colorf);
         Hue2Colour(&colorf);
-        memoryUpdate(&colorf,movementCount,movementMemory,timerMemory);
+        memoryUpdateMovement(&colorf,movementCount,movementMemory);
         Colour2Action(&colorf);
         if (colorf.colourindex == 7)
         {
             while(!retracingDone){}
-
         }
         TimerReset();
         movementCount++;
@@ -24693,9 +24697,6 @@ void main(void) {
 
 
 
-
-        Color2String(data,&colorf);
-        _delay((unsigned long)((1000)*(64000000/4000.0)));
 
     }
 }

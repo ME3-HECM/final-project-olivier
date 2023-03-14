@@ -2056,28 +2056,28 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 0 `i `ui
 ]
 "14
-[; ;./dc_motor.h: 14: int _45dleftdelay = 146;
-[v __45dleftdelay `i ~T0 @X0 1 e ]
+[; ;./dc_motor.h: 14: unsigned int _45dleftdelay = 146;
+[v __45dleftdelay `ui ~T0 @X0 1 e ]
 [i __45dleftdelay
--> 146 `i
+-> -> 146 `i `ui
 ]
 "15
-[; ;./dc_motor.h: 15: int _45drightdelay = 149;
-[v __45drightdelay `i ~T0 @X0 1 e ]
+[; ;./dc_motor.h: 15: unsigned int _45drightdelay = 149;
+[v __45drightdelay `ui ~T0 @X0 1 e ]
 [i __45drightdelay
--> 149 `i
+-> -> 149 `i `ui
 ]
 "16
-[; ;./dc_motor.h: 16: int _1square = 700;
-[v __1square `i ~T0 @X0 1 e ]
+[; ;./dc_motor.h: 16: unsigned int _1square = 700;
+[v __1square `ui ~T0 @X0 1 e ]
 [i __1square
--> 700 `i
+-> -> 700 `i `ui
 ]
 "17
-[; ;./dc_motor.h: 17: int _halfsquare = 350;
-[v __halfsquare `i ~T0 @X0 1 e ]
+[; ;./dc_motor.h: 17: unsigned int _halfsquare = 350;
+[v __halfsquare `ui ~T0 @X0 1 e ]
 [i __halfsquare
--> 350 `i
+-> -> 350 `i `ui
 ]
 "28
 [; ;./dc_motor.h: 28: struct DC_motor motorL, motorR;
