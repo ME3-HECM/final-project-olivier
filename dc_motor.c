@@ -229,7 +229,6 @@ void Red_R90(struct DC_motor *mL, struct DC_motor *mR)
         reverseHalfSquare(mL,mR);//reverse half square
         Right45(mL,mR);
         Right45(mL,mR);
-        TimerReset();//reset the timer in order to have time between actions
     }
     else {
         //execute left 90 turn 
@@ -245,7 +244,6 @@ void Green_L90(struct DC_motor *mL, struct DC_motor *mR)
         //execute left 90 turn
         Left45(mL,mR);
         Left45(mL,mR);
-        TimerReset();//reset the timer in order to have time between actions    
     }
     else {
         //execute right 90 turn 
@@ -260,7 +258,6 @@ void Blue_T180(struct DC_motor *mL, struct DC_motor *mR)
     reverseHalfSquare(mL,mR);//reverse half square
     //execute right 180 turn (depending on which side turns left/right more accurately)
     rotate180left(mL,mR); 
-    TimerReset();//reset the timer in order to have time between actions
     }else{
     rotate180left(mL,mR);
     }
@@ -276,8 +273,6 @@ void Yellow_rev1_R90(struct DC_motor *mL, struct DC_motor *mR)
         //execute a 90 degree right turn
         Right45(mL,mR);
         Right45(mL,mR);
-        TimerReset();//reset the timer in order to have time between actions#
-        stop(mL,mR);
     }
     else{
         //execute left turn 90 & forward 1 square 
@@ -297,7 +292,6 @@ void Pink_rev1_L90(struct DC_motor *mL, struct DC_motor *mR)
         __delay_ms(_1square);//delay corresponding to 1 square reversed
         Left45(mL,mR);
         Left45(mL,mR); //execute a 90 degree left turn
-        TimerReset();//reset the timer in order to have time between actions
     }
     else {
         //execute right turn 90 & forward 1 square 
@@ -316,7 +310,7 @@ void Orange_R135(struct DC_motor *mL, struct DC_motor *mR)
         Right45(mL,mR);
         Right45(mL,mR);
         Right45(mL,mR);
-        TimerReset();//reset the timer in order to have time between actions
+        
  
     }
     else{
@@ -324,7 +318,6 @@ void Orange_R135(struct DC_motor *mL, struct DC_motor *mR)
         Left45(mL,mR);
         Left45(mL,mR);
         Left45(mL,mR);
-        stop(mL,mR);
     }
 }
 void LightBlue_L135(struct DC_motor *mL, struct DC_motor *mR)
@@ -336,7 +329,7 @@ void LightBlue_L135(struct DC_motor *mL, struct DC_motor *mR)
         Left45(mL,mR);
         Left45(mL,mR);
         Left45(mL,mR);
-        TimerReset();//reset the timer in order to have time between actions
+       
     }
     else{
          //execute Right 135 turn
@@ -345,38 +338,50 @@ void LightBlue_L135(struct DC_motor *mL, struct DC_motor *mR)
         Right45(mL,mR);     
     }
 }
-void White(struct DC_motor *mL, struct DC_motor *mR,unsigned int movementCount, unsigned int *movementMemory, unsigned int *timerMemory)
+void White(struct DC_motor *mL, struct DC_motor *mR,unsigned int movementCount, volatile unsigned int *movementMemory, volatile unsigned int *timerMemory)
 {
-    reverseHalfSquare(mL,mR);//reverse half square
-    rotate180left(mL,mR); //rotate buggy 180 degrees to face the reverse direction of the maze
-    __delay_ms(500);//delay starting the retrace
-    ForwardFlag = 0;//now put it in reverse mode 
-    //execute the reverse of all the commands sent 
-    for (unsigned int i=movementCount-1; i>=0;i--){
-        if (movementMemory[i]==0){
-            Red_R90(mL,mR);}
-        else if (movementMemory[i]==1){
-            Green_L90(mL,mR);}
-        else if (movementMemory[i]==2){
-            Blue_T180(mL,mR);}
-        else if (movementMemory[i]==3){
-            Yellow_rev1_R90(mL,mR);}
-        else if (movementMemory[i]==4){
-            Pink_rev1_L90(mL,mR);}
-        else if (movementMemory[i]==5){
-            Orange_R135(mL,mR);}
-        else if (movementMemory[i]==6){
-            LightBlue_L135(mL,mR);}
-        //now we read the timer memory to find the time between functions 
-        TimerReset();//reset the timer in order to count up from 0->timerMemory[i]
-        unsigned int tempTimer = getTimerValue();
-        while(tempTimer<timerMemory[i])
-        {
+    BrakeLightON;
+    
+    while (!retracingDone){
+        reverseHalfSquare(mL,mR);//reverse half square
+        rotate180left(mL,mR); //rotate buggy 180 degrees to face the reverse direction of the maze
+        __delay_ms(500);//delay starting the retrace
+        ForwardFlag = 0;//now put it in reverse mode 
+        retracingDone = 1;//say the retracing is now done and so it will exit after the for loop
+        //execute the reverse of all the commands sent 
+        for (int i=movementCount; i>=0;i--){
+            BrakeLightON;
+            __delay_ms(200); //ensure the momentum of the buggy has been dissipated
+            if (movementMemory[i]==0){
+                Red_R90(mL,mR);}
+            else if (movementMemory[i]==1){
+                Green_L90(mL,mR);}
+            else if (movementMemory[i]==2){
+                Blue_T180(mL,mR);}
+            else if (movementMemory[i]==3){
+                Yellow_rev1_R90(mL,mR);}
+            else if (movementMemory[i]==4){
+                Pink_rev1_L90(mL,mR);}
+            else if (movementMemory[i]==5){
+                Orange_R135(mL,mR);}
+            else if (movementMemory[i]==6){
+                LightBlue_L135(mL,mR);}
+            else if (movementMemory[i]==7){
+                stop(mL,mR);}//7 = white so just stop and then carry on 
+            BrakeLightON; 
+            //now we read the timer memory to find the time between functions 
+            unsigned int tempTimer = 0;
+            TimerReset();//reset the timer in order to count up from 0->timerMemory[i]
             fullSpeedAhead(mL,mR);
-            tempTimer = getTimerValue();
+            while(tempTimer<timerMemory[i])
+            {
+                tempTimer = getTimerValue();
+            }
+            stop(mL,mR);//stop the buggy and perform the action 
         }
-        stop(mL,mR);//stop the buggy and perform the next action 
     }
-     
     stop(mL,mR);// stop buggy after retracing is done 
+    __delay_ms(1000);
+    BrakeLightOFF;
+    
 }

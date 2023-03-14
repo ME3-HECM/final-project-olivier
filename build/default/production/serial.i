@@ -24485,7 +24485,6 @@ void Color2String(char *buf,struct RGBC_rel *cf){
 
     char* colourname = Hue2Colour(cf);
 
-
     sprintf(buf,"Colour is %s  \r",colourname);
     sendStringSerial4(buf);
 }

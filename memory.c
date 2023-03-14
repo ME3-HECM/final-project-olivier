@@ -7,18 +7,21 @@
 
 //the memory update function is called everytime a colour is reached
 
-void memoryUpdate(struct RGBC_rel *cf, unsigned int movementCount, unsigned int *movementMemory, unsigned int *timerMemory)
+void memoryUpdateMovement(struct RGBC_rel *cf, volatile unsigned int movementCount, volatile unsigned int *movementMemory)
 {
     //get colour value and store it 
     int colourcode = cf->colourindex;
-    //get the timer value and store it 
-    unsigned int timerVal = getTimerValue(); //get the 16 bit time 
-    timerMemory[movementCount] = timerVal;//store value of time taken for operation to occour in array
     movementMemory[movementCount] = colourcode;//store the colour in the movement array
+}
+void memoryUpdateTime(volatile unsigned int movementCount, volatile unsigned int *timerMemory)//updates the corresponding memory time
+{
+    unsigned int timerVal = getTimerValue()-_halfsquare-650;//get the 16 bit time and minus the half square delay plus the time it takes to recognise its a wall
+    timerMemory[movementCount] = timerVal;//store value of time taken for operation to occour in array
 }
 void maxTimeReturn(void)
 {
-    stop(&motorL,&motorR);
-    maxTime = 0;
+    White(&motorL,&motorR,movementCount,movementMemory,timerMemory);//perform the return home function 
+    maxTime = 0;//reset the max time flag 
+    //perform the white function here to return home
 }
 

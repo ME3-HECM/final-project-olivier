@@ -24278,5 +24278,5 @@ unsigned int getTimerValue(void)
     timerCount = TMR0L;
 
     timerCount |= (unsigned int)(TMR0H << 8);
-    return timerCount;
+    return timerCount*1.048576;
 }

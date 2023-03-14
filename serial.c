@@ -37,11 +37,10 @@ void sendCharSerial4(char charToSend) {
 }
 
 void Color2String(char *buf,struct RGBC_rel *cf){
-    	//code to calculate the inegeter and fractions part of hue
+    //code to calculate the inegeter and fractions part of hue
 	// and format as a string using sprintf (see GitHub readme)
     char* colourname = Hue2Colour(cf);
-    //sprintf(buf," Red %f Green,%f Blue,%f clear %f Hue %f \r",cf->Rf,
-    //cf->Gf,cf->Bf,cf->Cf,cf->h);
+    //sprintf(buf," Red %f Green,%f Blue,%f clear %f Hue %f \r",cf->Rf,cf->Gf,cf->Bf,cf->Cf,cf->h);
     sprintf(buf,"Colour is %s  \r",colourname);
     sendStringSerial4(buf);
 }

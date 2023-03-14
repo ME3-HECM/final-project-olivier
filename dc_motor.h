@@ -9,10 +9,12 @@
 
 //variable for a forward motion
 volatile char ForwardFlag = 1;
-int _45dleftdelay = 150; //delay corresponging to a 15 degree turn left
-int _45drightdelay = 150; //delay corresponding to a 15 degree turn right
-int _1square = 700; //delay corresponding to 1 square travel
-int _halfsquare = 350; //delay corresponding to a half square travel (for reversal to correct position after colour is sensed)
+//variable for if the white function is done 
+volatile unsigned int retracingDone = 0;
+unsigned int _45dleftdelay = 146; //delay corresponging to a 15 degree turn left
+unsigned int _45drightdelay = 149; //delay corresponding to a 15 degree turn right
+unsigned int _1square = 700; //delay corresponding to 1 square travel
+unsigned int _halfsquare = 350; //delay corresponding to a half square travel (for reversal to correct position after colour is sensed)
 
 typedef struct DC_motor { //definition of DC_motor structure
     char power;         //motor power, out of 100
@@ -48,6 +50,6 @@ void Yellow_rev1_R90(struct DC_motor *mL, struct DC_motor *mR);
 void Pink_rev1_L90(struct DC_motor *mL, struct DC_motor *mR);
 void Orange_R135(struct DC_motor *mL, struct DC_motor *mR);
 void LightBlue_L135(struct DC_motor *mL, struct DC_motor *mR);
-void White(struct DC_motor *mL, struct DC_motor *mR,unsigned int movementCount, unsigned int *movementMemory, unsigned int *timerMemory);
+void White(struct DC_motor *mL, struct DC_motor *mR,unsigned int movementCount, volatile unsigned int *movementMemory,volatile unsigned int *timerMemory);
 
 #endif
