@@ -3,8 +3,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;./colorfunctions.h: 8: typedef struct RGBC_rel{
 [s S2012 `f 1 `f 1 `f 1 `f 1 `f 1 `i 1 ]
 [n S2012 RGBC_rel Rf Gf Bf Cf h colourindex ]
-"17 ./dc_motor.h
-[; ;./dc_motor.h: 17: typedef struct DC_motor {
+"19 ./dc_motor.h
+[; ;./dc_motor.h: 19: typedef struct DC_motor {
 [s S2015 `uc 1 `uc 1 `uc 1 `ui 1 `*uc 1 `*uc 1 ]
 [n S2015 DC_motor power direction brakemode PWMperiod posDutyHighByte negDutyHighByte ]
 [p mainexit ]
@@ -26,8 +26,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "5 ./timer.h
 [; ;./timer.h: 5: void Timer0_init(void);
 [v _Timer0_init `(v ~T0 @X0 0 ef ]
-"30 ./dc_motor.h
-[; ;./dc_motor.h: 30: void initDCmotorsPWM(unsigned int PWMperiod);
+"32 ./dc_motor.h
+[; ;./dc_motor.h: 32: void initDCmotorsPWM(unsigned int PWMperiod);
 [v _initDCmotorsPWM `(v ~T0 @X0 0 ef1`ui ]
 "34386 C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\pic\include\proc\pic18lf67k40.h
 [; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\pic\include\proc\pic18lf67k40.h: 34386: extern volatile unsigned char CCPR1H __attribute__((address(0xFAA)));
@@ -78,12 +78,40 @@ Version 4.0 HI-TECH Software Intermediate Code
 "30567
 [; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\pic\include\proc\pic18lf67k40.h: 30567: extern volatile PORTFbits_t PORTFbits __attribute__((address(0xF8E)));
 [v _PORTFbits `VS1408 ~T0 @X0 0 e@3982 ]
+[v F192 `(v ~T0 @X0 1 tf1`ul ]
+"12 C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\pic\include\builtins.h
+[v __delay `JF192 ~T0 @X0 0 e ]
+[p i __delay ]
+"6 ./timer.h
+[; ;./timer.h: 6: void TimerReset(void);
+[v _TimerReset `(v ~T0 @X0 0 ef ]
 "56 ./colorclick.h
 [; ;./colorclick.h: 56: void ClickLEDOn(char power);
 [v _ClickLEDOn `(v ~T0 @X0 0 ef1`uc ]
-"51 ./dc_motor.h
-[; ;./dc_motor.h: 51: void White(struct DC_motor *mL, struct DC_motor *mR,unsigned int movementCount, unsigned int *movementMemory, unsigned int *timerMemory);
-[v _White `(v ~T0 @X0 0 ef5`*S2015`*S2015`ui`*ui`*ui ]
+"37 ./dc_motor.h
+[; ;./dc_motor.h: 37: void fullSpeedAhead(struct DC_motor *mL, struct DC_motor *mR);
+[v _fullSpeedAhead `(v ~T0 @X0 0 ef2`*S2015`*S2015 ]
+"18 ./colorfunctions.h
+[; ;./colorfunctions.h: 18: void colour_read_all(struct RGBC_rel *cf);
+[v _colour_read_all `(v ~T0 @X0 0 ef1`*S2012 ]
+"15 ./serial.h
+[; ;./serial.h: 15: void Color2String(char *buf,struct RGBC_rel *cf);
+[v _Color2String `(v ~T0 @X0 0 ef2`*uc`*S2012 ]
+"34 ./dc_motor.h
+[; ;./dc_motor.h: 34: void stop(struct DC_motor *mL, struct DC_motor *mR);
+[v _stop `(v ~T0 @X0 0 ef2`*S2015`*S2015 ]
+"19 ./colorfunctions.h
+[; ;./colorfunctions.h: 19: void RGB2Hue(struct RGBC_rel *cf);
+[v _RGB2Hue `(v ~T0 @X0 0 ef1`*S2012 ]
+"22
+[; ;./colorfunctions.h: 22: char* Hue2Colour(struct RGBC_rel *cf);
+[v _Hue2Colour `(*uc ~T0 @X0 0 ef1`*S2012 ]
+"11 ./memory.h
+[; ;./memory.h: 11: void memoryUpdate(struct RGBC_rel *cf, unsigned int movementCount, volatile unsigned int *movementMemory, volatile unsigned int *timerMemory);
+[v _memoryUpdate `(v ~T0 @X0 0 ef4`*S2012`ui`*Vui`*Vui ]
+"25 ./colorfunctions.h
+[; ;./colorfunctions.h: 25: void Colour2Action(struct RGBC_rel *cf);
+[v _Colour2Action `(v ~T0 @X0 0 ef1`*S2012 ]
 "1 main.c
 [p x FEXTOSC  =  HS      ]
 "2
@@ -2073,29 +2101,23 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 0 `i `ui
 ]
 "16
-[; ;./main.h: 16: volatile unsigned int movementCount = 3;
+[; ;./main.h: 16: volatile unsigned int movementCount = 0;
 [v _movementCount `Vui ~T0 @X0 1 e ]
 [i _movementCount
--> -> 3 `i `ui
+-> -> 0 `i `ui
 ]
 "17
-[; ;./main.h: 17: volatile unsigned int movementMemory[] = {0,1,4};
-[v _movementMemory `Vui ~T0 @X0 -> 3 `i e ]
+[; ;./main.h: 17: volatile unsigned int movementMemory[20] = {};
+[v _movementMemory `Vui ~T0 @X0 -> 20 `i e ]
 [i _movementMemory
 :U ..
--> -> 0 `i `ui
--> -> 1 `i `ui
--> -> 4 `i `ui
 ..
 ]
 "18
-[; ;./main.h: 18: volatile unsigned int timerMemory[] = {1000, 1000, 1000};
-[v _timerMemory `Vui ~T0 @X0 -> 3 `i e ]
+[; ;./main.h: 18: volatile unsigned int timerMemory[20] = {};
+[v _timerMemory `Vui ~T0 @X0 -> 20 `i e ]
 [i _timerMemory
 :U ..
--> -> 1000 `i `ui
--> -> 1000 `i `ui
--> -> 1000 `i `ui
 ..
 ]
 "11 ./dc_motor.h
@@ -2104,32 +2126,38 @@ Version 4.0 HI-TECH Software Intermediate Code
 [i _ForwardFlag
 -> -> 1 `i `uc
 ]
-"12
-[; ;./dc_motor.h: 12: int _45dleftdelay = 170;
-[v __45dleftdelay `i ~T0 @X0 1 e ]
-[i __45dleftdelay
--> 170 `i
-]
 "13
-[; ;./dc_motor.h: 13: int _45drightdelay = 170;
-[v __45drightdelay `i ~T0 @X0 1 e ]
-[i __45drightdelay
--> 170 `i
+[; ;./dc_motor.h: 13: volatile unsigned int retracingDone = 0;
+[v _retracingDone `Vui ~T0 @X0 1 e ]
+[i _retracingDone
+-> -> 0 `i `ui
 ]
 "14
-[; ;./dc_motor.h: 14: int _1square = 700;
+[; ;./dc_motor.h: 14: int _45dleftdelay = 146;
+[v __45dleftdelay `i ~T0 @X0 1 e ]
+[i __45dleftdelay
+-> 146 `i
+]
+"15
+[; ;./dc_motor.h: 15: int _45drightdelay = 149;
+[v __45drightdelay `i ~T0 @X0 1 e ]
+[i __45drightdelay
+-> 149 `i
+]
+"16
+[; ;./dc_motor.h: 16: int _1square = 700;
 [v __1square `i ~T0 @X0 1 e ]
 [i __1square
 -> 700 `i
 ]
-"15
-[; ;./dc_motor.h: 15: int _halfsquare = 350;
+"17
+[; ;./dc_motor.h: 17: int _halfsquare = 350;
 [v __halfsquare `i ~T0 @X0 1 e ]
 [i __halfsquare
 -> 350 `i
 ]
-"26
-[; ;./dc_motor.h: 26: struct DC_motor motorL, motorR;
+"28
+[; ;./dc_motor.h: 28: struct DC_motor motorL, motorR;
 [v _motorL `S2015 ~T0 @X0 1 e ]
 [v _motorR `S2015 ~T0 @X0 1 e ]
 [v $root$_main `(v ~T0 @X0 0 e ]
@@ -2223,26 +2251,131 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e $ != -> . . _PORTFbits 0 2 `i -> 0 `i 2018  ]
 [e :U 2019 ]
 "49
-[; ;main.c: 49:     char wall=0;
+[; ;main.c: 49:     _delay((unsigned long)((500)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 500 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+"50
+[; ;main.c: 50:     TimerReset();
+[e ( _TimerReset ..  ]
+"51
+[; ;main.c: 51:     char wall=0;
 [v _wall `uc ~T0 @X0 1 a ]
 [e = _wall -> -> 0 `i `uc ]
-"51
-[; ;main.c: 51:     ClickLEDOn(0);
+"53
+[; ;main.c: 53:     ClickLEDOn(0);
 [e ( _ClickLEDOn (1 -> -> 0 `i `uc ]
+"55
+[; ;main.c: 55:     char buf[20];
+[v _buf `uc ~T0 @X0 -> 20 `i a ]
 "56
-[; ;main.c: 56:     White(&motorL,&motorR,movementCount, movementMemory, timerMemory);
-[e ( _White (4 , , , , &U _motorL &U _motorR _movementCount -> &U _movementMemory `*ui -> &U _timerMemory `*ui ]
-"59
-[; ;main.c: 59:     while (1){
+[; ;main.c: 56:     while (!retracingDone){
+[e $U 2020  ]
 [e :U 2021 ]
 {
+"57
+[; ;main.c: 57:         fullSpeedAhead(&motorL,&motorR);
+[e ( _fullSpeedAhead (2 , &U _motorL &U _motorR ]
+"59
+[; ;main.c: 59:         while (!wall){
+[e $U 2023  ]
+[e :U 2024 ]
+{
+"60
+[; ;main.c: 60:             colour_read_all(&colorf);
+[e ( _colour_read_all (1 &U _colorf ]
+"61
+[; ;main.c: 61:             Color2String(data,&colorf);
+[e ( _Color2String (2 , &U _data &U _colorf ]
+"64
+[; ;main.c: 64:              if (colorf.Cf<50)
+[e $ ! < . _colorf 3 -> -> 50 `i `f 2026  ]
+"65
+[; ;main.c: 65:              {
+{
+"73
+[; ;main.c: 73:                  wall=1;
+[e = _wall -> -> 1 `i `uc ]
+"74
+[; ;main.c: 74:                  ClickLEDOn(1);
+[e ( _ClickLEDOn (1 -> -> 1 `i `uc ]
+"75
+[; ;main.c: 75:                  stop(&motorL,&motorR);
+[e ( _stop (2 , &U _motorL &U _motorR ]
+"76
+[; ;main.c: 76:                  _delay((unsigned long)((2000)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 2000 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+"77
+[; ;main.c: 77:              }
+}
+[e :U 2026 ]
+"78
+[; ;main.c: 78:         }
+}
+[e :U 2023 ]
+"59
+[; ;main.c: 59:         while (!wall){
+[e $ ! != -> _wall `i -> 0 `i 2024  ]
+[e :U 2025 ]
+"79
+[; ;main.c: 79:         colour_read_all(&colorf);
+[e ( _colour_read_all (1 &U _colorf ]
+"80
+[; ;main.c: 80:         wall=0;
+[e = _wall -> -> 0 `i `uc ]
+"81
+[; ;main.c: 81:         ClickLEDOn(0);
+[e ( _ClickLEDOn (1 -> -> 0 `i `uc ]
+"82
+[; ;main.c: 82:         RGB2Hue(&colorf);
+[e ( _RGB2Hue (1 &U _colorf ]
+"83
+[; ;main.c: 83:         Hue2Colour(&colorf);
+[e ( _Hue2Colour (1 &U _colorf ]
+"84
+[; ;main.c: 84:         memoryUpdate(&colorf,movementCount,movementMemory,timerMemory);
+[e ( _memoryUpdate (4 , , , &U _colorf _movementCount &U _movementMemory &U _timerMemory ]
+"85
+[; ;main.c: 85:         Colour2Action(&colorf);
+[e ( _Colour2Action (1 &U _colorf ]
+"86
+[; ;main.c: 86:         if (colorf.colourindex == 7)
+[e $ ! == . _colorf 5 -> 7 `i 2027  ]
+"87
+[; ;main.c: 87:         {
+{
+"88
+[; ;main.c: 88:             while(!retracingDone){}
+[e $U 2028  ]
+[e :U 2029 ]
+{
+}
+[e :U 2028 ]
+[e $ ! != _retracingDone -> -> 0 `i `ui 2029  ]
+[e :U 2030 ]
+"90
+[; ;main.c: 90:         }
+}
+[e :U 2027 ]
+"91
+[; ;main.c: 91:         TimerReset();
+[e ( _TimerReset ..  ]
 "92
-[; ;main.c: 92:     }
+[; ;main.c: 92:         movementCount++;
+[e ++ _movementCount -> -> 1 `i `Vui ]
+"99
+[; ;main.c: 99:         Color2String(data,&colorf);
+[e ( _Color2String (2 , &U _data &U _colorf ]
+"100
+[; ;main.c: 100:         _delay((unsigned long)((1000)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+"102
+[; ;main.c: 102:     }
 }
 [e :U 2020 ]
-[e $U 2021  ]
+"56
+[; ;main.c: 56:     while (!retracingDone){
+[e $ ! != _retracingDone -> -> 0 `i `ui 2021  ]
 [e :U 2022 ]
-"93
-[; ;main.c: 93: }
+"103
+[; ;main.c: 103: }
 [e :UE 2016 ]
 }

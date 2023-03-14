@@ -24532,15 +24532,15 @@ unsigned char I2C_2_Master_Read(unsigned char ack);
 
 
 volatile unsigned int maxTime = 0;
-volatile unsigned int movementCount = 3;
-volatile unsigned int movementMemory[] = {0,1,4};
-volatile unsigned int timerMemory[] = {1000, 1000, 1000};
+volatile unsigned int movementCount = 0;
+volatile unsigned int movementMemory[20] = {};
+volatile unsigned int timerMemory[20] = {};
 void main(void);
 # 8 "./memory.h" 2
 
 
 
-void memoryUpdate(struct RGBC_rel *cf, unsigned int movementCount, unsigned int *movementMemory, unsigned int *timerMemory);
+void memoryUpdate(struct RGBC_rel *cf, unsigned int movementCount, volatile unsigned int *movementMemory, volatile unsigned int *timerMemory);
 void maxTimeReturn(void);
 # 7 "./dc_motor.h" 2
 
@@ -24548,8 +24548,10 @@ void maxTimeReturn(void);
 
 
 volatile char ForwardFlag = 1;
-int _45dleftdelay = 170;
-int _45drightdelay = 170;
+
+volatile unsigned int retracingDone = 0;
+int _45dleftdelay = 146;
+int _45drightdelay = 149;
 int _1square = 700;
 int _halfsquare = 350;
 
@@ -24587,7 +24589,7 @@ void Yellow_rev1_R90(struct DC_motor *mL, struct DC_motor *mR);
 void Pink_rev1_L90(struct DC_motor *mL, struct DC_motor *mR);
 void Orange_R135(struct DC_motor *mL, struct DC_motor *mR);
 void LightBlue_L135(struct DC_motor *mL, struct DC_motor *mR);
-void White(struct DC_motor *mL, struct DC_motor *mR,unsigned int movementCount, unsigned int *movementMemory, unsigned int *timerMemory);
+void White(struct DC_motor *mL, struct DC_motor *mR,unsigned int movementCount, volatile unsigned int *movementMemory,volatile unsigned int *timerMemory);
 # 2 "dc_motor.c" 2
 # 11 "dc_motor.c"
 void initDCmotorsPWM(unsigned int PWMperiod){
@@ -24695,8 +24697,8 @@ void stop(struct DC_motor *mL, struct DC_motor *mR)
 void turnLeft(struct DC_motor *mL, struct DC_motor *mR)
 {
 
-    (mL->direction) = 1;
-    (mR->direction) = 0;
+    (mL->direction) = 0;
+    (mR->direction) = 1;
     setMotorPWM(mL);
     setMotorPWM(mR);
     for (unsigned int i = 0; i <50; i++)
@@ -24713,8 +24715,8 @@ void turnLeft(struct DC_motor *mL, struct DC_motor *mR)
 
 void turnRight(struct DC_motor *mL, struct DC_motor *mR)
 {
-    (mL->direction) = 0;
-    (mR->direction) = 1;
+    (mL->direction) = 1;
+    (mR->direction) = 0;
     setMotorPWM(mL);
     setMotorPWM(mR);
     for (unsigned int i = 0; i <50; i++)
@@ -24811,7 +24813,6 @@ void Red_R90(struct DC_motor *mL, struct DC_motor *mR)
         reverseHalfSquare(mL,mR);
         Right45(mL,mR);
         Right45(mL,mR);
-        TimerReset();
     }
     else {
 
@@ -24827,7 +24828,6 @@ void Green_L90(struct DC_motor *mL, struct DC_motor *mR)
 
         Left45(mL,mR);
         Left45(mL,mR);
-        TimerReset();
     }
     else {
 
@@ -24842,7 +24842,6 @@ void Blue_T180(struct DC_motor *mL, struct DC_motor *mR)
     reverseHalfSquare(mL,mR);
 
     rotate180left(mL,mR);
-    TimerReset();
     }else{
     rotate180left(mL,mR);
     }
@@ -24858,8 +24857,6 @@ void Yellow_rev1_R90(struct DC_motor *mL, struct DC_motor *mR)
 
         Right45(mL,mR);
         Right45(mL,mR);
-        TimerReset();
-        stop(mL,mR);
     }
     else{
 
@@ -24879,7 +24876,6 @@ void Pink_rev1_L90(struct DC_motor *mL, struct DC_motor *mR)
         _delay((unsigned long)((_1square)*(64000000/4000.0)));
         Left45(mL,mR);
         Left45(mL,mR);
-        TimerReset();
     }
     else {
 
@@ -24898,7 +24894,7 @@ void Orange_R135(struct DC_motor *mL, struct DC_motor *mR)
         Right45(mL,mR);
         Right45(mL,mR);
         Right45(mL,mR);
-        TimerReset();
+
 
     }
     else{
@@ -24917,7 +24913,7 @@ void LightBlue_L135(struct DC_motor *mL, struct DC_motor *mR)
         Left45(mL,mR);
         Left45(mL,mR);
         Left45(mL,mR);
-        TimerReset();
+
     }
     else{
 
@@ -24926,17 +24922,21 @@ void LightBlue_L135(struct DC_motor *mL, struct DC_motor *mR)
         Right45(mL,mR);
     }
 }
-void White(struct DC_motor *mL, struct DC_motor *mR,unsigned int movementCount, unsigned int *movementMemory, unsigned int *timerMemory)
+void White(struct DC_motor *mL, struct DC_motor *mR,unsigned int movementCount, volatile unsigned int *movementMemory, volatile unsigned int *timerMemory)
 {
-    unsigned int retracingDone = 0;
+    LATDbits.LATD4 = 1;;
+
     while (!retracingDone){
         reverseHalfSquare(mL,mR);
         rotate180left(mL,mR);
         _delay((unsigned long)((500)*(64000000/4000.0)));
+        reverseHalfSquare(mL,mR);
         ForwardFlag = 0;
         retracingDone = 1;
 
         for (int i=movementCount-1; i>=0;i--){
+            LATDbits.LATD4 = 1;;
+            _delay((unsigned long)((200)*(64000000/4000.0)));
             if (movementMemory[i]==0){
                 Red_R90(mL,mR);}
             else if (movementMemory[i]==1){
@@ -24951,6 +24951,9 @@ void White(struct DC_motor *mL, struct DC_motor *mR,unsigned int movementCount, 
                 Orange_R135(mL,mR);}
             else if (movementMemory[i]==6){
                 LightBlue_L135(mL,mR);}
+            else if (movementMemory[i]==7){
+                stop(mL,mR);}
+            LATDbits.LATD4 = 1;;
 
             unsigned int tempTimer = 0;
             TimerReset();
@@ -24958,14 +24961,12 @@ void White(struct DC_motor *mL, struct DC_motor *mR,unsigned int movementCount, 
             while(tempTimer<timerMemory[i])
             {
                 tempTimer = getTimerValue();
-                LATDbits.LATD4 = 1;;
             }
             stop(mL,mR);
-            _delay((unsigned long)((1000)*(64000000/4000.0)));
         }
-
     }
     stop(mL,mR);
     _delay((unsigned long)((1000)*(64000000/4000.0)));
+    LATDbits.LATD4 = 0;;
 
 }

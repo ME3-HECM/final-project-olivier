@@ -13,9 +13,9 @@
 #define _XTAL_FREQ 64000000
 
 volatile unsigned int maxTime = 0;//define max time between counters for an overflow 
-volatile unsigned int movementCount = 3;//define the movement counter
-volatile unsigned int movementMemory[] = {0,1,4};//corresponds to R90,L90,T180
-volatile unsigned int timerMemory[] = {1000, 1000, 1000};//this corresponds to 1 second passing
+volatile unsigned int movementCount = 0;//define the movement counter
+volatile unsigned int movementMemory[20] = {};//corresponds to R90,L90,T180
+volatile unsigned int timerMemory[20] = {};//this corresponds to 1 second passing
 void main(void);
 
 #endif /* MAIN_H */

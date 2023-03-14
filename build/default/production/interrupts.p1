@@ -3,8 +3,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;./colorfunctions.h: 8: typedef struct RGBC_rel{
 [s S2012 `f 1 `f 1 `f 1 `f 1 `f 1 `i 1 ]
 [n S2012 RGBC_rel Rf Gf Bf Cf h colourindex ]
-"17 ./dc_motor.h
-[; ;./dc_motor.h: 17: typedef struct DC_motor {
+"19 ./dc_motor.h
+[; ;./dc_motor.h: 19: typedef struct DC_motor {
 [s S2015 `uc 1 `uc 1 `uc 1 `ui 1 `*uc 1 `*uc 1 ]
 [n S2015 DC_motor power direction brakemode PWMperiod posDutyHighByte negDutyHighByte ]
 "4810 C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\pic\include\proc\pic18lf67k40.h
@@ -2033,32 +2033,38 @@ Version 4.0 HI-TECH Software Intermediate Code
 [i _ForwardFlag
 -> -> 1 `i `uc
 ]
-"12
-[; ;./dc_motor.h: 12: int _45dleftdelay = 170;
-[v __45dleftdelay `i ~T0 @X0 1 e ]
-[i __45dleftdelay
--> 170 `i
-]
 "13
-[; ;./dc_motor.h: 13: int _45drightdelay = 170;
-[v __45drightdelay `i ~T0 @X0 1 e ]
-[i __45drightdelay
--> 170 `i
+[; ;./dc_motor.h: 13: volatile unsigned int retracingDone = 0;
+[v _retracingDone `Vui ~T0 @X0 1 e ]
+[i _retracingDone
+-> -> 0 `i `ui
 ]
 "14
-[; ;./dc_motor.h: 14: int _1square = 700;
+[; ;./dc_motor.h: 14: int _45dleftdelay = 146;
+[v __45dleftdelay `i ~T0 @X0 1 e ]
+[i __45dleftdelay
+-> 146 `i
+]
+"15
+[; ;./dc_motor.h: 15: int _45drightdelay = 149;
+[v __45drightdelay `i ~T0 @X0 1 e ]
+[i __45drightdelay
+-> 149 `i
+]
+"16
+[; ;./dc_motor.h: 16: int _1square = 700;
 [v __1square `i ~T0 @X0 1 e ]
 [i __1square
 -> 700 `i
 ]
-"15
-[; ;./dc_motor.h: 15: int _halfsquare = 350;
+"17
+[; ;./dc_motor.h: 17: int _halfsquare = 350;
 [v __halfsquare `i ~T0 @X0 1 e ]
 [i __halfsquare
 -> 350 `i
 ]
-"26
-[; ;./dc_motor.h: 26: struct DC_motor motorL, motorR;
+"28
+[; ;./dc_motor.h: 28: struct DC_motor motorL, motorR;
 [v _motorL `S2015 ~T0 @X0 1 e ]
 [v _motorR `S2015 ~T0 @X0 1 e ]
 "15 ./main.h
@@ -2068,29 +2074,23 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 0 `i `ui
 ]
 "16
-[; ;./main.h: 16: volatile unsigned int movementCount = 3;
+[; ;./main.h: 16: volatile unsigned int movementCount = 0;
 [v _movementCount `Vui ~T0 @X0 1 e ]
 [i _movementCount
--> -> 3 `i `ui
+-> -> 0 `i `ui
 ]
 "17
-[; ;./main.h: 17: volatile unsigned int movementMemory[] = {0,1,4};
-[v _movementMemory `Vui ~T0 @X0 -> 3 `i e ]
+[; ;./main.h: 17: volatile unsigned int movementMemory[20] = {};
+[v _movementMemory `Vui ~T0 @X0 -> 20 `i e ]
 [i _movementMemory
 :U ..
--> -> 0 `i `ui
--> -> 1 `i `ui
--> -> 4 `i `ui
 ..
 ]
 "18
-[; ;./main.h: 18: volatile unsigned int timerMemory[] = {1000, 1000, 1000};
-[v _timerMemory `Vui ~T0 @X0 -> 3 `i e ]
+[; ;./main.h: 18: volatile unsigned int timerMemory[20] = {};
+[v _timerMemory `Vui ~T0 @X0 -> 20 `i e ]
 [i _timerMemory
 :U ..
--> -> 1000 `i `ui
--> -> 1000 `i `ui
--> -> 1000 `i `ui
 ..
 ]
 "5 interrupts.c

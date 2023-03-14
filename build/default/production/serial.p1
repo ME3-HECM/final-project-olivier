@@ -2160,44 +2160,44 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;serial.c: 42:     char* colourname = Hue2Colour(cf);
 [v _colourname `*uc ~T0 @X0 1 a ]
 [e = _colourname ( _Hue2Colour (1 _cf ]
-"45
-[; ;serial.c: 45:     sprintf(buf,"Colour is %s  \r",colourname);
+"44
+[; ;serial.c: 44:     sprintf(buf,"Colour is %s  \r",colourname);
 [e ( _sprintf (1 , (. , _buf :s 1C _colourname ]
-"46
-[; ;serial.c: 46:     sendStringSerial4(buf);
+"45
+[; ;serial.c: 45:     sendStringSerial4(buf);
 [e ( _sendStringSerial4 (1 _buf ]
-"47
-[; ;serial.c: 47: }
+"46
+[; ;serial.c: 46: }
 [e :UE 2024 ]
 }
-"49
-[; ;serial.c: 49: void sendStringSerial4(char *string){
+"48
+[; ;serial.c: 48: void sendStringSerial4(char *string){
 [v _sendStringSerial4 `(v ~T0 @X0 1 ef1`*uc ]
 {
 [e :U _sendStringSerial4 ]
 [v _string `*uc ~T0 @X0 1 r1 ]
 [f ]
-"52
-[; ;serial.c: 52:     while(*string != 0){
+"51
+[; ;serial.c: 51:     while(*string != 0){
 [e $U 2026  ]
 [e :U 2027 ]
 {
-"54
-[; ;serial.c: 54:   sendCharSerial4(*string++);
+"53
+[; ;serial.c: 53:   sendCharSerial4(*string++);
 [e ( _sendCharSerial4 (1 *U ++ _string * -> -> 1 `i `x -> -> # *U _string `i `x ]
-"55
-[; ;serial.c: 55:         _delay((unsigned long)((20)*(64000000/4000000.0)));
+"54
+[; ;serial.c: 54:         _delay((unsigned long)((20)*(64000000/4000000.0)));
 [e ( __delay (1 -> * -> -> 20 `i `d / -> -> 64000000 `l `d .4000000.0 `ul ]
-"56
-[; ;serial.c: 56:  }
+"55
+[; ;serial.c: 55:  }
 }
 [e :U 2026 ]
-"52
-[; ;serial.c: 52:     while(*string != 0){
+"51
+[; ;serial.c: 51:     while(*string != 0){
 [e $ != -> *U _string `i -> 0 `i 2027  ]
 [e :U 2028 ]
-"57
-[; ;serial.c: 57: }
+"56
+[; ;serial.c: 56: }
 [e :UE 2025 ]
 }
 [p f _sprintf 8650752 ]
