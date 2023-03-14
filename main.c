@@ -57,7 +57,6 @@ void main(void) {
             
             colour_read_all(&colorf);
             Color2String(data,&colorf);
-             
              //when in contact with a wall or card a lot less light is received
              //by sensors so all sensor values fall
              if (colorf.Cf<50)//wait for the clear value to be under a certain threshold (dark)
