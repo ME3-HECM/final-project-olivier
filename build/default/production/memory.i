@@ -24609,12 +24609,12 @@ void memoryUpdateMovement(struct RGBC_rel *cf, volatile unsigned int movementCou
 }
 void memoryUpdateTime(volatile unsigned int movementCount, volatile unsigned int *timerMemory)
 {
-    unsigned int timerVal = getTimerValue()-(_halfsquare+50);
+    unsigned int timerVal = getTimerValue()-_halfsquare-650;
     timerMemory[movementCount] = timerVal;
 }
 void maxTimeReturn(void)
 {
-    stop(&motorL,&motorR);
+    White(&motorL,&motorR,movementCount,movementMemory,timerMemory);
     maxTime = 0;
 
 }
