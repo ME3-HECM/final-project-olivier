@@ -20,5 +20,6 @@ void maxTimeReturn(void)
 {
     stop(&motorL,&motorR);
     maxTime = 0;
+    //perform the white function here to return home
 }
 

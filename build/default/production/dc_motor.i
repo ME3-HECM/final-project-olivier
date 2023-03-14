@@ -24532,17 +24532,15 @@ unsigned char I2C_2_Master_Read(unsigned char ack);
 
 
 volatile unsigned int maxTime = 0;
-
+volatile unsigned int movementCount = 3;
+volatile unsigned int movementMemory[] = {0,1,4};
+volatile unsigned int timerMemory[] = {1000, 1000, 1000};
 void main(void);
 # 8 "./memory.h" 2
 
 
 
-
-unsigned int movementMemory[20];
-unsigned int timerMemory[20];
 void memoryUpdate(struct RGBC_rel *cf, unsigned int movementCount, unsigned int *movementMemory, unsigned int *timerMemory);
-
 void maxTimeReturn(void);
 # 7 "./dc_motor.h" 2
 
@@ -24908,7 +24906,6 @@ void Orange_R135(struct DC_motor *mL, struct DC_motor *mR)
         Left45(mL,mR);
         Left45(mL,mR);
         Left45(mL,mR);
-        stop(mL,mR);
     }
 }
 void LightBlue_L135(struct DC_motor *mL, struct DC_motor *mR)
@@ -24931,36 +24928,44 @@ void LightBlue_L135(struct DC_motor *mL, struct DC_motor *mR)
 }
 void White(struct DC_motor *mL, struct DC_motor *mR,unsigned int movementCount, unsigned int *movementMemory, unsigned int *timerMemory)
 {
-    reverseHalfSquare(mL,mR);
-    rotate180left(mL,mR);
-    _delay((unsigned long)((500)*(64000000/4000.0)));
-    ForwardFlag = 0;
+    unsigned int retracingDone = 0;
+    while (!retracingDone){
+        reverseHalfSquare(mL,mR);
+        rotate180left(mL,mR);
+        _delay((unsigned long)((500)*(64000000/4000.0)));
+        ForwardFlag = 0;
+        retracingDone = 1;
 
-    for (unsigned int i=movementCount-1; i>=0;i--){
-        if (movementMemory[i]==0){
-            Red_R90(mL,mR);}
-        else if (movementMemory[i]==1){
-            Green_L90(mL,mR);}
-        else if (movementMemory[i]==2){
-            Blue_T180(mL,mR);}
-        else if (movementMemory[i]==3){
-            Yellow_rev1_R90(mL,mR);}
-        else if (movementMemory[i]==4){
-            Pink_rev1_L90(mL,mR);}
-        else if (movementMemory[i]==5){
-            Orange_R135(mL,mR);}
-        else if (movementMemory[i]==6){
-            LightBlue_L135(mL,mR);}
+        for (int i=movementCount-1; i>=0;i--){
+            if (movementMemory[i]==0){
+                Red_R90(mL,mR);}
+            else if (movementMemory[i]==1){
+                Green_L90(mL,mR);}
+            else if (movementMemory[i]==2){
+                Blue_T180(mL,mR);}
+            else if (movementMemory[i]==3){
+                Yellow_rev1_R90(mL,mR);}
+            else if (movementMemory[i]==4){
+                Pink_rev1_L90(mL,mR);}
+            else if (movementMemory[i]==5){
+                Orange_R135(mL,mR);}
+            else if (movementMemory[i]==6){
+                LightBlue_L135(mL,mR);}
 
-        TimerReset();
-        unsigned int tempTimer = getTimerValue();
-        while(tempTimer<timerMemory[i])
-        {
+            unsigned int tempTimer = 0;
+            TimerReset();
             fullSpeedAhead(mL,mR);
-            tempTimer = getTimerValue();
+            while(tempTimer<timerMemory[i])
+            {
+                tempTimer = getTimerValue();
+                LATDbits.LATD4 = 1;;
+            }
+            stop(mL,mR);
+            _delay((unsigned long)((1000)*(64000000/4000.0)));
         }
-        stop(mL,mR);
-    }
 
+    }
     stop(mL,mR);
+    _delay((unsigned long)((1000)*(64000000/4000.0)));
+
 }

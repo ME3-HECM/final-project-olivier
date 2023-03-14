@@ -324,7 +324,6 @@ void Orange_R135(struct DC_motor *mL, struct DC_motor *mR)
         Left45(mL,mR);
         Left45(mL,mR);
         Left45(mL,mR);
-        stop(mL,mR);
     }
 }
 void LightBlue_L135(struct DC_motor *mL, struct DC_motor *mR)
@@ -347,36 +346,44 @@ void LightBlue_L135(struct DC_motor *mL, struct DC_motor *mR)
 }
 void White(struct DC_motor *mL, struct DC_motor *mR,unsigned int movementCount, unsigned int *movementMemory, unsigned int *timerMemory)
 {
-    reverseHalfSquare(mL,mR);//reverse half square
-    rotate180left(mL,mR); //rotate buggy 180 degrees to face the reverse direction of the maze
-    __delay_ms(500);//delay starting the retrace
-    ForwardFlag = 0;//now put it in reverse mode 
-    //execute the reverse of all the commands sent 
-    for (unsigned int i=movementCount-1; i>=0;i--){
-        if (movementMemory[i]==0){
-            Red_R90(mL,mR);}
-        else if (movementMemory[i]==1){
-            Green_L90(mL,mR);}
-        else if (movementMemory[i]==2){
-            Blue_T180(mL,mR);}
-        else if (movementMemory[i]==3){
-            Yellow_rev1_R90(mL,mR);}
-        else if (movementMemory[i]==4){
-            Pink_rev1_L90(mL,mR);}
-        else if (movementMemory[i]==5){
-            Orange_R135(mL,mR);}
-        else if (movementMemory[i]==6){
-            LightBlue_L135(mL,mR);}
-        //now we read the timer memory to find the time between functions 
-        TimerReset();//reset the timer in order to count up from 0->timerMemory[i]
-        unsigned int tempTimer = getTimerValue();
-        while(tempTimer<timerMemory[i])
-        {
+    unsigned int retracingDone = 0;
+    while (!retracingDone){
+        reverseHalfSquare(mL,mR);//reverse half square
+        rotate180left(mL,mR); //rotate buggy 180 degrees to face the reverse direction of the maze
+        __delay_ms(500);//delay starting the retrace
+        ForwardFlag = 0;//now put it in reverse mode 
+        retracingDone = 1;//
+        //execute the reverse of all the commands sent 
+        for (int i=movementCount-1; i>=0;i--){
+            if (movementMemory[i]==0){
+                Red_R90(mL,mR);}
+            else if (movementMemory[i]==1){
+                Green_L90(mL,mR);}
+            else if (movementMemory[i]==2){
+                Blue_T180(mL,mR);}
+            else if (movementMemory[i]==3){
+                Yellow_rev1_R90(mL,mR);}
+            else if (movementMemory[i]==4){
+                Pink_rev1_L90(mL,mR);}
+            else if (movementMemory[i]==5){
+                Orange_R135(mL,mR);}
+            else if (movementMemory[i]==6){
+                LightBlue_L135(mL,mR);}
+            //now we read the timer memory to find the time between functions 
+            unsigned int tempTimer = 0;
+            TimerReset();//reset the timer in order to count up from 0->timerMemory[i]
             fullSpeedAhead(mL,mR);
-            tempTimer = getTimerValue();
+            while(tempTimer<timerMemory[i])
+            {
+                tempTimer = getTimerValue();
+                BrakeLightON;
+            }
+            stop(mL,mR);//stop the buggy and perform the next action 
+            __delay_ms(1000); //ensure the momentum of the buggy has been dissipated 
         }
-        stop(mL,mR);//stop the buggy and perform the next action 
+
     }
-     
     stop(mL,mR);// stop buggy after retracing is done 
+    __delay_ms(1000);
+    
 }

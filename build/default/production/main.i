@@ -24535,17 +24535,15 @@ unsigned int getTimerValue(void);
 
 
 volatile unsigned int maxTime = 0;
-
+volatile unsigned int movementCount = 3;
+volatile unsigned int movementMemory[] = {0,1,4};
+volatile unsigned int timerMemory[] = {1000, 1000, 1000};
 void main(void);
 # 8 "./memory.h" 2
 
 
 
-
-unsigned int movementMemory[20];
-unsigned int timerMemory[20];
 void memoryUpdate(struct RGBC_rel *cf, unsigned int movementCount, unsigned int *movementMemory, unsigned int *timerMemory);
-
 void maxTimeReturn(void);
 # 7 "./dc_motor.h" 2
 
@@ -24616,6 +24614,7 @@ void __attribute__((picinterrupt(("high_priority")))) HighISR();
 
 void main(void) {
     char data[100];
+
     initUSART4();
     color_click_init();
     I2C_2_Master_Init();
@@ -24647,38 +24646,13 @@ void main(void) {
 
     ClickLEDOn(0);
 
-    unsigned int movementCount = 0;
+
+
+
+    White(&motorL,&motorR,movementCount, movementMemory, timerMemory);
+
 
     while (1){
-        fullSpeedAhead(&motorL,&motorR);
-        if (maxTime==1){
-            stop(&motorL,&motorR);
-            _delay((unsigned long)((3000)*(64000000/4000.0)));
-        }
-
-        while (!wall){
-            colour_read_all(&colorf);
-            Color2String(data,&colorf);
-
-
-             if (colorf.Cf<100)
-             {
-
-                 wall=1;
-                 ClickLEDOn(1);
-                 stop(&motorL,&motorR);
-                 _delay((unsigned long)((2000)*(64000000/4000.0)));
-             }
-        }
-        colour_read_all(&colorf);
-        RGB2Hue(&colorf);
-        Hue2Colour(&colorf);
-        Colour2Action(&colorf);
-
-
-        Color2String(data,&colorf);
-        _delay((unsigned long)((1000)*(64000000/4000.0)));
-        wall=0;
-        ClickLEDOn(0);
+# 92 "main.c"
     }
 }

@@ -27,7 +27,7 @@ void main(void) {
     Timer0_init();
     unsigned int PWMcycle = 99;
     initDCmotorsPWM(PWMcycle);
-
+    //setting the motor characteristics
     motorL.power=0; 						//zero power to start
     motorL.direction=1; 					//set default motor direction
     motorL.brakemode=1;						// brake mode (slow decay)
@@ -49,39 +49,45 @@ void main(void) {
     char wall=0;//set the wall condition to 0
 
     ClickLEDOn(0);//set the clicker LED initially to off
-
-    unsigned int movementCount = 0;//define the movement counter
+    
+    //below we are testing that the white function does in fact work
+        //now in reverse it should execute the action every 1 second as follows:
+        //T180, R90,L90
+    White(&motorL,&motorR,movementCount, movementMemory, timerMemory);   
+   
 
     while (1){ //main function
-        fullSpeedAhead(&motorL,&motorR);//move the buggy forwards
-        if (maxTime==1){//if the maximum time between actions (8 seconds) has been reached 
-            stop(&motorL,&motorR);//testing to see if the timer interrupt will work currently it overflows after 8 seconds 
-            __delay_ms(3000);
-        }
-        //wait to run into a wall
-        while (!wall){
-            colour_read_all(&colorf);//read RGB values from colour clicker
-            Color2String(data,&colorf);//output a string of the colour
-             //when in contact with a wall or card a lot less light is received
-             //by sensors so all sensor values fall
-             if (colorf.Cf<100)//wait for the clear value to be under a certain threshold (dark)
-             {
-                 //flag that a wall has been detected
-                 wall=1;
-                 ClickLEDOn(1);//turn on the LED to read the wall colour
-                 stop(&motorL,&motorR);//stop the buggy 
-                 __delay_ms(2000);//this delay makes sure that the colour is constant when being read
-             }
-        }
-        colour_read_all(&colorf);//read the colours from the colour click
-        RGB2Hue(&colorf);//takes the RGB values and outputs hue 
-        Hue2Colour(&colorf);//takes the hue and outputs the colour
-        Colour2Action(&colorf);//perform the action
-        
-        //output color values being read to serial
-        Color2String(data,&colorf);
-        __delay_ms(1000);
-        wall=0;
-        ClickLEDOn(0);
+//        fullSpeedAhead(&motorL,&motorR);//move the buggy forwards
+//        //wait to run into a wall
+//        while (!wall){
+//            colour_read_all(&colorf);//read RGB values from colour clicker
+//            Color2String(data,&colorf);//output a string of the colour
+//             //when in contact with a wall or card a lot less light is received
+//             //by sensors so all sensor values fall
+//             if (colorf.Cf<100)//wait for the clear value to be under a certain threshold (dark)
+//             {
+//                if (maxTime==1){//if the maximum time between actions (8 seconds) has been reached, perform the return home function
+//                //here we assume a wall has been reached but the time between actions has exceeded 8 seconds and so the buggy must return home  
+//                //note: since the timer is reset every time an action is performed the timer does not need to be reset here
+//                    
+//                }
+//                 //flag that a wall has been detected
+//                 wall=1;
+//                 ClickLEDOn(1);//turn on the LED to read the wall colour
+//                 stop(&motorL,&motorR);//stop the buggy 
+//                 __delay_ms(2000);//this delay makes sure that the colour is constant when being read
+//             }
+//        }
+//        colour_read_all(&colorf);//read the colours from the colour click
+//        RGB2Hue(&colorf);//takes the RGB values and outputs hue 
+//        Hue2Colour(&colorf);//takes the hue and outputs the colour
+//        Colour2Action(&colorf);//perform the action
+//        memoryUpdate(&colorf,movementCount,movementMemory,timerMemory);//update the memory function
+//        movementCount++; //increment the movement count 
+//        //output colour values being read to serial
+//        Color2String(data,&colorf);
+//        __delay_ms(1000);
+//        wall=0;
+//        ClickLEDOn(0);
     }
 }

@@ -24527,17 +24527,15 @@ unsigned char I2C_2_Master_Read(unsigned char ack);
 
 
 volatile unsigned int maxTime = 0;
-
+volatile unsigned int movementCount = 3;
+volatile unsigned int movementMemory[] = {0,1,4};
+volatile unsigned int timerMemory[] = {1000, 1000, 1000};
 void main(void);
 # 8 "./memory.h" 2
 
 
 
-
-unsigned int movementMemory[20];
-unsigned int timerMemory[20];
 void memoryUpdate(struct RGBC_rel *cf, unsigned int movementCount, unsigned int *movementMemory, unsigned int *timerMemory);
-
 void maxTimeReturn(void);
 # 7 "./dc_motor.h" 2
 
@@ -24716,9 +24714,9 @@ void Colour2Action(struct RGBC_rel *cf)
     {
         LightBlue_L135(&motorL,&motorR);
     }
-    if (cf->colourindex & 7)
+    if (cf->colourindex == 7)
     {
-
+        White(&motorL,&motorR,movementCount,movementMemory,timerMemory);
     }
 
 }

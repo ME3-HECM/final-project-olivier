@@ -24578,17 +24578,15 @@ void White(struct DC_motor *mL, struct DC_motor *mR,unsigned int movementCount, 
 
 
 volatile unsigned int maxTime = 0;
-
+volatile unsigned int movementCount = 3;
+volatile unsigned int movementMemory[] = {0,1,4};
+volatile unsigned int timerMemory[] = {1000, 1000, 1000};
 void main(void);
 # 8 "./memory.h" 2
 
 
 
-
-unsigned int movementMemory[20];
-unsigned int timerMemory[20];
 void memoryUpdate(struct RGBC_rel *cf, unsigned int movementCount, unsigned int *movementMemory, unsigned int *timerMemory);
-
 void maxTimeReturn(void);
 # 2 "memory.c" 2
 
@@ -24612,4 +24610,5 @@ void maxTimeReturn(void)
 {
     stop(&motorL,&motorR);
     maxTime = 0;
+
 }

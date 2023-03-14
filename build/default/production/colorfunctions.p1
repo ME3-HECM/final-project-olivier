@@ -40,6 +40,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 "50
 [; ;./dc_motor.h: 50: void LightBlue_L135(struct DC_motor *mL, struct DC_motor *mR);
 [v _LightBlue_L135 `(v ~T0 @X0 0 ef2`*S2015`*S2015 ]
+"51
+[; ;./dc_motor.h: 51: void White(struct DC_motor *mL, struct DC_motor *mR,unsigned int movementCount, unsigned int *movementMemory, unsigned int *timerMemory);
+[v _White `(v ~T0 @X0 0 ef5`*S2015`*S2015`ui`*ui`*ui ]
 "54 C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\pic\include\proc\pic18lf67k40.h
 [; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\pic\include\proc\pic18lf67k40.h: 54: __asm("PPSLOCK equ 0DEFh");
 [; <" PPSLOCK equ 0DEFh ;# ">
@@ -2020,12 +2023,32 @@ Version 4.0 HI-TECH Software Intermediate Code
 [i _maxTime
 -> -> 0 `i `ui
 ]
-"12 ./memory.h
-[; ;./memory.h: 12: unsigned int movementMemory[20];
-[v _movementMemory `ui ~T0 @X0 -> 20 `i e ]
-"13
-[; ;./memory.h: 13: unsigned int timerMemory[20];
-[v _timerMemory `ui ~T0 @X0 -> 20 `i e ]
+"16
+[; ;./main.h: 16: volatile unsigned int movementCount = 3;
+[v _movementCount `Vui ~T0 @X0 1 e ]
+[i _movementCount
+-> -> 3 `i `ui
+]
+"17
+[; ;./main.h: 17: volatile unsigned int movementMemory[] = {0,1,4};
+[v _movementMemory `Vui ~T0 @X0 -> 3 `i e ]
+[i _movementMemory
+:U ..
+-> -> 0 `i `ui
+-> -> 1 `i `ui
+-> -> 4 `i `ui
+..
+]
+"18
+[; ;./main.h: 18: volatile unsigned int timerMemory[] = {1000, 1000, 1000};
+[v _timerMemory `Vui ~T0 @X0 -> 3 `i e ]
+[i _timerMemory
+:U ..
+-> -> 1000 `i `ui
+-> -> 1000 `i `ui
+-> -> 1000 `i `ui
+..
+]
 "11 ./dc_motor.h
 [; ;./dc_motor.h: 11: volatile char ForwardFlag = 1;
 [v _ForwardFlag `Vuc ~T0 @X0 1 e ]
@@ -2499,11 +2522,14 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 2048 ]
 [e :U 2046 ]
 "135
-[; ;colorfunctions.c: 135:     if (cf->colourindex & 7)
-[e $ ! != & . *U _cf 5 -> 7 `i -> 0 `i 2058  ]
+[; ;colorfunctions.c: 135:     if (cf->colourindex == 7)
+[e $ ! == . *U _cf 5 -> 7 `i 2058  ]
 "136
 [; ;colorfunctions.c: 136:     {
 {
+"137
+[; ;colorfunctions.c: 137:         White(&motorL,&motorR,movementCount,movementMemory,timerMemory);
+[e ( _White (4 , , , , &U _motorL &U _motorR _movementCount -> &U _movementMemory `*ui -> &U _timerMemory `*ui ]
 "138
 [; ;colorfunctions.c: 138:     }
 }

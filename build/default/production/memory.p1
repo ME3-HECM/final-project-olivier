@@ -2027,12 +2027,32 @@ Version 4.0 HI-TECH Software Intermediate Code
 [i _maxTime
 -> -> 0 `i `ui
 ]
-"12 ./memory.h
-[; ;./memory.h: 12: unsigned int movementMemory[20];
-[v _movementMemory `ui ~T0 @X0 -> 20 `i e ]
-"13
-[; ;./memory.h: 13: unsigned int timerMemory[20];
-[v _timerMemory `ui ~T0 @X0 -> 20 `i e ]
+"16
+[; ;./main.h: 16: volatile unsigned int movementCount = 3;
+[v _movementCount `Vui ~T0 @X0 1 e ]
+[i _movementCount
+-> -> 3 `i `ui
+]
+"17
+[; ;./main.h: 17: volatile unsigned int movementMemory[] = {0,1,4};
+[v _movementMemory `Vui ~T0 @X0 -> 3 `i e ]
+[i _movementMemory
+:U ..
+-> -> 0 `i `ui
+-> -> 1 `i `ui
+-> -> 4 `i `ui
+..
+]
+"18
+[; ;./main.h: 18: volatile unsigned int timerMemory[] = {1000, 1000, 1000};
+[v _timerMemory `Vui ~T0 @X0 -> 3 `i e ]
+[i _timerMemory
+:U ..
+-> -> 1000 `i `ui
+-> -> 1000 `i `ui
+-> -> 1000 `i `ui
+..
+]
 "10 memory.c
 [; ;memory.c: 10: void memoryUpdate(struct RGBC_rel *cf, unsigned int movementCount, unsigned int *movementMemory, unsigned int *timerMemory)
 [v _memoryUpdate `(v ~T0 @X0 1 ef4`*S2012`ui`*ui`*ui ]
@@ -2081,7 +2101,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 "22
 [; ;memory.c: 22:     maxTime = 0;
 [e = _maxTime -> -> 0 `i `ui ]
-"23
-[; ;memory.c: 23: }
+"24
+[; ;memory.c: 24: }
 [e :UE 2017 ]
 }
