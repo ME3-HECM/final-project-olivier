@@ -24665,12 +24665,18 @@ void main(void) {
 
              if (colorf.Cf<50)
              {
-                memoryUpdateTime(movementCount,timerMemory);
 
-                wall=1;
-                ClickLEDOn(1);
-                stop(&motorL,&motorR);
-                _delay((unsigned long)((2000)*(64000000/4000.0)));
+
+
+
+
+
+            memoryUpdateTime(movementCount,timerMemory);
+
+            wall=1;
+            ClickLEDOn(1);
+            stop(&motorL,&motorR);
+            _delay((unsigned long)((2000)*(64000000/4000.0)));
             }
         }
         colour_read_all(&colorf);
@@ -24684,12 +24690,6 @@ void main(void) {
         {
             while(!retracingDone){}
         }
-
-
-
-
-
-
         TimerReset();
         movementCount++;
 

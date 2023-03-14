@@ -63,12 +63,18 @@ void main(void) {
              //by sensors so all sensor values fall
              if (colorf.Cf<50)//wait for the clear value to be under a certain threshold (dark)
              {
-                memoryUpdateTime(movementCount,timerMemory);//update the time taken for action to occur corresponding to the movement
-                //flag that a wall has been detected
-                wall=1;
-                ClickLEDOn(1);//turn on the LED to read the wall colour
-                stop(&motorL,&motorR);//stop the buggy
-                __delay_ms(2000);//this delay makes sure that the colour is constant when being read
+//                if (maxTime==1){//if the maximum time between actions (8 seconds) has been reached, perform the return home function
+//                //here we assume a wall has been reached but the time between actions has exceeded 8 seconds and so the buggy must return home  
+//                //note: since the timer is reset every time an action is performed the timer does not need to be reset here
+//                    memoryUpdate(&colorf,movementCount,movementMemory,timerMemory);//update the memory function
+//                    White(&motorL,&motorR,movementCount,movementMemory,timerMemory);//perform the return home function 
+//                }
+            memoryUpdateTime(movementCount,timerMemory);//update the time taken for action to occur corresponding to the movement
+            //flag that a wall has been detected
+            wall=1;
+            ClickLEDOn(1);//turn on the LED to read the wall colour
+            stop(&motorL,&motorR);//stop the buggy
+            __delay_ms(2000);//this delay makes sure that the colour is constant when being read
             }
         }
         colour_read_all(&colorf);//read the colours from the colour click
@@ -82,12 +88,6 @@ void main(void) {
         {
             while(!retracingDone){}//wait until the retracing is done before resetting the timer as it might mess up the white function
         }
-//        if (maxTime==1)
-//        {//if the maximum time between actions (8 seconds) has been reached, perform the return home function
-//            //here we assume a wall has been reached but the time between actions has exceeded 8 seconds and so the buggy must return home  
-//            //note: since the timer is reset every time an action is performed the timer does not need to be reset here
-//            maxTimeReturn();
-//        }
         TimerReset();//reset the timer in order to have time between actions
         movementCount++; //increment the movement count 
         //here we are checking the movement count

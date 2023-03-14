@@ -93,7 +93,7 @@ idataBANK1 CODE 0 4918 4918 F 1 1
 dataBANK0 BANK0 1 FE FE 1 1 1
 dataBANK1 BANK1 1 195 195 F 1 1
 config CONFIG 4 300000 300000 C 1 1
-$C:\Users\olive\AppData\Local\Temp\xcAs130o.o
+$C:\Users\olive\AppData\Local\Temp\xcAs6c0.o
 idloc IDLOC 5 200000 200000 10 1 1
 init CODE 0 2C 2C 4 1 2
 reset_vec CODE 0 0 0 4 1 2
@@ -152,7 +152,7 @@ MEDIUMCONST 10E00-1FFFF 1
 # All other numeric values are in decimal.
 %LINETAB
 $dist/default/production\final-project-olivier.X.production.o
-8 intcode CODE >28957:C:\Users\olive\AppData\Local\Temp\xcAs130o.s
+8 intcode CODE >28957:C:\Users\olive\AppData\Local\Temp\xcAs6c0.s
 8 intcode CODE >25:C:\Users\olive\OneDrive\Documents\GitHub\final-project-olivier.X\interrupts.c
 A intcode CODE >28:C:\Users\olive\OneDrive\Documents\GitHub\final-project-olivier.X\interrupts.c
 1A intcode CODE >29:C:\Users\olive\OneDrive\Documents\GitHub\final-project-olivier.X\interrupts.c
@@ -1196,69 +1196,69 @@ FC0 text20 CODE >32:C:\Users\olive\OneDrive\Documents\GitHub\final-project-olivi
 2AF4 text0 CODE >60:C:\Users\olive\OneDrive\Documents\GitHub\final-project-olivier.X\main.c
 2B00 text0 CODE >61:C:\Users\olive\OneDrive\Documents\GitHub\final-project-olivier.X\main.c
 2B14 text0 CODE >64:C:\Users\olive\OneDrive\Documents\GitHub\final-project-olivier.X\main.c
-2B46 text0 CODE >66:C:\Users\olive\OneDrive\Documents\GitHub\final-project-olivier.X\main.c
-2B5C text0 CODE >68:C:\Users\olive\OneDrive\Documents\GitHub\final-project-olivier.X\main.c
-2B62 text0 CODE >69:C:\Users\olive\OneDrive\Documents\GitHub\final-project-olivier.X\main.c
-2B68 text0 CODE >70:C:\Users\olive\OneDrive\Documents\GitHub\final-project-olivier.X\main.c
-2B7C text0 CODE >71:C:\Users\olive\OneDrive\Documents\GitHub\final-project-olivier.X\main.c
+2B46 text0 CODE >72:C:\Users\olive\OneDrive\Documents\GitHub\final-project-olivier.X\main.c
+2B5C text0 CODE >74:C:\Users\olive\OneDrive\Documents\GitHub\final-project-olivier.X\main.c
+2B62 text0 CODE >75:C:\Users\olive\OneDrive\Documents\GitHub\final-project-olivier.X\main.c
+2B68 text0 CODE >76:C:\Users\olive\OneDrive\Documents\GitHub\final-project-olivier.X\main.c
+2B7C text0 CODE >77:C:\Users\olive\OneDrive\Documents\GitHub\final-project-olivier.X\main.c
 2B96 text0 CODE >59:C:\Users\olive\OneDrive\Documents\GitHub\final-project-olivier.X\main.c
-2BA8 text0 CODE >74:C:\Users\olive\OneDrive\Documents\GitHub\final-project-olivier.X\main.c
-2BB4 text0 CODE >75:C:\Users\olive\OneDrive\Documents\GitHub\final-project-olivier.X\main.c
-2BBA text0 CODE >76:C:\Users\olive\OneDrive\Documents\GitHub\final-project-olivier.X\main.c
-2BC0 text0 CODE >77:C:\Users\olive\OneDrive\Documents\GitHub\final-project-olivier.X\main.c
-2BCE text0 CODE >78:C:\Users\olive\OneDrive\Documents\GitHub\final-project-olivier.X\main.c
-2BDA text0 CODE >79:C:\Users\olive\OneDrive\Documents\GitHub\final-project-olivier.X\main.c
-2BF6 text0 CODE >80:C:\Users\olive\OneDrive\Documents\GitHub\final-project-olivier.X\main.c
-2C04 text0 CODE >81:C:\Users\olive\OneDrive\Documents\GitHub\final-project-olivier.X\main.c
-2C1A text0 CODE >83:C:\Users\olive\OneDrive\Documents\GitHub\final-project-olivier.X\main.c
+2BA8 text0 CODE >80:C:\Users\olive\OneDrive\Documents\GitHub\final-project-olivier.X\main.c
+2BB4 text0 CODE >81:C:\Users\olive\OneDrive\Documents\GitHub\final-project-olivier.X\main.c
+2BBA text0 CODE >82:C:\Users\olive\OneDrive\Documents\GitHub\final-project-olivier.X\main.c
+2BC0 text0 CODE >83:C:\Users\olive\OneDrive\Documents\GitHub\final-project-olivier.X\main.c
+2BCE text0 CODE >84:C:\Users\olive\OneDrive\Documents\GitHub\final-project-olivier.X\main.c
+2BDA text0 CODE >85:C:\Users\olive\OneDrive\Documents\GitHub\final-project-olivier.X\main.c
+2BF6 text0 CODE >86:C:\Users\olive\OneDrive\Documents\GitHub\final-project-olivier.X\main.c
+2C04 text0 CODE >87:C:\Users\olive\OneDrive\Documents\GitHub\final-project-olivier.X\main.c
+2C1A text0 CODE >89:C:\Users\olive\OneDrive\Documents\GitHub\final-project-olivier.X\main.c
 2C2E text0 CODE >91:C:\Users\olive\OneDrive\Documents\GitHub\final-project-olivier.X\main.c
 2C32 text0 CODE >92:C:\Users\olive\OneDrive\Documents\GitHub\final-project-olivier.X\main.c
 2C38 text0 CODE >56:C:\Users\olive\OneDrive\Documents\GitHub\final-project-olivier.X\main.c
 2C4C text0 CODE >100:C:\Users\olive\OneDrive\Documents\GitHub\final-project-olivier.X\main.c
-4328 cinit CODE >13702:C:\Users\olive\AppData\Local\Temp\xcAs130o.s
-4328 cinit CODE >13704:C:\Users\olive\AppData\Local\Temp\xcAs130o.s
-4328 cinit CODE >13707:C:\Users\olive\AppData\Local\Temp\xcAs130o.s
-4328 cinit CODE >13791:C:\Users\olive\AppData\Local\Temp\xcAs130o.s
-432A cinit CODE >13792:C:\Users\olive\AppData\Local\Temp\xcAs130o.s
-432C cinit CODE >13793:C:\Users\olive\AppData\Local\Temp\xcAs130o.s
-432E cinit CODE >13794:C:\Users\olive\AppData\Local\Temp\xcAs130o.s
-4330 cinit CODE >13795:C:\Users\olive\AppData\Local\Temp\xcAs130o.s
-4332 cinit CODE >13796:C:\Users\olive\AppData\Local\Temp\xcAs130o.s
-4334 cinit CODE >13797:C:\Users\olive\AppData\Local\Temp\xcAs130o.s
-4338 cinit CODE >13798:C:\Users\olive\AppData\Local\Temp\xcAs130o.s
-433C cinit CODE >13799:C:\Users\olive\AppData\Local\Temp\xcAs130o.s
-433C cinit CODE >13800:C:\Users\olive\AppData\Local\Temp\xcAs130o.s
-433E cinit CODE >13801:C:\Users\olive\AppData\Local\Temp\xcAs130o.s
-4342 cinit CODE >13802:C:\Users\olive\AppData\Local\Temp\xcAs130o.s
-4344 cinit CODE >13803:C:\Users\olive\AppData\Local\Temp\xcAs130o.s
-4346 cinit CODE >13804:C:\Users\olive\AppData\Local\Temp\xcAs130o.s
-4348 cinit CODE >13808:C:\Users\olive\AppData\Local\Temp\xcAs130o.s
-434A cinit CODE >13809:C:\Users\olive\AppData\Local\Temp\xcAs130o.s
-434C cinit CODE >13810:C:\Users\olive\AppData\Local\Temp\xcAs130o.s
-434E cinit CODE >13811:C:\Users\olive\AppData\Local\Temp\xcAs130o.s
-4350 cinit CODE >13812:C:\Users\olive\AppData\Local\Temp\xcAs130o.s
-4352 cinit CODE >13813:C:\Users\olive\AppData\Local\Temp\xcAs130o.s
-4354 cinit CODE >13814:C:\Users\olive\AppData\Local\Temp\xcAs130o.s
-4356 cinit CODE >13815:C:\Users\olive\AppData\Local\Temp\xcAs130o.s
-435A cinit CODE >13819:C:\Users\olive\AppData\Local\Temp\xcAs130o.s
-435E cinit CODE >13820:C:\Users\olive\AppData\Local\Temp\xcAs130o.s
-4360 cinit CODE >13821:C:\Users\olive\AppData\Local\Temp\xcAs130o.s
-4360 cinit CODE >13822:C:\Users\olive\AppData\Local\Temp\xcAs130o.s
-4362 cinit CODE >13823:C:\Users\olive\AppData\Local\Temp\xcAs130o.s
-4364 cinit CODE >13824:C:\Users\olive\AppData\Local\Temp\xcAs130o.s
-4366 cinit CODE >13827:C:\Users\olive\AppData\Local\Temp\xcAs130o.s
-436A cinit CODE >13828:C:\Users\olive\AppData\Local\Temp\xcAs130o.s
-436C cinit CODE >13829:C:\Users\olive\AppData\Local\Temp\xcAs130o.s
-436C cinit CODE >13830:C:\Users\olive\AppData\Local\Temp\xcAs130o.s
-436E cinit CODE >13831:C:\Users\olive\AppData\Local\Temp\xcAs130o.s
-4370 cinit CODE >13832:C:\Users\olive\AppData\Local\Temp\xcAs130o.s
-4372 cinit CODE >13838:C:\Users\olive\AppData\Local\Temp\xcAs130o.s
-4372 cinit CODE >13840:C:\Users\olive\AppData\Local\Temp\xcAs130o.s
-4374 cinit CODE >13841:C:\Users\olive\AppData\Local\Temp\xcAs130o.s
-4376 cinit CODE >13843:C:\Users\olive\AppData\Local\Temp\xcAs130o.s
-4378 cinit CODE >13844:C:\Users\olive\AppData\Local\Temp\xcAs130o.s
-437A cinit CODE >13845:C:\Users\olive\AppData\Local\Temp\xcAs130o.s
-437C cinit CODE >13846:C:\Users\olive\AppData\Local\Temp\xcAs130o.s
+4328 cinit CODE >13702:C:\Users\olive\AppData\Local\Temp\xcAs6c0.s
+4328 cinit CODE >13704:C:\Users\olive\AppData\Local\Temp\xcAs6c0.s
+4328 cinit CODE >13707:C:\Users\olive\AppData\Local\Temp\xcAs6c0.s
+4328 cinit CODE >13791:C:\Users\olive\AppData\Local\Temp\xcAs6c0.s
+432A cinit CODE >13792:C:\Users\olive\AppData\Local\Temp\xcAs6c0.s
+432C cinit CODE >13793:C:\Users\olive\AppData\Local\Temp\xcAs6c0.s
+432E cinit CODE >13794:C:\Users\olive\AppData\Local\Temp\xcAs6c0.s
+4330 cinit CODE >13795:C:\Users\olive\AppData\Local\Temp\xcAs6c0.s
+4332 cinit CODE >13796:C:\Users\olive\AppData\Local\Temp\xcAs6c0.s
+4334 cinit CODE >13797:C:\Users\olive\AppData\Local\Temp\xcAs6c0.s
+4338 cinit CODE >13798:C:\Users\olive\AppData\Local\Temp\xcAs6c0.s
+433C cinit CODE >13799:C:\Users\olive\AppData\Local\Temp\xcAs6c0.s
+433C cinit CODE >13800:C:\Users\olive\AppData\Local\Temp\xcAs6c0.s
+433E cinit CODE >13801:C:\Users\olive\AppData\Local\Temp\xcAs6c0.s
+4342 cinit CODE >13802:C:\Users\olive\AppData\Local\Temp\xcAs6c0.s
+4344 cinit CODE >13803:C:\Users\olive\AppData\Local\Temp\xcAs6c0.s
+4346 cinit CODE >13804:C:\Users\olive\AppData\Local\Temp\xcAs6c0.s
+4348 cinit CODE >13808:C:\Users\olive\AppData\Local\Temp\xcAs6c0.s
+434A cinit CODE >13809:C:\Users\olive\AppData\Local\Temp\xcAs6c0.s
+434C cinit CODE >13810:C:\Users\olive\AppData\Local\Temp\xcAs6c0.s
+434E cinit CODE >13811:C:\Users\olive\AppData\Local\Temp\xcAs6c0.s
+4350 cinit CODE >13812:C:\Users\olive\AppData\Local\Temp\xcAs6c0.s
+4352 cinit CODE >13813:C:\Users\olive\AppData\Local\Temp\xcAs6c0.s
+4354 cinit CODE >13814:C:\Users\olive\AppData\Local\Temp\xcAs6c0.s
+4356 cinit CODE >13815:C:\Users\olive\AppData\Local\Temp\xcAs6c0.s
+435A cinit CODE >13819:C:\Users\olive\AppData\Local\Temp\xcAs6c0.s
+435E cinit CODE >13820:C:\Users\olive\AppData\Local\Temp\xcAs6c0.s
+4360 cinit CODE >13821:C:\Users\olive\AppData\Local\Temp\xcAs6c0.s
+4360 cinit CODE >13822:C:\Users\olive\AppData\Local\Temp\xcAs6c0.s
+4362 cinit CODE >13823:C:\Users\olive\AppData\Local\Temp\xcAs6c0.s
+4364 cinit CODE >13824:C:\Users\olive\AppData\Local\Temp\xcAs6c0.s
+4366 cinit CODE >13827:C:\Users\olive\AppData\Local\Temp\xcAs6c0.s
+436A cinit CODE >13828:C:\Users\olive\AppData\Local\Temp\xcAs6c0.s
+436C cinit CODE >13829:C:\Users\olive\AppData\Local\Temp\xcAs6c0.s
+436C cinit CODE >13830:C:\Users\olive\AppData\Local\Temp\xcAs6c0.s
+436E cinit CODE >13831:C:\Users\olive\AppData\Local\Temp\xcAs6c0.s
+4370 cinit CODE >13832:C:\Users\olive\AppData\Local\Temp\xcAs6c0.s
+4372 cinit CODE >13838:C:\Users\olive\AppData\Local\Temp\xcAs6c0.s
+4372 cinit CODE >13840:C:\Users\olive\AppData\Local\Temp\xcAs6c0.s
+4374 cinit CODE >13841:C:\Users\olive\AppData\Local\Temp\xcAs6c0.s
+4376 cinit CODE >13843:C:\Users\olive\AppData\Local\Temp\xcAs6c0.s
+4378 cinit CODE >13844:C:\Users\olive\AppData\Local\Temp\xcAs6c0.s
+437A cinit CODE >13845:C:\Users\olive\AppData\Local\Temp\xcAs6c0.s
+437C cinit CODE >13846:C:\Users\olive\AppData\Local\Temp\xcAs6c0.s
 # %SYMTAB Section
 # An enumeration of all symbols in the program.
 # The beginning of the section is indicated by %SYMTAB.
@@ -1288,7 +1288,7 @@ strncmp@_l 1 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-olivi
 strncmp@_r 3 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-olivier.X.production.o
 __Hibigdata 0 0 CODE 0 ibigdata dist/default/production\final-project-olivier.X.production.o
 _retracingDone F0 0 BANK0 1 bssBANK0 dist/default/production\final-project-olivier.X.production.o
-__mediumconst 0 0 MEDIUMCONST 0 mediumconst C:\Users\olive\AppData\Local\Temp\xcAs130o.o
+__mediumconst 0 0 MEDIUMCONST 0 mediumconst C:\Users\olive\AppData\Local\Temp\xcAs6c0.o
 __end_of_Yellow_rev1_R90 37D6 0 CODE 0 text33 dist/default/production\final-project-olivier.X.production.o
 White@mL 75 0 BANK0 1 cstackBANK0 dist/default/production\final-project-olivier.X.production.o
 White@mR 77 0 BANK0 1 cstackBANK0 dist/default/production\final-project-olivier.X.production.o
@@ -1300,13 +1300,13 @@ __end_of_Left45 3F44 0 CODE 0 text45 dist/default/production\final-project-olivi
 ?_vfprintf 2A 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-olivier.X.production.o
 __Lsmallconst E00 0 SMALLCONST 0 smallconst dist/default/production\final-project-olivier.X.production.o
 _T2PR FBC 0 ABS 0 - dist/default/production\final-project-olivier.X.production.o
-___sp 0 0 STACK 2 stack C:\Users\olive\AppData\Local\Temp\xcAs130o.o
+___sp 0 0 STACK 2 stack C:\Users\olive\AppData\Local\Temp\xcAs6c0.o
 _main 2A2C 0 CODE 0 text0 dist/default/production\final-project-olivier.X.production.o
 _prec 122 0 BANK1 1 bssBANK1 dist/default/production\final-project-olivier.X.production.o
 _stoa 32A0 0 CODE 0 text58 dist/default/production\final-project-olivier.X.production.o
 _stop 3B10 0 CODE 0 text48 dist/default/production\final-project-olivier.X.production.o
 btemp 5F 0 COMRAM 1 temp dist/default/production\final-project-olivier.X.production.o
-start 2C 0 CODE 0 init C:\Users\olive\AppData\Local\Temp\xcAs130o.o
+start 2C 0 CODE 0 init C:\Users\olive\AppData\Local\Temp\xcAs6c0.o
 ___flmul@aexp 65 0 BANK0 1 cstackBANK0 dist/default/production\final-project-olivier.X.production.o
 ___flmul@bexp 66 0 BANK0 1 cstackBANK0 dist/default/production\final-project-olivier.X.production.o
 ___flmul@prod 67 0 BANK0 1 cstackBANK0 dist/default/production\final-project-olivier.X.production.o
@@ -1340,11 +1340,11 @@ __end_of_getTimerValue 4328 0 CODE 0 text29 dist/default/production\final-projec
 ttemp5 60 0 COMRAM 1 temp dist/default/production\final-project-olivier.X.production.o
 ttemp6 63 0 COMRAM 1 temp dist/default/production\final-project-olivier.X.production.o
 ttemp7 67 0 COMRAM 1 temp dist/default/production\final-project-olivier.X.production.o
-__accesstop 60 0 ABS 0 - C:\Users\olive\AppData\Local\Temp\xcAs130o.o
-intlevel0 0 0 CODE 0 text C:\Users\olive\AppData\Local\Temp\xcAs130o.o
-intlevel1 0 0 CODE 0 text C:\Users\olive\AppData\Local\Temp\xcAs130o.o
-intlevel2 0 0 CODE 0 text C:\Users\olive\AppData\Local\Temp\xcAs130o.o
-intlevel3 0 0 CODE 0 text C:\Users\olive\AppData\Local\Temp\xcAs130o.o
+__accesstop 60 0 ABS 0 - C:\Users\olive\AppData\Local\Temp\xcAs6c0.o
+intlevel0 0 0 CODE 0 text C:\Users\olive\AppData\Local\Temp\xcAs6c0.o
+intlevel1 0 0 CODE 0 text C:\Users\olive\AppData\Local\Temp\xcAs6c0.o
+intlevel2 0 0 CODE 0 text C:\Users\olive\AppData\Local\Temp\xcAs6c0.o
+intlevel3 0 0 CODE 0 text C:\Users\olive\AppData\Local\Temp\xcAs6c0.o
 ?_Hue2Colour D 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-olivier.X.production.o
 __LnvFARRAM 0 0 FARRAM 0 nvFARRAM dist/default/production\final-project-olivier.X.production.o
 _Yellow_rev1_R90 36EE 0 CODE 0 text33 dist/default/production\final-project-olivier.X.production.o
@@ -1358,9 +1358,9 @@ _vfpfcnvrt 3146 0 CODE 0 text56 dist/default/production\final-project-olivier.X.
 ___wmul@multiplicand 3 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-olivier.X.production.o
 _memoryUpdateMovement 47C4 0 CODE 0 text2 dist/default/production\final-project-olivier.X.production.o
 __end_of_Interrupts_init 494E 0 CODE 0 text26 dist/default/production\final-project-olivier.X.production.o
-___inthi_sp 0 0 STACK 2 stack C:\Users\olive\AppData\Local\Temp\xcAs130o.o
+___inthi_sp 0 0 STACK 2 stack C:\Users\olive\AppData\Local\Temp\xcAs6c0.o
 __halfsquare 19C 0 BANK1 1 dataBANK1 dist/default/production\final-project-olivier.X.production.o
-___intlo_sp 0 0 STACK 2 stack C:\Users\olive\AppData\Local\Temp\xcAs130o.o
+___intlo_sp 0 0 STACK 2 stack C:\Users\olive\AppData\Local\Temp\xcAs6c0.o
 I2C_2_Master_Read@ack 3 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-olivier.X.production.o
 I2C_2_Master_Read@tmp 4 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-olivier.X.production.o
 _CCPR1H FAA 0 ABS 0 - dist/default/production\final-project-olivier.X.production.o
@@ -1434,7 +1434,7 @@ __end_of_I2C_2_Master_Start 496C 0 CODE 0 text16 dist/default/production\final-p
 __end_of_I2C_2_Master_Write 4942 0 CODE 0 text14 dist/default/production\final-project-olivier.X.production.o
 _TX4REG EE4 0 ABS 0 - dist/default/production\final-project-olivier.X.production.o
 I2C_2_Master_Write@data_byte 2 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-olivier.X.production.o
-isa$xinst 0 0 ABS 0 - C:\Users\olive\AppData\Local\Temp\xcAs130o.o
+isa$xinst 0 0 ABS 0 - C:\Users\olive\AppData\Local\Temp\xcAs6c0.o
 turnLeft@mL 14 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-olivier.X.production.o
 turnLeft@mR 16 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-olivier.X.production.o
 fputc@fp 3 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-olivier.X.production.o
@@ -1480,7 +1480,7 @@ __Hbank13 0 0 ABS 0 bank13 dist/default/production\final-project-olivier.X.produ
 __Hbigbss 0 0 BIGRAM 1 bigbss dist/default/production\final-project-olivier.X.production.o
 __Hbigram 0 0 ABS 0 bigram dist/default/production\final-project-olivier.X.production.o
 __Hbigsfr 0 0 ABS 0 bigsfr dist/default/production\final-project-olivier.X.production.o
-__smallconst E00 0 SMALLCONST 0 smallconst C:\Users\olive\AppData\Local\Temp\xcAs130o.o
+__smallconst E00 0 SMALLCONST 0 smallconst C:\Users\olive\AppData\Local\Temp\xcAs6c0.o
 ___xxtofl@arg 16 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-olivier.X.production.o
 ___xxtofl@exp 15 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-olivier.X.production.o
 ___xxtofl@val C 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-olivier.X.production.o
@@ -1782,7 +1782,7 @@ _ForwardFlag FE 0 BANK0 1 dataBANK0 dist/default/production\final-project-olivie
 __1square 19E 0 BANK1 1 dataBANK1 dist/default/production\final-project-olivier.X.production.o
 _strlen 4566 0 CODE 0 text59 dist/default/production\final-project-olivier.X.production.o
 __Lfardata 0 0 FARRAM 0 fardata dist/default/production\final-project-olivier.X.production.o
-isa$std 1 0 ABS 0 - C:\Users\olive\AppData\Local\Temp\xcAs130o.o
+isa$std 1 0 ABS 0 - C:\Users\olive\AppData\Local\Temp\xcAs6c0.o
 ___fldiv@new_exp 43 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-olivier.X.production.o
 rotate180left@mL 20 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-olivier.X.production.o
 rotate180left@mR 22 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-olivier.X.production.o
@@ -1790,8 +1790,8 @@ _Hue2Colour 157E 0 CODE 0 text64 dist/default/production\final-project-olivier.X
 __end_of_TimerReset 4976 0 CODE 0 text34 dist/default/production\final-project-olivier.X.production.o
 RGB2Hue@max 79 0 BANK0 1 cstackBANK0 dist/default/production\final-project-olivier.X.production.o
 RGB2Hue@min 7B 0 BANK0 1 cstackBANK0 dist/default/production\final-project-olivier.X.production.o
-stackhi 0 0 ABS 0 - C:\Users\olive\AppData\Local\Temp\xcAs130o.o
-stacklo 0 0 ABS 0 - C:\Users\olive\AppData\Local\Temp\xcAs130o.o
+stackhi 0 0 ABS 0 - C:\Users\olive\AppData\Local\Temp\xcAs6c0.o
+stacklo 0 0 ABS 0 - C:\Users\olive\AppData\Local\Temp\xcAs6c0.o
 Hue2Colour@colourname F 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-olivier.X.production.o
 Right45@mL 1A 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-olivier.X.production.o
 Right45@mR 1C 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-olivier.X.production.o
@@ -1935,7 +1935,7 @@ __Ltext64 0 0 ABS 0 text64 dist/default/production\final-project-olivier.X.produ
 __Ltext65 0 0 ABS 0 text65 dist/default/production\final-project-olivier.X.production.o
 __Ltext66 0 0 ABS 0 text66 dist/default/production\final-project-olivier.X.production.o
 __end_of_color_writetoaddr 4900 0 CODE 0 text13 dist/default/production\final-project-olivier.X.production.o
-__ramtop E00 0 RAM 0 ramtop C:\Users\olive\AppData\Local\Temp\xcAs130o.o
+__ramtop E00 0 RAM 0 ramtop C:\Users\olive\AppData\Local\Temp\xcAs6c0.o
 _sprintf 45B6 0 CODE 0 text54 dist/default/production\final-project-olivier.X.production.o
 _sendStringSerial4 4758 0 CODE 0 text62 dist/default/production\final-project-olivier.X.production.o
 _HighISR 8 0 CODE 0 intcode dist/default/production\final-project-olivier.X.production.o
@@ -1960,8 +1960,8 @@ _strncmp 38BE 0 CODE 0 text57 dist/default/production\final-project-olivier.X.pr
 setMotorPWM@negDuty 13 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-olivier.X.production.o
 _I2C_2_Master_RepStart 494E 0 CODE 0 text10 dist/default/production\final-project-olivier.X.production.o
 _CCP3CONbits F26 0 ABS 0 - dist/default/production\final-project-olivier.X.production.o
-___heap_hi 0 0 ABS 0 - C:\Users\olive\AppData\Local\Temp\xcAs130o.o
-___heap_lo 0 0 ABS 0 - C:\Users\olive\AppData\Local\Temp\xcAs130o.o
+___heap_hi 0 0 ABS 0 - C:\Users\olive\AppData\Local\Temp\xcAs6c0.o
+___heap_lo 0 0 ABS 0 - C:\Users\olive\AppData\Local\Temp\xcAs6c0.o
 _I2C_2_Master_Idle 484C 0 CODE 0 text17 dist/default/production\final-project-olivier.X.production.o
 _I2C_2_Master_Init 4822 0 CODE 0 text18 dist/default/production\final-project-olivier.X.production.o
 _I2C_2_Master_Read 4698 0 CODE 0 text11 dist/default/production\final-project-olivier.X.production.o

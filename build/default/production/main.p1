@@ -2294,62 +2294,62 @@ Version 4.0 HI-TECH Software Intermediate Code
 "65
 [; ;main.c: 65:              {
 {
-"66
-[; ;main.c: 66:                 memoryUpdateTime(movementCount,timerMemory);
-[e ( _memoryUpdateTime (2 , _movementCount &U _timerMemory ]
-"68
-[; ;main.c: 68:                 wall=1;
-[e = _wall -> -> 1 `i `uc ]
-"69
-[; ;main.c: 69:                 ClickLEDOn(1);
-[e ( _ClickLEDOn (1 -> -> 1 `i `uc ]
-"70
-[; ;main.c: 70:                 stop(&motorL,&motorR);
-[e ( _stop (2 , &U _motorL &U _motorR ]
-"71
-[; ;main.c: 71:                 _delay((unsigned long)((2000)*(64000000/4000.0)));
-[e ( __delay (1 -> * -> -> 2000 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
 "72
-[; ;main.c: 72:             }
+[; ;main.c: 72:             memoryUpdateTime(movementCount,timerMemory);
+[e ( _memoryUpdateTime (2 , _movementCount &U _timerMemory ]
+"74
+[; ;main.c: 74:             wall=1;
+[e = _wall -> -> 1 `i `uc ]
+"75
+[; ;main.c: 75:             ClickLEDOn(1);
+[e ( _ClickLEDOn (1 -> -> 1 `i `uc ]
+"76
+[; ;main.c: 76:             stop(&motorL,&motorR);
+[e ( _stop (2 , &U _motorL &U _motorR ]
+"77
+[; ;main.c: 77:             _delay((unsigned long)((2000)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 2000 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+"78
+[; ;main.c: 78:             }
 }
 [e :U 2026 ]
-"73
-[; ;main.c: 73:         }
+"79
+[; ;main.c: 79:         }
 }
 [e :U 2023 ]
 "59
 [; ;main.c: 59:         while (!wall){
 [e $ ! != -> _wall `i -> 0 `i 2024  ]
 [e :U 2025 ]
-"74
-[; ;main.c: 74:         colour_read_all(&colorf);
-[e ( _colour_read_all (1 &U _colorf ]
-"75
-[; ;main.c: 75:         wall=0;
-[e = _wall -> -> 0 `i `uc ]
-"76
-[; ;main.c: 76:         ClickLEDOn(0);
-[e ( _ClickLEDOn (1 -> -> 0 `i `uc ]
-"77
-[; ;main.c: 77:         RGB2Hue(&colorf);
-[e ( _RGB2Hue (1 &U _colorf ]
-"78
-[; ;main.c: 78:         Hue2Colour(&colorf);
-[e ( _Hue2Colour (1 &U _colorf ]
-"79
-[; ;main.c: 79:         memoryUpdateMovement(&colorf,movementCount,movementMemory);
-[e ( _memoryUpdateMovement (3 , , &U _colorf _movementCount &U _movementMemory ]
 "80
-[; ;main.c: 80:         Colour2Action(&colorf);
-[e ( _Colour2Action (1 &U _colorf ]
+[; ;main.c: 80:         colour_read_all(&colorf);
+[e ( _colour_read_all (1 &U _colorf ]
 "81
-[; ;main.c: 81:         if (colorf.colourindex == 7)
-[e $ ! == . _colorf 5 -> 7 `i 2027  ]
+[; ;main.c: 81:         wall=0;
+[e = _wall -> -> 0 `i `uc ]
 "82
-[; ;main.c: 82:         {
-{
+[; ;main.c: 82:         ClickLEDOn(0);
+[e ( _ClickLEDOn (1 -> -> 0 `i `uc ]
 "83
-[; ;main.c: 83:             while(!retracingDone){}
+[; ;main.c: 83:         RGB2Hue(&colorf);
+[e ( _RGB2Hue (1 &U _colorf ]
+"84
+[; ;main.c: 84:         Hue2Colour(&colorf);
+[e ( _Hue2Colour (1 &U _colorf ]
+"85
+[; ;main.c: 85:         memoryUpdateMovement(&colorf,movementCount,movementMemory);
+[e ( _memoryUpdateMovement (3 , , &U _colorf _movementCount &U _movementMemory ]
+"86
+[; ;main.c: 86:         Colour2Action(&colorf);
+[e ( _Colour2Action (1 &U _colorf ]
+"87
+[; ;main.c: 87:         if (colorf.colourindex == 7)
+[e $ ! == . _colorf 5 -> 7 `i 2027  ]
+"88
+[; ;main.c: 88:         {
+{
+"89
+[; ;main.c: 89:             while(!retracingDone){}
 [e $U 2028  ]
 [e :U 2029 ]
 {
@@ -2357,8 +2357,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 2028 ]
 [e $ ! != _retracingDone -> -> 0 `i `ui 2029  ]
 [e :U 2030 ]
-"84
-[; ;main.c: 84:         }
+"90
+[; ;main.c: 90:         }
 }
 [e :U 2027 ]
 "91
