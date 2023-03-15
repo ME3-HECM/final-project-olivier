@@ -3,8 +3,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;./colorfunctions.h: 8: typedef struct RGBC_rel{
 [s S2012 `f 1 `f 1 `f 1 `f 1 `f 1 `i 1 ]
 [n S2012 RGBC_rel Rf Gf Bf Cf h colourindex ]
-"19 ./dc_motor.h
-[; ;./dc_motor.h: 19: typedef struct DC_motor {
+"20 ./dc_motor.h
+[; ;./dc_motor.h: 20: typedef struct DC_motor {
 [s S2015 `uc 1 `uc 1 `uc 1 `ui 1 `*uc 1 `*uc 1 ]
 [n S2015 DC_motor power direction brakemode PWMperiod posDutyHighByte negDutyHighByte ]
 "4810 C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\pic\include\proc\pic18lf67k40.h
@@ -2046,10 +2046,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 146 `i `ui
 ]
 "15
-[; ;./dc_motor.h: 15: unsigned int _45drightdelay = 149;
+[; ;./dc_motor.h: 15: unsigned int _45drightdelay = 155;
 [v __45drightdelay `ui ~T0 @X0 1 e ]
 [i __45drightdelay
--> -> 149 `i `ui
+-> -> 155 `i `ui
 ]
 "16
 [; ;./dc_motor.h: 16: unsigned int _1square = 700;
@@ -2063,8 +2063,14 @@ Version 4.0 HI-TECH Software Intermediate Code
 [i __halfsquare
 -> -> 350 `i `ui
 ]
-"28
-[; ;./dc_motor.h: 28: struct DC_motor motorL, motorR;
+"18
+[; ;./dc_motor.h: 18: unsigned int _recogniseColour = 650;
+[v __recogniseColour `ui ~T0 @X0 1 e ]
+[i __recogniseColour
+-> -> 650 `i `ui
+]
+"29
+[; ;./dc_motor.h: 29: struct DC_motor motorL, motorR;
 [v _motorL `S2015 ~T0 @X0 1 e ]
 [v _motorR `S2015 ~T0 @X0 1 e ]
 "15 ./main.h
@@ -2087,8 +2093,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 ..
 ]
 "18
-[; ;./main.h: 18: volatile unsigned int timerMemory[20] = {};
-[v _timerMemory `Vui ~T0 @X0 -> 20 `i e ]
+[; ;./main.h: 18: volatile float timerMemory[20] = {};
+[v _timerMemory `Vf ~T0 @X0 -> 20 `i e ]
 [i _timerMemory
 :U ..
 ..

@@ -3,8 +3,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;./colorfunctions.h: 8: typedef struct RGBC_rel{
 [s S2012 `f 1 `f 1 `f 1 `f 1 `f 1 `i 1 ]
 [n S2012 RGBC_rel Rf Gf Bf Cf h colourindex ]
-"19 ./dc_motor.h
-[; ;./dc_motor.h: 19: typedef struct DC_motor {
+"20 ./dc_motor.h
+[; ;./dc_motor.h: 20: typedef struct DC_motor {
 [s S2015 `uc 1 `uc 1 `uc 1 `ui 1 `*uc 1 `*uc 1 ]
 [n S2015 DC_motor power direction brakemode PWMperiod posDutyHighByte negDutyHighByte ]
 [p mainexit ]
@@ -26,8 +26,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "5 ./timer.h
 [; ;./timer.h: 5: void Timer0_init(void);
 [v _Timer0_init `(v ~T0 @X0 0 ef ]
-"32 ./dc_motor.h
-[; ;./dc_motor.h: 32: void initDCmotorsPWM(unsigned int PWMperiod);
+"33 ./dc_motor.h
+[; ;./dc_motor.h: 33: void initDCmotorsPWM(unsigned int PWMperiod);
 [v _initDCmotorsPWM `(v ~T0 @X0 0 ef1`ui ]
 "34386 C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\pic\include\proc\pic18lf67k40.h
 [; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\pic\include\proc\pic18lf67k40.h: 34386: extern volatile unsigned char CCPR1H __attribute__((address(0xFAA)));
@@ -88,8 +88,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "56 ./colorclick.h
 [; ;./colorclick.h: 56: void ClickLEDOn(char power);
 [v _ClickLEDOn `(v ~T0 @X0 0 ef1`uc ]
-"37 ./dc_motor.h
-[; ;./dc_motor.h: 37: void fullSpeedAhead(struct DC_motor *mL, struct DC_motor *mR);
+"38 ./dc_motor.h
+[; ;./dc_motor.h: 38: void fullSpeedAhead(struct DC_motor *mL, struct DC_motor *mR);
 [v _fullSpeedAhead `(v ~T0 @X0 0 ef2`*S2015`*S2015 ]
 "18 ./colorfunctions.h
 [; ;./colorfunctions.h: 18: void colour_read_all(struct RGBC_rel *cf);
@@ -98,10 +98,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;./serial.h: 15: void Color2String(char *buf,struct RGBC_rel *cf);
 [v _Color2String `(v ~T0 @X0 0 ef2`*uc`*S2012 ]
 "13 ./memory.h
-[; ;./memory.h: 13: void memoryUpdateTime(volatile unsigned int movementCount, volatile unsigned int *timerMemory);
-[v _memoryUpdateTime `(v ~T0 @X0 0 ef2`Vui`*Vui ]
-"34 ./dc_motor.h
-[; ;./dc_motor.h: 34: void stop(struct DC_motor *mL, struct DC_motor *mR);
+[; ;./memory.h: 13: void memoryUpdateTime(volatile unsigned int movementCount, volatile float *timerMemory);
+[v _memoryUpdateTime `(v ~T0 @X0 0 ef2`Vui`*Vf ]
+"35 ./dc_motor.h
+[; ;./dc_motor.h: 35: void stop(struct DC_motor *mL, struct DC_motor *mR);
 [v _stop `(v ~T0 @X0 0 ef2`*S2015`*S2015 ]
 "19 ./colorfunctions.h
 [; ;./colorfunctions.h: 19: void RGB2Hue(struct RGBC_rel *cf);
@@ -2117,8 +2117,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 ..
 ]
 "18
-[; ;./main.h: 18: volatile unsigned int timerMemory[20] = {};
-[v _timerMemory `Vui ~T0 @X0 -> 20 `i e ]
+[; ;./main.h: 18: volatile float timerMemory[20] = {};
+[v _timerMemory `Vf ~T0 @X0 -> 20 `i e ]
 [i _timerMemory
 :U ..
 ..
@@ -2142,10 +2142,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 146 `i `ui
 ]
 "15
-[; ;./dc_motor.h: 15: unsigned int _45drightdelay = 149;
+[; ;./dc_motor.h: 15: unsigned int _45drightdelay = 155;
 [v __45drightdelay `ui ~T0 @X0 1 e ]
 [i __45drightdelay
--> -> 149 `i `ui
+-> -> 155 `i `ui
 ]
 "16
 [; ;./dc_motor.h: 16: unsigned int _1square = 700;
@@ -2159,8 +2159,14 @@ Version 4.0 HI-TECH Software Intermediate Code
 [i __halfsquare
 -> -> 350 `i `ui
 ]
-"28
-[; ;./dc_motor.h: 28: struct DC_motor motorL, motorR;
+"18
+[; ;./dc_motor.h: 18: unsigned int _recogniseColour = 650;
+[v __recogniseColour `ui ~T0 @X0 1 e ]
+[i __recogniseColour
+-> -> 650 `i `ui
+]
+"29
+[; ;./dc_motor.h: 29: struct DC_motor motorL, motorR;
 [v _motorL `S2015 ~T0 @X0 1 e ]
 [v _motorR `S2015 ~T0 @X0 1 e ]
 [v $root$_main `(v ~T0 @X0 0 e ]
@@ -2289,8 +2295,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main.c: 61:             Color2String(data,&colorf);
 [e ( _Color2String (2 , &U _data &U _colorf ]
 "64
-[; ;main.c: 64:              if (colorf.Cf<50)
-[e $ ! < . _colorf 3 -> -> 50 `i `f 2026  ]
+[; ;main.c: 64:              if (colorf.Cf<100)
+[e $ ! < . _colorf 3 -> -> 100 `i `f 2026  ]
 "65
 [; ;main.c: 65:              {
 {
@@ -2304,11 +2310,11 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main.c: 75:             ClickLEDOn(1);
 [e ( _ClickLEDOn (1 -> -> 1 `i `uc ]
 "76
-[; ;main.c: 76:             stop(&motorL,&motorR);
-[e ( _stop (2 , &U _motorL &U _motorR ]
-"77
-[; ;main.c: 77:             _delay((unsigned long)((2000)*(64000000/4000.0)));
+[; ;main.c: 76:             _delay((unsigned long)((2000)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 2000 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+"77
+[; ;main.c: 77:             stop(&motorL,&motorR);
+[e ( _stop (2 , &U _motorL &U _motorR ]
 "78
 [; ;main.c: 78:             }
 }

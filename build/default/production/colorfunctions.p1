@@ -3,8 +3,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;./colorfunctions.h: 8: typedef struct RGBC_rel{
 [s S2014 `f 1 `f 1 `f 1 `f 1 `f 1 `i 1 ]
 [n S2014 RGBC_rel Rf Gf Bf Cf h colourindex ]
-"19 ./dc_motor.h
-[; ;./dc_motor.h: 19: typedef struct DC_motor {
+"20 ./dc_motor.h
+[; ;./dc_motor.h: 20: typedef struct DC_motor {
 [s S2015 `uc 1 `uc 1 `uc 1 `ui 1 `*uc 1 `*uc 1 ]
 [n S2015 DC_motor power direction brakemode PWMperiod posDutyHighByte negDutyHighByte ]
 "34 ./colorclick.h
@@ -19,30 +19,30 @@ Version 4.0 HI-TECH Software Intermediate Code
 "52
 [; ;./colorclick.h: 52: unsigned int color_read_Clear(void);
 [v _color_read_Clear `(ui ~T0 @X0 0 ef ]
-"46 ./dc_motor.h
-[; ;./dc_motor.h: 46: void Red_R90(struct DC_motor *mL, struct DC_motor *mR);
+"47 ./dc_motor.h
+[; ;./dc_motor.h: 47: void Red_R90(struct DC_motor *mL, struct DC_motor *mR);
 [v _Red_R90 `(v ~T0 @X0 0 ef2`*S2015`*S2015 ]
-"47
-[; ;./dc_motor.h: 47: void Green_L90(struct DC_motor *mL, struct DC_motor *mR);
-[v _Green_L90 `(v ~T0 @X0 0 ef2`*S2015`*S2015 ]
 "48
-[; ;./dc_motor.h: 48: void Blue_T180(struct DC_motor *mL, struct DC_motor *mR);
-[v _Blue_T180 `(v ~T0 @X0 0 ef2`*S2015`*S2015 ]
+[; ;./dc_motor.h: 48: void Green_L90(struct DC_motor *mL, struct DC_motor *mR);
+[v _Green_L90 `(v ~T0 @X0 0 ef2`*S2015`*S2015 ]
 "49
-[; ;./dc_motor.h: 49: void Yellow_rev1_R90(struct DC_motor *mL, struct DC_motor *mR);
-[v _Yellow_rev1_R90 `(v ~T0 @X0 0 ef2`*S2015`*S2015 ]
+[; ;./dc_motor.h: 49: void Blue_T180(struct DC_motor *mL, struct DC_motor *mR);
+[v _Blue_T180 `(v ~T0 @X0 0 ef2`*S2015`*S2015 ]
 "50
-[; ;./dc_motor.h: 50: void Pink_rev1_L90(struct DC_motor *mL, struct DC_motor *mR);
-[v _Pink_rev1_L90 `(v ~T0 @X0 0 ef2`*S2015`*S2015 ]
+[; ;./dc_motor.h: 50: void Yellow_rev1_R90(struct DC_motor *mL, struct DC_motor *mR);
+[v _Yellow_rev1_R90 `(v ~T0 @X0 0 ef2`*S2015`*S2015 ]
 "51
-[; ;./dc_motor.h: 51: void Orange_R135(struct DC_motor *mL, struct DC_motor *mR);
-[v _Orange_R135 `(v ~T0 @X0 0 ef2`*S2015`*S2015 ]
+[; ;./dc_motor.h: 51: void Pink_rev1_L90(struct DC_motor *mL, struct DC_motor *mR);
+[v _Pink_rev1_L90 `(v ~T0 @X0 0 ef2`*S2015`*S2015 ]
 "52
-[; ;./dc_motor.h: 52: void LightBlue_L135(struct DC_motor *mL, struct DC_motor *mR);
-[v _LightBlue_L135 `(v ~T0 @X0 0 ef2`*S2015`*S2015 ]
+[; ;./dc_motor.h: 52: void Orange_R135(struct DC_motor *mL, struct DC_motor *mR);
+[v _Orange_R135 `(v ~T0 @X0 0 ef2`*S2015`*S2015 ]
 "53
-[; ;./dc_motor.h: 53: void White(struct DC_motor *mL, struct DC_motor *mR,unsigned int movementCount, volatile unsigned int *movementMemory,volatile unsigned int *timerMemory);
-[v _White `(v ~T0 @X0 0 ef5`*S2015`*S2015`ui`*Vui`*Vui ]
+[; ;./dc_motor.h: 53: void LightBlue_L135(struct DC_motor *mL, struct DC_motor *mR);
+[v _LightBlue_L135 `(v ~T0 @X0 0 ef2`*S2015`*S2015 ]
+"54
+[; ;./dc_motor.h: 54: void White(struct DC_motor *mL, struct DC_motor *mR,unsigned int movementCount, volatile unsigned int *movementMemory,volatile float *timerMemory);
+[v _White `(v ~T0 @X0 0 ef5`*S2015`*S2015`ui`*Vui`*Vf ]
 "54 C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\pic\include\proc\pic18lf67k40.h
 [; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\pic\include\proc\pic18lf67k40.h: 54: __asm("PPSLOCK equ 0DEFh");
 [; <" PPSLOCK equ 0DEFh ;# ">
@@ -2037,8 +2037,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 ..
 ]
 "18
-[; ;./main.h: 18: volatile unsigned int timerMemory[20] = {};
-[v _timerMemory `Vui ~T0 @X0 -> 20 `i e ]
+[; ;./main.h: 18: volatile float timerMemory[20] = {};
+[v _timerMemory `Vf ~T0 @X0 -> 20 `i e ]
 [i _timerMemory
 :U ..
 ..
@@ -2062,10 +2062,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 146 `i `ui
 ]
 "15
-[; ;./dc_motor.h: 15: unsigned int _45drightdelay = 149;
+[; ;./dc_motor.h: 15: unsigned int _45drightdelay = 155;
 [v __45drightdelay `ui ~T0 @X0 1 e ]
 [i __45drightdelay
--> -> 149 `i `ui
+-> -> 155 `i `ui
 ]
 "16
 [; ;./dc_motor.h: 16: unsigned int _1square = 700;
@@ -2079,8 +2079,14 @@ Version 4.0 HI-TECH Software Intermediate Code
 [i __halfsquare
 -> -> 350 `i `ui
 ]
-"28
-[; ;./dc_motor.h: 28: struct DC_motor motorL, motorR;
+"18
+[; ;./dc_motor.h: 18: unsigned int _recogniseColour = 650;
+[v __recogniseColour `ui ~T0 @X0 1 e ]
+[i __recogniseColour
+-> -> 650 `i `ui
+]
+"29
+[; ;./dc_motor.h: 29: struct DC_motor motorL, motorR;
 [v _motorL `S2015 ~T0 @X0 1 e ]
 [v _motorR `S2015 ~T0 @X0 1 e ]
 "8 colorfunctions.c
@@ -2514,16 +2520,11 @@ Version 4.0 HI-TECH Software Intermediate Code
 "134
 [; ;colorfunctions.c: 134:     }
 }
-[e :U 2057 ]
-[e :U 2056 ]
-[e :U 2054 ]
-[e :U 2052 ]
-[e :U 2050 ]
-[e :U 2048 ]
-[e :U 2046 ]
+[e $U 2058  ]
 "135
-[; ;colorfunctions.c: 135:     if (cf->colourindex == 7)
-[e $ ! == . *U _cf 5 -> 7 `i 2058  ]
+[; ;colorfunctions.c: 135:     else if (cf->colourindex == 7)
+[e :U 2057 ]
+[e $ ! == . *U _cf 5 -> 7 `i 2059  ]
 "136
 [; ;colorfunctions.c: 136:     {
 {
@@ -2533,7 +2534,14 @@ Version 4.0 HI-TECH Software Intermediate Code
 "138
 [; ;colorfunctions.c: 138:     }
 }
+[e :U 2059 ]
 [e :U 2058 ]
+[e :U 2056 ]
+[e :U 2054 ]
+[e :U 2052 ]
+[e :U 2050 ]
+[e :U 2048 ]
+[e :U 2046 ]
 "140
 [; ;colorfunctions.c: 140: }
 [e :UE 2044 ]

@@ -24521,7 +24521,7 @@ void LED_init(void);
 
 void Timer0_init(void);
 void TimerReset(void);
-unsigned int getTimerValue(void);
+float getTimerValue(void);
 # 7 "./memory.h" 2
 
 # 1 "./main.h" 1
@@ -24533,7 +24533,7 @@ unsigned int getTimerValue(void);
 
 
 void memoryUpdateMovement(struct RGBC_rel *cf, volatile unsigned int movementCount, volatile unsigned int *movementMemory);
-void memoryUpdateTime(volatile unsigned int movementCount, volatile unsigned int *timerMemory);
+void memoryUpdateTime(volatile unsigned int movementCount, volatile float *timerMemory);
 void maxTimeReturn(void);
 # 7 "./dc_motor.h" 2
 
@@ -24544,9 +24544,10 @@ volatile char ForwardFlag = 1;
 
 volatile unsigned int retracingDone = 0;
 unsigned int _45dleftdelay = 146;
-unsigned int _45drightdelay = 149;
+unsigned int _45drightdelay = 155;
 unsigned int _1square = 700;
 unsigned int _halfsquare = 350;
+unsigned int _recogniseColour = 650;
 
 typedef struct DC_motor {
     char power;
@@ -24582,7 +24583,7 @@ void Yellow_rev1_R90(struct DC_motor *mL, struct DC_motor *mR);
 void Pink_rev1_L90(struct DC_motor *mL, struct DC_motor *mR);
 void Orange_R135(struct DC_motor *mL, struct DC_motor *mR);
 void LightBlue_L135(struct DC_motor *mL, struct DC_motor *mR);
-void White(struct DC_motor *mL, struct DC_motor *mR,unsigned int movementCount, volatile unsigned int *movementMemory,volatile unsigned int *timerMemory);
+void White(struct DC_motor *mL, struct DC_motor *mR,unsigned int movementCount, volatile unsigned int *movementMemory,volatile float *timerMemory);
 # 10 "./main.h" 2
 
 
@@ -24592,7 +24593,7 @@ void White(struct DC_motor *mL, struct DC_motor *mR,unsigned int movementCount, 
 volatile unsigned int maxTime = 0;
 volatile unsigned int movementCount = 0;
 volatile unsigned int movementMemory[20] = {};
-volatile unsigned int timerMemory[20] = {};
+volatile float timerMemory[20] = {};
 void main(void);
 # 2 "interrupts.c" 2
 

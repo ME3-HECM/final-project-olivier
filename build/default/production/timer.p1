@@ -2080,25 +2080,25 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :UE 2013 ]
 }
 "28
-[; ;timer.c: 28: unsigned int getTimerValue(void)
-[v _getTimerValue `(ui ~T0 @X0 1 ef ]
+[; ;timer.c: 28: float getTimerValue(void)
+[v _getTimerValue `(f ~T0 @X0 1 ef ]
 "29
 [; ;timer.c: 29: {
 {
 [e :U _getTimerValue ]
 [f ]
 "30
-[; ;timer.c: 30:     unsigned int timerCount;
-[v _timerCount `ui ~T0 @X0 1 a ]
+[; ;timer.c: 30:     int timerCount;
+[v _timerCount `i ~T0 @X0 1 a ]
 "32
 [; ;timer.c: 32:     timerCount = TMR0L;
-[e = _timerCount -> _TMR0L `ui ]
+[e = _timerCount -> _TMR0L `i ]
 "34
-[; ;timer.c: 34:     timerCount |= (unsigned int)(TMR0H << 8);
-[e =| _timerCount -> << -> _TMR0H `i -> 8 `i `ui ]
+[; ;timer.c: 34:     timerCount |= (int)(TMR0H << 8);
+[e =| _timerCount << -> _TMR0H `i -> 8 `i ]
 "35
 [; ;timer.c: 35:     return timerCount*1.048576;
-[e ) -> * -> _timerCount `d .1.048576 `ui ]
+[e ) -> * -> _timerCount `d .1.048576 `f ]
 [e $UE 2014  ]
 "36
 [; ;timer.c: 36: }

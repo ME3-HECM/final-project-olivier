@@ -3,15 +3,15 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;./colorfunctions.h: 8: typedef struct RGBC_rel{
 [s S2012 `f 1 `f 1 `f 1 `f 1 `f 1 `i 1 ]
 [n S2012 RGBC_rel Rf Gf Bf Cf h colourindex ]
-"19 ./dc_motor.h
-[; ;./dc_motor.h: 19: typedef struct DC_motor {
+"20 ./dc_motor.h
+[; ;./dc_motor.h: 20: typedef struct DC_motor {
 [s S2015 `uc 1 `uc 1 `uc 1 `ui 1 `*uc 1 `*uc 1 ]
 [n S2015 DC_motor power direction brakemode PWMperiod posDutyHighByte negDutyHighByte ]
 "7 ./timer.h
-[; ;./timer.h: 7: unsigned int getTimerValue(void);
-[v _getTimerValue `(ui ~T0 @X0 0 ef ]
-"34 ./dc_motor.h
-[; ;./dc_motor.h: 34: void stop(struct DC_motor *mL, struct DC_motor *mR);
+[; ;./timer.h: 7: float getTimerValue(void);
+[v _getTimerValue `(f ~T0 @X0 0 ef ]
+"35 ./dc_motor.h
+[; ;./dc_motor.h: 35: void stop(struct DC_motor *mL, struct DC_motor *mR);
 [v _stop `(v ~T0 @X0 0 ef2`*S2015`*S2015 ]
 "54 C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\pic\include\proc\pic18lf67k40.h
 [; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\pic\include\proc\pic18lf67k40.h: 54: __asm("PPSLOCK equ 0DEFh");
@@ -2006,10 +2006,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 146 `i `ui
 ]
 "15
-[; ;./dc_motor.h: 15: unsigned int _45drightdelay = 149;
+[; ;./dc_motor.h: 15: unsigned int _45drightdelay = 155;
 [v __45drightdelay `ui ~T0 @X0 1 e ]
 [i __45drightdelay
--> -> 149 `i `ui
+-> -> 155 `i `ui
 ]
 "16
 [; ;./dc_motor.h: 16: unsigned int _1square = 700;
@@ -2023,8 +2023,14 @@ Version 4.0 HI-TECH Software Intermediate Code
 [i __halfsquare
 -> -> 350 `i `ui
 ]
-"28
-[; ;./dc_motor.h: 28: struct DC_motor motorL, motorR;
+"18
+[; ;./dc_motor.h: 18: unsigned int _recogniseColour = 650;
+[v __recogniseColour `ui ~T0 @X0 1 e ]
+[i __recogniseColour
+-> -> 650 `i `ui
+]
+"29
+[; ;./dc_motor.h: 29: struct DC_motor motorL, motorR;
 [v _motorL `S2015 ~T0 @X0 1 e ]
 [v _motorR `S2015 ~T0 @X0 1 e ]
 "15 ./main.h
@@ -2047,8 +2053,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 ..
 ]
 "18
-[; ;./main.h: 18: volatile unsigned int timerMemory[20] = {};
-[v _timerMemory `Vui ~T0 @X0 -> 20 `i e ]
+[; ;./main.h: 18: volatile float timerMemory[20] = {};
+[v _timerMemory `Vf ~T0 @X0 -> 20 `i e ]
 [i _timerMemory
 :U ..
 ..
@@ -2080,23 +2086,23 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :UE 2016 ]
 }
 "16
-[; ;memory.c: 16: void memoryUpdateTime(volatile unsigned int movementCount, volatile unsigned int *timerMemory)
-[v _memoryUpdateTime `(v ~T0 @X0 1 ef2`Vui`*Vui ]
+[; ;memory.c: 16: void memoryUpdateTime(volatile unsigned int movementCount, volatile float *timerMemory)
+[v _memoryUpdateTime `(v ~T0 @X0 1 ef2`Vui`*Vf ]
 "17
 [; ;memory.c: 17: {
 {
 [e :U _memoryUpdateTime ]
 "16
-[; ;memory.c: 16: void memoryUpdateTime(volatile unsigned int movementCount, volatile unsigned int *timerMemory)
+[; ;memory.c: 16: void memoryUpdateTime(volatile unsigned int movementCount, volatile float *timerMemory)
 [v _movementCount `Vui ~T0 @X0 1 r1 ]
-[v _timerMemory `*Vui ~T0 @X0 1 r2 ]
+[v _timerMemory `*Vf ~T0 @X0 1 r2 ]
 "17
 [; ;memory.c: 17: {
 [f ]
 "18
-[; ;memory.c: 18:     unsigned int timerVal = getTimerValue()-(_halfsquare+50);
-[v _timerVal `ui ~T0 @X0 1 a ]
-[e = _timerVal - ( _getTimerValue ..  + __halfsquare -> -> 50 `i `ui ]
+[; ;memory.c: 18:     float timerVal = getTimerValue()-_halfsquare-_recogniseColour;
+[v _timerVal `f ~T0 @X0 1 a ]
+[e = _timerVal - - ( _getTimerValue ..  -> __halfsquare `f -> __recogniseColour `f ]
 "19
 [; ;memory.c: 19:     timerMemory[movementCount] = timerVal;
 [e = *U + _timerMemory * -> _movementCount `ux -> -> # *U _timerMemory `ui `ux _timerVal ]

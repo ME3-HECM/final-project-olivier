@@ -10,7 +10,7 @@
 
 #define _XTAL_FREQ 64000000 //note intrinsic _delay function is 62.5ns at 64,000,000Hz
 void memoryUpdateMovement(struct RGBC_rel *cf, volatile unsigned int movementCount, volatile unsigned int *movementMemory);
-void memoryUpdateTime(volatile unsigned int movementCount, volatile unsigned int *timerMemory);
+void memoryUpdateTime(volatile unsigned int movementCount, volatile float *timerMemory);
 void maxTimeReturn(void);
 
 

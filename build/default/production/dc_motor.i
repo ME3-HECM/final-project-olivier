@@ -24270,7 +24270,7 @@ void Colour2Action(struct RGBC_rel *cf);
 
 void Timer0_init(void);
 void TimerReset(void);
-unsigned int getTimerValue(void);
+float getTimerValue(void);
 # 7 "./memory.h" 2
 
 # 1 "./main.h" 1
@@ -24534,7 +24534,7 @@ unsigned char I2C_2_Master_Read(unsigned char ack);
 volatile unsigned int maxTime = 0;
 volatile unsigned int movementCount = 0;
 volatile unsigned int movementMemory[20] = {};
-volatile unsigned int timerMemory[20] = {};
+volatile float timerMemory[20] = {};
 void main(void);
 # 8 "./memory.h" 2
 
@@ -24544,7 +24544,7 @@ void main(void);
 
 
 void memoryUpdateMovement(struct RGBC_rel *cf, volatile unsigned int movementCount, volatile unsigned int *movementMemory);
-void memoryUpdateTime(volatile unsigned int movementCount, volatile unsigned int *timerMemory);
+void memoryUpdateTime(volatile unsigned int movementCount, volatile float *timerMemory);
 void maxTimeReturn(void);
 # 7 "./dc_motor.h" 2
 
@@ -24555,9 +24555,10 @@ volatile char ForwardFlag = 1;
 
 volatile unsigned int retracingDone = 0;
 unsigned int _45dleftdelay = 146;
-unsigned int _45drightdelay = 149;
+unsigned int _45drightdelay = 155;
 unsigned int _1square = 700;
 unsigned int _halfsquare = 350;
+unsigned int _recogniseColour = 650;
 
 typedef struct DC_motor {
     char power;
@@ -24593,7 +24594,7 @@ void Yellow_rev1_R90(struct DC_motor *mL, struct DC_motor *mR);
 void Pink_rev1_L90(struct DC_motor *mL, struct DC_motor *mR);
 void Orange_R135(struct DC_motor *mL, struct DC_motor *mR);
 void LightBlue_L135(struct DC_motor *mL, struct DC_motor *mR);
-void White(struct DC_motor *mL, struct DC_motor *mR,unsigned int movementCount, volatile unsigned int *movementMemory,volatile unsigned int *timerMemory);
+void White(struct DC_motor *mL, struct DC_motor *mR,unsigned int movementCount, volatile unsigned int *movementMemory,volatile float *timerMemory);
 # 2 "dc_motor.c" 2
 # 11 "dc_motor.c"
 void initDCmotorsPWM(unsigned int PWMperiod){
@@ -24864,11 +24865,9 @@ void Yellow_rev1_R90(struct DC_motor *mL, struct DC_motor *mR)
     }
     else{
 
+
         Left45(mL,mR);
         Left45(mL,mR);
-        fullSpeedAhead(mL,mR);
-        _delay((unsigned long)((_1square)*(64000000/4000.0)));
-        stop(mL,mR);
     }
 }
 void Pink_rev1_L90(struct DC_motor *mL, struct DC_motor *mR)
@@ -24885,9 +24884,6 @@ void Pink_rev1_L90(struct DC_motor *mL, struct DC_motor *mR)
 
         Right45(mL,mR);
         Right45(mL,mR);
-        fullSpeedAhead(mL,mR);
-        _delay((unsigned long)((_1square)*(64000000/4000.0)));
-        stop(mL,mR);
     }
 }
 void Orange_R135(struct DC_motor *mL, struct DC_motor *mR)
@@ -24898,8 +24894,6 @@ void Orange_R135(struct DC_motor *mL, struct DC_motor *mR)
         Right45(mL,mR);
         Right45(mL,mR);
         Right45(mL,mR);
-
-
     }
     else{
 
@@ -24926,7 +24920,7 @@ void LightBlue_L135(struct DC_motor *mL, struct DC_motor *mR)
         Right45(mL,mR);
     }
 }
-void White(struct DC_motor *mL, struct DC_motor *mR,unsigned int movementCount, volatile unsigned int *movementMemory, volatile unsigned int *timerMemory)
+void White(struct DC_motor *mL, struct DC_motor *mR,unsigned int movementCount, volatile unsigned int *movementMemory, volatile float *timerMemory)
 {
     LATDbits.LATD4 = 1;;
 
@@ -24958,12 +24952,20 @@ void White(struct DC_motor *mL, struct DC_motor *mR,unsigned int movementCount, 
                 stop(mL,mR);}
             LATDbits.LATD4 = 1;;
 
-            unsigned int tempTimer = 0;
+            float tempTimer = 0;
             TimerReset();
             fullSpeedAhead(mL,mR);
-            while(tempTimer<timerMemory[i])
+            if (timerMemory[i]<0)
             {
-                tempTimer = getTimerValue();
+                while(tempTimer <(timerMemory[i]+_recogniseColour))
+                {
+                    tempTimer = getTimerValue();
+                }
+            }else if (timerMemory[i]>0){
+                while(tempTimer<timerMemory[i])
+                {
+                    tempTimer = getTimerValue();
+                }
             }
             stop(mL,mR);
         }

@@ -132,7 +132,7 @@ void Colour2Action(struct RGBC_rel *cf)
     {
         LightBlue_L135(&motorL,&motorR);
     }
-    if (cf->colourindex == 7)
+    else if (cf->colourindex == 7)
     {
         White(&motorL,&motorR,movementCount,movementMemory,timerMemory);
     }

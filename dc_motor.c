@@ -275,12 +275,10 @@ void Yellow_rev1_R90(struct DC_motor *mL, struct DC_motor *mR)
         Right45(mL,mR);
     }
     else{
-        //execute left turn 90 & forward 1 square 
+        //execute right turn 90 & forward 1 square 
+        //execute a 90 degree right turn
         Left45(mL,mR);
         Left45(mL,mR); //execute a 90 degree left turn
-        fullSpeedAhead(mL,mR);
-        __delay_ms(_1square);//delay corresponding to 1 square reversed
-        stop(mL,mR);
     }
 }
 void Pink_rev1_L90(struct DC_motor *mL, struct DC_motor *mR)
@@ -294,12 +292,9 @@ void Pink_rev1_L90(struct DC_motor *mL, struct DC_motor *mR)
         Left45(mL,mR); //execute a 90 degree left turn
     }
     else {
-        //execute right turn 90 & forward 1 square 
+        //execute a 90 degree right turn
         Right45(mL,mR);
-        Right45(mL,mR);//execute a 90 degree right turn
-        fullSpeedAhead(mL,mR);
-        __delay_ms(_1square);//delay corresponding to 1 square forward
-        stop(mL,mR);        
+        Right45(mL,mR);      
     }
 }
 void Orange_R135(struct DC_motor *mL, struct DC_motor *mR)
@@ -310,8 +305,6 @@ void Orange_R135(struct DC_motor *mL, struct DC_motor *mR)
         Right45(mL,mR);
         Right45(mL,mR);
         Right45(mL,mR);
-        
- 
     }
     else{
         //execute Left 135 turn  
@@ -338,7 +331,7 @@ void LightBlue_L135(struct DC_motor *mL, struct DC_motor *mR)
         Right45(mL,mR);     
     }
 }
-void White(struct DC_motor *mL, struct DC_motor *mR,unsigned int movementCount, volatile unsigned int *movementMemory, volatile unsigned int *timerMemory)
+void White(struct DC_motor *mL, struct DC_motor *mR,unsigned int movementCount, volatile unsigned int *movementMemory, volatile float *timerMemory)
 {
     BrakeLightON;
     
@@ -370,12 +363,20 @@ void White(struct DC_motor *mL, struct DC_motor *mR,unsigned int movementCount, 
                 stop(mL,mR);}//7 = white so just stop and then carry on 
             BrakeLightON; 
             //now we read the timer memory to find the time between functions 
-            unsigned int tempTimer = 0;
+            float tempTimer = 0;
             TimerReset();//reset the timer in order to count up from 0->timerMemory[i]
             fullSpeedAhead(mL,mR);
-            while(tempTimer<timerMemory[i])
+            if (timerMemory[i]<0)//checking if the recognise colour delay makes it negative
             {
-                tempTimer = getTimerValue();
+                while(tempTimer <(timerMemory[i]+_recogniseColour))
+                {
+                    tempTimer = getTimerValue();
+                }
+            }else if (timerMemory[i]>0){
+                while(tempTimer<timerMemory[i])
+                {
+                    tempTimer = getTimerValue();
+                }
             }
             stop(mL,mR);//stop the buggy and perform the action 
         }

@@ -61,7 +61,7 @@ void main(void) {
             Color2String(data,&colorf);//output a string of the colour
              //when in contact with a wall or card a lot less light is received
              //by sensors so all sensor values fall
-             if (colorf.Cf<50)//wait for the clear value to be under a certain threshold (dark)
+             if (colorf.Cf<100)//wait for the clear value to be under a certain threshold (dark)
              {
 //                if (maxTime==1){//if the maximum time between actions (8 seconds) has been reached, perform the return home function
 //                //here we assume a wall has been reached but the time between actions has exceeded 8 seconds and so the buggy must return home  
@@ -73,8 +73,8 @@ void main(void) {
             //flag that a wall has been detected
             wall=1;
             ClickLEDOn(1);//turn on the LED to read the wall colour
-            stop(&motorL,&motorR);//stop the buggy
             __delay_ms(2000);//this delay makes sure that the colour is constant when being read
+            stop(&motorL,&motorR);//stop the buggy
             }
         }
         colour_read_all(&colorf);//read the colours from the colour click

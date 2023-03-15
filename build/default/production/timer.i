@@ -24216,7 +24216,7 @@ unsigned char __t3rd16on(void);
 
 void Timer0_init(void);
 void TimerReset(void);
-unsigned int getTimerValue(void);
+float getTimerValue(void);
 # 2 "timer.c" 2
 
 
@@ -24244,12 +24244,12 @@ void TimerReset(void)
     TMR0L = 0;
     TMR0H = 0;
 }
-unsigned int getTimerValue(void)
+float getTimerValue(void)
 {
-    unsigned int timerCount;
+    int timerCount;
 
     timerCount = TMR0L;
 
-    timerCount |= (unsigned int)(TMR0H << 8);
+    timerCount |= (int)(TMR0H << 8);
     return timerCount*1.048576;
 }
