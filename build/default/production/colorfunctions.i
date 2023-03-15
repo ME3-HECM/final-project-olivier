@@ -24645,7 +24645,7 @@ void RGB2Hue(struct RGBC_rel *cf){
 char* Hue2Colour(struct RGBC_rel *cf)
 {
     char* colourname = "";
-    if (((cf->h)>352)&&((cf->h)<360))
+    if (((cf->h)>350)&&((cf->h)<360))
     {
 
         colourname = "Red";
@@ -24653,12 +24653,12 @@ char* Hue2Colour(struct RGBC_rel *cf)
 
         cf->colourindex=0;
     }
-     if (((cf->h)>75)&&((cf->h)<79))
+     if (((cf->h)>70)&&((cf->h)<79))
     {
         colourname = "Green";
         cf->colourindex=1;
     }
-    else if (((cf->h)>145)&&((cf->h)<164))
+    else if (((cf->h)>145)&&((cf->h)<180))
     {
         colourname = "Dark Blue";
         cf->colourindex=2;
@@ -24673,21 +24673,22 @@ char* Hue2Colour(struct RGBC_rel *cf)
         colourname = "Pink";
         cf->colourindex=4;
     }
-    else if (((cf->h)>7)&&((cf->h)<9))
+    else if (((cf->h)>3)&&((cf->h)<11))
     {
         colourname = "Orange";
         cf->colourindex=5;
     }
-    else if (((cf->h)>85)&&((cf->h)<94))
+    else if (((cf->h)>85)&&((cf->h)<105))
     {
         colourname = "Light Blue";
         cf->colourindex=6;
     }
-    else if (((cf->h)>26)&&((cf->h)<29))
+    else if (((cf->h)>25)&&((cf->h)<33))
     {
         colourname = "Eggshell";
         cf->colourindex=7;
     }
+    else{cf->colourindex=8;}
     return colourname;
 }
 
@@ -24724,6 +24725,8 @@ void Colour2Action(struct RGBC_rel *cf)
     else if (cf->colourindex == 7)
     {
         White(&motorL,&motorR,movementCount,movementMemory,timerMemory);
+
     }
+    else {White(&motorL,&motorR,movementCount,movementMemory,timerMemory);}
 
 }
