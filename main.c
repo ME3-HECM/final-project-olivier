@@ -60,8 +60,8 @@ void main(void) {
             colour_read_all(&colorf,&colorrel);//read RGB values from colour clicker
              //when in contact with a wall or card a lot less light is received
              //by sensors so all sensor values fall
-             if (colorf.Cf>300)//wait for the clear value to be under a certain threshold (dark)
-             {
+            if (colorf.Cf>300)//wait for the clear value to be under a certain threshold (dark)
+            {
 //                if (maxTime==1){//if the maximum time between actions (8 seconds) has been reached, perform the return home function
 //                //here we assume a wall has been reached but the time between actions has exceeded 8 seconds and so the buggy must return home  
 //                //note: since the timer is reset every time an action is performed the timer does not need to be reset here
@@ -81,6 +81,7 @@ void main(void) {
         Hue2Colour(&colorf,&colorrel);//takes the hue and outputs the colour
         memoryUpdateMovement(&colorf,movementCount,movementMemory);//update the memory function
         Colour2Action(&colorf);//perform the action
+        
         if (colorf.colourindex == 7)//if the white function is called
         {
             while(!retracingDone){}//wait until the retracing is done before resetting the timer as it might mess up the white function

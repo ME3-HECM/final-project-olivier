@@ -15,7 +15,7 @@ void memoryUpdateMovement(struct RGBC *cf, volatile unsigned int movementCount, 
 }
 void memoryUpdateTime(volatile unsigned int movementCount, volatile float *timerMemory)//updates the corresponding memory time
 {//get the 16 bit time and minus the half square delay plus the approximate time it takes to recognise the colour
-    float timerVal = getTimerValue()-_halfsquare-_recogniseColour;
+    float timerVal = getTimerValue()-_recogniseColour;
     timerMemory[movementCount] = timerVal;//store value of time taken for operation to occour in array
 }
 void maxTimeReturn(void)

@@ -89,6 +89,14 @@ void setMotorPWM(struct DC_motor *m)
     }
 }
 
+void RAMback(struct DC_motor *mL, struct DC_motor *mR)
+{
+    stop(mL,mR); //stop buggy 
+    __delay_ms(100);
+    fullSpeedReverse(mL,mR); // reverse 
+    __delay_ms(700); // until hit the wall with the colour
+    stop(mL,mR);
+}
 //function to stop the robot gradually 
 void stop(struct DC_motor *mL, struct DC_motor *mR)
 {
@@ -360,7 +368,8 @@ void White(struct DC_motor *mL, struct DC_motor *mR,unsigned int movementCount, 
             else if (movementMemory[i]==6){
                 LightBlue_L135(mL,mR);}
             else if (movementMemory[i]==7){
-                stop(mL,mR);}//7 = white so just stop and then carry on 
+                stop(mL,mR);}//7 = white so just stop and then carry on
+            RAMback(mL,mR);
             BrakeLightON; 
             //now we read the timer memory to find the time between functions 
             float tempTimer = 0;
