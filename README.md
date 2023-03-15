@@ -29,7 +29,8 @@ Black | Maze wall colour
 ## Solution Management and design
 In order to give structure to our working, we produced a Gantt chart of tasks we felt needed to be done in design, implementation and testing phases with deadlines to keep progress on track. The tasks were also delegated so we could work in parallel to each other to increase efficiency. As with any project, we ran into hurdles and update the Gantt chart accordingly to add or remove tasks as neccesity prompted
 
-(Insert GANTT)
+![Gantt Chart](https://github.com/ME3-HECM/final-project-olivier/blob/main/Screenshot%202023-03-15%20125240.jpg)
+
 ## Solution Evolution
 ### Colour Calibration
 Initially we planned to use raw RGB values from the converter but realised these fluctate a lot with light so instead moved to RGB values relative to total light however it was rather difficult to detect colours with relative values so we decided on Hue Values.Serial communication was used to read out the RGBC values from the sensors, the calculated hues then finally when calibrated, the perceived colour based on the hue of the surface being faced.
