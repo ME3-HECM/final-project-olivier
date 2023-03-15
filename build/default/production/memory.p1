@@ -2016,28 +2016,28 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 146 `i `ui
 ]
 "15
-[; ;./dc_motor.h: 15: unsigned int _45drightdelay = 155;
+[; ;./dc_motor.h: 15: unsigned int _45drightdelay = 147;
 [v __45drightdelay `ui ~T0 @X0 1 e ]
 [i __45drightdelay
--> -> 155 `i `ui
+-> -> 147 `i `ui
 ]
 "16
-[; ;./dc_motor.h: 16: unsigned int _1square = 700;
+[; ;./dc_motor.h: 16: unsigned int _1square = 800;
 [v __1square `ui ~T0 @X0 1 e ]
 [i __1square
--> -> 700 `i `ui
+-> -> 800 `i `ui
 ]
 "17
-[; ;./dc_motor.h: 17: unsigned int _halfsquare = 350;
+[; ;./dc_motor.h: 17: unsigned int _halfsquare = 400;
 [v __halfsquare `ui ~T0 @X0 1 e ]
 [i __halfsquare
--> -> 350 `i `ui
+-> -> 400 `i `ui
 ]
 "18
-[; ;./dc_motor.h: 18: unsigned int _recogniseColour = 650;
+[; ;./dc_motor.h: 18: unsigned int _recogniseColour = 300;
 [v __recogniseColour `ui ~T0 @X0 1 e ]
 [i __recogniseColour
--> -> 650 `i `ui
+-> -> 300 `i `ui
 ]
 "29
 [; ;./dc_motor.h: 29: struct DC_motor motorL, motorR;

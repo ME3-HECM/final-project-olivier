@@ -71,7 +71,7 @@ void main(void) {
             memoryUpdateTime(movementCount,timerMemory);//update the time taken for action to occur corresponding to the movement
             //flag that a wall has been detected
             wall=1;
-            __delay_ms(750);//this delay makes sure that the colour is constant when being read
+            __delay_ms(100);//this delay makes sure that the colour is constant when being read
             stop(&motorL,&motorR);//stop the buggy
             }
         }

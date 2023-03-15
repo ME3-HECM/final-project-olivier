@@ -24585,10 +24585,10 @@ volatile char ForwardFlag = 1;
 
 volatile unsigned int retracingDone = 0;
 unsigned int _45dleftdelay = 146;
-unsigned int _45drightdelay = 155;
-unsigned int _1square = 700;
-unsigned int _halfsquare = 350;
-unsigned int _recogniseColour = 650;
+unsigned int _45drightdelay = 147;
+unsigned int _1square = 800;
+unsigned int _halfsquare = 400;
+unsigned int _recogniseColour = 300;
 
 typedef struct DC_motor {
     char power;
@@ -24770,7 +24770,7 @@ void fullSpeedAhead(struct DC_motor *mL, struct DC_motor *mR)
  (mL->direction) = 1;
  (mR->direction) = 1;
 
-    for (unsigned int i = 0; i <50; i++)
+    for (unsigned int i = 0; i <30; i++)
     {
         (mL->power)++;
         (mR->power)++;
@@ -24814,11 +24814,11 @@ void Right45(struct DC_motor *mL, struct DC_motor *mR)
     LATHbits.LATH0 = 1;;
 
     stop(mL,mR);
-    _delay((unsigned long)((50)*(64000000/4000.0)));
+    _delay((unsigned long)((100)*(64000000/4000.0)));
     turnRight(mL,mR);
     _delay((unsigned long)((_45drightdelay)*(64000000/4000.0)));
     stop(mL,mR);
-    _delay((unsigned long)((50)*(64000000/4000.0)));
+    _delay((unsigned long)((100)*(64000000/4000.0)));
     LATHbits.LATH0 = 0;;
 
 }

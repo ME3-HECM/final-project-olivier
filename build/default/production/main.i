@@ -24588,10 +24588,10 @@ volatile char ForwardFlag = 1;
 
 volatile unsigned int retracingDone = 0;
 unsigned int _45dleftdelay = 146;
-unsigned int _45drightdelay = 155;
-unsigned int _1square = 700;
-unsigned int _halfsquare = 350;
-unsigned int _recogniseColour = 650;
+unsigned int _45drightdelay = 147;
+unsigned int _1square = 800;
+unsigned int _halfsquare = 400;
+unsigned int _recogniseColour = 300;
 
 typedef struct DC_motor {
     char power;
@@ -24704,7 +24704,7 @@ void main(void) {
             memoryUpdateTime(movementCount,timerMemory);
 
             wall=1;
-            _delay((unsigned long)((750)*(64000000/4000.0)));
+            _delay((unsigned long)((100)*(64000000/4000.0)));
             stop(&motorL,&motorR);
             }
         }

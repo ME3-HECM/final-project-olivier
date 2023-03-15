@@ -11,11 +11,11 @@
 volatile char ForwardFlag = 1;
 //variable for if the white function is done 
 volatile unsigned int retracingDone = 0;
-unsigned int _45dleftdelay = 146; //delay corresponging to a 15 degree turn left
-unsigned int _45drightdelay = 155; //delay corresponding to a 15 degree turn right
-unsigned int _1square = 700; //delay corresponding to 1 square travel
-unsigned int _halfsquare = 350; //delay corresponding to a half square travel (for reversal to correct position after colour is sensed)
-unsigned int _recogniseColour = 650;//delay corresponding to the time taken to recognise a colour
+unsigned int _45dleftdelay = 146; //delay corresponging to a 45 degree turn left
+unsigned int _45drightdelay = 147; //delay corresponding to a 45 degree turn right
+unsigned int _1square = 800; //delay corresponding to 1 square travel
+unsigned int _halfsquare = 400; //delay corresponding to a half square travel (for reversal to correct position after colour is sensed)
+unsigned int _recogniseColour = 300;//delay corresponding to the time taken to recognise a colour
 
 typedef struct DC_motor { //definition of DC_motor structure
     char power;         //motor power, out of 100

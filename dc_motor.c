@@ -151,7 +151,7 @@ void fullSpeedAhead(struct DC_motor *mL, struct DC_motor *mR)
  (mL->direction) = 1; //set motor direction forward for left
  (mR->direction) = 1; //set motor direction forward for right 
  //here we will have a for loop to increase the power to the motor gradually
-    for (unsigned int i = 0; i <50; i++)//increase power value up to 50/100% of power (this value is tunable for how fast you want it to go)
+    for (unsigned int i = 0; i <30; i++)//increase power value up to 50/100% of power (this value is tunable for how fast you want it to go)
     {
         (mL->power)++; //increase the power to both motors by 1%
         (mR->power)++;
@@ -195,11 +195,11 @@ void Right45(struct DC_motor *mL, struct DC_motor *mR)
     IndicatorRightON;
  //this has been tuned to invoke a turn enough times for a 45 degree change
     stop(mL,mR);
-    __delay_ms(50);
+    __delay_ms(100);
     turnRight(mL,mR);//invoke the turn right
     __delay_ms(_45drightdelay);
     stop(mL,mR);//stop the rotation of the buggy 
-    __delay_ms(50);//minimise intertia from buggy between 45 degree changes 
+    __delay_ms(100);//minimise intertia from buggy between 45 degree changes 
     IndicatorRightOFF;
     
 }
