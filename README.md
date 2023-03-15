@@ -26,6 +26,18 @@ Light blue | Turn Left 135
 White | Finish (return home)
 Black | Maze wall colour
 
+### Using the buggy
+
+1. Place the buggy at the entrance to the mine in the center of the first square.
+1. Line the buggy up with the intial direction of travel.
+1. Turn the PIC board on.
+1. When ready to start, turn the main buggy power on switch
+
+### Buggy Light Sensor Cover
+
+The colour sensor is covered in a 3D printed shroud to stop ambient light interfering with the sensor. (courtesy of Martin England)
+
+
 ## Solution Management and design
 In order to give structure to our working, we produced a Gantt chart of tasks we felt needed to be done in design, implementation and testing phases with deadlines to keep progress on track. The tasks were also delegated so we could work in parallel to each other to increase efficiency. As with any project, we ran into hurdles and update the Gantt chart accordingly to add or remove tasks as neccesity prompted
 
@@ -151,9 +163,25 @@ float getTimerValue(void)
     return timerCount*1.048576; // Return 16-bit timer value in ms 
 }
  
+```
+The interrupt was used to record the amount of time between each move i.e the time spent travelling between each card and make the buggy travel for the same amount or time on the way back. Below is the memory update function using interrupts.
  ```
-The interrupt was used to record the amount of time between each move i.e the time spent travelling between each card and make the buggy travel for the same amount or time on the way back.
-
+void memoryUpdateMovement(struct RGBC_rel *cf, volatile unsigned int movementCount, volatile unsigned int *movementMemory)
+{
+    //get colour value and store it 
+    int colourcode = cf->colourindex;
+    movementMemory[movementCount] = colourcode;//store the colour in the movement array
+}
+void memoryUpdateTime(volatile unsigned int movementCount, volatile float *timerMemory)//updates the corresponding memory time
+{//get the 16 bit time and minus the half square delay plus the approximate time it takes to recognise the colour
+    float timerVal = getTimerValue()-_halfsquare-_recogniseColour;
+    timerMemory[movementCount] = timerVal;//store value of time taken for operation to occour in array
+}
+```
 Interrupt overflow was also used to recognise when too much time had elapsed without finding a card and would cause the buggy to trigger the return home sequence.
+```
+insert code here
+```
+
 
 
