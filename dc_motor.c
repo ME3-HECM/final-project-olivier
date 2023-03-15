@@ -94,7 +94,7 @@ void RAMback(struct DC_motor *mL, struct DC_motor *mR)
     stop(mL,mR); //stop buggy 
     __delay_ms(100);
     fullSpeedReverse(mL,mR); // reverse 
-    __delay_ms(700); // until hit the wall with the colour
+    __delay_ms(1000); // until hit the wall with the colour
     stop(mL,mR);
 }
 //function to stop the robot gradually 
@@ -360,9 +360,11 @@ void White(struct DC_motor *mL, struct DC_motor *mR,unsigned int movementCount, 
             else if (movementMemory[i]==2){
                 Blue_T180(mL,mR);}
             else if (movementMemory[i]==3){
-                Yellow_rev1_R90(mL,mR);}
+                Yellow_rev1_R90(mL,mR);
+                RAMback(mL,mR);}
             else if (movementMemory[i]==4){
-                Pink_rev1_L90(mL,mR);}
+                Pink_rev1_L90(mL,mR);
+                RAMback(mL,mR);}
             else if (movementMemory[i]==5){
                 Orange_R135(mL,mR);}
             else if (movementMemory[i]==6){

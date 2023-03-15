@@ -23,29 +23,29 @@ Version 4.0 HI-TECH Software Intermediate Code
 "52
 [; ;./colorclick.h: 52: unsigned int color_read_Clear(void);
 [v _color_read_Clear `(ui ~T0 @X0 0 ef ]
-"47 ./dc_motor.h
-[; ;./dc_motor.h: 47: void Red_R90(struct DC_motor *mL, struct DC_motor *mR);
+"58 ./dc_motor.h
+[; ;./dc_motor.h: 58: void Red_R90(struct DC_motor *mL, struct DC_motor *mR);
 [v _Red_R90 `(v ~T0 @X0 0 ef2`*S2019`*S2019 ]
-"48
-[; ;./dc_motor.h: 48: void Green_L90(struct DC_motor *mL, struct DC_motor *mR);
+"59
+[; ;./dc_motor.h: 59: void Green_L90(struct DC_motor *mL, struct DC_motor *mR);
 [v _Green_L90 `(v ~T0 @X0 0 ef2`*S2019`*S2019 ]
-"49
-[; ;./dc_motor.h: 49: void Blue_T180(struct DC_motor *mL, struct DC_motor *mR);
+"60
+[; ;./dc_motor.h: 60: void Blue_T180(struct DC_motor *mL, struct DC_motor *mR);
 [v _Blue_T180 `(v ~T0 @X0 0 ef2`*S2019`*S2019 ]
-"50
-[; ;./dc_motor.h: 50: void Yellow_rev1_R90(struct DC_motor *mL, struct DC_motor *mR);
+"61
+[; ;./dc_motor.h: 61: void Yellow_rev1_R90(struct DC_motor *mL, struct DC_motor *mR);
 [v _Yellow_rev1_R90 `(v ~T0 @X0 0 ef2`*S2019`*S2019 ]
-"51
-[; ;./dc_motor.h: 51: void Pink_rev1_L90(struct DC_motor *mL, struct DC_motor *mR);
+"62
+[; ;./dc_motor.h: 62: void Pink_rev1_L90(struct DC_motor *mL, struct DC_motor *mR);
 [v _Pink_rev1_L90 `(v ~T0 @X0 0 ef2`*S2019`*S2019 ]
-"52
-[; ;./dc_motor.h: 52: void Orange_R135(struct DC_motor *mL, struct DC_motor *mR);
+"63
+[; ;./dc_motor.h: 63: void Orange_R135(struct DC_motor *mL, struct DC_motor *mR);
 [v _Orange_R135 `(v ~T0 @X0 0 ef2`*S2019`*S2019 ]
-"53
-[; ;./dc_motor.h: 53: void LightBlue_L135(struct DC_motor *mL, struct DC_motor *mR);
+"64
+[; ;./dc_motor.h: 64: void LightBlue_L135(struct DC_motor *mL, struct DC_motor *mR);
 [v _LightBlue_L135 `(v ~T0 @X0 0 ef2`*S2019`*S2019 ]
-"54
-[; ;./dc_motor.h: 54: void White(struct DC_motor *mL, struct DC_motor *mR,unsigned int movementCount, volatile unsigned int *movementMemory,volatile float *timerMemory);
+"65
+[; ;./dc_motor.h: 65: void White(struct DC_motor *mL, struct DC_motor *mR,unsigned int movementCount, volatile unsigned int *movementMemory,volatile float *timerMemory);
 [v _White `(v ~T0 @X0 0 ef5`*S2019`*S2019`ui`*Vui`*Vf ]
 "54 C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\pic\include\proc\pic18f67k40.h
 [; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\pic\include\proc\pic18f67k40.h: 54: __asm("PPSLOCK equ 0DEFh");
@@ -2066,34 +2066,34 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 0 `i `ui
 ]
 "14
-[; ;./dc_motor.h: 14: unsigned int _45dleftdelay = 146;
+[; ;./dc_motor.h: 14: unsigned int _45dleftdelay = 144;
 [v __45dleftdelay `ui ~T0 @X0 1 e ]
 [i __45dleftdelay
--> -> 146 `i `ui
+-> -> 144 `i `ui
 ]
 "15
-[; ;./dc_motor.h: 15: unsigned int _45drightdelay = 147;
+[; ;./dc_motor.h: 15: unsigned int _45drightdelay = 140;
 [v __45drightdelay `ui ~T0 @X0 1 e ]
 [i __45drightdelay
--> -> 147 `i `ui
+-> -> 140 `i `ui
 ]
 "16
-[; ;./dc_motor.h: 16: unsigned int _1square = 800;
+[; ;./dc_motor.h: 16: unsigned int _1square = 700;
 [v __1square `ui ~T0 @X0 1 e ]
 [i __1square
--> -> 800 `i `ui
+-> -> 700 `i `ui
 ]
 "17
-[; ;./dc_motor.h: 17: unsigned int _halfsquare = 400;
+[; ;./dc_motor.h: 17: unsigned int _halfsquare = 300;
 [v __halfsquare `ui ~T0 @X0 1 e ]
 [i __halfsquare
--> -> 400 `i `ui
+-> -> 300 `i `ui
 ]
 "18
-[; ;./dc_motor.h: 18: unsigned int _recogniseColour = 300;
+[; ;./dc_motor.h: 18: unsigned int _recogniseColour = 150;
 [v __recogniseColour `ui ~T0 @X0 1 e ]
 [i __recogniseColour
--> -> 300 `i `ui
+-> -> 150 `i `ui
 ]
 "29
 [; ;./dc_motor.h: 29: struct DC_motor motorL, motorR;

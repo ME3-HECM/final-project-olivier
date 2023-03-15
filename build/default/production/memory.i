@@ -24563,11 +24563,11 @@ void LED_init(void);
 volatile char ForwardFlag = 1;
 
 volatile unsigned int retracingDone = 0;
-unsigned int _45dleftdelay = 146;
-unsigned int _45drightdelay = 147;
-unsigned int _1square = 800;
-unsigned int _halfsquare = 400;
-unsigned int _recogniseColour = 300;
+unsigned int _45dleftdelay = 144;
+unsigned int _45drightdelay = 140;
+unsigned int _1square = 700;
+unsigned int _halfsquare = 300;
+unsigned int _recogniseColour = 150;
 
 typedef struct DC_motor {
     char power;
@@ -24582,18 +24582,29 @@ struct DC_motor motorL, motorR;
 
 
 
+
+
+
 void initDCmotorsPWM(unsigned int PWMperiod);
 void setMotorPWM(struct DC_motor *m);
+
+
+
 void stop(struct DC_motor *mL, struct DC_motor *mR);
 void turnLeft(struct DC_motor *mL, struct DC_motor *mR);
 void turnRight(struct DC_motor *mL, struct DC_motor *mR);
-void fullSpeedAhead(struct DC_motor *mL, struct DC_motor *mR);
-void fullSpeedReverse(struct DC_motor *mL, struct DC_motor *mR);
-
-void Left45(struct DC_motor *mL, struct DC_motor *mR);
-void Right45(struct DC_motor *mL, struct DC_motor *mR);
 void rotate180left(struct DC_motor *mL, struct DC_motor *mR);
 void reverseHalfSquare(struct DC_motor *mL, struct DC_motor *mR);
+
+
+
+void fullSpeedAhead(struct DC_motor *mL, struct DC_motor *mR);
+void fullSpeedReverse(struct DC_motor *mL, struct DC_motor *mR);
+void Left45(struct DC_motor *mL, struct DC_motor *mR);
+void Right45(struct DC_motor *mL, struct DC_motor *mR);
+
+
+
 
 
 void Red_R90(struct DC_motor *mL, struct DC_motor *mR);
@@ -24640,7 +24651,7 @@ void memoryUpdateMovement(struct RGBC *cf, volatile unsigned int movementCount, 
 }
 void memoryUpdateTime(volatile unsigned int movementCount, volatile float *timerMemory)
 {
-    float timerVal = getTimerValue()-_halfsquare-_recogniseColour;
+    float timerVal = getTimerValue()-_recogniseColour;
     timerMemory[movementCount] = timerVal;
 }
 void maxTimeReturn(void)
