@@ -2,7 +2,7 @@
 
 ## Challenge brief
 
-Your task is to develop an autonomous robot that can navigate a "mine" using a series of instructions coded in coloured cards and return to its starting position.  Your robot must be able to perform the following: 
+Our task was to develop an autonomous robot that can find it's way through a "mine" using a sequence of coloured cards corresponding to specific movements and it must also be able to return to its starting position from any point on it's journey.  From the brief we have broken down our tasks as such: 
 
 - [x]  Navigate towards a coloured card and stop before impacting the card
 - [x]  Read the card colour
@@ -26,35 +26,10 @@ Light blue | Turn Left 135
 White | Finish (return home)
 Black | Maze wall colour
 
-Mine courses will vary in difficulty, with the simplest requiring 4 basic moves to navigate. More advanced courses may require 10 or moves to navigate. The mines may have features such as dead ends but colour cards will always direct you to the end of the maze. Once the end of the maze has been reached, you must return to the starting position. An example course to navigate is shown below. You do not know in advance which colours will be in the course or how many.
-
-![Navi Diagram](gifs/maze.gif)
-
-## Resources and project submission
-
-To develop your solution you have your Clicker 2 board, buggy and colour click add on board. You must not use any hardware that is not provided as part of this course and you must use the XC8 compiler to compile your C code. 
-
-Please use this GitHub repo to manage your software development and submit your project code. 
-
-Final testing will take place in the CAGB foyer and testing areas will be provided around the mechatronics lab. You will not know the exact layout of the maze(s) in advance. You will also be asked to give a short presentation on the testing day.
 ## Solution Management and design
 In order to give structure to our working, we produced a Gantt chart of tasks we felt needed to be done in design, implementation and testing phases with deadlines to keep progress on track. The tasks were also delegated so we could work in parallel to each other to increase efficiency. As with any project, we ran into hurdles and update the Gantt chart accordingly to add or remove tasks as neccesity prompted
 
 (Insert GANTT)
-## Supplementary technical information
-
-### Additional buggy features
-
-In addition to the motor drives we explored in lab 6, the buggy contains some additional features that may be of use during the project. The first feature is additional LEDs, controlled through the pins labelled **H.LAMPS**, **M.BEAM**, **BRAKE**, **TURN-L** and **TURN-R**. H.LAMPS turns on the front white LEDs and rear red LEDs, at a reduced brightness. M.BEAM and BRAKE enable you to turn these LEDs on at full brightness. The turn signals have not hardware based brightness control. These LEDs give you a method to provide feedback for debugging, in addition of the LEDs on the clicker board.
-
-![Buggy pinout](gifs/buggy_pins.png)
-
-A further feature of the buggy is **BAT-VSENSE** pin which allows you to monitor the batter voltage via an analogue input pin. The battery is connected across a voltage divider, as shown in the diagram below:
-
-![Bat sense](gifs/bat_vsense.png)
-
-The voltage at BAT-VSENSE will always be one third of that at the battery. Measuring this value can be useful for determining if your battery needs charging. You could also use it to calibrate your robot to perform well at different charge levels. 
-
 ## Solution Evolution
 ### Colour Calibration
 Initially we planned to use raw RGB values from the converter but realised these fluctate a lot with light so instead moved to RGB values relative to total light however it was rather difficult to detect colours with relative values so we decided on Hue Values.Serial communication was used to read out the RGBC values from the sensors, the calculated hues then finally when calibrated, the perceived colour based on the hue of the surface being faced.
@@ -116,3 +91,7 @@ To maintain consistency we used a black cover over the colourclick when calibrat
 
 ### Returning Home
 As per the challenge brief, under two circumstances the buggy would be reuqired to retrace it's steps back to it's starting point. This is when it sees the white card or if it has spent too much time looking for said card without success. After a move is executed, a number corresponding to this move is saved in an array. When it is time to go home, this array is then read from the end to the start executing the opposite of each of the moves to retrace it's steps.
+To be able to record the distance the buggy went forward and replay it on the way back intereupts were used.
+The interrupt was ysed to record the amount of time between each move i.e the time spent travelling between each card and make the buggy travel for the swmw wmount or time on the way back.
+
+Interrupt overflow was also used to recignise when too much time had elapsed without finding a card and would cause the buggy to trigger yhe teyirn home sequence.
