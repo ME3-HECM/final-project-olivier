@@ -4,5 +4,5 @@
 #include <xc.h>
 void Timer0_init(void);
 void TimerReset(void);
-unsigned int getTimerValue(void);
+float getTimerValue(void);
 #endif 

@@ -99,6 +99,7 @@ char* Hue2Colour(struct RGBC_rel *cf)
         colourname = "Eggshell";
         cf->colourindex=7;
     }
+    else{cf->colourindex=8;}
     return colourname;
 }
 
@@ -132,9 +133,11 @@ void Colour2Action(struct RGBC_rel *cf)
     {
         LightBlue_L135(&motorL,&motorR);
     }
-    if (cf->colourindex == 7)
+    else if (cf->colourindex == 7)
     {
         White(&motorL,&motorR,movementCount,movementMemory,timerMemory);
-    }
+
+    }//otherwise unknown colour most likely a black wall
+    else {White(&motorL,&motorR,movementCount,movementMemory,timerMemory);}
 
 }

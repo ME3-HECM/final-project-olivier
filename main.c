@@ -42,10 +42,9 @@ void main(void) {
     ANSELFbits.ANSELF2=0;//makes the button digital (0 or 1)
     while(PORTFbits.RF2){//wait for the RF2 button press
     }
-    __delay_ms(500);
+    __delay_ms(1000);
     TimerReset();//reset the timer
     char wall=0;//set the wall condition to 0
-
     ClickLEDOn(0);//set the clicker LED initially to off
     
     char buf[20];
@@ -70,7 +69,7 @@ void main(void) {
             //flag that a wall has been detected
             wall=1;
             ClickLEDOn(1);//turn on the LED to read the wall colour
-            __delay_ms(2000);//this delay makes sure that the colour is constant when being read
+            __delay_ms(1000);//this delay makes sure that the colour is constant when being read
             stop(&motorL,&motorR);//stop the buggy
             }
         }

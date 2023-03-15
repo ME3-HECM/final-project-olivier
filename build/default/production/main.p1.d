@@ -8,5 +8,4 @@ dc_motor.h  \
 LED.h  \
 memory.h  \
 timer.h  \
-main.h  \
-interrupts.h 
+main.h 

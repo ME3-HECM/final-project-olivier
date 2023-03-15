@@ -11,8 +11,8 @@
 volatile char ForwardFlag = 1;
 //variable for if the white function is done 
 volatile unsigned int retracingDone = 0;
-unsigned int _45dleftdelay = 146; //delay corresponging to a 15 degree turn left
-unsigned int _45drightdelay = 149; //delay corresponding to a 15 degree turn right
+unsigned int _45dleftdelay = 160; //delay corresponging to a 15 degree turn left
+unsigned int _45drightdelay = 160; //delay corresponding to a 15 degree turn right
 unsigned int _1square = 700; //delay corresponding to 1 square travel
 unsigned int _halfsquare = 350; //delay corresponding to a half square travel (for reversal to correct position after colour is sensed)
 

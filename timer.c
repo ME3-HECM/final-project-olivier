@@ -25,7 +25,7 @@ void TimerReset(void)
     TMR0L = 0;//reset timer
     TMR0H = 0;
 }
-unsigned int getTimerValue(void)
+float getTimerValue(void)
 {
     unsigned int timerCount; // Declare unsigned integer variable
     // Read low byte of TMR0 and store in lower 8 bits of timerCount (integers store 16 bits)
