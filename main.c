@@ -50,18 +50,17 @@ void main(void) {
     TimerReset();//reset the timer
     char wall=0;//set the wall condition to 0
 
-    ClickLEDOn(0);//set the clicker LED initially to off
+    ClickLEDOn(1);//set the clicker LED initially to off
     
     char buf[20];
     while (!retracingDone){ //run this code until the white function is called 
         fullSpeedAhead(&motorL,&motorR);//move the buggy forwards
         //wait to run into a wall
         while (!wall){
-            colour_read_all(&colorf);//read RGB values from colour clicker
-            Color2String(data,&colorf);//output a string of the colour
+            colour_read_all(&colorf,&colorrel);//read RGB values from colour clicker
              //when in contact with a wall or card a lot less light is received
              //by sensors so all sensor values fall
-             if (colorf.Cf<100)//wait for the clear value to be under a certain threshold (dark)
+             if (colorf.Cf>300)//wait for the clear value to be under a certain threshold (dark)
              {
 //                if (maxTime==1){//if the maximum time between actions (8 seconds) has been reached, perform the return home function
 //                //here we assume a wall has been reached but the time between actions has exceeded 8 seconds and so the buggy must return home  
@@ -72,16 +71,14 @@ void main(void) {
             memoryUpdateTime(movementCount,timerMemory);//update the time taken for action to occur corresponding to the movement
             //flag that a wall has been detected
             wall=1;
-            ClickLEDOn(1);//turn on the LED to read the wall colour
-            __delay_ms(2000);//this delay makes sure that the colour is constant when being read
+            __delay_ms(750);//this delay makes sure that the colour is constant when being read
             stop(&motorL,&motorR);//stop the buggy
             }
         }
-        colour_read_all(&colorf);//read the colours from the colour click
+        colour_read_all(&colorf,&colorrel);//read the colours from the colour click
         wall=0;
-        ClickLEDOn(0);
         RGB2Hue(&colorf);//takes the RGB values and outputs hue 
-        Hue2Colour(&colorf);//takes the hue and outputs the colour
+        Hue2Colour(&colorf,&colorrel);//takes the hue and outputs the colour
         memoryUpdateMovement(&colorf,movementCount,movementMemory);//update the memory function
         Colour2Action(&colorf);//perform the action
         if (colorf.colourindex == 7)//if the white function is called
@@ -89,12 +86,6 @@ void main(void) {
             while(!retracingDone){}//wait until the retracing is done before resetting the timer as it might mess up the white function
         }
         TimerReset();//reset the timer in order to have time between actions
-        movementCount++; //increment the movement count 
-        //here we are checking the movement count
-//        sprintf(buf,"%d",movementCount);
-//        sendStringSerial4(buf);
-        
-        //output colour values being read to serial
-        //Color2String(data,&colorf);
+        movementCount++; //increment the movement coun
     }
 }

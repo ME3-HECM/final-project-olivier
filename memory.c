@@ -7,7 +7,7 @@
 
 //the memory update function is called everytime a colour is reached
 
-void memoryUpdateMovement(struct RGBC_rel *cf, volatile unsigned int movementCount, volatile unsigned int *movementMemory)
+void memoryUpdateMovement(struct RGBC *cf, volatile unsigned int movementCount, volatile unsigned int *movementMemory)
 {
     //get colour value and store it 
     int colourcode = cf->colourindex;

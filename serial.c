@@ -36,12 +36,18 @@ void sendCharSerial4(char charToSend) {
     TX4REG = charToSend; //transfer char to transmitter
 }
 
-void Color2String(char *buf,struct RGBC_rel *cf){
+void Color2String(char *buf,struct RGBC *cf,struct RGB_rel *rel){
     //code to calculate the inegeter and fractions part of hue
 	// and format as a string using sprintf (see GitHub readme)
-    char* colourname = Hue2Colour(cf);
-    //sprintf(buf," Red %f Green,%f Blue,%f clear %f Hue %f \r",cf->Rf,cf->Gf,cf->Bf,cf->Cf,cf->h);
-    sprintf(buf,"Colour is %s  \r",colourname);
+    char* colourname = Hue2Colour(cf,rel);
+    sprintf(buf," Red %f Green,%f Blue,%f clear %f Hue %f \r",cf->Rf,cf->Gf,cf->Bf,cf->Cf,cf->h);
+    //sprintf(buf,"Colour is %s  \r",colourname);
+    sendStringSerial4(buf);
+}
+
+void RelColor2String(char *buf,struct RGB_rel *rel){
+    //code to calculate the inegeter and fractions part of hue
+    sprintf(buf," Red %f Green,%f Blue,%f clear %f Hue %f \r",rel->R,rel->G,rel->B);
     sendStringSerial4(buf);
 }
 //function to send a string over the serial interface

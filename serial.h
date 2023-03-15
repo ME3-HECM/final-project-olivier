@@ -12,6 +12,6 @@ char getCharSerial4(void);
 void sendCharSerial4(char charToSend);
 void sendStringSerial4(char *string);
 
-void Color2String(char *buf,struct RGBC_rel *cf);
-
+void Color2String(char *buf,struct RGBC *cf,struct RGB_rel *rel);
+void RelColor2String(char *buf,struct RGB_rel *rel);
 #endif
