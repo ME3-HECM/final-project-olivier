@@ -12,7 +12,9 @@
 #include "dc_motor.h"
 #include "LED.h"
 #include "main.h"
+#include "interrupts.h"
 #define _XTAL_FREQ 64000000 //note intrinsic _delay function is 62.5ns at 64,000,000Hz  
+
 
 void main(void) {
     char data[100];
@@ -21,6 +23,8 @@ void main(void) {
     color_click_init();
     I2C_2_Master_Init();
     LED_init();
+    Interrupts_init();
+    Timer0_init();
     unsigned int PWMcycle = 99;
     initDCmotorsPWM(PWMcycle);
     //setting the motor characteristics
@@ -42,9 +46,10 @@ void main(void) {
     ANSELFbits.ANSELF2=0;//makes the button digital (0 or 1)
     while(PORTFbits.RF2){//wait for the RF2 button press
     }
-    __delay_ms(1000);
+    __delay_ms(500);
     TimerReset();//reset the timer
     char wall=0;//set the wall condition to 0
+
     ClickLEDOn(0);//set the clicker LED initially to off
     
     char buf[20];
@@ -52,12 +57,11 @@ void main(void) {
         fullSpeedAhead(&motorL,&motorR);//move the buggy forwards
         //wait to run into a wall
         while (!wall){
-            
-            colour_read_all(&colorf);
-            Color2String(data,&colorf);
+            colour_read_all(&colorf);//read RGB values from colour clicker
+            Color2String(data,&colorf);//output a string of the colour
              //when in contact with a wall or card a lot less light is received
              //by sensors so all sensor values fall
-             if (colorf.Cf<50)//wait for the clear value to be under a certain threshold (dark)
+             if (colorf.Cf<100)//wait for the clear value to be under a certain threshold (dark)
              {
 //                if (maxTime==1){//if the maximum time between actions (8 seconds) has been reached, perform the return home function
 //                //here we assume a wall has been reached but the time between actions has exceeded 8 seconds and so the buggy must return home  
@@ -69,7 +73,7 @@ void main(void) {
             //flag that a wall has been detected
             wall=1;
             ClickLEDOn(1);//turn on the LED to read the wall colour
-            __delay_ms(1000);//this delay makes sure that the colour is constant when being read
+            __delay_ms(2000);//this delay makes sure that the colour is constant when being read
             stop(&motorL,&motorR);//stop the buggy
             }
         }

@@ -27,11 +27,11 @@ void TimerReset(void)
 }
 float getTimerValue(void)
 {
-    unsigned int timerCount; // Declare unsigned integer variable
+    int timerCount; // Declare unsigned integer variable
     // Read low byte of TMR0 and store in lower 8 bits of timerCount (integers store 16 bits)
     timerCount = TMR0L;
     // Read high byte of TMR0, shift left 8 bits, and combine with low byte of TMR0
-    timerCount |= (unsigned int)(TMR0H << 8);
+    timerCount |= (int)(TMR0H << 8);
     return timerCount*1.048576; // Return 16-bit timer value in ms 
 }
  

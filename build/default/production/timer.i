@@ -24268,10 +24268,10 @@ void TimerReset(void)
 }
 float getTimerValue(void)
 {
-    unsigned int timerCount;
+    int timerCount;
 
     timerCount = TMR0L;
 
-    timerCount |= (unsigned int)(TMR0H << 8);
+    timerCount |= (int)(TMR0H << 8);
     return timerCount*1.048576;
 }
