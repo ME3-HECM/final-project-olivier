@@ -92,7 +92,68 @@ To maintain consistency we used a black cover over the colourclick when calibrat
 
 ### Returning Home
 As per the challenge brief, under two circumstances the buggy would be reuqired to retrace it's steps back to it's starting point. This is when it sees the white card or if it has spent too much time looking for said card without success. After a move is executed, a number corresponding to this move is saved in an array. When it is time to go home, this array is then read from the end to the start executing the opposite of each of the moves to retrace it's steps.
-To be able to record the distance the buggy went forward and replay it on the way back intereupts were used.
+To be able to record the distance the buggy went forward and replay it on the way back Timer0 were used.
+```
+//the memory update function is called everytime a colour is reached
+
+void memoryUpdateMovement(struct RGBC_rel *cf, volatile unsigned int movementCount, volatile unsigned int *movementMemory)
+{
+    //get colour value and store it 
+    int colourcode = cf->colourindex;
+    movementMemory[movementCount] = colourcode;//store the colour in the movement array
+}
+void memoryUpdateTime(volatile unsigned int movementCount, volatile float *timerMemory)//updates the corresponding memory time
+{//get the 16 bit time and minus the half square delay plus the approximate time it takes to recognise the colour
+    float timerVal = getTimerValue()-_halfsquare-_recogniseColour;
+    timerMemory[movementCount] = timerVal;//store value of time taken for operation to occour in array
+}
+void maxTimeReturn(void)
+{
+    stop(&motorL,&motorR);
+    maxTime = 0;
+    //perform the white function here to return home
+}
+
+```
+
+```
+/************************************
+ * Function to set up timer 0
+************************************/
+void Timer0_init(void)
+{
+    T0CON1bits.T0CS=0b010; // Fosc/4
+    T0CON1bits.T0ASYNC=1; // see datasheet errata - needed to ensure correct operation when Fosc/4 used as clock source
+
+    T0CON1bits.T0CKPS=0b1101; // 1:8192
+    T0CON0bits.T016BIT=1;	//16bit mode	
+	PIE0bits.TMR0IE = 1; // Enable TMR0 interrupt
+    
+    // it's a good idea to initialise the timer registers so we know we are at 0
+    TMR0H=0;            //write High reg first, update happens when low reg is written to
+    TMR0L=0;           // start timer at 0 in binary (16 bit, high register is the first 8 bits and the low is the second 8 bits)	
+
+    T0CON0bits.T0EN=1;	//start the timer
+    
+}
+void TimerReset(void)
+{
+    TMR0L = 0;//reset timer
+    TMR0H = 0;
+}
+float getTimerValue(void)
+{
+    int timerCount; // Declare unsigned integer variable
+    // Read low byte of TMR0 and store in lower 8 bits of timerCount (integers store 16 bits)
+    timerCount = TMR0L;
+    // Read high byte of TMR0, shift left 8 bits, and combine with low byte of TMR0
+    timerCount |= (int)(TMR0H << 8);
+    return timerCount*1.048576; // Return 16-bit timer value in ms 
+}
+ 
+ ```
 The interrupt was used to record the amount of time between each move i.e the time spent travelling between each card and make the buggy travel for the same amount or time on the way back.
 
 Interrupt overflow was also used to recognise when too much time had elapsed without finding a card and would cause the buggy to trigger the return home sequence.
+
+
