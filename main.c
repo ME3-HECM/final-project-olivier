@@ -52,7 +52,6 @@ void main(void) {
     while (!retracingDone){ //run this code until the white function is called 
         fullSpeedAhead(&motorL,&motorR);//move the buggy forwards
         //wait to run into a wall
-        __delay_ms(1000);
         while (!wall){
             
             colour_read_all(&colorf);
@@ -71,8 +70,8 @@ void main(void) {
             //flag that a wall has been detected
             wall=1;
             ClickLEDOn(1);//turn on the LED to read the wall colour
-            stop(&motorL,&motorR);//stop the buggy
             __delay_ms(2000);//this delay makes sure that the colour is constant when being read
+            stop(&motorL,&motorR);//stop the buggy
             }
         }
         colour_read_all(&colorf);//read the colours from the colour click
