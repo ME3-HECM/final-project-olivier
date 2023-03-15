@@ -15,13 +15,13 @@ void memoryUpdateMovement(struct RGBC_rel *cf, volatile unsigned int movementCou
 }
 void memoryUpdateTime(volatile unsigned int movementCount, volatile unsigned int *timerMemory)//updates the corresponding memory time
 {
-    unsigned int timerVal = getTimerValue()-(_halfsquare+50);//get the 16 bit time and minus the half square delay plus the time it takes to recognise its a wall
+    unsigned int timerVal = getTimerValue()-_halfsquare-650;//get the 16 bit time and minus the half square delay plus the time it takes to recognise its a wall
     timerMemory[movementCount] = timerVal;//store value of time taken for operation to occour in array
 }
 void maxTimeReturn(void)
 {
-    stop(&motorL,&motorR);
-    maxTime = 0;
+    White(&motorL,&motorR,movementCount,movementMemory,timerMemory);//perform the return home function 
+    maxTime = 0;//reset the max time flag 
     //perform the white function here to return home
 }
 
