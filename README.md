@@ -93,6 +93,6 @@ To maintain consistency we used a black cover over the colourclick when calibrat
 ### Returning Home
 As per the challenge brief, under two circumstances the buggy would be reuqired to retrace it's steps back to it's starting point. This is when it sees the white card or if it has spent too much time looking for said card without success. After a move is executed, a number corresponding to this move is saved in an array. When it is time to go home, this array is then read from the end to the start executing the opposite of each of the moves to retrace it's steps.
 To be able to record the distance the buggy went forward and replay it on the way back intereupts were used.
-The interrupt was ysed to record the amount of time between each move i.e the time spent travelling between each card and make the buggy travel for the swmw wmount or time on the way back.
+The interrupt was used to record the amount of time between each move i.e the time spent travelling between each card and make the buggy travel for the same amount or time on the way back.
 
-Interrupt overflow was also used to recignise when too much time had elapsed without finding a card and would cause the buggy to trigger yhe teyirn home sequence.
+Interrupt overflow was also used to recognise when too much time had elapsed without finding a card and would cause the buggy to trigger the return home sequence.
