@@ -2,7 +2,7 @@
 
 ## Challenge brief
 
-Your task is to develop an autonomous robot that can navigate a "mine" using a series of instructions coded in coloured cards and return to its starting position.  Your robot must be able to perform the following: 
+Our task was to develop an autonomous robot that can find it's way through a "mine" using a sequence of coloured cards corresponding to specific movements and it must also be able to return to its starting position from any point on it's journey.  From the brief we have broken down our tasks as such: 
 
 - [x]  Navigate towards a coloured card and stop before impacting the card
 - [x]  Read the card colour
