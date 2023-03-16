@@ -35,7 +35,7 @@ Black | Maze wall colour
 
 ### Buggy Light Sensor Cover
 
-The colour sensor is covered in a 3D printed shroud to stop ambient light interfering with the sensor. (courtesy of Martin England)
+The colour sensor is covered in a 3D printed shroud to stop ambient light interfering with the sensor. (courtesy of Martin England). 
 
 
 ## Solution Management and design
@@ -43,16 +43,16 @@ In order to give structure to our working, we produced a Gantt chart of tasks we
 
 ![Gantt Chart](https://github.com/ME3-HECM/final-project-olivier/blob/main/Screenshot%202023-03-15%20125240.jpg)
 
+Working in parallel we used different branches to design the movement system, the colour sensing process and another branch solely for calibrating the colours and to debug.
 ## Solution Evolution
 ### Colour Calibration
-Initially we planned to use raw RGB values from the converter but realised these fluctate a lot with light so instead moved to RGB values relative to total light however it was rather difficult to detect colours with relative values so we decided on Hue Values.Serial communication was used to read out the RGBC values from the sensors, the calculated hues then finally when calibrated, the perceived colour based on the hue of the surface being faced.
+Initially we planned to use raw RGB values from the converter but realised these fluctate a lot with light so instead moved to RGB values relative to total light however it was rather difficult to detect colours with just relative values so we decided on Hue Values in combination to differentiate between similar colours of overlapping hues.Serial communication was used to read out the RGBC values from the sensors, the calculated hues then finally when calibrated, the perceived colour based on the hue of the surface being faced.
 
 ```
-char* Hue2Colour(struct RGBC_rel *cf)
+char* Hue2Colour(struct RGBC *cf, struct RGB_rel *rel)
 {
     char* colourname = "";
-  
-    if (((cf->h)>352)&&((cf->h)<360))
+    if ((((cf->h)>0)&&((cf->h)<3)|((cf->h)>352)&&((cf->h)<=360)))
     {
         //colourname for serial printing
         colourname = "Red";
@@ -60,51 +60,54 @@ char* Hue2Colour(struct RGBC_rel *cf)
         //to process relevant action
         cf->colourindex=0;
     }
-     if (((cf->h)>75)&&((cf->h)<79))
-    {
-        colourname = "Green";
-        cf->colourindex=7; //gg
-    }
-    else if (((cf->h)>26)&&((cf->h)<29))
-    {
-        colourname = "Eggshell";
-        cf->colourindex=1;
-    }
-    else if (((cf->h)>15)&&((cf->h)<19))
+    else if (((cf->h)>14)&&((cf->h)<18))
     {
         colourname = "Pink";
-        cf->colourindex=2;
-    }
-    else if (((cf->h)>21)&&((cf->h)<25))
-    {
-        colourname = "Yellow";
-        cf->colourindex=3;
-    }
-    else if (((cf->h)>7)&&((cf->h)<9))
-    {
-        colourname = "Orange";
         cf->colourindex=4;
     }
-    else if (((cf->h)>85)&&((cf->h)<94))
+    else if (((cf->h)>85)&&((cf->h)<130))
+     {colourname = "Dark Blue";
+        cf->colourindex=2;}
+    else if (((cf->h)>6)&&((cf->h)<12))
     {
-        colourname = "Light Blue";
+        colourname = "Orange";
         cf->colourindex=5;
     }
-    else if (((cf->h)>145)&&((cf->h)<164))
+     else if (((cf->h)>65)&&((cf->h)<80))
     {
-        colourname = "Dark Blue";
-        cf->colourindex=6;
+         //Green and blue valeus coincide but easy to differentiate when combined
+         //with relative values so use that
+        if (rel->B > 0.22)
+        {     colourname = "Light Blue";
+        cf->colourindex=6;}
+        else {
+            colourname = "Green";
+        cf->colourindex=1; 
+        }
     }
-    
+    else if (((cf->h)>18)&&((cf->h)<27))
+    {
+        if (rel->R > 0.51)
+        {       
+                  colourname = "Yellow";
+        cf->colourindex=3;
+            }
+        else {
+            colourname = "White";
+       cf->colourindex=7; 
+        } 
+    }
+    //If it hits a black wall or cannot recognise the colour it goes home
+    else{cf->colourindex=8;}
     return colourname;
 }
 ```
 
-To maintain consistency we used a black cover over the colourclick when calibrating the hue ranges for each colour card, this was so our calibration was independent of ambient light kevels. This way we did not have to change the hue ranges when the buggy was deployed during the challenge.
+To maintain consistency we used a black cover over the colourclick when calibrating the hue ranges for each colour card, this meant our calibration was independent of ambient light kevels. This way we did not have to change the hue ranges when the buggy was deployed during the challenge. Also it meant there was no calibration needed before the
 
 ### Returning Home
-As per the challenge brief, under two circumstances the buggy would be reuqired to retrace it's steps back to it's starting point. This is when it sees the white card or if it has spent too much time looking for said card without success. After a move is executed, a number corresponding to this move is saved in an array. When it is time to go home, this array is then read from the end to the start executing the opposite of each of the moves to retrace it's steps.
-To be able to record the distance the buggy went forward and replay it on the way back Timer0 were used.
+As per the challenge brief, under two circumstances the buggy would be required to retrace it's steps back to it's starting point. This is when it sees the white card or if it has spent too much time looking for said card without success. After a move is executed, a number corresponding to this move is saved in an array. When it is time to go home, this array is then read from the end to the start executing the opposite of each of the moves to retrace it's steps.
+To be able to record the distance the buggy moved between cards and replay it on the way back Timer0 was used.
 ```
 //the memory update function is called everytime a colour is reached
 
@@ -127,7 +130,7 @@ void maxTimeReturn(void)
 }
 
 ```
-
+Below is the code for Timer0
 ```
 /************************************
  * Function to set up timer 0
@@ -164,7 +167,7 @@ float getTimerValue(void)
 }
  
 ```
-The interrupt was used to record the amount of time between each move i.e the time spent travelling between each card and make the buggy travel for the same amount or time on the way back. Below is the memory update function using interrupts.
+The Timer was used to record the amount of time between each move i.e the time spent travelling between each card and make the buggy travel for the same amount of time on the way back. Below is the memory update function.
  ```
 void memoryUpdateMovement(struct RGBC_rel *cf, volatile unsigned int movementCount, volatile unsigned int *movementMemory)
 {
@@ -177,10 +180,6 @@ void memoryUpdateTime(volatile unsigned int movementCount, volatile float *timer
     float timerVal = getTimerValue()-_halfsquare-_recogniseColour;
     timerMemory[movementCount] = timerVal;//store value of time taken for operation to occour in array
 }
-```
-Interrupt overflow was also used to recognise when too much time had elapsed without finding a card and would cause the buggy to trigger the return home sequence.
-```
-insert code here
 ```
 
 
