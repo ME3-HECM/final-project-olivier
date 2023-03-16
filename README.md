@@ -99,9 +99,13 @@ char* Hue2Colour(struct RGBC *cf, struct RGB_rel *rel)
     return colourname;
 }
 ```
+### Buggy Cover
 
-To maintain consistency we used a black cover over the colourclick when calibrating the hue ranges for each colour card, this meant our calibration was independent of ambient light kevels. This way we did not have to change the hue ranges when the buggy was deployed during the challenge. Also it meant there was no calibration needed before each maze.
+To maintain consistency we used a black cover over the colourclick when calibrating the hue ranges for each colour card, this meant our calibration was independent of ambient light kevels. This way we did not have to change the hue ranges when the buggy was deployed during the challenge. Also it meant there was no calibration needed before each maze. (Thank you Martin England for the cover design)
 
+![Black Cover](https://github.com/ME3-HECM/final-project-olivier/blob/main/IMG_4356.jpg)
+
+## Colour2Action
 Finally, once a card has been recognised it's specific action is called.
 ```
 void Colour2Action(struct RGBC *cf)
@@ -169,6 +173,66 @@ void maxTimeReturn(void)
 }
 
 ```
+## White Function
+In the White function we included a ram backwards function for the retracing, this is to align the buggy with the wall and negate the issue of battery charge affecting the drift of the buggy over the course of a full maze.
+```
+void White(struct DC_motor *mL, struct DC_motor *mR,unsigned int movementCount, volatile unsigned int *movementMemory, volatile float *timerMemory)
+{
+    BrakeLightON;
+    
+    while (!retracingDone){
+        reverseHalfSquare(mL,mR);//reverse half square
+        rotate180left(mL,mR); //rotate buggy 180 degrees to face the reverse direction of the maze
+        __delay_ms(500);//delay starting the retrace
+        ForwardFlag = 0;//now put it in reverse mode 
+        retracingDone = 1;//say the retracing is now done and so it will exit after the for loop
+        //execute the reverse of all the commands sent 
+        for (int i=movementCount; i>=0;i--){
+            BrakeLightON;
+            __delay_ms(200); //ensure the momentum of the buggy has been dissipated
+            if (movementMemory[i]==0){
+                Red_R90(mL,mR);}
+            else if (movementMemory[i]==1){
+                Green_L90(mL,mR);}
+            else if (movementMemory[i]==2){
+                Blue_T180(mL,mR);}
+            else if (movementMemory[i]==3){
+                Yellow_rev1_R90(mL,mR);}
+            else if (movementMemory[i]==4){
+                Pink_rev1_L90(mL,mR);}
+            else if (movementMemory[i]==5){
+                Orange_R135(mL,mR);}
+            else if (movementMemory[i]==6){
+                LightBlue_L135(mL,mR);}
+            else if (movementMemory[i]==7){
+                stop(mL,mR);}//7 = white so just stop and then carry on
+            RAMback(mL,mR);//align with the wall 
+            BrakeLightON; 
+            //now we read the timer memory to find the time between functions 
+            float tempTimer = 0;
+            TimerReset();//reset the timer in order to count up from 0->timerMemory[i]
+            fullSpeedAhead(mL,mR);//go forwards
+            if (timerMemory[i]<0)//checking if the recognise colour delay makes it negative
+            {
+                while(tempTimer <(timerMemory[i]+_recogniseColour))
+                {
+                    tempTimer = getTimerValue();
+                }
+            }else if (timerMemory[i]>0){
+                while(tempTimer<timerMemory[i])
+                {
+                    tempTimer = getTimerValue();
+                }
+            }
+            stop(mL,mR);//stop the buggy and perform the action 
+        }
+    }
+    stop(mL,mR);// stop buggy after retracing is done 
+    __delay_ms(1000);
+    BrakeLightOFF;
+}
+```
+## Timer0
 Below is the code for Timer0
 ```
 /************************************
@@ -206,8 +270,9 @@ float getTimerValue(void)
 }
  
 ```
+## Memory function
 The Timer was used to record the amount of time between each move i.e the time spent travelling between each card and make the buggy travel for the same amount of time on the way back. Below is the memory update function.
- ```
+```
 void memoryUpdateMovement(struct RGBC_rel *cf, volatile unsigned int movementCount, volatile unsigned int *movementMemory)
 {
     //get colour value and store it 
@@ -220,6 +285,49 @@ void memoryUpdateTime(volatile unsigned int movementCount, volatile float *timer
     timerMemory[movementCount] = timerVal;//store value of time taken for operation to occour in array
 }
 ```
-
+## Main Code
+```
+        while (!retracingDone){ //run this code until the white function is called (retracingDone is set to 1 in the White)
+        fullSpeedAhead(&motorL,&motorR);//move the buggy forwards
+        //wait to run into a wall
+        while (!wall){
+            colour_read_all(&colorf,&colorrel);//read RGB values from colour clicker
+             //when in contact with a wall or card a lot more light is reflected
+             //by sensors so the clear value falls
+            if (colorf.Cf>300)//wait for the clear value to be over a certain threshold since a card will reflect more light
+	    {
+                memoryUpdateTime(movementCount,timerMemory);//update the time taken for action to occur corresponding to the movement
+                //flag that a wall has been detected
+                wall=1;
+                __delay_ms(200);//this delay makes sure that the colour is constant when being read
+                stop(&motorL,&motorR);//stop the buggy
+            //If too much time has elapsed between cards then return home
+            }
+            else if (maxTime==1)
+            {
+                memoryUpdateTime(movementCount,timerMemory);
+                colorf.colourindex=7;
+                //flag that a wall has been detected
+                wall=1;
+                stop(&motorL,&motorR);//stop the buggy
+            }
+        }
+        //Normal routine when buggy is not lost
+        if (maxTime!=1){
+            colour_read_all(&colorf,&colorrel);//read the colours from the colour click
+            wall=0;//reset wall variable to reenter inner while loop after
+            RGB2Hue(&colorf);//takes the RGB values and outputs hue 
+            Hue2Colour(&colorf,&colorrel);//takes the hue and outputs the colour
+        }
+        memoryUpdateMovement(&colorf,movementCount,movementMemory);//update the memory function
+        Colour2Action(&colorf);//perform the action
+        if (colorf.colourindex == 7)//if the white function is called
+        {
+            while(!retracingDone){}//wait until the retracing is done before resetting the timer as it might mess up the white function
+        }
+        TimerReset();//reset the timer in order to have time between actions
+        movementCount++; //increment the movement count
+    }
+```
 
 
