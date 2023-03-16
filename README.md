@@ -331,6 +331,7 @@ void __interrupt(high_priority) HighISR()
 ```
 
 ## Main Code
+Once turned on with relevant registers and variables initialised the PC enters the main while loop which is maintained as long as the buggy is not lost or has not come into contact with the white card. During the inner loop it constantly checks for a colour card based on the colour click Clear sensor values. When it detects a card, it delays before stopping so it comes into contact with the card. This is then read and the inner while loop is exited to carry out the relevant function associated to the card recognised. It also checks if too much time has elapsed or if the white card has been seen to know whether to exit the main while loop.
 ```
         while (!retracingDone){ //run this code until the white function is called (retracingDone is set to 1 in the White)
         fullSpeedAhead(&motorL,&motorR);//move the buggy forwards
