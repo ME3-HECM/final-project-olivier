@@ -29,15 +29,11 @@ Black | Maze wall colour
 ### Using the buggy
 
 1. Place the buggy at the entrance to the mine in the center of the first square.
-1. Line the buggy up with the intial direction of travel.
-1. Turn the PIC board on.
-1. When ready to start, turn the main buggy power on switch
+2. Line the buggy up with the intial direction of travel.
+3. Turn the PIC board on and the buggy.
+4. When ready to start, press the RF2 button and step away.
 
-![Buggy in Use](https://drive.google.com/file/d/1ZWeQf-ztbf95jfq3j8RBCIMzxyjYJchO/view?usp=sharing)
-### Buggy Light Sensor Cover
-
-The colour sensor is covered in a 3D printed shroud to stop ambient light interfering with the sensor. (courtesy of Martin England). 
-
+[Buggy in Use](https://drive.google.com/file/d/1ZWeQf-ztbf95jfq3j8RBCIMzxyjYJchO/view?usp=sharing)
 
 ## Solution Management and design
 In order to give structure to our working, we produced a Gantt chart of tasks we felt needed to be done in design, implementation and testing phases with deadlines to keep progress on track. The tasks were also delegated so we could work in parallel to each other to increase efficiency. As with any project, we ran into hurdles and update the Gantt chart accordingly to add or remove tasks as neccesity prompted
@@ -104,7 +100,49 @@ char* Hue2Colour(struct RGBC *cf, struct RGB_rel *rel)
 }
 ```
 
-To maintain consistency we used a black cover over the colourclick when calibrating the hue ranges for each colour card, this meant our calibration was independent of ambient light kevels. This way we did not have to change the hue ranges when the buggy was deployed during the challenge. Also it meant there was no calibration needed before the
+To maintain consistency we used a black cover over the colourclick when calibrating the hue ranges for each colour card, this meant our calibration was independent of ambient light kevels. This way we did not have to change the hue ranges when the buggy was deployed during the challenge. Also it meant there was no calibration needed before each maze.
+
+Finally, once a card has been recognised it's specific action is called.
+```
+void Colour2Action(struct RGBC *cf)
+{
+    if (cf->colourindex == 0)
+    {
+        Red_R90(&motorL,&motorR);
+    }
+    else if (cf->colourindex == 1)
+    {
+        Green_L90(&motorL,&motorR);
+    }
+    else if (cf->colourindex == 2)
+    {
+        Blue_T180(&motorL,&motorR);
+    }
+    else if (cf->colourindex == 3)
+    {
+        Yellow_rev1_R90(&motorL,&motorR);
+    }
+    else if (cf->colourindex == 4)
+    {
+        Pink_rev1_L90(&motorL,&motorR);
+    }
+    else if (cf->colourindex == 5)
+    {
+        Orange_R135(&motorL,&motorR);
+    }
+    else if (cf->colourindex == 6)
+    {
+        LightBlue_L135(&motorL,&motorR);
+    }
+    else if (cf->colourindex == 7)
+    {
+        White(&motorL,&motorR,movementCount,movementMemory,timerMemory);
+
+    }//otherwise unknown colour most likely a black wall (Exception handling)
+    else {White(&motorL,&motorR,movementCount,movementMemory,timerMemory);}
+
+}
+```
 
 ### Returning Home
 As per the challenge brief, under two circumstances the buggy would be required to retrace it's steps back to it's starting point. This is when it sees the white card or if it has spent too much time looking for said card without success. After a move is executed, a number corresponding to this move is saved in an array. When it is time to go home, this array is then read from the end to the start executing the opposite of each of the moves to retrace it's steps.
