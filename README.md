@@ -101,7 +101,7 @@ char* Hue2Colour(struct RGBC *cf, struct RGB_rel *rel)
 ```
 ### Buggy Cover
 
-To maintain consistency we used a black cover over the colourclick when calibrating the hue ranges for each colour card, this meant our calibration was independent of ambient light kevels. This way we did not have to change the hue ranges when the buggy was deployed during the challenge. Also it meant there was no calibration needed before each maze. (Thank you Martin England for the cover design)
+To maintain consistency we used a black cover over the colourclick when calibrating the hue ranges for each colour card, this meant our calibration was independent of ambient light levels. This way we did not have to change the hue ranges when the buggy was deployed during the challenge. Also it meant there was no calibration needed before each maze. (Thank you Martin England for the cover design)
 
 ![Black Cover](https://github.com/ME3-HECM/final-project-olivier/blob/main/IMG_4356.jpg)
 
