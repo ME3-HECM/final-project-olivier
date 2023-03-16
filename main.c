@@ -57,24 +57,35 @@ void main(void) {
         //wait to run into a wall
         while (!wall){
             colour_read_all(&colorf,&colorrel);//read RGB values from colour clicker
-             //when in contact with a wall or card a lot less light is received
-             //by sensors so all sensor values fall
+             //when in contact with a wall or card a lot more light is reflected
+             //by sensors so the clear value falls
             if (colorf.Cf>300)//wait for the clear value to be under a certain threshold (dark)
             {
-            memoryUpdateTime(movementCount,timerMemory);//update the time taken for action to occur corresponding to the movement
-            //flag that a wall has been detected
-            wall=1;
-            __delay_ms(500);//this delay makes sure that the colour is constant when being read
-            stop(&motorL,&motorR);//stop the buggy
+                memoryUpdateTime(movementCount,timerMemory);//update the time taken for action to occur corresponding to the movement
+                //flag that a wall has been detected
+                wall=1;
+                __delay_ms(200);//this delay makes sure that the colour is constant when being read
+                stop(&motorL,&motorR);//stop the buggy
+            //If too much time has elapsed between cards then return home
+            }
+            else if (maxTime==1)
+            {
+                memoryUpdateTime(movementCount,timerMemory);
+                colorf.colourindex=7;
+                //flag that a wall has been detected
+                wall=1;
+                stop(&motorL,&motorR);//stop the buggy
             }
         }
-        colour_read_all(&colorf,&colorrel);//read the colours from the colour click
-        wall=0;
-        RGB2Hue(&colorf);//takes the RGB values and outputs hue 
-        Hue2Colour(&colorf,&colorrel);//takes the hue and outputs the colour
+        //Normal routine when buggy is not lost
+        if (maxTime!=1){
+            colour_read_all(&colorf,&colorrel);//read the colours from the colour click
+            wall=0;//reset wall variable to reenter inner while loop after
+            RGB2Hue(&colorf);//takes the RGB values and outputs hue 
+            Hue2Colour(&colorf,&colorrel);//takes the hue and outputs the colour
+        }
         memoryUpdateMovement(&colorf,movementCount,movementMemory);//update the memory function
         Colour2Action(&colorf);//perform the action
-        
         if (colorf.colourindex == 7)//if the white function is called
         {
             while(!retracingDone){}//wait until the retracing is done before resetting the timer as it might mess up the white function

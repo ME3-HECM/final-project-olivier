@@ -24282,11 +24282,20 @@ struct RGB_rel colorrel;
 
 
 
+
+
 void colour_read_all(struct RGBC *cf,struct RGB_rel *rel);
+
+
+
 void RGB2Hue(struct RGBC *cf);
 
 
+
+
 char* Hue2Colour(struct RGBC *cf, struct RGB_rel *rel);
+
+
 
 
 void Colour2Action(struct RGBC *cf);
@@ -24297,8 +24306,18 @@ void Colour2Action(struct RGBC *cf);
 
 
 
+
+
+
 void Timer0_init(void);
+
+
+
 void TimerReset(void);
+
+
+
+
 float getTimerValue(void);
 # 7 "./memory.h" 2
 
@@ -24367,7 +24386,13 @@ char getCharSerial4(void);
 void sendCharSerial4(char charToSend);
 void sendStringSerial4(char *string);
 
+
+
+
 void Color2String(char *buf,struct RGBC *cf,struct RGB_rel *rel);
+
+
+
 void RelColor2String(char *buf,struct RGB_rel *rel);
 # 5 "./main.h" 2
 
@@ -24573,9 +24598,14 @@ void main(void);
 
 
 
+
+
+
 void memoryUpdateMovement(struct RGBC *cf, volatile unsigned int movementCount, volatile unsigned int *movementMemory);
+
+
+
 void memoryUpdateTime(volatile unsigned int movementCount, volatile float *timerMemory);
-void maxTimeReturn(void);
 # 7 "./dc_motor.h" 2
 
 
@@ -24587,7 +24617,7 @@ volatile unsigned int retracingDone = 0;
 unsigned int _45dleftdelay = 144;
 unsigned int _45drightdelay = 144;
 unsigned int _1square = 800;
-unsigned int _halfsquare = 350;
+unsigned int _halfsquare = 320;
 unsigned int _recogniseColour = 150;
 
 typedef struct DC_motor {
@@ -24893,11 +24923,11 @@ void Green_L90(struct DC_motor *mL, struct DC_motor *mR)
 void Blue_T180(struct DC_motor *mL, struct DC_motor *mR)
 {
     if (ForwardFlag){
-    reverseHalfSquare(mL,mR);
+        reverseHalfSquare(mL,mR);
 
-    rotate180left(mL,mR);
+        rotate180left(mL,mR);
     }else{
-    rotate180left(mL,mR);
+        rotate180left(mL,mR);
     }
 
 }

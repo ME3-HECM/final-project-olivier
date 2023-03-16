@@ -24261,11 +24261,20 @@ struct RGB_rel colorrel;
 
 
 
+
+
 void colour_read_all(struct RGBC *cf,struct RGB_rel *rel);
+
+
+
 void RGB2Hue(struct RGBC *cf);
 
 
+
+
 char* Hue2Colour(struct RGBC *cf, struct RGB_rel *rel);
+
+
 
 
 void Colour2Action(struct RGBC *cf);
@@ -24325,7 +24334,13 @@ char getCharSerial4(void);
 void sendCharSerial4(char charToSend);
 void sendStringSerial4(char *string);
 
+
+
+
 void Color2String(char *buf,struct RGBC *cf,struct RGB_rel *rel);
+
+
+
 void RelColor2String(char *buf,struct RGB_rel *rel);
 # 2 "serial.c" 2
 
@@ -24512,9 +24527,9 @@ void sendCharSerial4(char charToSend) {
 
 void Color2String(char *buf,struct RGBC *cf,struct RGB_rel *rel){
 
-
     char* colourname = Hue2Colour(cf,rel);
     sprintf(buf," Red %f Green,%f Blue,%f clear %f Hue %f \r",cf->Rf,cf->Gf,cf->Bf,cf->Cf,cf->h);
+
 
     sendStringSerial4(buf);
 }

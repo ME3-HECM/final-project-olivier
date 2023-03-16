@@ -24448,11 +24448,20 @@ struct RGB_rel colorrel;
 
 
 
+
+
 void colour_read_all(struct RGBC *cf,struct RGB_rel *rel);
+
+
+
 void RGB2Hue(struct RGBC *cf);
 
 
+
+
 char* Hue2Colour(struct RGBC *cf, struct RGB_rel *rel);
+
+
 
 
 void Colour2Action(struct RGBC *cf);
@@ -24490,8 +24499,18 @@ void LED_init(void);
 
 
 
+
+
+
 void Timer0_init(void);
+
+
+
 void TimerReset(void);
+
+
+
+
 float getTimerValue(void);
 # 7 "./memory.h" 2
 
@@ -24507,7 +24526,13 @@ char getCharSerial4(void);
 void sendCharSerial4(char charToSend);
 void sendStringSerial4(char *string);
 
+
+
+
 void Color2String(char *buf,struct RGBC *cf,struct RGB_rel *rel);
+
+
+
 void RelColor2String(char *buf,struct RGB_rel *rel);
 # 5 "./main.h" 2
 
@@ -24568,9 +24593,14 @@ void main(void);
 
 
 
+
+
+
 void memoryUpdateMovement(struct RGBC *cf, volatile unsigned int movementCount, volatile unsigned int *movementMemory);
+
+
+
 void memoryUpdateTime(volatile unsigned int movementCount, volatile float *timerMemory);
-void maxTimeReturn(void);
 # 7 "./dc_motor.h" 2
 
 
@@ -24582,7 +24612,7 @@ volatile unsigned int retracingDone = 0;
 unsigned int _45dleftdelay = 144;
 unsigned int _45drightdelay = 144;
 unsigned int _1square = 800;
-unsigned int _halfsquare = 350;
+unsigned int _halfsquare = 320;
 unsigned int _recogniseColour = 150;
 
 typedef struct DC_motor {
@@ -24648,18 +24678,19 @@ void colour_read_all(struct RGBC *cf,struct RGB_rel *rel) {
     (cf->Bf)=B;
     (cf->Gf)=G;
     (cf->Cf)=C;
+
     (rel->R)=R/total;
     (rel->B)=B/total;
     (rel->G)=G/total;
 }
-
 void RGB2Hue(struct RGBC *cf){
     if ((cf->Rf == cf->Gf)&&(cf->Rf == cf->Bf)){
         cf->h=0;
-    } else{
+    }
+    else{
+
         signed int max=0;
         signed int min=0;
-
         if ((cf->Rf < cf->Gf)&(cf->Rf < cf->Bf)){
             min=cf->Rf;
         } else if((cf->Gf < cf->Rf)&(cf->Gf < cf->Bf)){
@@ -24680,6 +24711,7 @@ void RGB2Hue(struct RGBC *cf){
             max=cf->Bf;
             (cf->h)=60*(4+(((cf->Rf)-(cf->Gf))/(max-min)));
         }
+
         if (cf->h < 0){
             cf->h= cf->h +360;
         }
@@ -24703,7 +24735,7 @@ char* Hue2Colour(struct RGBC *cf, struct RGB_rel *rel)
         cf->colourindex=4;
     }
     else if (((cf->h)>85)&&((cf->h)<130))
-     {colourname = "Dark Blue";
+        {colourname = "Dark Blue";
         cf->colourindex=2;}
     else if (((cf->h)>6)&&((cf->h)<12))
     {
@@ -24716,10 +24748,10 @@ char* Hue2Colour(struct RGBC *cf, struct RGB_rel *rel)
 
         if (rel->B > 0.22)
         { colourname = "Light Blue";
-        cf->colourindex=6;}
+            cf->colourindex=6;}
         else {
             colourname = "Green";
-        cf->colourindex=1;
+            cf->colourindex=1;
         }
     }
     else if (((cf->h)>18)&&((cf->h)<27))
@@ -24727,13 +24759,14 @@ char* Hue2Colour(struct RGBC *cf, struct RGB_rel *rel)
         if (rel->R > 0.51)
         {
                   colourname = "Yellow";
-        cf->colourindex=3;
+            cf->colourindex=3;
             }
         else {
             colourname = "White";
-       cf->colourindex=7;
+            cf->colourindex=7;
         }
     }
+
     else{cf->colourindex=8;}
     return colourname;
 }

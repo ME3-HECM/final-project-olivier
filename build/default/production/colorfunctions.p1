@@ -2084,10 +2084,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 800 `i `ui
 ]
 "17
-[; ;./dc_motor.h: 17: unsigned int _halfsquare = 350;
+[; ;./dc_motor.h: 17: unsigned int _halfsquare = 320;
 [v __halfsquare `ui ~T0 @X0 1 e ]
 [i __halfsquare
--> -> 350 `i `ui
+-> -> 320 `i `ui
 ]
 "18
 [; ;./dc_motor.h: 18: unsigned int _recogniseColour = 150;
@@ -2139,17 +2139,17 @@ Version 4.0 HI-TECH Software Intermediate Code
 "20
 [; ;colorfunctions.c: 20:     (cf->Cf)=C;
 [e = . *U _cf 3 _C ]
-"21
-[; ;colorfunctions.c: 21:     (rel->R)=R/total;
-[e = . *U _rel 0 / _R _total ]
 "22
-[; ;colorfunctions.c: 22:     (rel->B)=B/total;
-[e = . *U _rel 2 / _B _total ]
+[; ;colorfunctions.c: 22:     (rel->R)=R/total;
+[e = . *U _rel 0 / _R _total ]
 "23
-[; ;colorfunctions.c: 23:     (rel->G)=G/total;
-[e = . *U _rel 1 / _G _total ]
+[; ;colorfunctions.c: 23:     (rel->B)=B/total;
+[e = . *U _rel 2 / _B _total ]
 "24
-[; ;colorfunctions.c: 24: }
+[; ;colorfunctions.c: 24:     (rel->G)=G/total;
+[e = . *U _rel 1 / _G _total ]
+"25
+[; ;colorfunctions.c: 25: }
 [e :UE 2020 ]
 }
 "26
@@ -2167,270 +2167,272 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;colorfunctions.c: 28:         cf->h=0;
 [e = . *U _cf 4 -> -> 0 `i `f ]
 "29
-[; ;colorfunctions.c: 29:     } else{
+[; ;colorfunctions.c: 29:     }
 }
 [e $U 2023  ]
+"30
+[; ;colorfunctions.c: 30:     else{
 [e :U 2022 ]
 {
-"30
-[; ;colorfunctions.c: 30:         signed int max=0;
+"32
+[; ;colorfunctions.c: 32:         signed int max=0;
 [v _max `i ~T0 @X0 1 a ]
 [e = _max -> 0 `i ]
-"31
-[; ;colorfunctions.c: 31:         signed int min=0;
+"33
+[; ;colorfunctions.c: 33:         signed int min=0;
 [v _min `i ~T0 @X0 1 a ]
 [e = _min -> 0 `i ]
-"33
-[; ;colorfunctions.c: 33:         if ((cf->Rf < cf->Gf)&(cf->Rf < cf->Bf)){
+"34
+[; ;colorfunctions.c: 34:         if ((cf->Rf < cf->Gf)&(cf->Rf < cf->Bf)){
 [e $ ! & < . *U _cf 0 . *U _cf 1 < . *U _cf 0 . *U _cf 2 2024  ]
 {
-"34
-[; ;colorfunctions.c: 34:             min=cf->Rf;
-[e = _min -> . *U _cf 0 `i ]
 "35
-[; ;colorfunctions.c: 35:         } else if((cf->Gf < cf->Rf)&(cf->Gf < cf->Bf)){
+[; ;colorfunctions.c: 35:             min=cf->Rf;
+[e = _min -> . *U _cf 0 `i ]
+"36
+[; ;colorfunctions.c: 36:         } else if((cf->Gf < cf->Rf)&(cf->Gf < cf->Bf)){
 }
 [e $U 2025  ]
 [e :U 2024 ]
 [e $ ! & < . *U _cf 1 . *U _cf 0 < . *U _cf 1 . *U _cf 2 2026  ]
 {
-"36
-[; ;colorfunctions.c: 36:             min=cf->Gf;
-[e = _min -> . *U _cf 1 `i ]
 "37
-[; ;colorfunctions.c: 37:         } else{
+[; ;colorfunctions.c: 37:             min=cf->Gf;
+[e = _min -> . *U _cf 1 `i ]
+"38
+[; ;colorfunctions.c: 38:         } else{
 }
 [e $U 2027  ]
 [e :U 2026 ]
 {
-"38
-[; ;colorfunctions.c: 38:             min=cf->Bf;
-[e = _min -> . *U _cf 2 `i ]
 "39
-[; ;colorfunctions.c: 39:         }
+[; ;colorfunctions.c: 39:             min=cf->Bf;
+[e = _min -> . *U _cf 2 `i ]
+"40
+[; ;colorfunctions.c: 40:         }
 }
 [e :U 2027 ]
 [e :U 2025 ]
-"41
-[; ;colorfunctions.c: 41:         if ((cf->Rf > cf->Gf)&(cf->Rf > cf->Bf)){
+"42
+[; ;colorfunctions.c: 42:         if ((cf->Rf > cf->Gf)&(cf->Rf > cf->Bf)){
 [e $ ! & > . *U _cf 0 . *U _cf 1 > . *U _cf 0 . *U _cf 2 2028  ]
 {
-"42
-[; ;colorfunctions.c: 42:             max=(cf->Rf);
+"43
+[; ;colorfunctions.c: 43:             max=(cf->Rf);
 [e = _max -> . *U _cf 0 `i ]
-"45
-[; ;colorfunctions.c: 45:             (cf->h)=60*(((cf->Gf)-(cf->Bf))/(max-min));
-[e = . *U _cf 4 * -> -> 60 `i `f / - . *U _cf 1 . *U _cf 2 -> - _max _min `f ]
 "46
-[; ;colorfunctions.c: 46:         } else if((cf->Gf > cf->Rf)&(cf->Gf > cf->Bf)){
+[; ;colorfunctions.c: 46:             (cf->h)=60*(((cf->Gf)-(cf->Bf))/(max-min));
+[e = . *U _cf 4 * -> -> 60 `i `f / - . *U _cf 1 . *U _cf 2 -> - _max _min `f ]
+"47
+[; ;colorfunctions.c: 47:         } else if((cf->Gf > cf->Rf)&(cf->Gf > cf->Bf)){
 }
 [e $U 2029  ]
 [e :U 2028 ]
 [e $ ! & > . *U _cf 1 . *U _cf 0 > . *U _cf 1 . *U _cf 2 2030  ]
 {
-"47
-[; ;colorfunctions.c: 47:             max=cf->Gf;
-[e = _max -> . *U _cf 1 `i ]
 "48
-[; ;colorfunctions.c: 48:             (cf->h)=60*(2+(((cf->Bf)-(cf->Rf))/(max-min)));
-[e = . *U _cf 4 * -> -> 60 `i `f + -> -> 2 `i `f / - . *U _cf 2 . *U _cf 0 -> - _max _min `f ]
+[; ;colorfunctions.c: 48:             max=cf->Gf;
+[e = _max -> . *U _cf 1 `i ]
 "49
-[; ;colorfunctions.c: 49:         }else{
+[; ;colorfunctions.c: 49:             (cf->h)=60*(2+(((cf->Bf)-(cf->Rf))/(max-min)));
+[e = . *U _cf 4 * -> -> 60 `i `f + -> -> 2 `i `f / - . *U _cf 2 . *U _cf 0 -> - _max _min `f ]
+"50
+[; ;colorfunctions.c: 50:         }else{
 }
 [e $U 2031  ]
 [e :U 2030 ]
 {
-"50
-[; ;colorfunctions.c: 50:             max=cf->Bf;
-[e = _max -> . *U _cf 2 `i ]
 "51
-[; ;colorfunctions.c: 51:             (cf->h)=60*(4+(((cf->Rf)-(cf->Gf))/(max-min)));
-[e = . *U _cf 4 * -> -> 60 `i `f + -> -> 4 `i `f / - . *U _cf 0 . *U _cf 1 -> - _max _min `f ]
+[; ;colorfunctions.c: 51:             max=cf->Bf;
+[e = _max -> . *U _cf 2 `i ]
 "52
-[; ;colorfunctions.c: 52:         }
+[; ;colorfunctions.c: 52:             (cf->h)=60*(4+(((cf->Rf)-(cf->Gf))/(max-min)));
+[e = . *U _cf 4 * -> -> 60 `i `f + -> -> 4 `i `f / - . *U _cf 0 . *U _cf 1 -> - _max _min `f ]
+"53
+[; ;colorfunctions.c: 53:         }
 }
 [e :U 2031 ]
 [e :U 2029 ]
-"53
-[; ;colorfunctions.c: 53:         if (cf->h < 0){
+"55
+[; ;colorfunctions.c: 55:         if (cf->h < 0){
 [e $ ! < . *U _cf 4 -> -> 0 `i `f 2032  ]
 {
-"54
-[; ;colorfunctions.c: 54:             cf->h= cf->h +360;
+"56
+[; ;colorfunctions.c: 56:             cf->h= cf->h +360;
 [e = . *U _cf 4 + . *U _cf 4 -> -> 360 `i `f ]
-"55
-[; ;colorfunctions.c: 55:         }
+"57
+[; ;colorfunctions.c: 57:         }
 }
 [e :U 2032 ]
-"56
-[; ;colorfunctions.c: 56:     }
+"58
+[; ;colorfunctions.c: 58:     }
 }
 [e :U 2023 ]
-"57
-[; ;colorfunctions.c: 57: }
+"59
+[; ;colorfunctions.c: 59: }
 [e :UE 2021 ]
 }
-"59
-[; ;colorfunctions.c: 59: char* Hue2Colour(struct RGBC *cf, struct RGB_rel *rel)
+"61
+[; ;colorfunctions.c: 61: char* Hue2Colour(struct RGBC *cf, struct RGB_rel *rel)
 [v _Hue2Colour `(*uc ~T0 @X0 1 ef2`*S2017`*S2018 ]
-"60
-[; ;colorfunctions.c: 60: {
+"62
+[; ;colorfunctions.c: 62: {
 {
 [e :U _Hue2Colour ]
-"59
-[; ;colorfunctions.c: 59: char* Hue2Colour(struct RGBC *cf, struct RGB_rel *rel)
+"61
+[; ;colorfunctions.c: 61: char* Hue2Colour(struct RGBC *cf, struct RGB_rel *rel)
 [v _cf `*S2017 ~T0 @X0 1 r1 ]
 [v _rel `*S2018 ~T0 @X0 1 r2 ]
-"60
-[; ;colorfunctions.c: 60: {
+"62
+[; ;colorfunctions.c: 62: {
 [f ]
-"61
-[; ;colorfunctions.c: 61:     char* colourname = "";
+"63
+[; ;colorfunctions.c: 63:     char* colourname = "";
 [v _colourname `*uc ~T0 @X0 1 a ]
 [e = _colourname :s 1C ]
-"62
-[; ;colorfunctions.c: 62:     if ((((cf->h)>0)&&((cf->h)<3)|((cf->h)>352)&&((cf->h)<=360)))
+"64
+[; ;colorfunctions.c: 64:     if ((((cf->h)>0)&&((cf->h)<3)|((cf->h)>352)&&((cf->h)<=360)))
 [e $ ! && && > . *U _cf 4 -> -> 0 `i `f | < . *U _cf 4 -> -> 3 `i `f > . *U _cf 4 -> -> 352 `i `f <= . *U _cf 4 -> -> 360 `i `f 2034  ]
-"63
-[; ;colorfunctions.c: 63:     {
-{
 "65
-[; ;colorfunctions.c: 65:         colourname = "Red";
+[; ;colorfunctions.c: 65:     {
+{
+"67
+[; ;colorfunctions.c: 67:         colourname = "Red";
 [e = _colourname :s 2C ]
-"68
-[; ;colorfunctions.c: 68:         cf->colourindex=0;
+"70
+[; ;colorfunctions.c: 70:         cf->colourindex=0;
 [e = . *U _cf 5 -> 0 `i ]
-"69
-[; ;colorfunctions.c: 69:     }
+"71
+[; ;colorfunctions.c: 71:     }
 }
 [e $U 2035  ]
-"70
-[; ;colorfunctions.c: 70:     else if (((cf->h)>14)&&((cf->h)<18))
+"72
+[; ;colorfunctions.c: 72:     else if (((cf->h)>14)&&((cf->h)<18))
 [e :U 2034 ]
 [e $ ! && > . *U _cf 4 -> -> 14 `i `f < . *U _cf 4 -> -> 18 `i `f 2036  ]
-"71
-[; ;colorfunctions.c: 71:     {
-{
-"72
-[; ;colorfunctions.c: 72:         colourname = "Pink";
-[e = _colourname :s 3C ]
 "73
-[; ;colorfunctions.c: 73:         cf->colourindex=4;
-[e = . *U _cf 5 -> 4 `i ]
+[; ;colorfunctions.c: 73:     {
+{
 "74
-[; ;colorfunctions.c: 74:     }
+[; ;colorfunctions.c: 74:         colourname = "Pink";
+[e = _colourname :s 3C ]
+"75
+[; ;colorfunctions.c: 75:         cf->colourindex=4;
+[e = . *U _cf 5 -> 4 `i ]
+"76
+[; ;colorfunctions.c: 76:     }
 }
 [e $U 2037  ]
-"75
-[; ;colorfunctions.c: 75:     else if (((cf->h)>85)&&((cf->h)<130))
+"77
+[; ;colorfunctions.c: 77:     else if (((cf->h)>85)&&((cf->h)<130))
 [e :U 2036 ]
 [e $ ! && > . *U _cf 4 -> -> 85 `i `f < . *U _cf 4 -> -> 130 `i `f 2038  ]
-"76
-[; ;colorfunctions.c: 76:      {colourname = "Dark Blue";
+"78
+[; ;colorfunctions.c: 78:         {colourname = "Dark Blue";
 {
 [e = _colourname :s 4C ]
-"77
-[; ;colorfunctions.c: 77:         cf->colourindex=2;}
+"79
+[; ;colorfunctions.c: 79:         cf->colourindex=2;}
 [e = . *U _cf 5 -> 2 `i ]
 }
 [e $U 2039  ]
-"78
-[; ;colorfunctions.c: 78:     else if (((cf->h)>6)&&((cf->h)<12))
+"80
+[; ;colorfunctions.c: 80:     else if (((cf->h)>6)&&((cf->h)<12))
 [e :U 2038 ]
 [e $ ! && > . *U _cf 4 -> -> 6 `i `f < . *U _cf 4 -> -> 12 `i `f 2040  ]
-"79
-[; ;colorfunctions.c: 79:     {
-{
-"80
-[; ;colorfunctions.c: 80:         colourname = "Orange";
-[e = _colourname :s 5C ]
 "81
-[; ;colorfunctions.c: 81:         cf->colourindex=5;
-[e = . *U _cf 5 -> 5 `i ]
+[; ;colorfunctions.c: 81:     {
+{
 "82
-[; ;colorfunctions.c: 82:     }
+[; ;colorfunctions.c: 82:         colourname = "Orange";
+[e = _colourname :s 5C ]
+"83
+[; ;colorfunctions.c: 83:         cf->colourindex=5;
+[e = . *U _cf 5 -> 5 `i ]
+"84
+[; ;colorfunctions.c: 84:     }
 }
 [e $U 2041  ]
-"83
-[; ;colorfunctions.c: 83:      else if (((cf->h)>65)&&((cf->h)<80))
+"85
+[; ;colorfunctions.c: 85:      else if (((cf->h)>65)&&((cf->h)<80))
 [e :U 2040 ]
 [e $ ! && > . *U _cf 4 -> -> 65 `i `f < . *U _cf 4 -> -> 80 `i `f 2042  ]
-"84
-[; ;colorfunctions.c: 84:     {
+"86
+[; ;colorfunctions.c: 86:     {
 {
-"87
-[; ;colorfunctions.c: 87:         if (rel->B > 0.22)
+"89
+[; ;colorfunctions.c: 89:         if (rel->B > 0.22)
 [e $ ! > -> . *U _rel 2 `d .0.22 2043  ]
-"88
-[; ;colorfunctions.c: 88:         { colourname = "Light Blue";
+"90
+[; ;colorfunctions.c: 90:         { colourname = "Light Blue";
 {
 [e = _colourname :s 6C ]
-"89
-[; ;colorfunctions.c: 89:         cf->colourindex=6;}
+"91
+[; ;colorfunctions.c: 91:             cf->colourindex=6;}
 [e = . *U _cf 5 -> 6 `i ]
 }
 [e $U 2044  ]
-"90
-[; ;colorfunctions.c: 90:         else {
+"92
+[; ;colorfunctions.c: 92:         else {
 [e :U 2043 ]
 {
-"91
-[; ;colorfunctions.c: 91:             colourname = "Green";
-[e = _colourname :s 7C ]
-"92
-[; ;colorfunctions.c: 92:         cf->colourindex=1;
-[e = . *U _cf 5 -> 1 `i ]
 "93
-[; ;colorfunctions.c: 93:         }
+[; ;colorfunctions.c: 93:             colourname = "Green";
+[e = _colourname :s 7C ]
+"94
+[; ;colorfunctions.c: 94:             cf->colourindex=1;
+[e = . *U _cf 5 -> 1 `i ]
+"95
+[; ;colorfunctions.c: 95:         }
 }
 [e :U 2044 ]
-"94
-[; ;colorfunctions.c: 94:     }
+"96
+[; ;colorfunctions.c: 96:     }
 }
 [e $U 2045  ]
-"95
-[; ;colorfunctions.c: 95:     else if (((cf->h)>18)&&((cf->h)<27))
+"97
+[; ;colorfunctions.c: 97:     else if (((cf->h)>18)&&((cf->h)<27))
 [e :U 2042 ]
 [e $ ! && > . *U _cf 4 -> -> 18 `i `f < . *U _cf 4 -> -> 27 `i `f 2046  ]
-"96
-[; ;colorfunctions.c: 96:     {
-{
-"97
-[; ;colorfunctions.c: 97:         if (rel->R > 0.51)
-[e $ ! > -> . *U _rel 0 `d .0.51 2047  ]
 "98
-[; ;colorfunctions.c: 98:         {
+[; ;colorfunctions.c: 98:     {
 {
 "99
-[; ;colorfunctions.c: 99:                   colourname = "Yellow";
-[e = _colourname :s 8C ]
+[; ;colorfunctions.c: 99:         if (rel->R > 0.51)
+[e $ ! > -> . *U _rel 0 `d .0.51 2047  ]
 "100
-[; ;colorfunctions.c: 100:         cf->colourindex=3;
-[e = . *U _cf 5 -> 3 `i ]
+[; ;colorfunctions.c: 100:         {
+{
 "101
-[; ;colorfunctions.c: 101:             }
+[; ;colorfunctions.c: 101:                   colourname = "Yellow";
+[e = _colourname :s 8C ]
+"102
+[; ;colorfunctions.c: 102:             cf->colourindex=3;
+[e = . *U _cf 5 -> 3 `i ]
+"103
+[; ;colorfunctions.c: 103:             }
 }
 [e $U 2048  ]
-"102
-[; ;colorfunctions.c: 102:         else {
+"104
+[; ;colorfunctions.c: 104:         else {
 [e :U 2047 ]
 {
-"103
-[; ;colorfunctions.c: 103:             colourname = "White";
-[e = _colourname :s 9C ]
-"104
-[; ;colorfunctions.c: 104:        cf->colourindex=7;
-[e = . *U _cf 5 -> 7 `i ]
 "105
-[; ;colorfunctions.c: 105:         }
+[; ;colorfunctions.c: 105:             colourname = "White";
+[e = _colourname :s 9C ]
+"106
+[; ;colorfunctions.c: 106:             cf->colourindex=7;
+[e = . *U _cf 5 -> 7 `i ]
+"107
+[; ;colorfunctions.c: 107:         }
 }
 [e :U 2048 ]
-"106
-[; ;colorfunctions.c: 106:     }
+"108
+[; ;colorfunctions.c: 108:     }
 }
 [e $U 2049  ]
-"107
-[; ;colorfunctions.c: 107:     else{cf->colourindex=8;}
+"110
+[; ;colorfunctions.c: 110:     else{cf->colourindex=8;}
 [e :U 2046 ]
 {
 [e = . *U _cf 5 -> 8 `i ]
@@ -2441,140 +2443,140 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 2039 ]
 [e :U 2037 ]
 [e :U 2035 ]
-"108
-[; ;colorfunctions.c: 108:     return colourname;
+"111
+[; ;colorfunctions.c: 111:     return colourname;
 [e ) _colourname ]
 [e $UE 2033  ]
-"109
-[; ;colorfunctions.c: 109: }
+"112
+[; ;colorfunctions.c: 112: }
 [e :UE 2033 ]
 }
-"111
-[; ;colorfunctions.c: 111: void Colour2Action(struct RGBC *cf)
+"114
+[; ;colorfunctions.c: 114: void Colour2Action(struct RGBC *cf)
 [v _Colour2Action `(v ~T0 @X0 1 ef1`*S2017 ]
-"112
-[; ;colorfunctions.c: 112: {
+"115
+[; ;colorfunctions.c: 115: {
 {
 [e :U _Colour2Action ]
-"111
-[; ;colorfunctions.c: 111: void Colour2Action(struct RGBC *cf)
-[v _cf `*S2017 ~T0 @X0 1 r1 ]
-"112
-[; ;colorfunctions.c: 112: {
-[f ]
-"113
-[; ;colorfunctions.c: 113:     if (cf->colourindex == 0)
-[e $ ! == . *U _cf 5 -> 0 `i 2051  ]
 "114
-[; ;colorfunctions.c: 114:     {
-{
+[; ;colorfunctions.c: 114: void Colour2Action(struct RGBC *cf)
+[v _cf `*S2017 ~T0 @X0 1 r1 ]
 "115
-[; ;colorfunctions.c: 115:         Red_R90(&motorL,&motorR);
-[e ( _Red_R90 (2 , &U _motorL &U _motorR ]
+[; ;colorfunctions.c: 115: {
+[f ]
 "116
-[; ;colorfunctions.c: 116:     }
+[; ;colorfunctions.c: 116:     if (cf->colourindex == 0)
+[e $ ! == . *U _cf 5 -> 0 `i 2051  ]
+"117
+[; ;colorfunctions.c: 117:     {
+{
+"118
+[; ;colorfunctions.c: 118:         Red_R90(&motorL,&motorR);
+[e ( _Red_R90 (2 , &U _motorL &U _motorR ]
+"119
+[; ;colorfunctions.c: 119:     }
 }
 [e $U 2052  ]
-"117
-[; ;colorfunctions.c: 117:     else if (cf->colourindex == 1)
+"120
+[; ;colorfunctions.c: 120:     else if (cf->colourindex == 1)
 [e :U 2051 ]
 [e $ ! == . *U _cf 5 -> 1 `i 2053  ]
-"118
-[; ;colorfunctions.c: 118:     {
+"121
+[; ;colorfunctions.c: 121:     {
 {
-"119
-[; ;colorfunctions.c: 119:         Green_L90(&motorL,&motorR);
+"122
+[; ;colorfunctions.c: 122:         Green_L90(&motorL,&motorR);
 [e ( _Green_L90 (2 , &U _motorL &U _motorR ]
-"120
-[; ;colorfunctions.c: 120:     }
+"123
+[; ;colorfunctions.c: 123:     }
 }
 [e $U 2054  ]
-"121
-[; ;colorfunctions.c: 121:     else if (cf->colourindex == 2)
+"124
+[; ;colorfunctions.c: 124:     else if (cf->colourindex == 2)
 [e :U 2053 ]
 [e $ ! == . *U _cf 5 -> 2 `i 2055  ]
-"122
-[; ;colorfunctions.c: 122:     {
+"125
+[; ;colorfunctions.c: 125:     {
 {
-"123
-[; ;colorfunctions.c: 123:         Blue_T180(&motorL,&motorR);
+"126
+[; ;colorfunctions.c: 126:         Blue_T180(&motorL,&motorR);
 [e ( _Blue_T180 (2 , &U _motorL &U _motorR ]
-"124
-[; ;colorfunctions.c: 124:     }
+"127
+[; ;colorfunctions.c: 127:     }
 }
 [e $U 2056  ]
-"125
-[; ;colorfunctions.c: 125:     else if (cf->colourindex == 3)
+"128
+[; ;colorfunctions.c: 128:     else if (cf->colourindex == 3)
 [e :U 2055 ]
 [e $ ! == . *U _cf 5 -> 3 `i 2057  ]
-"126
-[; ;colorfunctions.c: 126:     {
+"129
+[; ;colorfunctions.c: 129:     {
 {
-"127
-[; ;colorfunctions.c: 127:         Yellow_rev1_R90(&motorL,&motorR);
+"130
+[; ;colorfunctions.c: 130:         Yellow_rev1_R90(&motorL,&motorR);
 [e ( _Yellow_rev1_R90 (2 , &U _motorL &U _motorR ]
-"128
-[; ;colorfunctions.c: 128:     }
+"131
+[; ;colorfunctions.c: 131:     }
 }
 [e $U 2058  ]
-"129
-[; ;colorfunctions.c: 129:     else if (cf->colourindex == 4)
+"132
+[; ;colorfunctions.c: 132:     else if (cf->colourindex == 4)
 [e :U 2057 ]
 [e $ ! == . *U _cf 5 -> 4 `i 2059  ]
-"130
-[; ;colorfunctions.c: 130:     {
+"133
+[; ;colorfunctions.c: 133:     {
 {
-"131
-[; ;colorfunctions.c: 131:         Pink_rev1_L90(&motorL,&motorR);
+"134
+[; ;colorfunctions.c: 134:         Pink_rev1_L90(&motorL,&motorR);
 [e ( _Pink_rev1_L90 (2 , &U _motorL &U _motorR ]
-"132
-[; ;colorfunctions.c: 132:     }
+"135
+[; ;colorfunctions.c: 135:     }
 }
 [e $U 2060  ]
-"133
-[; ;colorfunctions.c: 133:     else if (cf->colourindex == 5)
+"136
+[; ;colorfunctions.c: 136:     else if (cf->colourindex == 5)
 [e :U 2059 ]
 [e $ ! == . *U _cf 5 -> 5 `i 2061  ]
-"134
-[; ;colorfunctions.c: 134:     {
+"137
+[; ;colorfunctions.c: 137:     {
 {
-"135
-[; ;colorfunctions.c: 135:         Orange_R135(&motorL,&motorR);
+"138
+[; ;colorfunctions.c: 138:         Orange_R135(&motorL,&motorR);
 [e ( _Orange_R135 (2 , &U _motorL &U _motorR ]
-"136
-[; ;colorfunctions.c: 136:     }
+"139
+[; ;colorfunctions.c: 139:     }
 }
 [e $U 2062  ]
-"137
-[; ;colorfunctions.c: 137:     else if (cf->colourindex == 6)
+"140
+[; ;colorfunctions.c: 140:     else if (cf->colourindex == 6)
 [e :U 2061 ]
 [e $ ! == . *U _cf 5 -> 6 `i 2063  ]
-"138
-[; ;colorfunctions.c: 138:     {
+"141
+[; ;colorfunctions.c: 141:     {
 {
-"139
-[; ;colorfunctions.c: 139:         LightBlue_L135(&motorL,&motorR);
+"142
+[; ;colorfunctions.c: 142:         LightBlue_L135(&motorL,&motorR);
 [e ( _LightBlue_L135 (2 , &U _motorL &U _motorR ]
-"140
-[; ;colorfunctions.c: 140:     }
+"143
+[; ;colorfunctions.c: 143:     }
 }
 [e $U 2064  ]
-"141
-[; ;colorfunctions.c: 141:     else if (cf->colourindex == 7)
+"144
+[; ;colorfunctions.c: 144:     else if (cf->colourindex == 7)
 [e :U 2063 ]
 [e $ ! == . *U _cf 5 -> 7 `i 2065  ]
-"142
-[; ;colorfunctions.c: 142:     {
-{
-"143
-[; ;colorfunctions.c: 143:         White(&motorL,&motorR,movementCount,movementMemory,timerMemory);
-[e ( _White (4 , , , , &U _motorL &U _motorR _movementCount &U _movementMemory &U _timerMemory ]
 "145
-[; ;colorfunctions.c: 145:     }
+[; ;colorfunctions.c: 145:     {
+{
+"146
+[; ;colorfunctions.c: 146:         White(&motorL,&motorR,movementCount,movementMemory,timerMemory);
+[e ( _White (4 , , , , &U _motorL &U _motorR _movementCount &U _movementMemory &U _timerMemory ]
+"148
+[; ;colorfunctions.c: 148:     }
 }
 [e $U 2066  ]
-"146
-[; ;colorfunctions.c: 146:     else {White(&motorL,&motorR,movementCount,movementMemory,timerMemory);}
+"149
+[; ;colorfunctions.c: 149:     else {White(&motorL,&motorR,movementCount,movementMemory,timerMemory);}
 [e :U 2065 ]
 {
 [e ( _White (4 , , , , &U _motorL &U _motorR _movementCount &U _movementMemory &U _timerMemory ]
@@ -2587,8 +2589,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 2056 ]
 [e :U 2054 ]
 [e :U 2052 ]
-"148
-[; ;colorfunctions.c: 148: }
+"151
+[; ;colorfunctions.c: 151: }
 [e :UE 2050 ]
 }
 [a 8C 89 101 108 108 111 119 0 ]

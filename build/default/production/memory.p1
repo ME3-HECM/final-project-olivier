@@ -11,12 +11,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;./dc_motor.h: 20: typedef struct DC_motor {
 [s S2019 `uc 1 `uc 1 `uc 1 `ui 1 `*uc 1 `*uc 1 ]
 [n S2019 DC_motor power direction brakemode PWMperiod posDutyHighByte negDutyHighByte ]
-"7 ./timer.h
-[; ;./timer.h: 7: float getTimerValue(void);
+"17 ./timer.h
+[; ;./timer.h: 17: float getTimerValue(void);
 [v _getTimerValue `(f ~T0 @X0 0 ef ]
-"41 ./dc_motor.h
-[; ;./dc_motor.h: 41: void stop(struct DC_motor *mL, struct DC_motor *mR);
-[v _stop `(v ~T0 @X0 0 ef2`*S2019`*S2019 ]
 "54 C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\pic\include\proc\pic18f67k40.h
 [; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\pic\include\proc\pic18f67k40.h: 54: __asm("PPSLOCK equ 0DEFh");
 [; <" PPSLOCK equ 0DEFh ;# ">
@@ -2028,10 +2025,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 800 `i `ui
 ]
 "17
-[; ;./dc_motor.h: 17: unsigned int _halfsquare = 350;
+[; ;./dc_motor.h: 17: unsigned int _halfsquare = 320;
 [v __halfsquare `ui ~T0 @X0 1 e ]
 [i __halfsquare
--> -> 350 `i `ui
+-> -> 320 `i `ui
 ]
 "18
 [; ;./dc_motor.h: 18: unsigned int _recogniseColour = 150;
@@ -2069,72 +2066,54 @@ Version 4.0 HI-TECH Software Intermediate Code
 :U ..
 ..
 ]
-"10 memory.c
-[; ;memory.c: 10: void memoryUpdateMovement(struct RGBC *cf, volatile unsigned int movementCount, volatile unsigned int *movementMemory)
+"9 memory.c
+[; ;memory.c: 9: void memoryUpdateMovement(struct RGBC *cf, volatile unsigned int movementCount, volatile unsigned int *movementMemory)
 [v _memoryUpdateMovement `(v ~T0 @X0 1 ef3`*S2015`Vui`*Vui ]
-"11
-[; ;memory.c: 11: {
+"10
+[; ;memory.c: 10: {
 {
 [e :U _memoryUpdateMovement ]
-"10
-[; ;memory.c: 10: void memoryUpdateMovement(struct RGBC *cf, volatile unsigned int movementCount, volatile unsigned int *movementMemory)
+"9
+[; ;memory.c: 9: void memoryUpdateMovement(struct RGBC *cf, volatile unsigned int movementCount, volatile unsigned int *movementMemory)
 [v _cf `*S2015 ~T0 @X0 1 r1 ]
 [v _movementCount `Vui ~T0 @X0 1 r2 ]
 [v _movementMemory `*Vui ~T0 @X0 1 r3 ]
-"11
-[; ;memory.c: 11: {
+"10
+[; ;memory.c: 10: {
 [f ]
-"13
-[; ;memory.c: 13:     int colourcode = cf->colourindex;
+"12
+[; ;memory.c: 12:     int colourcode = cf->colourindex;
 [v _colourcode `i ~T0 @X0 1 a ]
 [e = _colourcode . *U _cf 5 ]
-"14
-[; ;memory.c: 14:     movementMemory[movementCount] = colourcode;
+"13
+[; ;memory.c: 13:     movementMemory[movementCount] = colourcode;
 [e = *U + _movementMemory * -> _movementCount `ux -> -> # *U _movementMemory `ui `ux -> _colourcode `ui ]
-"15
-[; ;memory.c: 15: }
+"14
+[; ;memory.c: 14: }
 [e :UE 2020 ]
 }
-"16
-[; ;memory.c: 16: void memoryUpdateTime(volatile unsigned int movementCount, volatile float *timerMemory)
+"15
+[; ;memory.c: 15: void memoryUpdateTime(volatile unsigned int movementCount, volatile float *timerMemory)
 [v _memoryUpdateTime `(v ~T0 @X0 1 ef2`Vui`*Vf ]
-"17
-[; ;memory.c: 17: {
+"16
+[; ;memory.c: 16: {
 {
 [e :U _memoryUpdateTime ]
-"16
-[; ;memory.c: 16: void memoryUpdateTime(volatile unsigned int movementCount, volatile float *timerMemory)
+"15
+[; ;memory.c: 15: void memoryUpdateTime(volatile unsigned int movementCount, volatile float *timerMemory)
 [v _movementCount `Vui ~T0 @X0 1 r1 ]
 [v _timerMemory `*Vf ~T0 @X0 1 r2 ]
-"17
-[; ;memory.c: 17: {
+"16
+[; ;memory.c: 16: {
 [f ]
-"18
-[; ;memory.c: 18:     float timerVal = getTimerValue()-_recogniseColour;
+"17
+[; ;memory.c: 17:     float timerVal = getTimerValue()-_recogniseColour;
 [v _timerVal `f ~T0 @X0 1 a ]
 [e = _timerVal - ( _getTimerValue ..  -> __recogniseColour `f ]
-"19
-[; ;memory.c: 19:     timerMemory[movementCount] = timerVal;
+"18
+[; ;memory.c: 18:     timerMemory[movementCount] = timerVal;
 [e = *U + _timerMemory * -> _movementCount `ux -> -> # *U _timerMemory `ui `ux _timerVal ]
-"20
-[; ;memory.c: 20: }
+"19
+[; ;memory.c: 19: }
 [e :UE 2021 ]
-}
-"21
-[; ;memory.c: 21: void maxTimeReturn(void)
-[v _maxTimeReturn `(v ~T0 @X0 1 ef ]
-"22
-[; ;memory.c: 22: {
-{
-[e :U _maxTimeReturn ]
-[f ]
-"23
-[; ;memory.c: 23:     stop(&motorL,&motorR);
-[e ( _stop (2 , &U _motorL &U _motorR ]
-"24
-[; ;memory.c: 24:     maxTime = 0;
-[e = _maxTime -> -> 0 `i `ui ]
-"26
-[; ;memory.c: 26: }
-[e :UE 2022 ]
 }

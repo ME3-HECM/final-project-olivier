@@ -367,11 +367,11 @@ Version 4.0 HI-TECH Software Intermediate Code
 "29264
 [; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\pic\include\proc\pic18f67k40.h: 29264: extern volatile LATHbits_t LATHbits __attribute__((address(0xF80)));
 [v _LATHbits `VS1360 ~T0 @X0 0 e@3968 ]
-"6 ./timer.h
-[; ;./timer.h: 6: void TimerReset(void);
+"12 ./timer.h
+[; ;./timer.h: 12: void TimerReset(void);
 [v _TimerReset `(v ~T0 @X0 0 ef ]
-"7
-[; ;./timer.h: 7: float getTimerValue(void);
+"17
+[; ;./timer.h: 17: float getTimerValue(void);
 [v _getTimerValue `(f ~T0 @X0 0 ef ]
 "54 C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\pic\include\proc\pic18f67k40.h
 [; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\pic\include\proc\pic18f67k40.h: 54: __asm("PPSLOCK equ 0DEFh");
@@ -2410,10 +2410,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 800 `i `ui
 ]
 "17
-[; ;./dc_motor.h: 17: unsigned int _halfsquare = 350;
+[; ;./dc_motor.h: 17: unsigned int _halfsquare = 320;
 [v __halfsquare `ui ~T0 @X0 1 e ]
 [i __halfsquare
--> -> 350 `i `ui
+-> -> 320 `i `ui
 ]
 "18
 [; ;./dc_motor.h: 18: unsigned int _recogniseColour = 150;
@@ -3232,10 +3232,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e $ ! != -> _ForwardFlag `i -> 0 `i 2060  ]
 {
 "266
-[; ;dc_motor.c: 266:     reverseHalfSquare(mL,mR);
+[; ;dc_motor.c: 266:         reverseHalfSquare(mL,mR);
 [e ( _reverseHalfSquare (2 , _mL _mR ]
 "268
-[; ;dc_motor.c: 268:     rotate180left(mL,mR);
+[; ;dc_motor.c: 268:         rotate180left(mL,mR);
 [e ( _rotate180left (2 , _mL _mR ]
 "269
 [; ;dc_motor.c: 269:     }else{
@@ -3244,7 +3244,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 2060 ]
 {
 "270
-[; ;dc_motor.c: 270:     rotate180left(mL,mR);
+[; ;dc_motor.c: 270:         rotate180left(mL,mR);
 [e ( _rotate180left (2 , _mL _mR ]
 "271
 [; ;dc_motor.c: 271:     }

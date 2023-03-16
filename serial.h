@@ -12,6 +12,12 @@ char getCharSerial4(void);
 void sendCharSerial4(char charToSend);
 void sendStringSerial4(char *string);
 
+/********************************************//**
+ *  Function to output RGB values and predicted colour
+ ***********************************************/
 void Color2String(char *buf,struct RGBC *cf,struct RGB_rel *rel);
+/********************************************//**
+ *  Function to output relative RGB values to serial
+ ***********************************************/
 void RelColor2String(char *buf,struct RGB_rel *rel);
 #endif

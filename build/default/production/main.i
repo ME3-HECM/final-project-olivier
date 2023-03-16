@@ -24267,11 +24267,20 @@ struct RGB_rel colorrel;
 
 
 
+
+
 void colour_read_all(struct RGBC *cf,struct RGB_rel *rel);
+
+
+
 void RGB2Hue(struct RGBC *cf);
 
 
+
+
 char* Hue2Colour(struct RGBC *cf, struct RGB_rel *rel);
+
+
 
 
 void Colour2Action(struct RGBC *cf);
@@ -24331,7 +24340,13 @@ char getCharSerial4(void);
 void sendCharSerial4(char charToSend);
 void sendStringSerial4(char *string);
 
+
+
+
 void Color2String(char *buf,struct RGBC *cf,struct RGB_rel *rel);
+
+
+
 void RelColor2String(char *buf,struct RGB_rel *rel);
 # 7 "main.c" 2
 
@@ -24550,8 +24565,18 @@ void LED_init(void);
 
 
 
+
+
+
 void Timer0_init(void);
+
+
+
 void TimerReset(void);
+
+
+
+
 float getTimerValue(void);
 # 7 "./memory.h" 2
 
@@ -24576,9 +24601,14 @@ void main(void);
 
 
 
+
+
+
 void memoryUpdateMovement(struct RGBC *cf, volatile unsigned int movementCount, volatile unsigned int *movementMemory);
+
+
+
 void memoryUpdateTime(volatile unsigned int movementCount, volatile float *timerMemory);
-void maxTimeReturn(void);
 # 7 "./dc_motor.h" 2
 
 
@@ -24590,7 +24620,7 @@ volatile unsigned int retracingDone = 0;
 unsigned int _45dleftdelay = 144;
 unsigned int _45drightdelay = 144;
 unsigned int _1square = 800;
-unsigned int _halfsquare = 350;
+unsigned int _halfsquare = 320;
 unsigned int _recogniseColour = 150;
 
 typedef struct DC_motor {
@@ -24693,7 +24723,6 @@ void main(void) {
     _delay((unsigned long)((500)*(64000000/4000.0)));
     TimerReset();
     char wall=0;
-
     ClickLEDOn(1);
 
     char buf[20];
@@ -24706,26 +24735,31 @@ void main(void) {
 
             if (colorf.Cf>300)
             {
+                memoryUpdateTime(movementCount,timerMemory);
 
+                wall=1;
+                _delay((unsigned long)((200)*(64000000/4000.0)));
+                stop(&motorL,&motorR);
 
+            }
+            else if (maxTime==1)
+            {
+                memoryUpdateTime(movementCount,timerMemory);
+                colorf.colourindex=7;
 
-
-
-
-            memoryUpdateTime(movementCount,timerMemory);
-
-            wall=1;
-            _delay((unsigned long)((500)*(64000000/4000.0)));
-            stop(&motorL,&motorR);
+                wall=1;
+                stop(&motorL,&motorR);
             }
         }
-        colour_read_all(&colorf,&colorrel);
-        wall=0;
-        RGB2Hue(&colorf);
-        Hue2Colour(&colorf,&colorrel);
+
+        if (maxTime!=1){
+            colour_read_all(&colorf,&colorrel);
+            wall=0;
+            RGB2Hue(&colorf);
+            Hue2Colour(&colorf,&colorrel);
+        }
         memoryUpdateMovement(&colorf,movementCount,movementMemory);
         Colour2Action(&colorf);
-
         if (colorf.colourindex == 7)
         {
             while(!retracingDone){}

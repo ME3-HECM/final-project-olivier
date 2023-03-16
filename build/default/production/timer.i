@@ -24236,8 +24236,18 @@ unsigned char __t3rd16on(void);
 
 
 
+
+
+
 void Timer0_init(void);
+
+
+
 void TimerReset(void);
+
+
+
+
 float getTimerValue(void);
 # 2 "timer.c" 2
 

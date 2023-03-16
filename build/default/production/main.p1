@@ -27,8 +27,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "10 ./interrupts.h
 [; ;./interrupts.h: 10: void Interrupts_init(void);
 [v _Interrupts_init `(v ~T0 @X0 0 ef ]
-"5 ./timer.h
-[; ;./timer.h: 5: void Timer0_init(void);
+"8 ./timer.h
+[; ;./timer.h: 8: void Timer0_init(void);
 [v _Timer0_init `(v ~T0 @X0 0 ef ]
 "36 ./dc_motor.h
 [; ;./dc_motor.h: 36: void initDCmotorsPWM(unsigned int PWMperiod);
@@ -86,8 +86,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "12 C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\pic\include\builtins.h
 [v __delay `JF192 ~T0 @X0 0 e ]
 [p i __delay ]
-"6 ./timer.h
-[; ;./timer.h: 6: void TimerReset(void);
+"12 ./timer.h
+[; ;./timer.h: 12: void TimerReset(void);
 [v _TimerReset `(v ~T0 @X0 0 ef ]
 "56 ./colorclick.h
 [; ;./colorclick.h: 56: void ClickLEDOn(char power);
@@ -95,26 +95,29 @@ Version 4.0 HI-TECH Software Intermediate Code
 "49 ./dc_motor.h
 [; ;./dc_motor.h: 49: void fullSpeedAhead(struct DC_motor *mL, struct DC_motor *mR);
 [v _fullSpeedAhead `(v ~T0 @X0 0 ef2`*S2019`*S2019 ]
-"25 ./colorfunctions.h
-[; ;./colorfunctions.h: 25: void colour_read_all(struct RGBC *cf,struct RGB_rel *rel);
+"27 ./colorfunctions.h
+[; ;./colorfunctions.h: 27: void colour_read_all(struct RGBC *cf,struct RGB_rel *rel);
 [v _colour_read_all `(v ~T0 @X0 0 ef2`*S2015`*S2016 ]
-"13 ./memory.h
-[; ;./memory.h: 13: void memoryUpdateTime(volatile unsigned int movementCount, volatile float *timerMemory);
+"19 ./memory.h
+[; ;./memory.h: 19: void memoryUpdateTime(volatile unsigned int movementCount, volatile float *timerMemory);
 [v _memoryUpdateTime `(v ~T0 @X0 0 ef2`Vui`*Vf ]
 "41 ./dc_motor.h
 [; ;./dc_motor.h: 41: void stop(struct DC_motor *mL, struct DC_motor *mR);
 [v _stop `(v ~T0 @X0 0 ef2`*S2019`*S2019 ]
-"26 ./colorfunctions.h
-[; ;./colorfunctions.h: 26: void RGB2Hue(struct RGBC *cf);
+"9 ./interrupts.h
+[; ;./interrupts.h: 9: extern volatile unsigned int maxTime;
+[v _maxTime `Vui ~T0 @X0 0 e ]
+"31 ./colorfunctions.h
+[; ;./colorfunctions.h: 31: void RGB2Hue(struct RGBC *cf);
 [v _RGB2Hue `(v ~T0 @X0 0 ef1`*S2015 ]
-"29
-[; ;./colorfunctions.h: 29: char* Hue2Colour(struct RGBC *cf, struct RGB_rel *rel);
+"36
+[; ;./colorfunctions.h: 36: char* Hue2Colour(struct RGBC *cf, struct RGB_rel *rel);
 [v _Hue2Colour `(*uc ~T0 @X0 0 ef2`*S2015`*S2016 ]
-"12 ./memory.h
-[; ;./memory.h: 12: void memoryUpdateMovement(struct RGBC *cf, volatile unsigned int movementCount, volatile unsigned int *movementMemory);
+"15 ./memory.h
+[; ;./memory.h: 15: void memoryUpdateMovement(struct RGBC *cf, volatile unsigned int movementCount, volatile unsigned int *movementMemory);
 [v _memoryUpdateMovement `(v ~T0 @X0 0 ef3`*S2015`Vui`*Vui ]
-"32 ./colorfunctions.h
-[; ;./colorfunctions.h: 32: void Colour2Action(struct RGBC *cf);
+"41 ./colorfunctions.h
+[; ;./colorfunctions.h: 41: void Colour2Action(struct RGBC *cf);
 [v _Colour2Action `(v ~T0 @X0 0 ef1`*S2015 ]
 "1 main.c
 [p x FEXTOSC  =  HS      ]
@@ -2161,10 +2164,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 800 `i `ui
 ]
 "17
-[; ;./dc_motor.h: 17: unsigned int _halfsquare = 350;
+[; ;./dc_motor.h: 17: unsigned int _halfsquare = 320;
 [v __halfsquare `ui ~T0 @X0 1 e ]
 [i __halfsquare
--> -> 350 `i `ui
+-> -> 320 `i `ui
 ]
 "18
 [; ;./dc_motor.h: 18: unsigned int _recogniseColour = 150;
@@ -2276,110 +2279,142 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main.c: 51:     char wall=0;
 [v _wall `uc ~T0 @X0 1 a ]
 [e = _wall -> -> 0 `i `uc ]
-"53
-[; ;main.c: 53:     ClickLEDOn(1);
+"52
+[; ;main.c: 52:     ClickLEDOn(1);
 [e ( _ClickLEDOn (1 -> -> 1 `i `uc ]
-"55
-[; ;main.c: 55:     char buf[20];
+"54
+[; ;main.c: 54:     char buf[20];
 [v _buf `uc ~T0 @X0 -> 20 `i a ]
-"56
-[; ;main.c: 56:     while (!retracingDone){
+"55
+[; ;main.c: 55:     while (!retracingDone){
 [e $U 2024  ]
 [e :U 2025 ]
 {
-"57
-[; ;main.c: 57:         fullSpeedAhead(&motorL,&motorR);
+"56
+[; ;main.c: 56:         fullSpeedAhead(&motorL,&motorR);
 [e ( _fullSpeedAhead (2 , &U _motorL &U _motorR ]
-"59
-[; ;main.c: 59:         while (!wall){
+"58
+[; ;main.c: 58:         while (!wall){
 [e $U 2027  ]
 [e :U 2028 ]
 {
-"60
-[; ;main.c: 60:             colour_read_all(&colorf,&colorrel);
-[e ( _colour_read_all (2 , &U _colorf &U _colorrel ]
-"63
-[; ;main.c: 63:             if (colorf.Cf>300)
-[e $ ! > . _colorf 3 -> -> 300 `i `f 2030  ]
-"64
-[; ;main.c: 64:             {
-{
-"71
-[; ;main.c: 71:             memoryUpdateTime(movementCount,timerMemory);
-[e ( _memoryUpdateTime (2 , _movementCount &U _timerMemory ]
-"73
-[; ;main.c: 73:             wall=1;
-[e = _wall -> -> 1 `i `uc ]
-"74
-[; ;main.c: 74:             _delay((unsigned long)((500)*(64000000/4000.0)));
-[e ( __delay (1 -> * -> -> 500 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"75
-[; ;main.c: 75:             stop(&motorL,&motorR);
-[e ( _stop (2 , &U _motorL &U _motorR ]
-"76
-[; ;main.c: 76:             }
-}
-[e :U 2030 ]
-"77
-[; ;main.c: 77:         }
-}
-[e :U 2027 ]
 "59
-[; ;main.c: 59:         while (!wall){
-[e $ ! != -> _wall `i -> 0 `i 2028  ]
-[e :U 2029 ]
-"78
-[; ;main.c: 78:         colour_read_all(&colorf,&colorrel);
+[; ;main.c: 59:             colour_read_all(&colorf,&colorrel);
 [e ( _colour_read_all (2 , &U _colorf &U _colorrel ]
-"79
-[; ;main.c: 79:         wall=0;
-[e = _wall -> -> 0 `i `uc ]
-"80
-[; ;main.c: 80:         RGB2Hue(&colorf);
-[e ( _RGB2Hue (1 &U _colorf ]
-"81
-[; ;main.c: 81:         Hue2Colour(&colorf,&colorrel);
-[e ( _Hue2Colour (2 , &U _colorf &U _colorrel ]
-"82
-[; ;main.c: 82:         memoryUpdateMovement(&colorf,movementCount,movementMemory);
-[e ( _memoryUpdateMovement (3 , , &U _colorf _movementCount &U _movementMemory ]
-"83
-[; ;main.c: 83:         Colour2Action(&colorf);
-[e ( _Colour2Action (1 &U _colorf ]
-"85
-[; ;main.c: 85:         if (colorf.colourindex == 7)
-[e $ ! == . _colorf 5 -> 7 `i 2031  ]
-"86
-[; ;main.c: 86:         {
+"62
+[; ;main.c: 62:             if (colorf.Cf>300)
+[e $ ! > . _colorf 3 -> -> 300 `i `f 2030  ]
+"63
+[; ;main.c: 63:             {
 {
-"87
-[; ;main.c: 87:             while(!retracingDone){}
-[e $U 2032  ]
-[e :U 2033 ]
+"64
+[; ;main.c: 64:                 memoryUpdateTime(movementCount,timerMemory);
+[e ( _memoryUpdateTime (2 , _movementCount &U _timerMemory ]
+"66
+[; ;main.c: 66:                 wall=1;
+[e = _wall -> -> 1 `i `uc ]
+"67
+[; ;main.c: 67:                 _delay((unsigned long)((200)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 200 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+"68
+[; ;main.c: 68:                 stop(&motorL,&motorR);
+[e ( _stop (2 , &U _motorL &U _motorR ]
+"70
+[; ;main.c: 70:             }
+}
+[e $U 2031  ]
+"71
+[; ;main.c: 71:             else if (maxTime==1)
+[e :U 2030 ]
+[e $ ! == _maxTime -> -> 1 `i `ui 2032  ]
+"72
+[; ;main.c: 72:             {
 {
+"73
+[; ;main.c: 73:                 memoryUpdateTime(movementCount,timerMemory);
+[e ( _memoryUpdateTime (2 , _movementCount &U _timerMemory ]
+"74
+[; ;main.c: 74:                 colorf.colourindex=7;
+[e = . _colorf 5 -> 7 `i ]
+"76
+[; ;main.c: 76:                 wall=1;
+[e = _wall -> -> 1 `i `uc ]
+"77
+[; ;main.c: 77:                 stop(&motorL,&motorR);
+[e ( _stop (2 , &U _motorL &U _motorR ]
+"78
+[; ;main.c: 78:             }
 }
 [e :U 2032 ]
-[e $ ! != _retracingDone -> -> 0 `i `ui 2033  ]
-[e :U 2034 ]
-"88
-[; ;main.c: 88:         }
-}
 [e :U 2031 ]
+"79
+[; ;main.c: 79:         }
+}
+[e :U 2027 ]
+"58
+[; ;main.c: 58:         while (!wall){
+[e $ ! != -> _wall `i -> 0 `i 2028  ]
+[e :U 2029 ]
+"81
+[; ;main.c: 81:         if (maxTime!=1){
+[e $ ! != _maxTime -> -> 1 `i `ui 2033  ]
+{
+"82
+[; ;main.c: 82:             colour_read_all(&colorf,&colorrel);
+[e ( _colour_read_all (2 , &U _colorf &U _colorrel ]
+"83
+[; ;main.c: 83:             wall=0;
+[e = _wall -> -> 0 `i `uc ]
+"84
+[; ;main.c: 84:             RGB2Hue(&colorf);
+[e ( _RGB2Hue (1 &U _colorf ]
+"85
+[; ;main.c: 85:             Hue2Colour(&colorf,&colorrel);
+[e ( _Hue2Colour (2 , &U _colorf &U _colorrel ]
+"86
+[; ;main.c: 86:         }
+}
+[e :U 2033 ]
+"87
+[; ;main.c: 87:         memoryUpdateMovement(&colorf,movementCount,movementMemory);
+[e ( _memoryUpdateMovement (3 , , &U _colorf _movementCount &U _movementMemory ]
+"88
+[; ;main.c: 88:         Colour2Action(&colorf);
+[e ( _Colour2Action (1 &U _colorf ]
 "89
-[; ;main.c: 89:         TimerReset();
-[e ( _TimerReset ..  ]
+[; ;main.c: 89:         if (colorf.colourindex == 7)
+[e $ ! == . _colorf 5 -> 7 `i 2034  ]
 "90
-[; ;main.c: 90:         movementCount++;
-[e ++ _movementCount -> -> 1 `i `Vui ]
+[; ;main.c: 90:         {
+{
 "91
-[; ;main.c: 91:     }
+[; ;main.c: 91:             while(!retracingDone){}
+[e $U 2035  ]
+[e :U 2036 ]
+{
+}
+[e :U 2035 ]
+[e $ ! != _retracingDone -> -> 0 `i `ui 2036  ]
+[e :U 2037 ]
+"92
+[; ;main.c: 92:         }
+}
+[e :U 2034 ]
+"93
+[; ;main.c: 93:         TimerReset();
+[e ( _TimerReset ..  ]
+"94
+[; ;main.c: 94:         movementCount++;
+[e ++ _movementCount -> -> 1 `i `Vui ]
+"95
+[; ;main.c: 95:     }
 }
 [e :U 2024 ]
-"56
-[; ;main.c: 56:     while (!retracingDone){
+"55
+[; ;main.c: 55:     while (!retracingDone){
 [e $ ! != _retracingDone -> -> 0 `i `ui 2025  ]
 [e :U 2026 ]
-"92
-[; ;main.c: 92: }
+"96
+[; ;main.c: 96: }
 [e :UE 2020 ]
 }

@@ -263,11 +263,11 @@ void Green_L90(struct DC_motor *mL, struct DC_motor *mR)
 void Blue_T180(struct DC_motor *mL, struct DC_motor *mR)
 {
     if (ForwardFlag){
-    reverseHalfSquare(mL,mR);//reverse half square
-    //execute right 180 turn (depending on which side turns left/right more accurately)
-    rotate180left(mL,mR); 
+        reverseHalfSquare(mL,mR);//reverse half square
+        //execute right 180 turn (depending on which side turns left/right more accurately)
+        rotate180left(mL,mR); 
     }else{
-    rotate180left(mL,mR);
+        rotate180left(mL,mR);
     }
     
 }

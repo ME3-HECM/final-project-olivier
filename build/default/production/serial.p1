@@ -80,8 +80,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "15820
 [; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-K_DFP/1.7.134/xc8\pic\include\proc\pic18f67k40.h: 15820: extern volatile unsigned char TX4REG __attribute__((address(0xEE4)));
 [v _TX4REG `Vuc ~T0 @X0 0 e@3812 ]
-"29 ./colorfunctions.h
-[; ;./colorfunctions.h: 29: char* Hue2Colour(struct RGBC *cf, struct RGB_rel *rel);
+"36 ./colorfunctions.h
+[; ;./colorfunctions.h: 36: char* Hue2Colour(struct RGBC *cf, struct RGB_rel *rel);
 [v _Hue2Colour `(*uc ~T0 @X0 0 ef2`*S2015`*S2016 ]
 "109 C:\Program Files\Microchip\xc8\v2.40\pic\include\c99\stdio.h
 [; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\c99\stdio.h: 109: int sprintf(char *restrict, const char *restrict, ...);
@@ -2167,12 +2167,12 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _cf `*S2015 ~T0 @X0 1 r2 ]
 [v _rel `*S2016 ~T0 @X0 1 r3 ]
 [f ]
-"42
-[; ;serial.c: 42:     char* colourname = Hue2Colour(cf,rel);
+"41
+[; ;serial.c: 41:     char* colourname = Hue2Colour(cf,rel);
 [v _colourname `*uc ~T0 @X0 1 a ]
 [e = _colourname ( _Hue2Colour (2 , _cf _rel ]
-"43
-[; ;serial.c: 43:     sprintf(buf," Red %f Green,%f Blue,%f clear %f Hue %f \r",cf->Rf,cf->Gf,cf->Bf,cf->Cf,cf->h);
+"42
+[; ;serial.c: 42:     sprintf(buf," Red %f Green,%f Blue,%f clear %f Hue %f \r",cf->Rf,cf->Gf,cf->Bf,cf->Cf,cf->h);
 [e ( _sprintf (1 , , , , , (. , _buf :s 1C -> . *U _cf 0 `d -> . *U _cf 1 `d -> . *U _cf 2 `d -> . *U _cf 3 `d -> . *U _cf 4 `d ]
 "45
 [; ;serial.c: 45:     sendStringSerial4(buf);
