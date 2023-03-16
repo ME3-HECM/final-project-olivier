@@ -24580,9 +24580,9 @@ volatile char ForwardFlag = 1;
 
 volatile unsigned int retracingDone = 0;
 unsigned int _45dleftdelay = 144;
-unsigned int _45drightdelay = 140;
-unsigned int _1square = 700;
-unsigned int _halfsquare = 300;
+unsigned int _45drightdelay = 144;
+unsigned int _1square = 800;
+unsigned int _halfsquare = 350;
 unsigned int _recogniseColour = 150;
 
 typedef struct DC_motor {

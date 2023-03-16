@@ -49,7 +49,6 @@ void main(void) {
     __delay_ms(500);
     TimerReset();//reset the timer
     char wall=0;//set the wall condition to 0
-
     ClickLEDOn(1);//set the clicker LED initially to off
     
     char buf[20];
@@ -62,12 +61,6 @@ void main(void) {
              //by sensors so all sensor values fall
             if (colorf.Cf>300)//wait for the clear value to be under a certain threshold (dark)
             {
-//                if (maxTime==1){//if the maximum time between actions (8 seconds) has been reached, perform the return home function
-//                //here we assume a wall has been reached but the time between actions has exceeded 8 seconds and so the buggy must return home  
-//                //note: since the timer is reset every time an action is performed the timer does not need to be reset here
-//                    memoryUpdate(&colorf,movementCount,movementMemory,timerMemory);//update the memory function
-//                    White(&motorL,&motorR,movementCount,movementMemory,timerMemory);//perform the return home function 
-//                }
             memoryUpdateTime(movementCount,timerMemory);//update the time taken for action to occur corresponding to the movement
             //flag that a wall has been detected
             wall=1;
@@ -87,6 +80,6 @@ void main(void) {
             while(!retracingDone){}//wait until the retracing is done before resetting the timer as it might mess up the white function
         }
         TimerReset();//reset the timer in order to have time between actions
-        movementCount++; //increment the movement coun
+        movementCount++; //increment the movement count
     }
 }

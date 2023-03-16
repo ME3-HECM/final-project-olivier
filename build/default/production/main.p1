@@ -2149,22 +2149,22 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 144 `i `ui
 ]
 "15
-[; ;./dc_motor.h: 15: unsigned int _45drightdelay = 140;
+[; ;./dc_motor.h: 15: unsigned int _45drightdelay = 144;
 [v __45drightdelay `ui ~T0 @X0 1 e ]
 [i __45drightdelay
--> -> 140 `i `ui
+-> -> 144 `i `ui
 ]
 "16
-[; ;./dc_motor.h: 16: unsigned int _1square = 700;
+[; ;./dc_motor.h: 16: unsigned int _1square = 800;
 [v __1square `ui ~T0 @X0 1 e ]
 [i __1square
--> -> 700 `i `ui
+-> -> 800 `i `ui
 ]
 "17
-[; ;./dc_motor.h: 17: unsigned int _halfsquare = 300;
+[; ;./dc_motor.h: 17: unsigned int _halfsquare = 350;
 [v __halfsquare `ui ~T0 @X0 1 e ]
 [i __halfsquare
--> -> 300 `i `ui
+-> -> 350 `i `ui
 ]
 "18
 [; ;./dc_motor.h: 18: unsigned int _recogniseColour = 150;

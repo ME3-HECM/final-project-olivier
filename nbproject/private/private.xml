@@ -3,17 +3,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/olive/OneDrive/Documents/GitHub/final-project-olivier.X/interrupts.h</file>
-            <file>file:/C:/Users/olive/OneDrive/Documents/GitHub/final-project-olivier.X/dc_motor.c</file>
-            <file>file:/C:/Users/olive/OneDrive/Documents/GitHub/final-project-olivier.X/memory.c</file>
-            <file>file:/C:/Users/olive/OneDrive/Documents/GitHub/final-project-olivier.X/dc_motor.h</file>
-            <file>file:/C:/Users/olive/OneDrive/Documents/GitHub/final-project-olivier.X/main.h</file>
-            <file>file:/C:/Users/olive/OneDrive/Documents/GitHub/final-project-olivier.X/colorfunctions.c</file>
-            <file>file:/C:/Users/olive/OneDrive/Documents/GitHub/final-project-olivier.X/main.c</file>
-            <file>file:/C:/Users/olive/OneDrive/Documents/GitHub/final-project-olivier.X/LED.h</file>
-            <file>file:/C:/Users/olive/OneDrive/Documents/GitHub/final-project-olivier.X/serial.c</file>
-            <file>file:/C:/Users/olive/OneDrive/Documents/GitHub/final-project-olivier.X/memory.h</file>
-            <file>file:/C:/Users/olive/OneDrive/Documents/GitHub/final-project-olivier.X/interrupts.c</file>
+            <file>file:/C:/Users/Windows/Documents/GitHub/final-project-olivier/main.c</file>
+            <file>file:/C:/Users/Windows/Documents/GitHub/final-project-olivier/memory.h</file>
+            <file>file:/C:/Users/Windows/Documents/GitHub/final-project-olivier/colorfunctions.h</file>
+            <file>file:/C:/Users/Windows/Documents/GitHub/final-project-olivier/dc_motor.c</file>
+            <file>file:/C:/Users/Windows/Documents/GitHub/final-project-olivier/memory.c</file>
+            <file>file:/C:/Users/Windows/Documents/GitHub/final-project-olivier/serial.h</file>
+            <file>file:/C:/Users/Windows/Documents/GitHub/final-project-olivier/interrupts.h</file>
+            <file>file:/C:/Users/Windows/Documents/GitHub/final-project-olivier/colorclick.h</file>
+            <file>file:/C:/Users/Windows/Documents/GitHub/final-project-olivier/colorfunctions.c</file>
+            <file>file:/C:/Users/Windows/Documents/GitHub/final-project-olivier/dc_motor.h</file>
+            <file>file:/C:/Users/Windows/Documents/GitHub/final-project-olivier/i2c.h</file>
         </group>
     </open-files>
 </project-private>
