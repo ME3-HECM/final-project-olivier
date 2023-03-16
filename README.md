@@ -9,7 +9,7 @@ Our task was to develop an autonomous robot that can find it's way through a "mi
 - [x]  Interpret the card colour using a predefined code and perform the navigation instruction
 - [x]  When the final card is reached, navigate back to the starting position
 - [x]  Handle exceptions and return back to the starting position if final card cannot be found
-
+These tasks were successfully completed during the demo.
 ## "Mine" environment specification
 
 A "mine" is contstructed from black plywood walls 100mm high with some walls having coloured cards located on the sides of the maze to assist with navigation. The following colour code is to be used for navigation:
@@ -376,4 +376,5 @@ Once turned on with relevant registers and variables initialised the PC enters t
     }
 ```
 
-
+### Possible Improvements
+To make the buggy more robust we would have benefited from a different method of turning in order to maintain consistency in turns. Furthermore, our buggy often veered to one direction or the other during testing so a function using some sort of gyroscope or something similar possibly could have been used to realign the buggy.
