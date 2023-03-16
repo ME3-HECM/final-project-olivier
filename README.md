@@ -33,7 +33,7 @@ Black | Maze wall colour
 1. Turn the PIC board on.
 1. When ready to start, turn the main buggy power on switch
 
-![Buggy in Use]https://drive.google.com/file/d/1ZWeQf-ztbf95jfq3j8RBCIMzxyjYJchO/view?usp=sharing
+![Buggy in Use](https://drive.google.com/file/d/1ZWeQf-ztbf95jfq3j8RBCIMzxyjYJchO/view?usp=sharing)
 ### Buggy Light Sensor Cover
 
 The colour sensor is covered in a 3D printed shroud to stop ambient light interfering with the sensor. (courtesy of Martin England). 
