@@ -63,7 +63,7 @@ char* Hue2Colour(struct RGBC *cf, struct RGB_rel *rel)
         cf->colourindex=4;
     }
     else if (((cf->h)>85)&&((cf->h)<130))
-     {colourname = "Dark Blue";
+        {colourname = "Dark Blue";
         cf->colourindex=2;}
     else if (((cf->h)>6)&&((cf->h)<12))
     {
@@ -72,14 +72,14 @@ char* Hue2Colour(struct RGBC *cf, struct RGB_rel *rel)
     }
      else if (((cf->h)>65)&&((cf->h)<80))
     {
-         //Green and blue valeus coincide but easy to differentiate when combined
+         //Green and blue values coincide but easy to differentiate when combined
          //with relative values so use that
         if (rel->B > 0.22)
         {     colourname = "Light Blue";
-        cf->colourindex=6;}
+            cf->colourindex=6;}
         else {
             colourname = "Green";
-        cf->colourindex=1; 
+            cf->colourindex=1; 
         }
     }
     else if (((cf->h)>18)&&((cf->h)<27))
@@ -87,11 +87,11 @@ char* Hue2Colour(struct RGBC *cf, struct RGB_rel *rel)
         if (rel->R > 0.51)
         {       
                   colourname = "Yellow";
-        cf->colourindex=3;
+            cf->colourindex=3;
             }
         else {
             colourname = "White";
-       cf->colourindex=7; 
+            cf->colourindex=7; 
         } 
     }
     //If it hits a black wall or cannot recognise the colour it goes home
@@ -153,7 +153,6 @@ As per the challenge brief, under two circumstances the buggy would be required 
 To be able to record the distance the buggy moved between cards and replay it on the way back Timer0 was used.
 ```
 //the memory update function is called everytime a colour is reached
-
 void memoryUpdateMovement(struct RGBC_rel *cf, volatile unsigned int movementCount, volatile unsigned int *movementMemory)
 {
     //get colour value and store it 
@@ -197,21 +196,23 @@ void White(struct DC_motor *mL, struct DC_motor *mR,unsigned int movementCount, 
             else if (movementMemory[i]==2){
                 Blue_T180(mL,mR);}
             else if (movementMemory[i]==3){
-                Yellow_rev1_R90(mL,mR);}
+                Yellow_rev1_R90(mL,mR);
+                RAMback(mL,mR);}//double ram to account for the 1 square forwards
             else if (movementMemory[i]==4){
-                Pink_rev1_L90(mL,mR);}
+                Pink_rev1_L90(mL,mR);
+                RAMback(mL,mR);}//double ram to account for the 1 square forwards
             else if (movementMemory[i]==5){
                 Orange_R135(mL,mR);}
             else if (movementMemory[i]==6){
                 LightBlue_L135(mL,mR);}
             else if (movementMemory[i]==7){
                 stop(mL,mR);}//7 = white so just stop and then carry on
-            RAMback(mL,mR);//align with the wall 
+            RAMback(mL,mR);//align with the wall
             BrakeLightON; 
             //now we read the timer memory to find the time between functions 
             float tempTimer = 0;
             TimerReset();//reset the timer in order to count up from 0->timerMemory[i]
-            fullSpeedAhead(mL,mR);//go forwards
+            fullSpeedAhead(mL,mR);
             if (timerMemory[i]<0)//checking if the recognise colour delay makes it negative
             {
                 while(tempTimer <(timerMemory[i]+_recogniseColour))
